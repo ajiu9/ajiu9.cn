@@ -2,7 +2,6 @@ import { execSync } from 'node:child_process'
 import path from 'node:path'
 
 const __dirname = path.resolve()
-console.log(__dirname)
 
 function copyAndPushToOrigin(sourceDir: string, targetDir: string) {
   try {
@@ -17,8 +16,8 @@ function copyAndPushToOrigin(sourceDir: string, targetDir: string) {
     execSync('git commit -m "chore: blog"')
 
     execSync('git remote add origin https://github.com/ajiu9/ajiu9.github.io')
+    execSync('git branch -M gh-pages')
     execSync('git push --force origin gh-pages')
-
     console.log('Successfully pushed to origin.')
   }
   catch (error) {
