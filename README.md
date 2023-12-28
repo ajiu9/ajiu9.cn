@@ -1,4 +1,4 @@
-**[antfu.me](https://antfu.me)**
+**[ajiu9.cn](https://ajiu9.me)**
 
 my personal website
 
