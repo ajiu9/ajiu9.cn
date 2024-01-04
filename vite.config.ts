@@ -25,7 +25,6 @@ import sharp from 'sharp'
 import { slugify } from './scripts/slugify'
 
 const promises: Promise<any>[] = []
-
 export default defineConfig({
   resolve: {
     alias: [

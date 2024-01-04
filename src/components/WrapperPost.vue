@@ -13,8 +13,8 @@ const route = useRoute()
 const content = ref<HTMLDivElement>()
 
 const base = 'https://ajiu9.cn'
-const tweetUrl = computed(() => `https://twitter.com/intent/tweet?text=${encodeURIComponent(`Reading @antfu7\'s ${base}${route.path}\n\nI think...`)}`)
-const elkUrl = computed(() => `https://elk.zone/intent/post?text=${encodeURIComponent(`Reading @antfu@m.webtoo.ls\'s ${base}${route.path}\n\nI think...`)}`)
+const tweetUrl = computed(() => `https://twitter.com/intent/tweet?text=${encodeURIComponent(`Reading @ajiu9\'s ${base}${route.path}\n\nI think...`)}`)
+const elkUrl = computed(() => `https://elk.zone/intent/post?text=${encodeURIComponent(`Reading @ajiu9@m.webtoo.ls\'s ${base}${route.path}\n\nI think...`)}`)
 
 onMounted(() => {
   const navigate = () => {

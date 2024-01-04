@@ -4,7 +4,7 @@ description:  'description'
 plum: true
 ---
 
-Hey, I am Ajiu9
+Hey, I am Ajiu9, a software developer.
 
 <div flex-auto />
 
