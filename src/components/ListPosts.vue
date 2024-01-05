@@ -10,6 +10,7 @@ const props = defineProps<{
 }>()
 
 const router = useRouter()
+console.log(router.getRoutes())
 const routes: Post[] = router.getRoutes()
   .filter(i => i.path.startsWith('/posts') && i.meta.frontmatter.date && !i.meta.frontmatter.draft)
   .filter(i => !i.path.endsWith('.html') && (i.meta.frontmatter.type || 'blog').split('+').includes(props.type))
