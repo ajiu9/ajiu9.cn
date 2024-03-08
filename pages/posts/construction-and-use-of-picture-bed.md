@@ -11,7 +11,7 @@ tags:
 
 ### 图床使用uPic
 
-```brew
+```cmd
 brew install bigwig-club/brew/upic --cask
 ```
 
