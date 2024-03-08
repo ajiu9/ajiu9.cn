@@ -6,9 +6,9 @@ plum: true
 wrapperClass: 'text-center'
 projects:
   Current Focus:
-    - name: 'test'
-      link: 'https://github.com/'
-      desc: 'desc'
+    - name: 'commonuse'
+      link: 'https://github.com/ajiu9/commonuse'
+      desc: 'the common use for js'
       icon: 'i-logos-github saturate-0'
 ---
 
