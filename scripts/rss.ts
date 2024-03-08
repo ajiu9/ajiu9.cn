@@ -9,7 +9,7 @@ import { Feed } from 'feed'
 const DOMAIN = 'https://ajiu9.cn'
 const AUTHOR = {
   name: 'Ajiu9',
-  email: 'hi@ajiu9.cn',
+  email: '615944323@qq.com',
   link: DOMAIN,
 }
 const markdown = MarkdownIt({
@@ -30,7 +30,7 @@ async function buildBlogRSS() {
     description: 'Ajiu9\' Blog',
     id: 'https://ajiu9.cn/',
     link: 'https://ajiu9.cn/',
-    copyright: 'CC BY-NC-SA 4.0 2021 © Ajiu9',
+    copyright: '@2024-2025 湘ICP备2024048835号',
     feedLinks: {
       json: 'https://ajiu9.cn/feed.json',
       atom: 'https://ajiu9.cn/feed.atom',
