@@ -17,7 +17,7 @@ const route = useRoute()
 
     <div mb-0 flex="~ col gap-1 sm:row sm:gap-3 wrap" text-3xl>
       <RouterLink to="/posts" class="!border-none" :class="route.path === '/posts' ? activeStyle : inactiveStyle">
-        Blog
+        博客
       </RouterLink>
       <RouterLink to="/notes" class="!border-none" :class="route.path === '/notes' ? activeStyle : inactiveStyle">
         笔记
