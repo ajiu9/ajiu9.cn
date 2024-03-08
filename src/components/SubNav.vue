@@ -20,7 +20,7 @@ const route = useRoute()
         Blog
       </RouterLink>
       <RouterLink to="/notes" class="!border-none" :class="route.path === '/notes' ? activeStyle : inactiveStyle">
-        Notes
+        笔记
       </RouterLink>
     </div>
   </div>
