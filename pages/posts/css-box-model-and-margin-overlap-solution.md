@@ -1,0 +1,97 @@
+---
+title: CSS盒模型和边距重叠解决方案（BFC）
+lang: zh
+date: 2018-09-25
+type: note
+date created: 2024-03-10
+date modified: 2024-03-10
+---
+
+### CSS盒模型的基本概念
+
+盒模型由内向外由content,padding, border, margin组成。
+盒模型有两种：标准模型，IE模型。
+
+### 标准模型和IE模型的区别
+
+这俩种盒模型的区别是计算宽度和高度的不同。
+标准模型的宽高只计算内容（content）,IE模型宽高计算为内容（content）+填充（padding）+边框（border）的总宽高。
+
+![图片](https://mmbiz.qpic.cn/mmbiz_png/E8J408djnGyGOpIdmDhAnT4X3hy01SLdEcK404AWXVAuLpiartHTrVN3CS30wPHwFrhdmbe0cSR7DKNaicV8hozg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+
+![图片](https://mmbiz.qpic.cn/mmbiz_png/E8J408djnGyGOpIdmDhAnT4X3hy01SLdk8mnOKEZGMebyWXZQLBX8RySexRb0Dx9Xm8QlrsibQPY9jOjmxibomlQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+
+### 如何设置这俩种盒模型
+
+```
+/*标准模型*/
+box-sizing: content-box;
+/*IE模型*/
+box-sizing: border-box;
+```
+
+### JS如何获取盒模型的宽和高
+
+```
+var node = document.getElementById('node')
+```
+
+- node.style.width/height
+  这种方式只能取到dom元素内联样式的宽和高，通过外联样式link引入和在style标签中设置的样式这两者都是获取不到node的宽和高的
+
+- node.currentStyle.width/height
+  这种方式是获取渲染后的结果，但只在旧版本的IE浏览器中支持，该特性是非标准的，尽量不要在生产环境中使用它。
+
+- window.getComputerStyle(node).width/height
+  Window.getComputedStyle()方法返回一个对象，该对象在应用活动样式表并解析这些值可能包含的任何基本计算后报告元素的所有CSS属性的值。和上一种方式是相似的，但通用性更好。
+- node.getBoundingClientRect().width/height
+  Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。包含边框(border)、内边距(padding)以及CSS设置的宽度(width)值
+
+- node.offsetWidth/offsetHeight
+  这种方式是测量包含元素的边框(border)、内边距(padding)、滚动条(scrollbar)（如果存在的话）、以及CSS设置的宽度(width)和高度（height）的值。
+
+### 边距重叠
+
+- 父子元素边距重叠（子元素设置margin-top:20px; 父元素也一起有了上边距）
+
+- 兄弟元素边距重叠（兄弟元素的下边距margin-bottom和他兄弟元素上边margin-top距重叠，重叠规则是取它们之间最大值）
+
+- 空元素的边距重叠（空元素的上边距margin-top和下边距margin-bottom重叠，重叠规则是取它们之间最大值）
+
+### 边距重叠解决方案（BFC）
+
+BFC(Block formatting context)直译为”块级格式化上下文”。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。
+
+#### W3C对BFC的定义如下：
+
+浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）。
+
+#### BFC布局规则：
+
+- 内部的Box会在垂直方向属于同一个BFC的两个相邻Box的margin会发生重叠。
+
+- BFC的区域不会与float box重叠。
+
+- BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也如此。
+
+- 计算BFC的高度时，浮动元素也参与计算。
+
+### 如何创建BFC
+
+根据BFC的定义，创建方式有几种
+
+- float属性不为none
+
+- position为absolute或fixed
+
+- display为inline-block, table-cell, table-caption, flex, inline-flex
+
+- overflow不为visible
+
+### 应用场景
+
+- 自适应浮动布局中浮动重叠（给该自适应元素创建BFC）
+
+- 解决父子元素边距重叠（给父元素创建BFC）
+
+- 清楚浮动（给浮动元素的父元素创建BFC）
