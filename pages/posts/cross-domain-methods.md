@@ -143,7 +143,8 @@ util.isFunction = function (source) {
   script.setAttribute('type', 'text/javascript');
   charset && script.setAttribute('charset', charset);
   script.setAttribute('src', url);
-  script.async = true;return script;
+  script.async = true;
+  return script;
 };
 // jsop实现
 util.jsonp = function(url, data, onsuccess, onerror, charset) {
@@ -260,12 +261,12 @@ CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resour
 
 ```js
 fetch('/some/url/', {
-method: 'get',
+  method: 'get',
 }).then(function (response) {
   // 请求成功后执行操作
-  }).catch(function (err) {
-    // 请求失败后执行操作
-    });
+}).catch(function (err) {
+  // 请求失败后执行操作
+});
 ```
 
 [CORS【参考资料】](http://www.ruanyifeng.com/blog/2016/04/cors.html)
