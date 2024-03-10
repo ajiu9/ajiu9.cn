@@ -9,13 +9,13 @@ date modified: 2024-03-10
 
 #### 事件级别
 
-- DOM0  
-    `element.onclick = function(){}`
-- DOM2  
-    `element.addEventListener('click', function(){}, false)`
-- DOM3  
-    `element.addEventListener('keyup', function(){}, false`  
-    在DOM2事件后新增了UI事件、鼠标事件、键盘事件等事件类型
+- DOM0
+  `element.onclick = function(){}`
+- DOM2
+  `element.addEventListener('click', function(){}, false)`
+- DOM3
+  `element.addEventListener('keyup', function(){}, false`
+  在DOM2事件后新增了UI事件、鼠标事件、键盘事件等事件类型
 
 #### 事件模型
 
@@ -32,8 +32,8 @@ DOM(文档对象模型)结构是一个树型结构，当一个HTML元素产生�
 
 - 捕获阶段（Capture Phase）：事件从window自上而下向目标节点传播的阶段；
 - 目标阶段（Target Phase）：正的目标节点正在处理事件的阶段；
-- 冒泡阶段（Bubbling Phase）：事件从目标节点自上而下向window传播的阶段。  
-    ![图片](https://mmbiz.qpic.cn/mmbiz_png/E8J408djnGzrmE66sq86btMUIsBL8fmrPoWv7oFQGpCboVMxP4VSMciclAKZUUruYicBibf22PjSAbS0eDrhA6dOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+- 冒泡阶段（Bubbling Phase）：事件从目标节点自上而下向window传播的阶段。
+  ![图片](https://static.ajiu9.cn/images/20240310220404oy7dPw.png)
 
 #### Event对象的常见应用
 
@@ -45,9 +45,10 @@ DOM(文档对象模型)结构是一个树型结构，当一个HTML元素产生�
 
 #### 自定义事件
 
-> 语法 `event = new Event(typeArg, eventInit);`
+> 语法`event = new Event(typeArg, eventInit);`
 > typeArg 是DOMString 类型，表示所创建事件的名称。
 > eventInit可选,是 EventInit 类型的字典，接受以下字段:
+>
 > - “bubbles”，可选，Boolean类型，默认值为 false，表示该事件是否冒泡。
 > - “cancelable”，可选，Boolean类型，默认值为 false， 表示该事件能否被取消。
 > - “composed”，可选，Boolean类型，默认值为 false，指示事件是否会在影子DOM根节点之外触发侦听器。

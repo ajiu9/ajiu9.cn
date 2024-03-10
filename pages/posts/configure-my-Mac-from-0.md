@@ -14,7 +14,7 @@ tags:
 
 ### 安装APP和Cli工具
 
-1. 安装HomeBrew 并用它安装app和cli工具。App 可以在 homebrew-cask — Homebrew Formulae 里找有没有，Cli 工具可以在 homebrew-core — Homebrew Formulae 找有没有。
+1. 安装HomeBrew 并用它安装app和cli工具。App 可以在homebrew-cask — Homebrew Formulae里找有没有，Cli 工具可以在homebrew-core — Homebrew Formulae 找有没有。
 
 ```bash
 # 先开代理
@@ -43,7 +43,7 @@ brew install autojump diff-so-fancy  fd gh git nvm pnpm tree
 ### 配置App
 
 1. Karabiner-Elements
-   参考 Karabiner-Element 配置 F19 键 - HackMD 。在 Karabiner-Elements complex_modifications rules 搜「Change caps_lock key」，import 后只保留一条和 F19 相关的，然后在命令行里编辑「~/.config/karabiner/karabiner.json」，把刚才那条规则的「caps_lock」换成「right_command」（两处）。这样你就把基本不会用到的「右⌘」废物利用变成了「F19」键，然后你的快捷键组合会多很多。
+   参考 Karabiner-Element 配置 F19 键 - HackMD 。在 Karabiner-Elements complex_modifications rules 搜「Change caps_lock key」，import 后只保留一条和 F19 相关的，然后在命令行里编辑「~/.config/karabiner/karabiner.json」，把刚才那条规则的「caps_lock」换成「right_command」（两处）。这样你就把基本不会用到的「右⌘」废物利用变成了「F19」键，然后你的快捷键组合会多很多。
 
    如果你仔细看配置，会发现「F19」是由四个键「⌘⇧⌃⌥」组成的，在一些 App 的快捷键配置里你会看到四个键，不要奇怪，这也是他。
 
@@ -51,7 +51,7 @@ brew install autojump diff-so-fancy  fd gh git nvm pnpm tree
    快捷键操作集成窗口，超级好用，用来组合F19可以玩出很多花样
 
 3. zsh
-   安装 zsh 和 starship，starship 是 rust 写的 prompt 工具，极快
+   安装 zsh 和 starship，starship 是 rust 写的 prompt 工具，极快
 
 ```bash
 brew install starshipecho 'eval "$(starship init zsh)"' >> ~/.zshrc
@@ -81,24 +81,24 @@ alias hosts="vi /etc/hosts"
 alias cdtemp="cd `mktemp -d /tmp/ajiu9-XXXXXX`"
 
 function grandom() {
-	# 获取当前日期
-	current_date=$(date "+%Y-%m-%d")
-	# 生成4个随机数字
-	random_number=$(( RANDOM % 676 ))
-	# 将随机数转换为A-Z随机字符
-	random_chars=""
-	for (( i=0; i<4; i++)); do
-		random_char_index=$(( RANDOM % 26 ))
-		random_char=$(printf \\$(printf '%03o' $((65 + random_char_index))))
-		random_chars="${random_chars}${random_char}"
-	done
-	# 格式化为指定格式的字符串
-	formatted_string="${current_date}-${random_chars}"
-	if [[ -n $1 ]]; then
-		echo `git checkout -b "$1"/ajiu9-"$formatted_string"`
-	else
-		echo `git checkout -b ajiu9-"$formatted_string"`
-	fi
+  # 获取当前日期
+  current_date=$(date "+%Y-%m-%d")
+  # 生成4个随机数字
+  random_number=$(( RANDOM % 676 ))
+  # 将随机数转换为A-Z随机字符
+  random_chars=""
+  for (( i=0; i<4; i++)); do
+    random_char_index=$(( RANDOM % 26 ))
+    random_char=$(printf \\$(printf '%03o' $((65 + random_char_index))))
+    random_chars="${random_chars}${random_char}"
+  done
+  # 格式化为指定格式的字符串
+  formatted_string="${current_date}-${random_chars}"
+  if [[ -n $1 ]]; then
+    echo `git checkout -b "$1"/ajiu9-"$formatted_string"`
+  else
+    echo `git checkout -b ajiu9-"$formatted_string"`
+  fi
 }
 
 ## system
@@ -128,7 +128,7 @@ alias glg="git log --pretty='%C(red)%h%Creset%C(yellow)%d%Creset %s %C(cyan)(%ar
 alias gdel="git branch --merged master | egrep -v '(\*|master|release|bug$|dev)' | xargs -n 1 -r git branch -d"
 alias gck="git checkout"
 function gb() {
-	echo `git checkout "$1" && git pull && git checkout -b "$2"`
+  echo `git checkout "$1" && git pull && git checkout -b "$2"`
 }
 
 function record() {
@@ -223,7 +223,7 @@ eval "$(starship init zsh)"
 
 4. 额外的命令行工具：Bun 和 Projj
 
-安装 Bun。主要是用他的 run 命令，极快，上面也有别名 `br`，比如执行比如 `br dev` 即 `npm run dev`。
+安装 Bun。主要是用他的 run 命令，极快，上面也有别名 `br`，比如执行比如 `br dev` 即 `npm run dev`。
 
 ```
 curl -fsSL https://bun.sh/install | bash
@@ -277,99 +277,99 @@ projj add git@github.com:ajiu9/eslint-config.git
 # Matches are substitution rules: when you type the "trigger" string
 # it gets replaced by the "replace" string.
 matches:
-# Simple text replacement
-# NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
-# But matches can also be dynamic:
-# Print the current date
-- trigger: ":date"
-  replace: "{{mydate}}"
-  vars:
-	- name: mydate
-	type: date
-	params:
-	  format: "%m/%d/%Y"
-	# Print the output of a shell command
-- trigger: ":shell"
-  replace: "{{output}}"
-  vars:
-  - name: output
-	type: shell
-	params:
-	  cmd: "echo 'Hello from your shell'"
-# And much more! For more information, visit the docs: https://espanso.org/docs/
-# misc
-- trigger: ";>>"
-  replace: ➡
-- trigger: ";vv"
-  replace: ⬇
-- trigger: ";^^"
-  replace: ⬆
-- trigger: ";<<"
-  replace: ⬅
-# life
-- trigger: ";mobi"
-  replace: 我的手机号
-- trigger: ";mail"
-  replace: 我的邮箱
-- trigger: ";addr"
-  replace: 我的家庭住址
-- trigger: ";officeAddr"
-  replace: 公司地址
-# faq
-- trigger: "chongt"
-  replace: 冲突了，merge 下 master。
-# code
-- trigger: ";log"
-  replace: console.log($|$)
-- trigger: ";delay"
-  replace: const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-# mac symbols
-- trigger: ":cmd"
-  replace: "⌘"
-- trigger: ":shift"
-  replace: "⇧"
-- trigger: ":ctrl"
-  replace: "⌃"
-- trigger: ":alt"
-  replace: "⌥"
-- trigger: ":opt"
-  replace: "⌥"
-- trigger: ":left"
-  replace: "←"
-- trigger: ":right"
-  replace: "→"
-- trigger: ":up"
-  replace: "↑"
-- trigger: ":down"
-  replace: "↓"
-- trigger: ":caps_lock"
-  replace: "⇪"
-- trigger: ":esc"
-  replace: "⎋"
-- trigger: ":eject"
-  replace: "⏏"
-- trigger: ":return"
-  replace: "↵"
-- trigger: ":enter"
-  replace: "⌅"
-- trigger: ":tab"
-  replace: "⇥"
-- trigger: ":backtab"
-  replace: "⇤"
-- trigger: ":pgup"
-  replace: "⇞"
-- trigger: ":pgdown"
-  replace: "⇟"
-- trigger: ":home"
-  replace: "↖"
-- trigger: ":end"
-  replace: "↘"
-- trigger: ":space"
-  replace: "␣"
-- trigger: ":del"
-  replace: "⌫"
-- trigger: ":fdel"
-  replace: "⌦"
+  # Simple text replacement
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+  # But matches can also be dynamic:
+  # Print the current date
+  - trigger: ':date'
+    replace: '{{mydate}}'
+    vars:
+      - name: mydate
+    type: date
+    params:
+      format: '%m/%d/%Y'
+  # Print the output of a shell command
+  - trigger: ':shell'
+    replace: '{{output}}'
+    vars:
+      - name: output
+    type: shell
+    params:
+      cmd: 'echo ''Hello from your shell'''
+  # And much more! For more information, visit the docs: https://espanso.org/docs/
+  # misc
+  - trigger: ;>>
+    replace: ➡
+  - trigger: ;vv
+    replace: ⬇
+  - trigger: ;^^
+    replace: ⬆
+  - trigger: ;<<
+    replace: ⬅
+  # life
+  - trigger: ;mobi
+    replace: 我的手机号
+  - trigger: ;mail
+    replace: 我的邮箱
+  - trigger: ;addr
+    replace: 我的家庭住址
+  - trigger: ;officeAddr
+    replace: 公司地址
+  # faq
+  - trigger: chongt
+    replace: 冲突了，merge 下 master。
+  # code
+  - trigger: ;log
+    replace: console.log($|$)
+  - trigger: ;delay
+    replace: const delay = (ms) => new Promise((res) => setTimeout(res, ms));
+  # mac symbols
+  - trigger: ':cmd'
+    replace: ⌘
+  - trigger: ':shift'
+    replace: ⇧
+  - trigger: ':ctrl'
+    replace: ⌃
+  - trigger: ':alt'
+    replace: ⌥
+  - trigger: ':opt'
+    replace: ⌥
+  - trigger: ':left'
+    replace: ←
+  - trigger: ':right'
+    replace: →
+  - trigger: ':up'
+    replace: ↑
+  - trigger: ':down'
+    replace: ↓
+  - trigger: ':caps_lock'
+    replace: ⇪
+  - trigger: ':esc'
+    replace: ⎋
+  - trigger: ':eject'
+    replace: ⏏
+  - trigger: ':return'
+    replace: ↵
+  - trigger: ':enter'
+    replace: ⌅
+  - trigger: ':tab'
+    replace: ⇥
+  - trigger: ':backtab'
+    replace: ⇤
+  - trigger: ':pgup'
+    replace: ⇞
+  - trigger: ':pgdown'
+    replace: ⇟
+  - trigger: ':home'
+    replace: ↖
+  - trigger: ':end'
+    replace: ↘
+  - trigger: ':space'
+    replace: ␣
+  - trigger: ':del'
+    replace: ⌫
+  - trigger: ':fdel'
+    replace: ⌦
 ```
 
 7. VSCode
@@ -389,7 +389,7 @@ git config --global user.name "Your Name"git config --global user.email "you@you
 git config --global --add push.default currentgit config --global --add push.autoSetupRemote true
 ```
 
-你会收获两个好处。1）不需要「git push origin xxx」，只要「git push」，2）再也不会遇到「no upstream branch」的报错，也不需要「git push --set-upstream origin test && git push」。因为我们执行 git push 的大部分场景都是 push 到同名的 remote branch。来源是 Auto setup remote branch and never again see an error about the missing upstream | pawelgrzybek.com。
+你会收获两个好处。1）不需要「git push origin xxx」，只要「git push」，2）再也不会遇到「no upstream branch」的报错，也不需要「git push --set-upstream origin test && git push」。因为我们执行 git push 的大部分场景都是 push 到同名的 remote branch。来源是 Auto setup remote branch and never again see an error about the missing upstream | pawelgrzybek.com。
 
 再修改 ~/.gitignore_global，加入和你 IDE 相关的 ignore 配置。我会把 .idea 加进去，这是和你相关的专有配置，如果给其他用 VSCode 的作者的项目提交时，都加上 .idea 的 .gitignore 配置，其实并不太礼貌。反之，VSCode 或其他编辑器工具的用户也要加上自己的。
 
@@ -407,8 +407,8 @@ nvm install 18node -v
 
 1. General。1）Default Web Browser 用「Google Chrome」
 2. Siri。直接禁掉。
-3. Keyboard。1）Keyboard 里把 Key Repeat 调到「Fast」，把 Delay Util Repeat 调到「Short」，需要一点时间适应，适应后会感受到光标快速移动带来的效率提升，2）Text 里 use `"` for double quotes，use `'` for single quotes，然后把其他都禁掉，不需要系统帮忙改，基本都是帮倒忙的，3）Shortcuts 里，Mission Control 用「⌥A」,Application windows 用「⌥S」，Show Desktop 用「⌥D」
+3. Keyboard。1）Keyboard 里把 Key Repeat 调到「Fast」，把 Delay Util Repeat 调到「Short」，需要一点时间适应，适应后会感受到光标快速移动带来的效率提升，2）Text 里 use `"` for double quotes，use `'` for single quotes，然后把其他都禁掉，不需要系统帮忙改，基本都是帮倒忙的，3）Shortcuts 里，Mission Control 用「⌥A」,Application windows 用「⌥S」，Show Desktop 用「⌥D」
 4. Spotlight。只开 Applications、Bookmarks & History、Documents、Folders、System Preferences。
 5. Mission Control。把 Hot Corners 里的全部关掉，不需要，因为有 Thor 了，可以更快切除应用。
 6. Notification。不必要的全关掉，我只开了 Calendar、Find By。
-7. 执行 `defaults write -g NSWindowShouldDragOnGesture -bool true`，然后就可以按住「⌘+⌃」然后鼠标点击任意地方拖动窗口了。
+7. 执行 `defaults write -g NSWindowShouldDragOnGesture -bool true`，然后就可以按住「⌘+⌃」然后鼠标点击任意地方拖动窗口了。
