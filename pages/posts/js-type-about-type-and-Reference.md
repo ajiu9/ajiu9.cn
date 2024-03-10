@@ -13,13 +13,13 @@ CMAScript的变量可能包含两种不同数据类型的值：基本类型值�
 
 首先我们来定义一个引用类型的值：
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/E8J408djnGzmDPkOvW6KeldKiaYNLtZVwcbGYoAWEyGPbLWsATrn8tpatMTAzuCs0leB66Mf2mknLjdDVXrTfSg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://static.ajiu9.cn/images/202403102118517qwJD2.png)
 
 以上代码创建了一个对象并将其保存在person变量中，然后为变量添加了一个名为name的属性，并将字符串“江月夜”赋给了这个属性。之后通过函数alert（）访问了这个新属性。如果对象不被销毁或者这个属性不被删除，则各属性将一直存在。
 
 但是，不能给基本类型的值添加属性（不会导致错误）
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/E8J408djnGzmDPkOvW6KeldKiaYNLtZVwRwFb3krQyqHm78J7Eicacic9RHgcoklaMn6r9H2CZsgzX5HLPoM8bPpw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://static.ajiu9.cn/images/20240310211733UOVZPP.png)
 
 **赋值变量值**
 
@@ -29,7 +29,7 @@ CMAScript的变量可能包含两种不同数据类型的值：基本类型值�
 
 引用类型的变量复制其实是一个指针，而这个指针指向存储在堆中的一个对象。复制结束后，俩个对象实际上引用同一个对象。改变其中一个变量，就会影响另一个变量。
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/E8J408djnGzmDPkOvW6KeldKiaYNLtZVwPxhAnOEDFu1clevviaytEejdWy2LxwoHaibdQXhQ9KiamRRI680bsoJDg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://static.ajiu9.cn/images/20240310211540NpJlfl.png)
 
 **传递参数**
 
