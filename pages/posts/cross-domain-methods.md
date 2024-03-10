@@ -102,7 +102,7 @@ util.ajax = function (options) {
 **1.jsonp**
 jsonp原理： 通过`<script>`标签的异步加载来实现。例如在`<head>`标签中通过`<script>`中的url加载的js。
 
-```javascript
+```js
 /**
 * [function 拼接url]
 * @param  {[Object]]} data [description]
@@ -201,33 +201,44 @@ url的`#`后面的内容就叫Hash。Hash的改变，页面不会刷新。这就
 页面A通过iframe或frame嵌入了跨域页面B。
 窗口可以把信息，写入子窗口的片段标识符。
 
-```
-var src = originURL + '#' + data;document.getElementById('myIFrame').src = src;
+```js
+var src = originURL + '#' + data;
+document.getElementById('myIFrame').src = src;
 ```
 
 子窗口通过监听hashchange事件得到通知。
 
-```
-window.onhashchange = checkMessage;function checkMessage() {var message = window.location.hash;// ...}
+```js
+window.onhashchange = checkMessage;
+function checkMessage() {var message = window.location.hash;
+// ...
+}
 ```
 
 同样的，子窗口也可以改变父窗口的片段标识符。
 
-```
+```js
 parent.location.href= target + "#" + hash;
 ```
 
 **3.postMessage**
 HTML5引入了一个全新的API：跨文档通信 API（Cross-document messaging）。这个API为window对象新增了一个window.postMessage方法，允许跨窗口通信，不论这两个窗口是否同源。
 
-```
-// postMessage// 窗口A(http:A.com)向跨域的窗口B(http:B.com)发送信息Bwindow.postMessage('data', 'http://B.com');// 在窗口B中监听Awindow.addEventListener('message', function (event) {console.log(event.origin);// 发送消息的窗口console.log(event.source); // 消息发向的网址console.log(event.data); // 消息内容}, false);
+```js
+// postMessage
+// 窗口A(http:A.com)向跨域的窗口B(http:B.com)发送信息B
+window.postMessage('data', 'http://B.com');
+// 在窗口B中监听A
+window.addEventListener('message', function (event) {console.log(event.origin)});
+// 发送消息的窗口console.log(event.source); 
+// 消息发向的网址console.log(event.data); 
+// 消息内容}, false);
 ```
 
 **4.webSocket**
 WebSocket是一种通信协议，使用ws://（非加密）和wss://（加密）作为协议前缀。该协议不实行同源政策，只要服务器支持，就可以通过它进行跨源通信。
 
-```
+```js
 var ws = new webSocket("wss://echo.websocket.org");
 ws.onopen = function(evt) {console.log("Connection open ...");
 ws.send("Hello WebSockets!");
@@ -247,10 +258,14 @@ ws.onclose = function(evt) {console.log("Connection closed.");
 CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。
 跨域时，浏览器会拦截Ajax请求，并在http头中加Origin。
 
-```
-// estfetch('/some/url/', {
+```js
+fetch('/some/url/', {
 method: 'get',
-}).then(function (response) {// 请求成功后执行操作}).catch(function (err) {// 请求失败后执行操作});
+}).then(function (response) {
+  // 请求成功后执行操作
+  }).catch(function (err) {
+    // 请求失败后执行操作
+    });
 ```
 
 [CORS【参考资料】](http://www.ruanyifeng.com/blog/2016/04/cors.html)
