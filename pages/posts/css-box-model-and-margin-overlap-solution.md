@@ -3,8 +3,6 @@ title: CSS盒模型和边距重叠解决方案（BFC）
 lang: zh
 date: 2018-09-25
 type: note
-date created: 2024-03-10
-date modified: 2024-03-10
 ---
 
 ### CSS盒模型的基本概念
@@ -17,9 +15,9 @@ date modified: 2024-03-10
 这俩种盒模型的区别是计算宽度和高度的不同。
 标准模型的宽高只计算内容（content）,IE模型宽高计算为内容（content）+填充（padding）+边框（border）的总宽高。
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/E8J408djnGyGOpIdmDhAnT4X3hy01SLdEcK404AWXVAuLpiartHTrVN3CS30wPHwFrhdmbe0cSR7DKNaicV8hozg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://static.ajiu9.cn/images/20240310214341Gxd31S.png)
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/E8J408djnGyGOpIdmDhAnT4X3hy01SLdk8mnOKEZGMebyWXZQLBX8RySexRb0Dx9Xm8QlrsibQPY9jOjmxibomlQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://static.ajiu9.cn/images/20240310214237UjGOJB.png)
 
 ### 如何设置这俩种盒模型
 
