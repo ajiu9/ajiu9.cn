@@ -24,7 +24,7 @@ var o4 = Object.create(B);
 
 JavaScript是一门面向对象基于原型继承的语言,那么原型到底是怎么实现继承的？
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/E8J408djnGxaACibjAZNGEcUVsPsicULLQpvicWtrOiaq1JzGscfyuBuJeVb0rMY3PiapahpDbaFWFsGvopnexO6zZw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://static.ajiu9.cn/images/20240311231356CGtgQw.png)
 
 prototype原型是一个对象，只有函数才有的属性，这是在创建函数是js引擎自动添加的属性，其他对象可以通过它实现属性继承。  
 `__proto__`是每个对象都有的属性，但不是一个规范属性，它指向的是构造函数的原型对象。(`__proto__`通过上面第四种方式`Object.create(O))`指向的是对象O)  
@@ -49,7 +49,7 @@ dog.__proto__ === Animal.prototype // true
 
 `instanceof`运算符用于测试构造函数的prototype属性是否出现在对象的原型链中的任何位置
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/E8J408djnGxaACibjAZNGEcUVsPsicULLQ2JquEicJjkBoCm2d8fmh1UNkXDzrMTTh7rhyEUiaVgSME1aeq72jZB8g/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](https://static.ajiu9.cn/images/20240311231424c991rT.png)
 
 用`instanceof`来判断实例对象是否为构造函数直接生成的对象并不严格，因为出现在对象原型链中任何位置都会返回true，这时可以使用对象的`__proto__.constructor`是否严格等于构造函数来判断。  
 
