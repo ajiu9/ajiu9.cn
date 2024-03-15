@@ -4,7 +4,7 @@
         <title>Ajiu9</title>
         <link>https://ajiu9.cn/</link>
         <description>Ajiu9' Blog</description>
-        <lastBuildDate>Fri, 15 Mar 2024 09:08:12 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 15 Mar 2024 09:47:14 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -131,7 +131,10 @@ EOF
             <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<h4>指令功能</h4>
 <ol>
-<li>能够实现常用数字和金额校验2.能够自定义小数位,整数位，是否包含0，负数3.对数据边界进行处理4.能够处理复制过来的数据（转出收费项目1245租赁保证金余额0.09转入收费项目 =&gt; 12450.09）</li>
+<li>能够实现常用数字和金额校验</li>
+<li>能够自定义小数位,整数位，是否包含0，负数</li>
+<li>对数据边界进行处理</li>
+<li>能够处理复制过来的数据（转出收费项目1245租赁保证金余额0.09转入收费项目 =&gt; 12450.09）</li>
 </ol>
 <h4>优势：可以去除代码中校验的正则表达，优化代码，最重要的是提升用户体验，输入的就是正确</h4>
 <h4>指令实现</h4>
@@ -265,7 +268,7 @@ directives: { number }
 &lt;el-input v-number.zero&gt;&lt;/el-input&gt;
 
 // 可输入负-
-&lt;input v-number.minus&gt;&lt;/input&gt;
+&lt;el-input v-number.minus&gt;&lt;/el-input&gt;
 </code></pre>
 ]]></content:encoded>
             <author>615944323@qq.com (Ajiu9)</author>
