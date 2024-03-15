@@ -1,6 +1,6 @@
 ---
 title: 页面布局-三栏布局解决方案
-lang: zh,
+lang: zh
 date: 2018-09-21
 type: node
 date created: 2024-03-14
