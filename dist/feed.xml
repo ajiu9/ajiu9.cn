@@ -4,7 +4,7 @@
         <title>Ajiu9</title>
         <link>https://ajiu9.cn/</link>
         <description>Ajiu9' Blog</description>
-        <lastBuildDate>Fri, 15 Mar 2024 01:33:41 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 15 Mar 2024 02:12:45 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -1569,6 +1569,245 @@ http 1.1中默认启用Keep-Alive，如果加入”Connection: close “，才�
 <li>
 <p>由于上面提到的服务器端问题，开启管线化很可能并不会带来大幅度的性能提升，而且很多服务器端和代理程序对管线化的支持并不好，因此现代浏览器如Chrome和Firefox默认并未开启管线化支持</p>
 </li>
+</ul>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[页面布局-三栏布局解决方案]]></title>
+            <link>https://ajiu9.cn/posts/page-layout-three-column</link>
+            <guid>https://ajiu9.cn/posts/page-layout-three-column</guid>
+            <pubDate>Fri, 21 Sep 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h3>问题</h3>
+<p>假设高度固定，请写出三栏布局，其中左栏、右栏宽度搁置200px,中间自适应。</p>
+<p><img src="https://static.ajiu9.cn/images/20240314230158hA5bJW.png" alt="图片"></p>
+<p>解决方案</p>
+<p>写在前面，共用样式</p>
+<pre><code class="language-html">&lt;style&gt;
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  .layout .content &gt; div {
+    min-height: 100px;
+    color: #fff;
+  }
+  .left {
+    width: 200px;
+    background: #facd89;
+  }
+  .center {
+    background: #f19149;
+  }
+  .right {
+    width: 200px;
+    background: #88abda;
+  }
+&lt;/style&gt;
+</code></pre>
+<h4>1.float布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout float&quot;&gt;
+  &lt;style&gt;
+    .layout.float .left {
+      float: left;
+    }
+    .layout.float .right {
+      float: right;
+    }
+  &lt;/style&gt;
+
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;center&quot;&gt;
+      &lt;h1&gt;这是浮动布局解决方案&lt;/h1&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>优点：布局简单，兼容性好。</li>
+<li>缺点：脱离了文档流，需要清除浮动。</li>
+</ul>
+<h4>2.绝对定位</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout absolute&quot;&gt;
+  &lt;style&gt;
+    .layout.absolute .content &gt; div {
+      position: absolute;
+    }
+    .layout.absolute .left {
+      left: 0;
+    }
+    .layout.absolute .center {
+      left: 200px;
+      right: 200px;
+    }
+    .layout.absolute .right {
+      right: 0;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是绝对定位布局解决方案&lt;/h1&gt;&lt;/div&gt;
+  &lt;/article&gt;
+  /section&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>优点：布局简单，兼容性好,不容易出问题。</li>
+<li>缺点：脱离了文档流，下面的所有子元素也会脱离文档流，导致很多时候的可使用性差。</li>
+</ul>
+<h4>3.flex布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout absolute&quot;&gt;
+  &lt;style&gt;
+    .layout.absolute .content {
+      display: flex;
+    }
+    .layout.absolute .center {
+      flex: 1;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是flex布局解决方案&lt;/h1&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>优点：css3新出的属性，比较完美的解决方式，移动端布局常用。</li>
+<li>缺点：不兼容ie8以下的浏览器</li>
+</ul>
+<h4>4.table表格布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout table&quot;&gt;
+  &lt;style&gt;
+    .layout.table .content {
+      width: 100%;
+      display: table;
+      min-height: 100px;
+    }
+    .layout.table .content &gt; div {
+      display: table-cell;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是table表格解决方案&lt;/h1&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>
+<p>优点：兼容性好。</p>
+</li>
+<li>
+<p>缺点：单元格的高度都是一样的，有时候这种效果并不是我们想要的，当然这在高度自适应的情况下是一种比较好的解决方案。</p>
+</li>
+</ul>
+<h4>5.grid栅格布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout gird&quot;&gt;
+  &lt;style&gt;
+    .layout.gird .content {
+      display: grid;
+      grid-template-rows: 100px;
+      grid-template-columns: 200px auto 200px;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是grid栅格布局解决方案&lt;/h1&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>
+<p>优点：将页面分割成数个主要区域，或者用来定义组件内部元素间大小、位置和图层之间的关系。</p>
+</li>
+<li>
+<p>缺点：兼容性差。</p>
+</li>
+</ul>
+<h4>6.双飞翼布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout fly&quot;&gt;
+  &lt;style&gt;
+    .layout.fly .main {
+      float: left;
+      width: 100%;
+    }
+    .layout.fly .main .center {
+      margin: 0 200px;
+      min-height: 100px;
+    }
+    .layout.fly .left {
+      float: left;
+      margin-left: -100%;
+    }
+    .layout.fly .right {
+      float: right;
+      margin-left: -200px;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;main&quot;&gt;
+      &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是双飞翼布局解决方案&lt;/h1&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>优点：main主体部分能优先加载。</li>
+<li>缺点：脱离文档流，布局和样式复杂一些。</li>
+</ul>
+<h4>7.圣杯布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout grail&quot;&gt;
+  &lt;style&gt;
+    .layout.grail .content {
+      margin: 0 200px;
+    }
+    .layout.grail .center {
+      float: left;
+      width: 100%;
+    }
+    .layout.grail .left {
+      float: left;
+      margin-left: -100%;
+      position: relative;
+      left: -200px;
+    }
+    .layout.grail .right {
+      float: right;
+      margin-left: -200px;
+      position: relative;
+      right: -200px;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是圣杯布局解决方案&lt;/h1&gt;&lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>优点：main主体部分能优先加载,布局简单。</li>
+<li>缺点：脱离文档流，样式复杂。</li>
+</ul>
+<h3>清除浮动</h3>
+<p>第六种双飞翼布局和第七种圣杯布局，是在浮动布局的基础上的演变。浮动布局需要清除浮动，它又有哪些清除浮动的方法呢？</p>
+<h3>其他类似布局</h3>
+<ul>
+<li>三栏布局同上，高度也自适应？</li>
+<li>中间和右侧固定，左侧自适应？</li>
+<li>左侧和中间固定， 右侧自适应？</li>
+<li>上下固定，中间自适应？</li>
+<li>两栏布局？</li>
 </ul>
 ]]></content:encoded>
             <author>615944323@qq.com (Ajiu9)</author>
