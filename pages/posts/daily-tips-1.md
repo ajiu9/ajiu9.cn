@@ -2,7 +2,7 @@
 title: "日常工作小技巧和问题集（1）"
 lang: zh
 date: 2024-03-15T00:00:00Z
-type: post
+type: blog
 ---
 
 1. 使用.gitignore_global忽略.vscode文件夹
