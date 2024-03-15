@@ -41,76 +41,79 @@
   "node_modules/.pnpm/vue-router-better-scroller@0.0.0_vue-router@4.2.5_vue@3.4.21/node_modules/vue-router-better-scroller/dist/index.mjs": [],
   "node_modules/.pnpm/vue-router@4.2.5_vue@3.4.21/node_modules/vue-router/dist/vue-router.mjs": [],
   "pages/[...404].md": [
-    "/assets/_...404_-CViMJ8kz.js"
+    "/assets/_...404_-Bu4cHbEJ.js"
   ],
   "pages/bookmarks.md": [
-    "/assets/bookmarks-rOCRIn9P.js"
+    "/assets/bookmarks-8f8DRbXM.js"
   ],
   "pages/index.md": [],
   "pages/notes.md": [
-    "/assets/notes-DtNn3TNW.js"
+    "/assets/notes-DrgGe60Q.js"
   ],
   "pages/posts/common-shortcuts-for-vscode.md": [
-    "/assets/common-shortcuts-for-vscode-CaO9HEHz.js"
+    "/assets/common-shortcuts-for-vscode-WP0ptaF_.js"
   ],
   "pages/posts/configure-my-Mac-from-0.md": [
-    "/assets/configure-my-Mac-from-0-DsSF5UYt.js"
+    "/assets/configure-my-Mac-from-0-Bw_j8ZTV.js"
   ],
   "pages/posts/construction-and-use-of-picture-bed.md": [
-    "/assets/construction-and-use-of-picture-bed-D9q5JLox.js"
+    "/assets/construction-and-use-of-picture-bed-CUPYISST.js"
   ],
   "pages/posts/constructor-instance-prototype-chain.md": [
-    "/assets/constructor-instance-prototype-chain-Da1tG1V_.js"
+    "/assets/constructor-instance-prototype-chain-BxXoZEPQ.js"
   ],
   "pages/posts/cross-domain-methods.md": [
-    "/assets/cross-domain-methods-CKKVUSbb.js"
+    "/assets/cross-domain-methods-BGuh3uPH.js"
   ],
   "pages/posts/css-box-model-and-margin-overlap-solution.md": [
-    "/assets/css-box-model-and-margin-overlap-solution-x9oRhQqk.js"
+    "/assets/css-box-model-and-margin-overlap-solution-iNphlx0v.js"
+  ],
+  "pages/posts/daily-tips-1.md": [
+    "/assets/daily-tips-1-C7yo2qlQ.js"
   ],
   "pages/posts/dom-event.md": [
-    "/assets/dom-event-BSc5wvKt.js"
+    "/assets/dom-event-EtXGyfK2.js"
   ],
   "pages/posts/how-to-determine-the-plan.md": [
-    "/assets/how-to-determine-the-plan-DRBavYPZ.js"
+    "/assets/how-to-determine-the-plan-C3XJsgyZ.js"
   ],
   "pages/posts/http-protocol-class.md": [
-    "/assets/http-protocol-class-DxLX1xET.js"
+    "/assets/http-protocol-class-CbKHSn-z.js"
   ],
   "pages/posts/index.md": [
-    "/assets/index-CivVIFVo.js"
+    "/assets/index-CBfn5oZT.js"
   ],
   "pages/posts/js-type-about-type-and-Reference.md": [
-    "/assets/js-type-about-type-and-Reference-Woq9hiMm.js"
+    "/assets/js-type-about-type-and-Reference-dGRz87Iu.js"
   ],
   "pages/posts/page-layout-three-column.md": [
-    "/assets/page-layout-three-column-DDcJSR7s.js"
+    "/assets/page-layout-three-column-DA5JFmvI.js"
   ],
   "pages/posts/webpack-building-speed-up.md": [
-    "/assets/webpack-building-speed-up-RplOAxfp.js"
+    "/assets/webpack-building-speed-up-C5uqRS6W.js"
   ],
   "pages/posts/window-print.md": [
-    "/assets/window-print-DA1lbBYP.js"
+    "/assets/window-print-CPaWqlAu.js"
   ],
   "pages/projects.md": [
-    "/assets/projects-bz_o3CRL.js",
+    "/assets/projects-DWCgJ45z.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Footer.vue": [],
   "src/components/ListPosts.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-DEDmDzkB.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-C7c2lXKt.js"
   ],
   "src/components/ListProjects.vue": [
-    "/assets/projects-bz_o3CRL.js",
+    "/assets/projects-DWCgJ45z.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/projects-bz_o3CRL.js",
+    "/assets/projects-DWCgJ45z.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=style&index=0&scoped=6235e163&lang.css": [
-    "/assets/projects-bz_o3CRL.js",
+    "/assets/projects-DWCgJ45z.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/Logo.vue": [],
@@ -120,7 +123,7 @@
   "src/components/NavBar.vue?vue&type=style&index=0&scoped=85f5ed95&lang.css": [],
   "src/components/Plum.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/SubNav.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-DEDmDzkB.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-C7c2lXKt.js"
   ],
   "src/components/ToggleTheme.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/WrapperPost.vue?vue&type=script&setup=true&lang.ts": [],

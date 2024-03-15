@@ -4,7 +4,7 @@
         <title>Ajiu9</title>
         <link>https://ajiu9.cn/</link>
         <description>Ajiu9' Blog</description>
-        <lastBuildDate>Fri, 15 Mar 2024 03:05:05 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 15 Mar 2024 04:54:22 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -14,6 +14,116 @@
         </image>
         <copyright>@2024-2025 湘ICP备2024048835号</copyright>
         <atom:link href="https://ajiu9.cn/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[日常工作小技巧和问题集（1）]]></title>
+            <link>https://ajiu9.cn/posts/daily-tips-1</link>
+            <guid>https://ajiu9.cn/posts/daily-tips-1</guid>
+            <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<ol>
+<li>
+<p>使用.gitignore_global忽略.vscode文件夹</p>
+</li>
+<li>
+<p>eslint 对 const 和 let 的格式处理有问题，需要再次查看问题项确认</p>
+</li>
+<li>
+<p>git 快速切换到前一分支 <code>git chekcout -</code></p>
+</li>
+<li>
+<p>clashx配置代理节点</p>
+</li>
+<li>
+<p>git回撤代码 <code>git revert {{}}</code></p>
+</li>
+<li>
+<p><code>git commit —amend -m “New commit message”</code> 覆盖上次提交</p>
+</li>
+<li>
+<p>setup中 watch 一个数组，这个数组需要解构赋值，重新触发setter函数,watch才能监听到，不然就需要使用deep参数深度监听</p>
+</li>
+</ol>
+<pre><code class="language-js">const pages = computed(() =&gt; {
+// 解构赋值
+  return [...store.state.pages]
+})
+watch(pages, (val) =&gt; {
+  delGuideMapEl(val)
+})
+</code></pre>
+<pre><code class="language-js">const pages = computed(() =&gt; {
+  return store.state.pages
+})
+watch(pages, (val) =&gt; {
+  delGuideMapEl(val)
+}, {
+  // 深度监听
+  deep: true
+})
+</code></pre>
+<ol start="8">
+<li>
+<p>在vue 中使用setup,需要注意重名问题，比如使用了ref=“form”, 又声明了form = reactive(), 那么一不注意就会出现报错：[Vue warn]: Avoid adding reactive properties to a Vue instance or its root $data at runtime - declare it upfront in the data option.<br>
+此时要把ref=“form”改成 ref=“formRef”，避免隐藏的重名问题</p>
+</li>
+<li>
+<p>shallowRef 和 ref 的使用</p>
+</li>
+</ol>
+<p><code>ref</code></p>
+<p>接受一个内部值，返回一个响应式的、可更改的 ref 对象，此对象只有一个指向其内部值的属性 .value。</p>
+<p>类型</p>
+<pre><code class="language-ts">function ref&lt;T&gt;(value: T): Ref&lt;UnwrapRef&lt;T&gt;&gt;
+
+interface Ref&lt;T&gt; {
+  value: T
+}
+</code></pre>
+<p>详细信息</p>
+<p>ref 对象是可更改的，也就是说你可以为 .value 赋予新的值。它也是响应式的，即所有对 .value 的操作都将被追踪，并且写操作会触发与之相关的副作用。</p>
+<p>如果将一个对象赋值给 ref，那么这个对象将通过 reactive() 转为具有深层次响应式的对象。这也意味着如果对象中包含了嵌套的 ref，它们将被深层地解包。</p>
+<p>若要避免这种深层次的转换，请使用 shallowRef() 来替代。</p>
+<p>示例</p>
+<pre><code class="language-js">const count = ref(0)
+console.log(count.value) // 0
+
+count.value = 1
+console.log(count.value) // 1
+</code></pre>
+<p><code>shallowRef</code></p>
+<p>ref() 的浅层作用形式。</p>
+<p>类型</p>
+<pre><code class="language-ts">function shallowRef&lt;T&gt;(value: T): ShallowRef&lt;T&gt;
+
+interface ShallowRef&lt;T&gt; {
+  value: T
+}
+</code></pre>
+<p>详细信息</p>
+<p>和 ref() 不同，浅层 ref 的内部值将会原样存储和暴露，并且不会被深层递归地转为响应式。只有对 .value 的访问是响应式的。</p>
+<p>shallowRef() 常常用于对大型数据结构的性能优化或是与外部的状态管理系统集成。</p>
+<p>示例</p>
+<pre><code class="language-js">const state = shallowRef({ count: 1 })
+
+// 不会触发更改
+state.value.count = 2
+
+// 会触发更改
+state.value = { count: 2 }
+</code></pre>
+<ol start="10">
+<li>在Mac中查看Finder打开的地址</li>
+</ol>
+<pre><code class="language-bash">function pfd() {
+  osascript 2&gt;/dev/null &lt;&lt;EOF
+    tell application &quot;Finder&quot;
+      return POSIX path of (target of window 1 as alias)
+    end tell
+EOF
+}
+</code></pre>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
         <item>
             <title><![CDATA[在浏览器中实现页面打印]]></title>
             <link>https://ajiu9.cn/posts/window-print</link>
