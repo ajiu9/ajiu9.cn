@@ -1,4 +1,4 @@
-import { defineConfig, presetAttributify, presetIcons, presetUno, presetWebFonts, transformerDirectives } from 'unocss'
+import { defineConfig, presetAttributify, presetIcons, presetUno, transformerDirectives } from 'unocss'
 
 export default defineConfig({
   shortcuts: [
@@ -24,12 +24,12 @@ export default defineConfig({
     }),
     presetAttributify(),
     presetUno(),
-    presetWebFonts({
-      fonts: {
-        sans: 'Inter:400,600,800',
-        mono: 'DM Mono:400,600',
-      },
-    }),
+    // presetWebFonts({
+    //   fonts: {
+    //     sans: 'Inter:400,600,800',
+    //     mono: 'DM Mono:400,600',
+    //   },
+    // }),
   ],
   transformers: [
     transformerDirectives(),
