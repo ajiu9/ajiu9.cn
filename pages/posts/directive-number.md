@@ -1,6 +1,6 @@
 ---
 title: vue数字指令
-date: 2024-03-15T00:00:00Z
+date: 2024-03-16T00:00:00Z
 type: blog
 tags: [vue, directive]
 ---
