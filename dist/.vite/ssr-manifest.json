@@ -41,103 +41,109 @@
   "node_modules/.pnpm/vue-router-better-scroller@0.0.0_vue-router@4.2.5+vue@3.4.21/node_modules/vue-router-better-scroller/dist/index.mjs": [],
   "node_modules/.pnpm/vue-router@4.2.5_vue@3.4.21/node_modules/vue-router/dist/vue-router.mjs": [],
   "pages/[...404].md": [
-    "/assets/_...404_-Datnw2G_.js"
+    "/assets/_...404_-DWmLOcSC.js"
   ],
   "pages/bookmarks.md": [
-    "/assets/bookmarks-CYF1O06g.js"
+    "/assets/bookmarks-B5jP7cuy.js"
   ],
   "pages/index.md": [],
   "pages/notes.md": [
-    "/assets/notes-Cb_LvMrj.js"
+    "/assets/notes-BKWavArh.js"
   ],
   "pages/posts/are-you-a-morning-bird-or-a-night-owl.md": [
-    "/assets/are-you-a-morning-bird-or-a-night-owl-DnnyBNQA.js"
+    "/assets/are-you-a-morning-bird-or-a-night-owl-sVf9QmZt.js"
   ],
   "pages/posts/browser-rendering-mechanism.md": [
-    "/assets/browser-rendering-mechanism-C9zAJu97.js"
+    "/assets/browser-rendering-mechanism-DWZ1sIim.js"
   ],
   "pages/posts/common-shortcuts-for-vscode.md": [
-    "/assets/common-shortcuts-for-vscode-DSdf4KhA.js"
+    "/assets/common-shortcuts-for-vscode-B6FMvF0F.js"
   ],
   "pages/posts/configure-my-Mac-from-0.md": [
-    "/assets/configure-my-Mac-from-0-Cfh0NsSj.js"
+    "/assets/configure-my-Mac-from-0-Bq0VbZ56.js"
   ],
   "pages/posts/construction-and-use-of-picture-bed.md": [
-    "/assets/construction-and-use-of-picture-bed-CjwPyquA.js"
+    "/assets/construction-and-use-of-picture-bed-SkLlBYZR.js"
   ],
   "pages/posts/constructor-instance-prototype-chain.md": [
-    "/assets/constructor-instance-prototype-chain-weyK9tvQ.js"
+    "/assets/constructor-instance-prototype-chain-DlAHXbxk.js"
   ],
   "pages/posts/cross-domain-methods.md": [
-    "/assets/cross-domain-methods-CzLi05P2.js"
+    "/assets/cross-domain-methods-CMPmEyXV.js"
   ],
   "pages/posts/csrf-xss.md": [
-    "/assets/csrf-xss-Cs_vHW7S.js"
+    "/assets/csrf-xss-DkoFJirT.js"
   ],
   "pages/posts/css-box-model-and-margin-overlap-solution.md": [
-    "/assets/css-box-model-and-margin-overlap-solution-CbXgWIun.js"
+    "/assets/css-box-model-and-margin-overlap-solution-BNc9jNPn.js"
   ],
   "pages/posts/daily-tips-1.md": [
-    "/assets/daily-tips-1-Dz1Fh9oM.js"
+    "/assets/daily-tips-1-B1Jh5KdJ.js"
   ],
   "pages/posts/directive-number.md": [
-    "/assets/directive-number-DmNrkyCq.js"
+    "/assets/directive-number-DE9so2Z1.js"
   ],
   "pages/posts/dom-event.md": [
-    "/assets/dom-event-C-NII4BU.js"
+    "/assets/dom-event-bAaL95qv.js"
   ],
   "pages/posts/front-end-error-monitoring.md": [
-    "/assets/front-end-error-monitoring-xgUQmI-K.js"
+    "/assets/front-end-error-monitoring-CReMKmXo.js"
+  ],
+  "pages/posts/how- to-achieve-a-deep-copy.md": [
+    "/assets/how- to-achieve-a-deep-copy-DJCu4yXl.js"
   ],
   "pages/posts/how-to-determine-the-plan.md": [
-    "/assets/how-to-determine-the-plan-Cyl0enfR.js"
+    "/assets/how-to-determine-the-plan-K-c6JRV6.js"
   ],
   "pages/posts/http-protocol-class.md": [
-    "/assets/http-protocol-class-BdDQsCB8.js"
+    "/assets/http-protocol-class-0SPDe27d.js"
   ],
   "pages/posts/index.md": [
-    "/assets/index-CirFj1qY.js"
+    "/assets/index-BI-xefT-.js"
+  ],
+  "pages/posts/javascript-data-type.md": [
+    "/assets/javascript-data-type-DLehHTYL.js"
   ],
   "pages/posts/js-type-about-type-and-Reference.md": [
-    "/assets/js-type-about-type-and-Reference-fWi8p0Uw.js"
+    "/assets/js-type-about-type-and-Reference-CgJJoOIM.js"
   ],
   "pages/posts/map-set-array-object.md": [
-    "/assets/map-set-array-object-ZciI1451.js"
+    "/assets/map-set-array-object-kWlui4ck.js"
   ],
   "pages/posts/object-oriented-class-and-inheritance.md": [
-    "/assets/object-oriented-class-and-inheritance-CKttFMyl.js"
+    "/assets/object-oriented-class-and-inheritance-DUGymkYw.js"
   ],
   "pages/posts/page-layout-three-column.md": [
-    "/assets/page-layout-three-column-B3mGesO6.js"
+    "/assets/page-layout-three-column-BcLKkEYI.js"
   ],
   "pages/posts/proxy-reflect.md": [
-    "/assets/proxy-reflect-Dg7Nfmdi.js"
+    "/assets/proxy-reflect-lnwdzWj2.js"
   ],
   "pages/posts/webpack-building-speed-up.md": [
-    "/assets/webpack-building-speed-up-BFzmNr3q.js"
+    "/assets/webpack-building-speed-up-DbjiATvS.js"
   ],
   "pages/posts/window-print.md": [
-    "/assets/window-print-DMvL5o4W.js"
+    "/assets/window-print-C_zf5r_i.js"
   ],
   "pages/projects.md": [
-    "/assets/projects-BwbpZjvz.js",
+    "/assets/projects-CNkHm2_-.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Footer.vue": [],
   "src/components/ListPosts.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-tsQlmI2B.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-B1f4KxJ4.js"
   ],
   "src/components/ListProjects.vue": [
-    "/assets/projects-BwbpZjvz.js",
+    "/assets/projects-CNkHm2_-.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/projects-BwbpZjvz.js",
+    "/assets/projects-CNkHm2_-.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=style&index=0&scoped=6235e163&lang.css": [
-    "/assets/projects-BwbpZjvz.js",
+    "/assets/projects-CNkHm2_-.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/Logo.vue": [],
@@ -147,7 +153,7 @@
   "src/components/NavBar.vue?vue&type=style&index=0&scoped=85f5ed95&lang.css": [],
   "src/components/Plum.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/SubNav.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-tsQlmI2B.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-B1f4KxJ4.js"
   ],
   "src/components/ToggleTheme.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/WrapperPost.vue?vue&type=script&setup=true&lang.ts": [],
