@@ -4,7 +4,7 @@
         <title>Ajiu9</title>
         <link>https://ajiu9.cn/</link>
         <description>Ajiu9' Blog</description>
-        <lastBuildDate>Fri, 15 Mar 2024 09:47:14 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 16 Mar 2024 06:16:04 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -1099,6 +1099,614 @@ splitChunks: {
     }
 }
 </code></pre>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[Proxy和Reflect]]></title>
+            <link>https://ajiu9.cn/posts/proxy-reflect</link>
+            <guid>https://ajiu9.cn/posts/proxy-reflect</guid>
+            <pubDate>Wed, 31 Oct 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>计算机中代理模式的定义：为其他对象提供一种代理以控制这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户端和目标对象之间起到中介作用。</p>
+<h4>Proxy和Reflect</h4>
+<ul>
+<li>
+<p>Proxy对象用于定义基本操作的自定义行为（如属性查找，赋值，枚举，函数调用等）。</p>
+</li>
+<li>
+<p>Reflect是一个内置的对象，它提供拦截 JavaScript 操作的方法。这些方法与处理器对象的方法相同。Reflect不是一个函数对象，因此它是不可构造的。</p>
+</li>
+</ul>
+<h4>Proxy的方法</h4>
+<pre><code class="language-js">let obj = {
+time: '2018-10-31',
+name: 'vender',
+_r: 123
+
+}
+let monitor = new Proxy(obj, {
+    //拦截对象读取属性值
+    get(target, key) {
+        return obj[key].replace(/-/g, ':')
+    },
+    //拦截对象设置属性值
+    set(target, key, value) {
+        if (key === 'name') {
+        return target[key] = value
+      } else {
+        return target[key]
+      }
+    },
+    // 拦截 key in object 操作
+    has(target, key) {
+    if (key === 'name') {
+        return true
+      } else {
+        return false
+    }
+    // 拦截delete
+    deleteProperty(target, key) {
+        if (key === '_r') {
+        delete target[key]
+        return true
+      } else {
+        return target[key]
+      }
+    },
+    // 拦截 Object.getOwnPropertyNames(),Object.getOwnProptySymbols(), Object.keys(), Reflect.ownKeys()
+    ownKeys(target) {
+        return Object.keys(target).filter(item =&gt; item !== 'time')
+    }
+
+})
+</code></pre>
+<p>上面定义了一个对象<code>obj</code>, 同时使用了Proxy代理分别拦截了<code>get</code>,<code>set</code>,<code>has</code>,<code>deleteProperty</code>,<code>ownKeys</code>五种比较常用的方法。</p>
+<pre><code class="language-js">console.log('get', monitor.time) // get 2018:10:31
+</code></pre>
+<p>代理<code>get</code>方法拦截对象读取属性值。</p>
+<pre><code class="language-js">monitor.time = '2019'
+monitor.name = 'apple'
+console.log('set', monitor.name, monitor) // set apple Proxy {time: &quot;2018-10-31&quot;, name: &quot;apple&quot;, _r: 123}
+</code></pre>
+<p>代理<code>set</code>方法拦截对象设置属性值。</p>
+<pre><code class="language-js">console.log('has', 'name' in monitor, 'time' in monitor) // has true false
+</code></pre>
+<p>代理<code>has</code>方法拦截 key in object 操作。</p>
+<pre><code class="language-js">delete monitor.name
+console.log('delete', monitor) // delete Proxy {time: &quot;2018-10-31&quot;, name: &quot;apple&quot;, _r: 123}
+delete monitor._r
+console.log('delete', monitor) // delete Proxy {time: &quot;2018-10-31&quot;, name: &quot;apple&quot;}
+</code></pre>
+<p>代理<code>deleteProperty</code>方法拦截delete。</p>
+<pre><code class="language-js">console.log('ownKeys', Object.keys(monitor)) // ownKeys [&quot;name&quot;]
+</code></pre>
+<p>代理<code>ownKeys</code>方法拦截<code>Object.getOwnPropertyNames()</code>,<code>Object.getOwnProptoSymbols()</code>,<code>Object.keys()</code>,<code>Reflect.ownKeys()</code>。</p>
+<h4>Reflect的方法</h4>
+<p>如前面所说，Reflect的方法与处理器对象的方法相同。Reflect不是一个函数对象，因此它是不可构造的。<br>
+一下简单举例：</p>
+<pre><code class="language-js">const obj = {
+  time: '2018-10-31',
+  name: 'vender',
+  _r: 123
+}
+console.log('Reflect get:', Reflect.get(obj, 'time')) // Reflect get: 2018-10-31Reflect.set(obj, 'name', 'banana')
+console.log('Reflect set:', obj) // Reflect set: {time: &quot;2018-10-31&quot;, name: &quot;banana&quot;, _r: 123}
+console.log('Reflect has:', Reflect.has(obj, 'time')) // Reflect has: trueReflect.deleteProperty(obj, '_r')
+console.log('Reflect delete:', obj) // Reflect delete: {time: &quot;2018-10-31&quot;, name: &quot;banana&quot;}
+console.log('Reflect ownKeys:', Reflect.ownKeys(obj)) // Reflect ownKeys: [&quot;time&quot;, &quot;name&quot;]
+</code></pre>
+<h4>简单应用</h4>
+<p>在开发中通常会对数据进行校验，提交数据的时候会判断数据是否符合，利用<code>Proxy</code>和<code>Reflect</code>来实现一个简单的验证，实现数据和业务解耦，功能：1.对用户填写的原始数据进行验证。2.数据和业务解耦</p>
+<p>思路：</p>
+<ul>
+<li>1.通过定义一个函数，这个函数的功能就是接收俩个参数(<code>target</code>原始对象和<code>validator</code>验证规则)返回一个代理对象，拦截原始对象的设置属性值，也就是<code>set</code>方法。</li>
+<li>2.定义一个类<code>Person</code>,在<code>constructor</code>中重写<code>this</code>（<code>return validator(this, personValidator)</code>这里返回的是代理对象）从而达到对这个对象实例的代理。</li>
+<li>3.定义第二步这个类<code>Person</code>所需要的验证规则定义<code>personValidator</code>，在这个对象里，实现对数据的具体验证。</li>
+<li>4.使用时，实例化第二步定义的类<code>Person</code>。</li>
+</ul>
+<pre><code class="language-js">// 定义一个验证函数，这个函数返回一个代理对象。它的功能就是验证
+function validator(target, validator) {
+  return new Proxy(target, {
+    _validator: validator, // 保存原始校验对象
+    set(target, key, value, proxy) {
+      // 拦截target设置属性
+      if (target.hasOwnProperty(key)) { // target属性key存在就继续下一步，不存在抛出错误
+        const va = this._validator[key]
+        if (va(value)) { // 校验规则是否通过
+          return Reflect.set(target, key, value, proxy) // 拦截target设置属性，验证通过
+        }
+        else {
+          throw new Error(`${key}不能设置为${value}`)
+        }
+      }
+      else {
+        throw new Error(`${key} 不存在`)
+      }
+    }
+  })
+}
+
+// 定义验证规则
+const personValidator = {
+  name(val) {
+    return typeof val === 'string'
+  },
+  age(val) {
+    return typeof val === 'number' &amp;&amp; val &gt; 18
+  }
+}
+// 定义类
+
+class Person {
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+    return validator(this, personValidator)
+  }
+}
+
+// 实例
+const person = new Person('wu', 20)
+person.name = 'zhuli'
+console.info(person) // Proxy {name: &quot;hell&quot;, age: 20}
+
+person.age = 'year' // Uncaught Error: age不能设置为year
+</code></pre>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[你是晨鸟型还是夜猫子型？]]></title>
+            <link>https://ajiu9.cn/posts/are-you-a-morning-bird-or-a-night-owl</link>
+            <guid>https://ajiu9.cn/posts/are-you-a-morning-bird-or-a-night-owl</guid>
+            <pubDate>Mon, 29 Oct 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>一天中身体的重要身理功能如唤醒水平、新陈代谢和心率体温会经历变化。尽管这些昼夜节律在每个人身上都是确实存在的但具体的时间在不同的人身上有很大的差异。实际上，研究者提出根据所偏好的睡眠-觉醒模式人们可以分成不同的时型。</p>
+<p>考虑这样一个研究，一组研究者让数千秘名欧洲成年人回答一系列问题(比如你何时上床睡觉？你需要睡多久？)。在参与者不需起床工作的日子里，最常见的回答是午夜后不久睡觉，早上8.20起床（Roenneberg et al.,2017）。与这样的标准相比，你的偏好是怎样的？如果你早起早睡，你可以算做晨鸟型。如果你习惯午夜后起床，你算做夜猫子型。你离标准越远，晨鸟型和夜猫子型的程度就越高。随着成人的年龄增大，人们的偏好往往转向晨鸟型:祖父母一般偏向于比他们十几岁的孙子起床早得多。然而，与这种总体的转变相反，个体差异似乎保持稳定。相对成年人来说，夜猫子型的青少年起床更晚。现在让我们看看为什么你的时型很重要。</p>
+<p>研究者提供了大量的证据，表明身理节律帮助确定人们在一天的哪些时段最佳(BLatter &amp; Cajochen,2007)。由于身理节律的影响，时型不同的人最佳表现的时间也不同。这个规律同时适用于生理任务和认知任务。例如，足球运动员的运动相关技能(如用脚颠球的能力)因测试的时间而表现出变化(Reillyetal.,2007)。许多表现上的差异与体温变化的生理模式有关。</p>
+<p>为了证明时型对认知的影响，研究者招募了一组年龄从11岁到14岁的青少年(Goldsteinetal.,2007)研究者挑选了40名参与者，他们都是鲜明的晨鸟型或夜猫子型。青少年在一天的最佳时段或非最佳时段来完成自标准智力测验(WISC)的一部分项目。例如，一半的晨鸟型在早晨完成测验，另一半则在下午。在他们偏好的时段接受测验的参与者，其智力测验得分高出6分。(这是一个非常大的差异)。</p>
+<p>研究者还从青少年的父母和亲属那里获得关于他们日常行为的信息。晨鸟型的学生在这些测量方式中表现出更强的社交能力——比夜猫子型的青少年更少报告注意问题和攻击行为。这类结果支持了夜猫子型学生具有一种“社交时差”的观点(Wittmannetal.,2006)。因为他们是被闹钟叫醒，所以他们的行为表现总是发生在与个人节律不同步时段。缺乏同步性对成绩和行为都有负面影响。那么，你是明确的晨鸟型还是夜猫子型？你可能曾在学校做出一天的计划时或之后认真思考过这个问题。如果你有很强的时型，想想该如何安排工作和娱乐以获得最佳表现。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[ES6中Map，Set与数组和对象的比较]]></title>
+            <link>https://ajiu9.cn/posts/map-set-array-object</link>
+            <guid>https://ajiu9.cn/posts/map-set-array-object</guid>
+            <pubDate>Mon, 29 Oct 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>在es6中常用的数据集合有这几种，Object、Array、Map、Set。他们之间有什么区别？在什么情况下选用哪种数据集合类型？下来看这几种数据集合的使用比较。</p>
+<ul>
+<li>Object：Object构造函数创建一个对象包装器。</li>
+<li>Array：Array对象是用于构造数组的全局对象，数组是类似于列表的高阶对象。</li>
+<li>Map：Map 对象保存键值对。<code>任何值</code>(对象或者原始值) 都可以作为一个键或一个值。</li>
+<li>Set：Set 对象允许你存储任何类型的<code>唯一值</code>，无论是原始值或者是对象引用。</li>
+</ul>
+<h4>Map与数组比较</h4>
+<pre><code class="language-js">const map = new Map()
+const arr = []
+
+// add
+map.set('a', 1)
+arr.push({ a: 1 })
+console.log('map-array', map, arr)
+// map-array Map(1) {&quot;a&quot; =&gt; 1} [{…}]
+
+// exist
+const map_exist = map.has('a')
+const arr_exist = arr.find(item =&gt; item.a)
+console.log('map-array', map_exist, arr_exist)
+// map-array true {a: 1}
+
+// modify
+map.set('a', 2)
+arr.forEach(item =&gt; item.a ? item.a = 2 : '')
+console.log('map-array', map, arr)
+// map-array Map(1) {&quot;a&quot; =&gt; 2} [{…}]
+
+// delete
+map.delete('a')
+const index = arr.findIndex(item =&gt; item.a)
+arr.splice(arr.findIndex(item =&gt; item.b), 1)
+console.log('map-array', map, arr)
+// map-array Map(0) {} []
+</code></pre>
+<h4>Set与数组比较</h4>
+<pre><code class="language-js">const set = new Set()
+const array = []
+
+// add
+const a1 = {
+  a: 11
+}
+set.add(a1)
+array.push({ a: 11 })
+console.log('set-array', set, array)
+// set-array Set(1) {{…}} [{…}]
+
+// exist
+const set_exist = set.has('a')
+const array_exist = array.find(item =&gt; item.a)
+console.info('map-array', set_exist, array_exist)
+// map-array false {a: 11}
+
+// modify
+set.forEach(item =&gt; item.a ? item.a = 2 : '')
+array.forEach(item =&gt; item.a ? item.a = 2 : '')
+console.log('set-array', set, array)
+// set-array Set(1) {{…}} [{…}]
+
+// delete
+set.forEach(item =&gt; item.a ? set.delete(item) : '')
+array.splice(array.findIndex(item =&gt; item.b), 1)
+console.log('map-array', set, array) // map-array Set(0) {} []
+</code></pre>
+<h4>Map-Set与Object比较</h4>
+<pre><code class="language-js">const item = { a: 1 }
+const map = new Map()
+const set = new Set()
+const obj = new Object()
+
+// add
+map.set('a', 1)
+set.add(item)
+obj.a = 1
+console.log('map-set-object', map, set, obj)
+// map-set-object Map(1) {&quot;a&quot; =&gt; 1} Set(1) {{…}} {a: 1}
+
+// exist
+console.info({
+  map_exist: map.has('a'),
+  set_exist: set.has(item),
+  ibj_exist: 'a' in obj
+})
+// {map_exist: true, set_exist: true, ibj_exist: true}
+
+// modify
+map.set('a', 2)
+item.a = 2
+obj.a = 2
+console.log('map-set-object', map, set, obj)
+// map-set-object Map(1) {&quot;a&quot; =&gt; 2} Set(1) {{…}} {a: 2}
+
+// delete
+map.delete('a')
+set.delete(item)
+delete obj.a
+console.log('map-set-object', map, set, obj)
+// map-set-object Map(0) {} Set(0) {} {}
+</code></pre>
+<h4>总结</h4>
+<p>从上面对数据结构的增查改删中可以看出，能使用Map不用Array,如果要保证数据的唯一性，可以使用Set。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[前端错误监控]]></title>
+            <link>https://ajiu9.cn/posts/front-end-error-monitoring</link>
+            <guid>https://ajiu9.cn/posts/front-end-error-monitoring</guid>
+            <pubDate>Thu, 18 Oct 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>写在前面</h4>
+<p>做好错误监控，将用户使用时的错误上报，可以帮助我们定位解决一些出现的问题。本次主要了解一下几个问题：前端错误的分类，每一种分类的错误捕获方式是什么，如何把这些错误上报？</p>
+<h3>前端错误分类</h3>
+<ul>
+<li>即时运行错误：代码错误</li>
+<li>资源加载错误</li>
+<li>接口错误<br>
+即时运行错误的捕获方式：</li>
+<li><code>try..catch</code></li>
+<li><code>window.onerror</code></li>
+</ul>
+<p>资源加载错误的捕获方式：</p>
+<ul>
+<li><code>object.onerror</code></li>
+<li><code>performance.getEntries()</code></li>
+<li><code>addEventListener(&quot;error&quot;,function{}, true)</code>error事件捕获（资源加载错误不会冒泡，所以window.onerror不能捕获资源加载错误）。</li>
+</ul>
+<p>接口错误捕获方式<br>
+所有http请求都是基于<code>xmlHttpRequest</code>或者<code>fetch</code>封装的。所以要捕获全局的接口错误，方法就是封装xmlHttpRequest或者fetch。<br>
+这个捕获可以用状态码作为出错条件处理</p>
+<pre><code class="language-js">function axios() {
+  if (!window.XMLHttpRequest)
+    return
+  const xmlhttp = window.XMLHttpRequest
+  _oldSend = xmlhttp.prototype.send
+  const _handleEvent = function (event) {
+    if (event &amp;&amp; event.currentTarget &amp;&amp; event.currentTarget.status !== 200) {
+      // 自定义错误上报
+    }
+  }
+  xmlhttp.prototype.send = function () {
+    if (this.addEventListener) {
+      this.addEventListener('error', _handleEvent)
+      this.addEventListener('load', _handleEvent)
+      this.addEventListener('abort', _handleEvent)
+    }
+    else {
+      const _oldStateChange = this.onreadystatechange
+      this.onreadystatechange = function (event) {
+        if (this.readyState === 4)
+          _handleEvent(event)
+
+        _oldStateChange &amp;&amp; _oldStateChange.apply(this, arguments)
+      }
+    }
+    return _oldSend.apply(this, arguments)
+  }
+}
+</code></pre>
+<pre><code class="language-js">function axios() {
+  if (!window.fetch)
+    return
+  const _oldFetch = window.fetch
+  window.fetch = function () {
+    return _oldFetch.apply(this, arguments)
+      .then((res) =&gt; {
+        if (!res.ok) {
+          // True if status is HTTP 2xx
+          // 上报错误
+        }
+        return res
+      })
+      .catch((error) =&gt; {
+        // 上报错误throw error;
+      })
+  }
+}
+</code></pre>
+<p>跨域的js运行错误捕获错误提示：</p>
+<p><img src="https://static.ajiu9.cn/images/20240316133018d6be9j.png" alt="图片"></p>
+<p>处理方法：</p>
+<ul>
+<li>在script标签中增加crossorigin属性。</li>
+<li>设置js资源响应头Access-Control-Allow-Origin。</li>
+</ul>
+<h4>上报错误的基本原理</h4>
+<ul>
+<li>采用Ajax通信的方式上报。</li>
+<li>利用Image对象上报</li>
+</ul>
+<p>推荐用Image对象上报错误类型，比Ajax方式简单，并且不用借助任何第三方库。</p>
+<pre><code class="language-js">(new Image()).src = 'http://baidu.com/error?err=error'
+</code></pre>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[浏览器渲染机制]]></title>
+            <link>https://ajiu9.cn/posts/browser-rendering-mechanism</link>
+            <guid>https://ajiu9.cn/posts/browser-rendering-mechanism</guid>
+            <pubDate>Thu, 11 Oct 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>什么是DOCTYPE及作用</h4>
+<p>DOCTYPE标签是一种标准通用标记语言的文档类型声明，它的目的是要告诉标准通用标记语言解析器，它应该使用什么样的文档类型定义（DTD）来解析文档。</p>
+<ul>
+<li>
+<p>HTML5：<code>&lt;!DOCTYPE html&gt;</code></p>
+</li>
+<li>
+<p>HTML4.01 Strict <code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot; http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</code>(该DTD包含所有HTML元素和属性，但是不包括展示性的和弃用的元素如(font))</p>
+</li>
+<li>
+<p>HTML4.01 Transitional <code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot; http://www.w3.org/TR/html4/loose.dtd&quot; &gt;</code>(该DTD包含所有HTML元素和属性，包括展示性的和弃用的元素如(font))</p>
+</li>
+</ul>
+<h4>浏览器渲染过程</h4>
+<p>webkit的主要流程：</p>
+<p><img src="https://static.ajiu9.cn/images/20240316130401LakYs1.png" alt="图片"></p>
+<p>解析html以构建dom树 -&gt; 构建render树 -&gt; 布局render树 -&gt; 绘制render树</p>
+<ul>
+<li>
+<p>浏览器会将HTML解析成一个DOM树，DOM树的构建过程是一个深度遍历过程：当前节点的所有子节点都构建好后才会去构建当前节点的下一个兄弟节点。</p>
+</li>
+<li>
+<p>将CSS解析成 CSS Rule Tree 。</p>
+</li>
+<li>
+<p>根据DOM树和CSSDOM来构造 Rendering Tree。注意：Rendering Tree 渲染树并不等同于 DOM 树，因为一些像Header或display:none的东西就没必要放在渲染树中了。</p>
+</li>
+<li>
+<p>有了Render Tree，浏览器已经能知道网页中有哪些节点、各个节点的CSS定义以及他们的从属关系。下一步操作称之为layout，顾名思义就是计算出每个节点在屏幕中的位置。</p>
+</li>
+<li>
+<p>再下一步就是绘制，即遍历render树，并使用UI后端层绘制每个节点。</p>
+</li>
+</ul>
+<h4>reflow（回流）和erepaint（重绘）</h4>
+<ul>
+<li>
+<p>reflow（回流）：当浏览器发现某个部分发生了点变化影响了布局，需要倒回去重新渲染，内行称这个回退的过程叫 reflow。reflow 会从 这个 root frame 开始递归往下，依次计算所有的结点几何尺寸和位置。reflow 几乎是无法避免的。现在界面上流行的一些效果，比如树状目录的折叠、展开（实质上是元素的显 示与隐藏）等，都将引起浏览器的 reflow。鼠标滑过、点击……只要这些行为引起了页面上某些元素的占位面积、定位方式、边距等属性的变化，都会引起它内部、周围甚至整个页面的重新渲染。通常我们都无法预估浏览器到底会 reflow 哪一部分的代码，它们都彼此相互影响着。</p>
+</li>
+<li>
+<p>repaint（重绘）：改变某个元素的背景色、文字颜色、边框颜色等等不影响它周围或内部布局的属性时，屏幕的一部分要重画，但是元素的几何尺寸没有变。</p>
+</li>
+</ul>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[前端安全类CSRF,XSS]]></title>
+            <link>https://ajiu9.cn/posts/csrf-xss</link>
+            <guid>https://ajiu9.cn/posts/csrf-xss</guid>
+            <pubDate>Sat, 29 Sep 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>前端安全类</h4>
+<p><em>CSRF</em><br>
+<em>XSS</em></p>
+<h4>CSRF</h4>
+<p>CSRF，通常称为跨站请求伪造，英文名为Cross-site request forgery缩写。<br>
+<strong>攻击原理：</strong><br>
+攻击通过在授权用户访问的页面中包含链接或者脚本的方式工作。例如：一个网站用户Bob可能正在浏览聊天论坛，而同时另一个用户Alice也在此论坛中，并且后者刚刚发布了一个具有Bob银行链接的图片消息。设想一下，Alice编写了一个在Bob的银行站点上进行取款的form提交的链接，并将此链接作为图片src。如果Bob的银行在cookie中保存他的授权信息，并且此cookie没有过期，那么当Bob的浏览器尝试装载图片时将提交这个取款form和他的cookie，这样在没经Bob同意的情况下便授权了这次事务。<br>
+实现CSRF攻击不可缺少的两大因素：</p>
+<ul>
+<li>这个网站的接口有漏洞。</li>
+<li>用户在这个注册网站登录过。</li>
+</ul>
+<p><strong>防御措施</strong></p>
+<ul>
+<li>token验证</li>
+<li>Referer验证</li>
+<li>隐藏令牌</li>
+</ul>
+<h4>XSS</h4>
+<p>XSS又叫CSS (Cross Site Script) ，跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意用户的特殊目的。</p>
+<p><strong>攻击原理：</strong><br>
+利用合法的渠道向页面注入脚本，运行攻击者自己想做的事情。<br>
+攻击方式：</p>
+<ul>
+<li>反射型：发出请求时，XSS代码出现在URL中，做为输入提交到服务器端，服务器端简析后响应，XSS代码随响应内容一起传回浏览器，最后浏览器解析并执行代码。这个过程像一次反射，故称反射型XSS。</li>
+<li>存储型：存储型和反射型的差别在于，提交的代码会存储在服务端（数据库、内存、系统文件等），下次请求页面时不用再提交XSS代码。</li>
+</ul>
+<p><strong>防御措施</strong></p>
+<ul>
+<li>编码：对用户输入的数据进行HTML Entity编码。</li>
+<li>过滤：移除用户上传的DOM属性，例如onerror事件等；移除用户上传的style节点、script节点、iframe节点等。</li>
+<li>校正：避免直接对HTML Entity解码；使用DOM Parse转换，校正不配对的DOM标签。</li>
+</ul>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[面向对象-类与继承]]></title>
+            <link>https://ajiu9.cn/posts/object-oriented-class-and-inheritance</link>
+            <guid>https://ajiu9.cn/posts/object-oriented-class-and-inheritance</guid>
+            <pubDate>Sat, 29 Sep 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>概念</h4>
+<ul>
+<li>对象：对象是人们要进行研究的任何事物，从最简单的整数到复杂的飞机等均可看作对象，它不仅能表示具体的事物，还能表示抽象的规则、计划或事件。</li>
+<li>对象的状态和行为：对象具有状态，一个对象用数据值来描述它的状态；对象还有操作，用于改变对象的状态，对象及其操作就是对象的行为；对象实现了数据和操作的结合，使数据和操作封装于对象的统一体中。</li>
+<li>类：具有相同特性（数据元素）和行为（功能）的对象的抽象就是类。因此，对象的抽象是类，类的具体化就是对象，也可以说类的实例是对象，类实际上就是一种数据类型。类具有属性，它是对象的状态的抽象，用数据结构来描述类的属性。类具有操作，它是对象的行为的抽象，用操作名和实现该操作的方法来描述。</li>
+<li>javascript是面向对象的编程语言，是通过原型实现继承的。</li>
+</ul>
+<h4>类与实例</h4>
+<p>类的声明:</p>
+<pre><code class="language-js">/*
+* 类的声明
+*/
+function Animal() {
+  this.name = 'name'
+}
+
+/*
+* ES6中class声明
+*/
+class Animal2 {
+  constructor() {
+    this.name = name
+  }
+
+  walk() {
+    console.log(this.name)
+  }
+}
+/*
+* 实例化
+*/
+const o1 = new Animal(); const o2 = new Animal2()
+</code></pre>
+<h4>类与继承</h4>
+<p>类的继承本质上是通过原型链实现继承。<br>
+<strong>借助构造函数实现继承</strong></p>
+<pre><code class="language-js">/*
+* 借助构造函数实现继承
+*/
+function Parent1() {
+  this.name = 'parent1'
+}
+Parent1.prototype.say = function () {
+  console.log('say')
+}
+function Child1() {
+  Parent1.call(this); this.type = 'child1'
+}
+console.log(new Child1())
+// {name: &quot;parent1&quot;, type: &quot;child1&quot;}
+// `Parent1`函数原型上的方法没有继承，报错console.log(new Child1().say())
+// Uncaught TypeError: (intermediate value).say is not a function
+</code></pre>
+<p>借助构造函数实现继承是通过<code>call()</code>或者<code>apply()</code>指定<code>this</code>来实现改变<code>Parent1</code>函数上下文来实现继承。但是不能继承<code>Parent1</code>函数原型上的方法。</p>
+<p><strong>借助原型链实现继承</strong></p>
+<pre><code class="language-js">/*
+ * 借助原型链实现继承
+ */
+function Parent2() {
+  this.name = 'parent2'; this.list = [1, 2, 3]
+}
+Parent2.prototype.say = function () {
+  console.log('say2')
+}; function Child2() {
+  this.type = 'child2'
+}
+Child2.prototype = new Parent2()
+const s1 = new Child2()
+const s2 = new Child2()
+console.log(s1.list, s2.list)
+// [1,2,3],[1,2,3]s2.list.push(4);console.log(s1.list,s2.list);
+// [1, 2, 3, 4], [1, 2, 3, 4]console.log(s1.say()); // say2
+</code></pre>
+<p>这种方式是通过<code>prototype</code>来实现继承的，函数的原型指向<code>new Parent2()</code>。所以这种方法的缺点是继承的属性都是原型链上的，只要一个实例上继承的属性改变，就是改变原型链上的属性，导致所有实例属性都变了。</p>
+<p><strong>组合方式</strong></p>
+<pre><code class="language-js">/*
+* 组合方式
+*/
+function Parent3() {
+  this.name = 'parent3'; this.list = [1, 2, 3]
+}
+Parent3.prototype.say = function () {
+  console.log('say3')
+}
+function Child3() {
+  Parent3.call(this); this.type = 'child3'
+}
+Child3.prototype = new Parent3()
+const s3 = new Child3()
+const s4 = new Child3()
+console.log(s3.list, s4.list)
+// [1,2,3],[1,2,3]s4.list.push(4);console.log(s3.list,s4.list);
+// [1, 2, 3], [1, 2, 3, 4]console.log(s3.say());
+// say3
+</code></pre>
+<p>通过上面两种组合方式实现继承，结合了他们的优点，但这里<code>Parent3.call(this)</code>,<code>Child3.prototype = new Parent3()</code>构造函数执行了俩次。</p>
+<p><strong>组合继承优化方式1</strong></p>
+<pre><code class="language-js">/*
+* 组合继承优化方式1
+*/
+function Parent4() {
+  this.name = 'parent4'; this.list = [1, 2, 3]
+}
+Parent4.prototype.say = function () {
+  console.log('say4')
+}
+function Child4() {
+  Parent4.call(this); this.type = 'child4'
+}
+Child4.prototype = Parent4.prototype
+const s5 = new Child4()
+const s6 = new Child4()
+console.log(s5.list, s6.list)
+// [1,2,3],[1,2,3]s5.list.push(4);console.log(s5.list,s6.list);
+// [1, 2, 3], [1, 2, 3, 4]console.log(s5.say()); //say4
+</code></pre>
+<p>这里通过<code>Child4.prototype = Parent4.prototype</code>把函数的原型指向构造函数的原型，通过简单的引用来实现继承。</p>
+<p><strong>组合继承优化方式2</strong></p>
+<pre><code class="language-js">/*
+ * 组合继承优化方式2
+ */
+function Parent5() {
+  this.name = 'parent5'; this.list = [1, 2, 3]
+}
+Parent5.prototype.say = function () {
+  console.log('say5')
+}
+function Child5() {
+  Parent5.call(this); this.type = 'child5'
+}
+Child5.prototype = Object.create(Parent5.prototype)
+Child5.prototype.constructor = Child5
+const s7 = new Child5()
+const s8 = new Child5()
+console.log(s7.list, s8.list)
+// [1,2,3],[1,2,3]s7.list.push(4);console.log(s7.list,s8.list);
+// [1, 2, 3], [1, 2, 3, 4]console.log(s7.say());
+// say5console.log(s7.constructor); // Child5
+</code></pre>
+<p>这是组合继承的完美写法，通过<code>call()</code>或者<code>apply()</code>方法执行构造函数，通过改变this上下文实现属性继承；然后通过对子类函数的原型采用Object.create(Parent.prototype)，实现子类函数继承构造函数的原型上的方法；最后重新指定子类函数原型的<code>constructor</code>，从而完美实现类的继承。</p>
 ]]></content:encoded>
             <author>615944323@qq.com (Ajiu9)</author>
         </item>
