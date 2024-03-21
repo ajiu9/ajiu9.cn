@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajiu9.cn/</id>
     <title>Ajiu9</title>
-    <updated>2024-03-19T15:01:36.431Z</updated>
+    <updated>2024-03-21T06:28:30.871Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Ajiu9</name>
@@ -15,6 +15,29 @@
     <logo>https://ajiu9.cn/avatar.png</logo>
     <icon>https://ajiu9.cn/logo.png</icon>
     <rights>@2024-2025 湘ICP备2024048835号</rights>
+    <entry>
+        <title type="html"><![CDATA[匹配中文字符]]></title>
+        <id>https://ajiu9.cn/posts/match-chinese-characters</id>
+        <link href="https://ajiu9.cn/posts/match-chinese-characters"/>
+        <updated>2024-03-21T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>当需要检查是否包含中文字符时，需要使用正则匹配，网上搜索的<a href="https://stackoverflow.com/a/21113538">结果</a>:</p>
+<pre><code class="language-ts">/[\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|[\uD86A-\uD86C][\uDC00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D]/
+</code></pre>
+<p>这个方案可以，但是太难用，还有一个<a href="https://stackoverflow.com/a/61151122">简单的解决方案</a> :</p>
+<pre><code class="language-ts">/\p{Script=Han}/u
+</code></pre>
+<pre><code class="language-ts">!!'九州'.match(/\p{Script=Han}/u) // true
+</code></pre>
+<p>这是<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Unicode_Property_Escapes">Unicode 属性转义</a><br>
+浏览器兼容性 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#browser_compatibility">Chrome 64, Firefox 79, Safari 11.1 and Node.js 10</a>.</p>
+<p><a href="https://www.regular-expressions.info/unicode.html">所有可用的支持</a>.</p>
+]]></content>
+        <author>
+            <name>Ajiu9</name>
+            <email>615944323@qq.com</email>
+            <uri>https://ajiu9.cn</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[vue数字指令]]></title>
         <id>https://ajiu9.cn/posts/directive-number</id>

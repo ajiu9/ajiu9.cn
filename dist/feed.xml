@@ -4,7 +4,7 @@
         <title>Ajiu9</title>
         <link>https://ajiu9.cn/</link>
         <description>Ajiu9' Blog</description>
-        <lastBuildDate>Tue, 19 Mar 2024 15:01:36 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 21 Mar 2024 06:28:30 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -14,6 +14,25 @@
         </image>
         <copyright>@2024-2025 湘ICP备2024048835号</copyright>
         <atom:link href="https://ajiu9.cn/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[匹配中文字符]]></title>
+            <link>https://ajiu9.cn/posts/match-chinese-characters</link>
+            <guid>https://ajiu9.cn/posts/match-chinese-characters</guid>
+            <pubDate>Thu, 21 Mar 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>当需要检查是否包含中文字符时，需要使用正则匹配，网上搜索的<a href="https://stackoverflow.com/a/21113538">结果</a>:</p>
+<pre><code class="language-ts">/[\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|[\uD86A-\uD86C][\uDC00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D]/
+</code></pre>
+<p>这个方案可以，但是太难用，还有一个<a href="https://stackoverflow.com/a/61151122">简单的解决方案</a> :</p>
+<pre><code class="language-ts">/\p{Script=Han}/u
+</code></pre>
+<pre><code class="language-ts">!!'九州'.match(/\p{Script=Han}/u) // true
+</code></pre>
+<p>这是<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Unicode_Property_Escapes">Unicode 属性转义</a><br>
+浏览器兼容性 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#browser_compatibility">Chrome 64, Firefox 79, Safari 11.1 and Node.js 10</a>.</p>
+<p><a href="https://www.regular-expressions.info/unicode.html">所有可用的支持</a>.</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
         <item>
             <title><![CDATA[vue数字指令]]></title>
             <link>https://ajiu9.cn/posts/directive-number</link>
