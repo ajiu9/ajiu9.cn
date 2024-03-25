@@ -68,8 +68,8 @@ export default defineConfig({
     }),
 
     Markdown({
-      wrapperComponent: id => id.includes('/demo/')
-        ? 'WrapperDemo'
+      wrapperComponent: id => id.includes('/photos/')
+        ? 'WrapperPhoto'
         : 'WrapperPost',
       wrapperClasses: (id, code) => code.includes('@layout-full-width')
         ? ''
