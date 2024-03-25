@@ -1,7 +1,7 @@
 {
-  "\u0000/Users/ajiu9/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.10/node_modules/dayjs/dayjs.min.js?commonjs-module": [],
-  "\u0000/Users/ajiu9/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.10/node_modules/dayjs/plugin/localizedFormat.js?commonjs-module": [],
-  "\u0000/Users/ajiu9/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js?commonjs-module": [],
+  "\u0000/Users/wulongbiao/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.10/node_modules/dayjs/dayjs.min.js?commonjs-module": [],
+  "\u0000/Users/wulongbiao/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.10/node_modules/dayjs/plugin/localizedFormat.js?commonjs-module": [],
+  "\u0000/Users/wulongbiao/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js?commonjs-module": [],
   "\u0000commonjsHelpers.js": [],
   "\u0000plugin-vue:export-helper": [],
   "\u0000vite/modulepreload-polyfill.js": [],
@@ -35,130 +35,145 @@
   "node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js": [],
   "node_modules/.pnpm/shikiji-twoslash@0.9.19_typescript@5.4.2/node_modules/shikiji-twoslash/style-rich.css": [],
   "node_modules/.pnpm/unhead@1.8.12/node_modules/unhead/dist/index.mjs": [],
-  "node_modules/.pnpm/vite-ssg@0.23.6_vite@5.1.5_vue-router@4.2.5_vue@3.4.21/node_modules/vite-ssg/dist/index.mjs": [],
-  "node_modules/.pnpm/vite-ssg@0.23.6_vite@5.1.5_vue-router@4.2.5_vue@3.4.21/node_modules/vite-ssg/dist/shared/vite-ssg.5912142e.mjs": [],
-  "node_modules/.pnpm/vite-ssg@0.23.6_vite@5.1.5_vue-router@4.2.5_vue@3.4.21/node_modules/vite-ssg/dist/shared/vite-ssg.a009fbf1.mjs": [],
-  "node_modules/.pnpm/vue-router-better-scroller@0.0.0_vue-router@4.2.5_vue@3.4.21/node_modules/vue-router-better-scroller/dist/index.mjs": [],
+  "node_modules/.pnpm/vite-ssg@0.23.6_6539afe7c86e8a53f17ff050c3eff836/node_modules/vite-ssg/dist/index.mjs": [],
+  "node_modules/.pnpm/vite-ssg@0.23.6_6539afe7c86e8a53f17ff050c3eff836/node_modules/vite-ssg/dist/shared/vite-ssg.5912142e.mjs": [],
+  "node_modules/.pnpm/vite-ssg@0.23.6_6539afe7c86e8a53f17ff050c3eff836/node_modules/vite-ssg/dist/shared/vite-ssg.a009fbf1.mjs": [],
+  "node_modules/.pnpm/vue-router-better-scroller@0.0.0_vue-router@4.2.5+vue@3.4.21/node_modules/vue-router-better-scroller/dist/index.mjs": [],
   "node_modules/.pnpm/vue-router@4.2.5_vue@3.4.21/node_modules/vue-router/dist/vue-router.mjs": [],
   "pages/[...404].md": [
-    "/assets/_...404_-Dap-2QUi.js"
+    "/assets/_...404_-DTxiU-zw.js"
   ],
   "pages/bookmarks.md": [
-    "/assets/bookmarks-CMNqFoUX.js"
+    "/assets/bookmarks-C0Pphx_f.js"
   ],
   "pages/index.md": [],
   "pages/notes.md": [
-    "/assets/notes-7v7el5z4.js"
+    "/assets/notes-B_L-SM_r.js"
+  ],
+  "pages/photos.md": [
+    "/assets/photos-VT3KfqbS.js"
   ],
   "pages/posts/are-you-a-morning-bird-or-a-night-owl.md": [
-    "/assets/are-you-a-morning-bird-or-a-night-owl-BtYEr8ue.js"
+    "/assets/are-you-a-morning-bird-or-a-night-owl-DGyvKXHJ.js"
   ],
   "pages/posts/browser-rendering-mechanism.md": [
-    "/assets/browser-rendering-mechanism-BbZ3wC55.js"
+    "/assets/browser-rendering-mechanism-n8MKOjDI.js"
   ],
   "pages/posts/common-shortcuts-for-vscode.md": [
-    "/assets/common-shortcuts-for-vscode-zyaPhu0W.js"
+    "/assets/common-shortcuts-for-vscode-Cgs_rccH.js"
   ],
   "pages/posts/configure-my-Mac-from-0.md": [
-    "/assets/configure-my-Mac-from-0-CtTs_4Gv.js"
+    "/assets/configure-my-Mac-from-0-CvBoKxRC.js"
   ],
   "pages/posts/construction-and-use-of-picture-bed.md": [
-    "/assets/construction-and-use-of-picture-bed-DacDDTbG.js"
+    "/assets/construction-and-use-of-picture-bed-_UX_L7mN.js"
   ],
   "pages/posts/constructor-instance-prototype-chain.md": [
-    "/assets/constructor-instance-prototype-chain-TpXVEr2E.js"
+    "/assets/constructor-instance-prototype-chain-B12Ez71I.js"
   ],
   "pages/posts/cross-domain-methods.md": [
-    "/assets/cross-domain-methods-DkgR_RbH.js"
+    "/assets/cross-domain-methods-C-sjaTha.js"
   ],
   "pages/posts/csrf-xss.md": [
-    "/assets/csrf-xss-DbPTDcpn.js"
+    "/assets/csrf-xss-D8oX4MG4.js"
   ],
   "pages/posts/css-box-model-and-margin-overlap-solution.md": [
-    "/assets/css-box-model-and-margin-overlap-solution-CibF4rS1.js"
+    "/assets/css-box-model-and-margin-overlap-solution-wHjorZeU.js"
   ],
   "pages/posts/daily-tips-1.md": [
-    "/assets/daily-tips-1-De-dobvE.js"
+    "/assets/daily-tips-1-BLo_n41q.js"
   ],
   "pages/posts/directive-number.md": [
-    "/assets/directive-number-CBV8ik40.js"
+    "/assets/directive-number-m9r6-IrC.js"
   ],
   "pages/posts/dom-event.md": [
-    "/assets/dom-event-D_ZicB3l.js"
+    "/assets/dom-event-DkBefpUi.js"
   ],
   "pages/posts/front-end-error-monitoring.md": [
-    "/assets/front-end-error-monitoring-CLu9iypW.js"
+    "/assets/front-end-error-monitoring-CTQ92F8t.js"
   ],
   "pages/posts/how-to-achieve-a-deep-copy.md": [
-    "/assets/how-to-achieve-a-deep-copy-CPBWxdzZ.js"
+    "/assets/how-to-achieve-a-deep-copy-PGcISKab.js"
   ],
   "pages/posts/how-to-determine-the-plan.md": [
-    "/assets/how-to-determine-the-plan-DN2JFEyB.js"
+    "/assets/how-to-determine-the-plan-CdNXncwU.js"
   ],
   "pages/posts/http-protocol-class.md": [
-    "/assets/http-protocol-class-CEk0RiJN.js"
+    "/assets/http-protocol-class-Bm3btRha.js"
   ],
   "pages/posts/index.md": [
-    "/assets/index-C5jsR0ee.js"
+    "/assets/index-D-j6zVzr.js"
   ],
   "pages/posts/javascript-data-type.md": [
-    "/assets/javascript-data-type-DIcfM4AO.js"
+    "/assets/javascript-data-type-3QVGYixS.js"
   ],
   "pages/posts/js-type-about-type-and-Reference.md": [
-    "/assets/js-type-about-type-and-Reference-BJK6Jyvr.js"
+    "/assets/js-type-about-type-and-Reference-CdvG2ATx.js"
   ],
   "pages/posts/map-set-array-object.md": [
-    "/assets/map-set-array-object-BDBXIKaE.js"
+    "/assets/map-set-array-object-CF1ULtt_.js"
   ],
   "pages/posts/match-chinese-characters.md": [
-    "/assets/match-chinese-characters-DTO_c7Nv.js"
+    "/assets/match-chinese-characters-HE20VRt0.js"
   ],
   "pages/posts/object-oriented-class-and-inheritance.md": [
-    "/assets/object-oriented-class-and-inheritance-mwivOSLi.js"
+    "/assets/object-oriented-class-and-inheritance-BCDJWQ4G.js"
   ],
   "pages/posts/page-layout-three-column.md": [
-    "/assets/page-layout-three-column-uLyr1xqv.js"
+    "/assets/page-layout-three-column-Deun_d91.js"
   ],
   "pages/posts/proxy-reflect.md": [
-    "/assets/proxy-reflect-DBIQnK_7.js"
+    "/assets/proxy-reflect-BSpm9_2o.js"
   ],
   "pages/posts/webpack-building-speed-up.md": [
-    "/assets/webpack-building-speed-up-D0uBe9et.js"
+    "/assets/webpack-building-speed-up-D6hrcQKs.js"
   ],
   "pages/posts/window-print.md": [
-    "/assets/window-print-vlgW0GAf.js"
+    "/assets/window-print-BaOkUoBZ.js"
   ],
   "pages/projects.md": [
-    "/assets/projects-CCA_b4ns.js",
+    "/assets/projects-DAgbUoaW.js",
     "/assets/projects-BL_kb8Df.css"
+  ],
+  "photos/2024-03-23.md": [
+    "/assets/photos-VT3KfqbS.js"
+  ],
+  "photos/data.ts": [
+    "/assets/photos-VT3KfqbS.js"
   ],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/Footer.vue": [],
+  "src/components/ListPhotos.vue?vue&type=script&setup=true&lang.ts": [
+    "/assets/photos-VT3KfqbS.js"
+  ],
   "src/components/ListPosts.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-CKiQitdW.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-B53mdaHe.js"
   ],
   "src/components/ListProjects.vue": [
-    "/assets/projects-CCA_b4ns.js",
+    "/assets/projects-DAgbUoaW.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/projects-CCA_b4ns.js",
+    "/assets/projects-DAgbUoaW.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=style&index=0&scoped=6235e163&lang.css": [
-    "/assets/projects-CCA_b4ns.js",
+    "/assets/projects-DAgbUoaW.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/Logo.vue": [],
   "src/components/Logo.vue?vue&type=style&index=0&scoped=6edbdcb7&lang.css": [],
   "src/components/NavBar.vue": [],
   "src/components/NavBar.vue?vue&type=script&setup=true&lang.ts": [],
-  "src/components/NavBar.vue?vue&type=style&index=0&scoped=85f5ed95&lang.css": [],
+  "src/components/NavBar.vue?vue&type=style&index=0&scoped=fced3552&lang.css": [],
   "src/components/Plum.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/SubNav.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-CKiQitdW.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-B53mdaHe.js"
   ],
   "src/components/ToggleTheme.vue?vue&type=script&setup=true&lang.ts": [],
+  "src/components/WrapperPhoto.vue?vue&type=script&setup=true&lang.ts": [
+    "/assets/photos-VT3KfqbS.js"
+  ],
   "src/components/WrapperPost.vue?vue&type=script&setup=true&lang.ts": [],
   "src/logics/index.ts": [],
   "src/main.ts": [],
