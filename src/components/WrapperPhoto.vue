@@ -21,12 +21,14 @@ const { frontmatter, date } = defineProps({
     <a
       border="~ base rounded-lg" block of-hidden
       class="group"
+      rounded-3
       hover="scale-101 shadow-xl z-10 border-0!" transition-all duration-500 bg-base relative
       :href="frontmatter.link"
       target="_blank"
     >
       <img
         v-if="frontmatter.img"
+        class="m-0!"
         :src="frontmatter.img"
         w-full autoplay loop muted playsinline border="b base"
       >

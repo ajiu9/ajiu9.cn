@@ -4,4 +4,5 @@ plum: true
 display: ''
 ---
 
+<!-- @layout-full-width -->
 <ListPhotos />
