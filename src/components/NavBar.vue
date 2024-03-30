@@ -40,7 +40,7 @@ const { y: scroll } = useWindowScroll()
         </RouterLink>
         <RouterLink to="/photos" title="photos">
           <span class="lt-md:hidden">摄影</span>
-          <div i-ri-lightbulb-line class="md:hidden" />
+          <div i-ic:outline-motion-photos-on class="md:hidden" />
         </RouterLink>
         <a href="https://github.com/ajiu9" target="_blank" title="GitHub" class="lt-md:hidden">
           <div i-uil-github-alt />
