@@ -4,13 +4,17 @@ description:  'description'
 plum: true
 ---
 
-嘿，我是阿九(ajiu9)，一名软件开发人员。
+嘿，我是阿九(ajiu9)，一名软件开发。
+
+现在在[金蝶](https://www.kingdee.com/)工作。
 
 <div flex-auto />
 
 ---
 
-找到我
+可以通过微信公众号：[视与界]() 扫码关注我；
+
+另外也可以通过一下途径找到我：
 
 <p flex="~ gap-3 wrap" class="mt--2!">
   <a href="https://github.com/ajiu9" target="_blank"><span op75 i-simple-icons-github />GitHub</a>
