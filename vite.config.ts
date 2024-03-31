@@ -16,8 +16,8 @@ import LinkAttributes from 'markdown-it-link-attributes'
 import GitHubAlerts from 'markdown-it-github-alerts'
 import UnoCSS from 'unocss/vite'
 import SVG from 'vite-svg-loader'
-import MarkdownItShikiji from 'markdown-it-shikiji'
-import { rendererRich, transformerTwoSlash } from 'shikiji-twoslash'
+import MarkdownItShiki from '@shikijs/markdown-it'
+import { rendererRich, transformerTwoslash } from '@shikijs/twoslash'
 
 // @ts-expect-error missing types
 import TOC from 'markdown-it-table-of-contents'
@@ -82,15 +82,15 @@ export default defineConfig({
         quotes: '""\'\'',
       },
       async markdownItSetup(md) {
-        md.use(await MarkdownItShikiji({
+        md.use(await MarkdownItShiki({
           themes: {
-            dark: 'vitesse-dark',
-            light: 'vitesse-light',
+            light: 'github-light',
+            dark: 'github-dark',
           },
           defaultColor: false,
           cssVariablePrefix: '--s-',
           transformers: [
-            transformerTwoSlash({
+            transformerTwoslash({
               explicitTrigger: true,
               renderer: rendererRich(),
             }),
