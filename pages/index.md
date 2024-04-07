@@ -12,7 +12,7 @@ plum: true
 
 ---
 
-可以通过微信公众号：*视与界*扫码关注我:
+可以通过微信公众号：**视与界**扫码关注我:
 
 <div w-30>
   <img src="../public/qrcode_for_gh.jpg" alt="视与界"/>
