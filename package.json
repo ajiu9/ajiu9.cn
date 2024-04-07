@@ -8,7 +8,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "compress": "esno scripts/img-compress-staged.ts",
-    "temp": "rm -rf temp && esno scripts/temp.ts"
+    "release": "esno scripts/release.ts"
   },
   "dependencies": {
     "@vueuse/core": "^10.7.0",
