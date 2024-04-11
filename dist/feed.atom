@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajiu9.cn/</id>
     <title>Ajiu9</title>
-    <updated>2024-04-07T09:20:52.087Z</updated>
+    <updated>2024-04-11T09:11:43.097Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Ajiu9</name>
@@ -15,6 +15,33 @@
     <logo>https://ajiu9.cn/avatar.png</logo>
     <icon>https://ajiu9.cn/logo.png</icon>
     <rights>@2024-2025 湘ICP备2024048835号</rights>
+    <entry>
+        <title type="html"><![CDATA[Lodash Webpack Plugin Problem]]></title>
+        <id>https://ajiu9.cn/posts/lodash-webpack-plugin-problem</id>
+        <link href="https://ajiu9.cn/posts/lodash-webpack-plugin-problem"/>
+        <updated>2024-04-11T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>I have a problem in work today</p>
+<p>when i use deepClone in lodash</p>
+<pre><code class="language-js">import { cloneDeep } from 'lodash'
+const test1 = [{ id: 1, name: '测试1' }]
+const deep = cloneDeep(test1)
+console.log(deep[0] === test1[0]) // true
+</code></pre>
+<p><img src="https://static.ajiu9.cn/images/20240411170613.png" alt="image"><br>
+<a href="https://github.com/lodash/lodash-webpack-plugin">link</a></p>
+<p>Create smaller Lodash builds by replacing feature sets of modules with noop, identity, or simpler alternatives.</p>
+<p>This plugin complements babel-plugin-lodash by shrinking its cherry-picked builds even further!</p>
+<p>DISCLAIMER: Using this plugin without enabling the proper feature sets may cause lodash functions to behave in unexpected ways. Methods may appear to work, however they might return incorrect results.</p>
+<p>opts!</p>
+<p>cloning Support “clone” methods &amp; cloning source objects.</p>
+<p><a href="https://zhuanlan.zhihu.com/p/349260482">link</a></p>
+]]></content>
+        <author>
+            <name>Ajiu9</name>
+            <email>615944323@qq.com</email>
+            <uri>https://ajiu9.cn</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[匹配中文字符]]></title>
         <id>https://ajiu9.cn/posts/match-chinese-characters</id>

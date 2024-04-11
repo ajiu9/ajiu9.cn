@@ -11,6 +11,16 @@
     },
     "items": [
         {
+            "content_html": "<p>I have a problem in work today</p>\n<p>when i use deepClone in lodash</p>\n<pre><code class=\"language-js\">import { cloneDeep } from 'lodash'\nconst test1 = [{ id: 1, name: '测试1' }]\nconst deep = cloneDeep(test1)\nconsole.log(deep[0] === test1[0]) // true\n</code></pre>\n<p><img src=\"https://static.ajiu9.cn/images/20240411170613.png\" alt=\"image\"><br>\n<a href=\"https://github.com/lodash/lodash-webpack-plugin\">link</a></p>\n<p>Create smaller Lodash builds by replacing feature sets of modules with noop, identity, or simpler alternatives.</p>\n<p>This plugin complements babel-plugin-lodash by shrinking its cherry-picked builds even further!</p>\n<p>DISCLAIMER: Using this plugin without enabling the proper feature sets may cause lodash functions to behave in unexpected ways. Methods may appear to work, however they might return incorrect results.</p>\n<p>opts!</p>\n<p>cloning Support “clone” methods &amp; cloning source objects.</p>\n<p><a href=\"https://zhuanlan.zhihu.com/p/349260482\">link</a></p>\n",
+            "url": "https://ajiu9.cn/posts/lodash-webpack-plugin-problem",
+            "title": "Lodash Webpack Plugin Problem",
+            "date_modified": "2024-04-11T00:00:00.000Z",
+            "author": {
+                "name": "Ajiu9",
+                "url": "https://ajiu9.cn"
+            }
+        },
+        {
             "content_html": "<p>当需要检查是否包含中文字符时，需要使用正则匹配，网上搜索的<a href=\"https://stackoverflow.com/a/21113538\">结果</a>:</p>\n<pre><code class=\"language-ts\">/[\\u4E00-\\u9FCC\\u3400-\\u4DB5\\uFA0E\\uFA0F\\uFA11\\uFA13\\uFA14\\uFA1F\\uFA21\\uFA23\\uFA24\\uFA27-\\uFA29]|[\\uD840-\\uD868][\\uDC00-\\uDFFF]|\\uD869[\\uDC00-\\uDED6\\uDF00-\\uDFFF]|[\\uD86A-\\uD86C][\\uDC00-\\uDFFF]|\\uD86D[\\uDC00-\\uDF34\\uDF40-\\uDFFF]|\\uD86E[\\uDC00-\\uDC1D]/\n</code></pre>\n<p>这个方案可以，但是太难用，还有一个<a href=\"https://stackoverflow.com/a/61151122\">简单的解决方案</a> :</p>\n<pre><code class=\"language-ts\">/\\p{Script=Han}/u\n</code></pre>\n<pre><code class=\"language-ts\">!!'九州'.match(/\\p{Script=Han}/u) // true\n</code></pre>\n<p>这是<a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Unicode_Property_Escapes\">Unicode 属性转义</a><br>\n浏览器兼容性 <a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#browser_compatibility\">Chrome 64, Firefox 79, Safari 11.1 and Node.js 10</a>.</p>\n<p><a href=\"https://www.regular-expressions.info/unicode.html\">所有可用的支持</a>.</p>\n",
             "url": "https://ajiu9.cn/posts/match-chinese-characters",
             "title": "匹配中文字符",
