@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajiu9.cn/</id>
     <title>Ajiu9</title>
-    <updated>2024-04-19T02:16:45.935Z</updated>
+    <updated>2024-04-21T04:06:41.466Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Ajiu9</name>
@@ -16,7 +16,7 @@
     <icon>https://ajiu9.cn/logo.png</icon>
     <rights>@2024-2025 湘ICP备2024048835号</rights>
     <entry>
-        <title type="html"><![CDATA[Lodash Webpack Plugin Problem]]></title>
+        <title type="html"><![CDATA[排除一个在开发环境下Lodash的问题]]></title>
         <id>https://ajiu9.cn/posts/lodash-webpack-plugin-problem</id>
         <link href="https://ajiu9.cn/posts/lodash-webpack-plugin-problem"/>
         <updated>2024-04-11T00:00:00.000Z</updated>
