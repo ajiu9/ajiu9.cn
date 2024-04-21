@@ -4,7 +4,7 @@
         <title>Ajiu9</title>
         <link>https://ajiu9.cn/</link>
         <description>Ajiu9' Blog</description>
-        <lastBuildDate>Sun, 21 Apr 2024 04:06:41 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 21 Apr 2024 08:09:38 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -14,6 +14,35 @@
         </image>
         <copyright>@2024-2025 湘ICP备2024048835号</copyright>
         <atom:link href="https://ajiu9.cn/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[职业思考]]></title>
+            <link>https://ajiu9.cn/posts/professional-thinking</link>
+            <guid>https://ajiu9.cn/posts/professional-thinking</guid>
+            <pubDate>Sun, 21 Apr 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>现在大环境很差，怎么才能提升自己的安全感呢？<br>
+有一个观点就是<strong>对技术有追求的程序员</strong>不要依附于公司，而是要依附于行业，成为行业专家，有自己影响力！用行业对抗公司的脆弱性。</p>
+<p>在《10x Is Easier Than 2x》一书中提到一个观点——<strong>做到10倍好可能比做到2倍好更容易</strong></p>
+<ol>
+<li>能达到2倍好的途径很多，但达到10倍好的途径可能很少，你的方向会更聚焦</li>
+<li>10倍目标要求创新和突破性思维</li>
+</ol>
+<h2>如何成为行业专家</h2>
+<p><strong>成为行业专家</strong>是个10x目标，要求创新和突破性思维，从专家这个最终结果反推新的职业路径。</p>
+<p>需要有自己的一套理论体系作为背书，通常这套理论体系的载体是纸质书，这也是为什么很多行业专家都会出书。</p>
+<p>这张广为流传的图：<br>
+<img src="https://static.ajiu9.cn/images/20240421153354.png" alt=""></p>
+<ul>
+<li>行业信息经过提炼，成为知识</li>
+<li>当有足够的行业知识，就会产生行业洞察</li>
+<li>当有足够的行业洞察，就能形成独特的理论体系</li>
+</ul>
+<p><strong>成为行业专家</strong>的起点是<strong>吸收足够多的行业信息</strong>。</p>
+<p>所有的信息都要加工成自己的知识，从信息中<strong>学到</strong>什么。<br>
+从这个方向出发，那么我现在结合自己的自身情况，可以做的有几个方面：1.学习数据结构和算法，顺便整理成自己的学习文档，最后学成后分享，提升自己的专业能力和影响力。2.阅读vue相关的知识（文章、官方文档、团队成员发言、源码），整理成自己的vue源码的个人知识后发布文章。3.获取组件库的知识，学习开源组件库的方式，整理成自己的常用组件库分析理解和代码实现的文章和代码库，最后发布。</p>
+<p>这是2024年4月下旬的思考，等待具体实践。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
         <item>
             <title><![CDATA[排除一个在开发环境下Lodash的问题]]></title>
             <link>https://ajiu9.cn/posts/lodash-webpack-plugin-problem</link>
