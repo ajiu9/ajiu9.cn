@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajiu9.cn/</id>
     <title>Ajiu9</title>
-    <updated>2024-04-22T13:38:22.986Z</updated>
+    <updated>2024-05-17T05:47:28.099Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Ajiu9</name>
@@ -15,6 +15,45 @@
     <logo>https://ajiu9.cn/avatar.png</logo>
     <icon>https://ajiu9.cn/logo.png</icon>
     <rights>@2024-2025 湘ICP备2024048835号</rights>
+    <entry>
+        <title type="html"><![CDATA[如何在微信开发工具中调试本地web代码]]></title>
+        <id>https://ajiu9.cn/posts/how-to-debug-local-code-in-WeChat-development-tools</id>
+        <link href="https://ajiu9.cn/posts/how-to-debug-local-code-in-WeChat-development-tools"/>
+        <updated>2024-05-17T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>在开发微信公众号的代码时，会用到微信提供的<a href="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#62">jsapi</a>,只有在公众号后台中绑定域名才能访问到。本地ip无法授权。</p>
+</blockquote>
+<ol>
+<li>使用代理工具把本地端口映射到微信公众号绑定的域名。<br>
+安装<a href="https://github.com/avwo/whistle">whistle</a></li>
+</ol>
+<p>启动whistle代理</p>
+<pre><code>w2 start
+</code></pre>
+<p>启动成功后会在控制台输出以下信息：<br>
+<img src="https://static.ajiu9.cn/images/20240517095140.png" alt="image"></p>
+<p>然后在浏览器中打开里面的地址</p>
+<ol start="2">
+<li>配置whistle代理<br>
+<img src="https://static.ajiu9.cn/images/20240517095452.png" alt="image"></li>
+</ol>
+<p><code>请使用http代理</code></p>
+<ol start="3">
+<li>开启系统代理，或者在李立群插件中安装<a href="chrome://extensions/?id=padekgcemlokbadohgkifijomclgjgif">Proxy SwitchyOmega</a></li>
+</ol>
+<p><img src="https://static.ajiu9.cn/images/20240517095833.png" alt="image"></p>
+<ol start="4">
+<li>微信开发者工具打开代理设置：设置 &gt; 代理设置<br>
+<img src="https://static.ajiu9.cn/images/20240517100019.png" alt="image"></li>
+</ol>
+<p>完成这些后，访问微信配置的域名会代理到本地ip，就可以在微信开发者工具中调试本地代码了。</p>
+]]></content>
+        <author>
+            <name>Ajiu9</name>
+            <email>615944323@qq.com</email>
+            <uri>https://ajiu9.cn</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[职业思考]]></title>
         <id>https://ajiu9.cn/posts/professional-thinking</id>

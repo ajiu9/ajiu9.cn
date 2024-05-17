@@ -11,6 +11,16 @@
     },
     "items": [
         {
+            "content_html": "<blockquote>\n<p>在开发微信公众号的代码时，会用到微信提供的<a href=\"https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#62\">jsapi</a>,只有在公众号后台中绑定域名才能访问到。本地ip无法授权。</p>\n</blockquote>\n<ol>\n<li>使用代理工具把本地端口映射到微信公众号绑定的域名。<br>\n安装<a href=\"https://github.com/avwo/whistle\">whistle</a></li>\n</ol>\n<p>启动whistle代理</p>\n<pre><code>w2 start\n</code></pre>\n<p>启动成功后会在控制台输出以下信息：<br>\n<img src=\"https://static.ajiu9.cn/images/20240517095140.png\" alt=\"image\"></p>\n<p>然后在浏览器中打开里面的地址</p>\n<ol start=\"2\">\n<li>配置whistle代理<br>\n<img src=\"https://static.ajiu9.cn/images/20240517095452.png\" alt=\"image\"></li>\n</ol>\n<p><code>请使用http代理</code></p>\n<ol start=\"3\">\n<li>开启系统代理，或者在李立群插件中安装<a href=\"chrome://extensions/?id=padekgcemlokbadohgkifijomclgjgif\">Proxy SwitchyOmega</a></li>\n</ol>\n<p><img src=\"https://static.ajiu9.cn/images/20240517095833.png\" alt=\"image\"></p>\n<ol start=\"4\">\n<li>微信开发者工具打开代理设置：设置 &gt; 代理设置<br>\n<img src=\"https://static.ajiu9.cn/images/20240517100019.png\" alt=\"image\"></li>\n</ol>\n<p>完成这些后，访问微信配置的域名会代理到本地ip，就可以在微信开发者工具中调试本地代码了。</p>\n",
+            "url": "https://ajiu9.cn/posts/how-to-debug-local-code-in-WeChat-development-tools",
+            "title": "如何在微信开发工具中调试本地web代码",
+            "date_modified": "2024-05-17T00:00:00.000Z",
+            "author": {
+                "name": "Ajiu9",
+                "url": "https://ajiu9.cn"
+            }
+        },
+        {
             "content_html": "<p>现在大环境很差，怎么才能提升自己的安全感呢？<br>\n有一个观点就是<strong>对技术有追求的程序员</strong>不要依附于公司，而是要依附于行业，成为行业专家，有自己影响力！用行业对抗公司的脆弱性。</p>\n<p>在《10x Is Easier Than 2x》一书中提到一个观点——<strong>做到10倍好可能比做到2倍好更容易</strong></p>\n<ol>\n<li>能达到2倍好的途径很多，但达到10倍好的途径可能很少，你的方向会更聚焦</li>\n<li>10倍目标要求创新和突破性思维</li>\n</ol>\n<h2>如何成为行业专家</h2>\n<p><strong>成为行业专家</strong>是个10x目标，要求创新和突破性思维，从专家这个最终结果反推新的职业路径。</p>\n<p>需要有自己的一套理论体系作为背书，通常这套理论体系的载体是纸质书，这也是为什么很多行业专家都会出书。</p>\n<p>这张广为流传的图：<br>\n<img src=\"https://static.ajiu9.cn/images/20240421153354.png\" alt=\"\"></p>\n<ul>\n<li>行业信息经过提炼，成为知识</li>\n<li>当有足够的行业知识，就会产生行业洞察</li>\n<li>当有足够的行业洞察，就能形成独特的理论体系</li>\n</ul>\n<p><strong>成为行业专家</strong>的起点是<strong>吸收足够多的行业信息</strong>。</p>\n<p>所有的信息都要加工成自己的知识，从信息中<strong>学到</strong>什么。<br>\n从这个方向出发，那么我现在结合自己的自身情况，可以做的有几个方面：</p>\n<ol>\n<li>学习数据结构和算法，顺便整理成自己的学习文档，最后学成后分享，提升自己的专业能力和影响力。</li>\n<li>阅读vue相关的知识（文章、官方文档、团队成员发言、源码），整理成自己的vue源码的个人知识后发布文章。</li>\n<li>获取组件库的知识，学习开源组件库的方式，整理成自己的常用组件库分析理解和代码实现的文章和代码库，最后发布。</li>\n</ol>\n<p>这是2024年4月下旬的思考，等待具体实践。</p>\n",
             "url": "https://ajiu9.cn/posts/professional-thinking",
             "title": "职业思考",
