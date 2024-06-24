@@ -1,6 +1,6 @@
 ---
 title: Notes - Ajiu9
-plum: true
+art: plum
 display: ''
 ---
 

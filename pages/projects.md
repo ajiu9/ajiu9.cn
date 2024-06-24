@@ -2,7 +2,7 @@
 title: Projects - Ajiu9
 display: Projects
 description: List of projects that I am proud of
-plum: true
+art: dots
 wrapperClass: 'text-center'
 projects:
   Current Focus:

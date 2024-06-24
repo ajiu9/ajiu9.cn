@@ -1,7 +1,7 @@
 ---
 title: Blog - Ajiu9
 display: ''
-plum: true
+art: plum
 ---
 
 <SubNav />

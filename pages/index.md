@@ -1,7 +1,7 @@
 ---
 title: AJiu9
 description:  'description'
-plum: true
+art: random
 ---
 
 嘿，我是阿九(ajiu9)，一名软件开发。

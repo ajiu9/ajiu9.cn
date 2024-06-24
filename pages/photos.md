@@ -1,6 +1,6 @@
 ---
 title: photos - Ajiu9
-plum: true
+art: dots
 display: ''
 ---
 
