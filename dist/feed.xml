@@ -4,7 +4,7 @@
         <title>Ajiu9</title>
         <link>https://ajiu9.cn/</link>
         <description>Ajiu9' Blog</description>
-        <lastBuildDate>Fri, 17 May 2024 05:47:28 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 24 Jun 2024 09:52:39 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -14,6 +14,13 @@
         </image>
         <copyright>@2024-2025 湘ICP备2024048835号</copyright>
         <atom:link href="https://ajiu9.cn/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[在页面上实现当前搜索查询，支持快捷键搜索]]></title>
+            <link>https://ajiu9.cn/posts/use-search</link>
+            <guid>https://ajiu9.cn/posts/use-search</guid>
+            <pubDate>Fri, 14 Jun 2024 00:00:00 GMT</pubDate>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
         <item>
             <title><![CDATA[如何在微信开发工具中调试本地web代码]]></title>
             <link>https://ajiu9.cn/posts/how-to-debug-local-code-in-WeChat-development-tools</link>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajiu9.cn/</id>
     <title>Ajiu9</title>
-    <updated>2024-05-17T05:47:28.099Z</updated>
+    <updated>2024-06-24T09:52:39.412Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Ajiu9</name>
@@ -15,6 +15,17 @@
     <logo>https://ajiu9.cn/avatar.png</logo>
     <icon>https://ajiu9.cn/logo.png</icon>
     <rights>@2024-2025 湘ICP备2024048835号</rights>
+    <entry>
+        <title type="html"><![CDATA[在页面上实现当前搜索查询，支持快捷键搜索]]></title>
+        <id>https://ajiu9.cn/posts/use-search</id>
+        <link href="https://ajiu9.cn/posts/use-search"/>
+        <updated>2024-06-14T00:00:00.000Z</updated>
+        <author>
+            <name>Ajiu9</name>
+            <email>615944323@qq.com</email>
+            <uri>https://ajiu9.cn</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[如何在微信开发工具中调试本地web代码]]></title>
         <id>https://ajiu9.cn/posts/how-to-debug-local-code-in-WeChat-development-tools</id>
