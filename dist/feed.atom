@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajiu9.cn/</id>
     <title>Ajiu9</title>
-    <updated>2024-06-24T09:52:39.412Z</updated>
+    <updated>2024-07-02T09:18:31.602Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Ajiu9</name>
@@ -20,6 +20,386 @@
         <id>https://ajiu9.cn/posts/use-search</id>
         <link href="https://ajiu9.cn/posts/use-search"/>
         <updated>2024-06-14T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>先看效果：<br>
+<img src="https://static.ajiu9.cn/images/20240702165015.gif" alt="image"></p>
+<p>实现思路：1.加载完所有数据后，处理数据，得到源数据。2.在搜索框中输入关键字，触发搜索事件，根据关键字过滤源数据，得到搜索结果。</p>
+<h3>代码实现</h3>
+<p>search 文件</p>
+<pre><code class="language-vue">// search.vue
+&lt;template&gt;
+	&lt;div class=&quot;search-wrapper&quot;&gt;
+		&lt;el-input
+			v-model.trim=&quot;keyword&quot;
+			class=&quot;border-bottom&quot;
+			placeholder=&quot;请输入参数&quot;
+			clearable
+			@focus=&quot;onInputFocus&quot;
+			@blur=&quot;onInputBlur&quot;
+		&gt;
+			&lt;span slot=&quot;append&quot;&gt; {{ currentNumber }}/{{ filterCount }} &lt;/span&gt;
+		&lt;/el-input&gt;
+		&lt;el-divider direction=&quot;vertical&quot;/&gt;
+		&lt;i
+			class=&quot;el-icon-arrow-up pointer ml-1&quot;
+			:class=&quot;filterCount &amp;&amp; currentNumber !== 1 ? '' : 'disabled'&quot;
+			@click=&quot;onSearchPrev&quot;
+		/&gt;
+		&lt;i
+			class=&quot;el-icon-arrow-down pointer ml-2&quot;
+			:class=&quot;filterCount &amp;&amp; currentNumber !== filterCount ? '' : 'disabled'&quot;
+			@click=&quot;onSearchNext&quot;
+		/&gt;
+	&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { useSearch } from './index'
+
+export default {
+	name: 'SearchFocus',
+	props: {
+		allFields: {
+			type: [Array, Function],
+			default: () =&gt; []
+		},
+		fieldsBefore: {
+			type: Function,
+			default: () =&gt; new Promise(resolve =&gt; resolve())
+		},
+		onChange: {
+			type: Function,
+			default: () =&gt; {}
+		}
+	},
+	setup(props) {
+		const {
+			keyword,
+			filterCount,
+			currentNumber,
+			onSearchNext,
+			onSearchPrev,
+			onInputFocus,
+			onInputBlur
+		} = useSearch({
+			allFields: props.allFields,
+			fieldsBefore: props.fieldsBefore,
+			onChange: props.onChange
+		})
+		return {
+			keyword,
+			filterCount,
+			currentNumber,
+			onSearchNext,
+			onSearchPrev,
+			onInputFocus,
+			onInputBlur
+		}
+	}
+}
+&lt;/script&gt;
+
+&lt;style lang=&quot;less&quot; scoped&gt;
+.search-wrapper {
+	display: flex;
+	line-height: 32px;
+	align-items: center;
+	.disabled {
+		color: #c0c4cc;
+		cursor: not-allowed;
+	}
+	.ml-1 {
+		margin-left: 10px;
+	}
+	.ml-2 {
+		margin-left: 20px;
+	}
+}
+&lt;/style&gt;
+
+&lt;style lang=&quot;less&quot;&gt;
+.heighlight {
+	.el-form-item__label span {
+		background: yellow;
+	}
+}
+&lt;/style&gt;
+
+</code></pre>
+<p>until 文件</p>
+<pre><code class="language-js">// until.js
+export function getAllData(data) {
+	const ret = []
+
+	data.forEach(item =&gt; {
+		const { field, el } = item
+		ret.push({
+			el,
+			field,
+			label: getFieldName(el),
+			prop: el.prop
+		})
+	})
+	return ret
+}
+
+function getFieldName(formItemVNode) {
+	// 按照el-form-item的label的规则
+	// 优先展示slot:label的文本，如果没有再展示label属性的值
+	let name = ''
+	if (formItemVNode.$slots?.label) {
+		const label = formItemVNode.$slots.label[0]
+		name = label.elm.innerText
+	}
+	return name || formItemVNode.label
+}
+</code></pre>
+<p>index 文件</p>
+<pre><code class="language-js">// index.js
+import { computed, getCurrentInstance, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { addClass, removeClass } from 'tool'
+import { getAllData } from './util'
+
+/**
+ *
+ * @param {function} fieldsBefore 获取所有查询字段前的函数，需要返回Promise
+ * @param {function, Array} allFields 获取所有查询字段的函数或数组
+ * @param {function} onChange 查询事件
+ * @returns
+ */
+
+function useSearch({ fieldsBefore, allFields = [], onChange } = {}) {
+	const { proxy } = getCurrentInstance()
+	const allFieldsList = ref([])
+
+	const current = ref(-1)
+	const currentNumber = computed(() =&gt; {
+		if (current.value === -1) return 0
+		return current.value + 1
+	})
+
+	const inputElIsFocus = ref(false)
+	const onInputFocus = () =&gt; (inputElIsFocus.value = true)
+	const onInputBlur = () =&gt; (inputElIsFocus.value = false)
+
+	// 缓存前一个元素
+	const prevEl = ref(null)
+
+	const filterFieldsData = ref([])
+	const filterCount = computed(() =&gt; filterFieldsData.value.length)
+
+	const changeEvent = () =&gt; {
+		if (onChange &amp;&amp; typeof onChange === 'function') {
+			const currentField =
+				filterCount.value &gt; 0 ? filterFieldsData.value[current.value].field : null
+			onChange({ currentField })
+		}
+
+		if (prevEl.value) {
+			removeClass(prevEl.value, 'heighlight')
+		}
+
+		if (!filterCount.value) return
+
+		const el = filterFieldsData.value[current.value].el.$el
+		addClass(el, 'heighlight')
+		prevEl.value = el
+		proxy.$nextTick(() =&gt; {
+			el.scrollIntoView()
+		})
+	}
+
+	const keyword = ref('')
+	watch(keyword, val =&gt; {
+		proxy.$delay.register(
+			'paramtersFilter',
+			() =&gt; {
+				if (!val) {
+					filterFieldsData.value = []
+				} else {
+					filterFieldsData.value = allFieldsList.value.filter(item =&gt; {
+						return item.label.includes(val)
+					})
+				}
+				if (filterCount.value === 0) {
+					current.value = -1
+				} else {
+					current.value = 0
+				}
+				changeEvent()
+			},
+			800
+		)
+	})
+
+	const onSearchNext = () =&gt; {
+		if (!filterCount.value) return
+		if (current.value === filterCount.value - 1) current.value = 0
+		else current.value = current.value + 1
+
+		changeEvent()
+	}
+	const onSearchPrev = () =&gt; {
+		if (!filterCount.value) return
+		if (current.value === 0) current.value = filterCount.value - 1
+		else current.value = current.value - 1
+
+		changeEvent()
+	}
+
+	onMounted(async () =&gt; {
+		console.log('fieldsBefore', fieldsBefore.toString())
+		if (fieldsBefore &amp;&amp; typeof fieldsBefore === 'function') await fieldsBefore()
+		if (allFields &amp;&amp; typeof allFields === 'function') {
+			allFieldsList.value = allFields()
+		} else {
+			allFieldsList.value = allFields
+		}
+
+		console.log('allFieldsList', allFieldsList.value)
+		// Bind keyEvent
+		proxy.$keyMap.bind(['enter'], () =&gt; {
+			if (!inputElIsFocus.value) return
+			proxy.$delay.register(
+				'onSearchNextText',
+				() =&gt; {
+					if (filterCount.value === 0) return
+					onSearchNext()
+				},
+				500
+			)
+		})
+		proxy.$keyMap.bind(['shift+enter'], () =&gt; {
+			if (!inputElIsFocus.value) return
+			proxy.$delay.register(
+				'onSearchPrevText',
+				() =&gt; {
+					if (filterCount.value === 0) return
+					onSearchPrev()
+				},
+				500
+			)
+		})
+	})
+
+	onBeforeUnmount(() =&gt; {
+		proxy.$keyMap.unbind(['enter', 'shift+enter'])
+	})
+	return {
+		keyword,
+		filterCount,
+		currentNumber,
+		onSearchNext,
+		onSearchPrev,
+		onInputFocus,
+		onInputBlur
+	}
+}
+
+export { useSearch, getAllData, useSearch as default }
+
+</code></pre>
+<h3>使用：</h3>
+<pre><code class="language-vue">&lt;template&gt;
+&lt;SearchFocus
+			slot=&quot;btn-group&quot;
+			:all-fields=&quot;allFields&quot;
+			:fields-before=&quot;fieldsBefore&quot;
+			:on-change=&quot;onChangeEvent&quot;
+		/&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+
+import { getAllData } from '@/hooks/useSearch'
+
+export default {
+	components: {
+		SearchFocus,
+	},
+
+	setup() {
+		const { proxy } = getCurrentInstance()
+
+		const fieldsBefore = async () =&gt; {
+			await until(permissionLoaded).toBe(true)
+			await until(allMounted).toBe(true)
+		}
+		const allFields = () =&gt; {
+			const data = []
+			formWrapper.value.forEach(item =&gt; {
+				item.formRef?.fields.forEach(el =&gt; {
+					data.push({
+						field: item.field,
+						el
+					})
+				})
+			})
+			return getAllData(data)
+		}
+		const onChangeEvent = data =&gt; {
+			activeName.value = data.currentField || INIT_ACTIVE_NAME
+		}
+
+		return {
+			fieldsBefore,
+			allFields,
+			onChangeEvent
+		}
+	}
+}
+&lt;/script&gt;
+
+&lt;style lang=&quot;less&quot; scoped&gt;
+.tabs-wrapper {
+	height: 100%;
+	overflow-y: scroll;
+	::v-deep .el-tabs__content {
+		height: 100%;
+		overflow-y: auto;
+	}
+}
+&lt;/style&gt;
+
+&lt;style lang=&quot;less&quot;&gt;
+.w-1 {
+	width: 100px;
+}
+.w-4 {
+	width: 400px;
+}
+.ml-2 {
+	margin-left: 20px;
+}
+.ml-4 {
+	margin-left: 40px;
+}
+.textarea.el-textarea .el-textarea__inner {
+	padding-right: 60px;
+}
+.textarea.el-input .el-input__inner {
+	padding-right: 60px;
+}
+.center .el-input__inner {
+	text-align: center;
+}
+.parameter-tip {
+	&amp;.el-tooltip__popper {
+		border: 1px solid #e1e9ea;
+		background-color: #f6ffaf;
+		color: #333;
+		line-height: 24px;
+		.popper__arrow::after {
+			border-right-color: #f6ffaf;
+		}
+		.popper__arrow {
+			border-right-color: #e1e9ea;
+		}
+	}
+}
+&lt;/style&gt;
+
+</code></pre>
+]]></content>
         <author>
             <name>Ajiu9</name>
             <email>615944323@qq.com</email>
