@@ -50,6 +50,7 @@ declare module 'vue-router/auto-routes' {
     '/posts/page-layout-three-column': RouteRecordInfo<'/posts/page-layout-three-column', '/posts/page-layout-three-column', Record<never, never>, Record<never, never>>,
     '/posts/professional-thinking': RouteRecordInfo<'/posts/professional-thinking', '/posts/professional-thinking', Record<never, never>, Record<never, never>>,
     '/posts/proxy-reflect': RouteRecordInfo<'/posts/proxy-reflect', '/posts/proxy-reflect', Record<never, never>, Record<never, never>>,
+    '/posts/publish-esm-and-cjs': RouteRecordInfo<'/posts/publish-esm-and-cjs', '/posts/publish-esm-and-cjs', Record<never, never>, Record<never, never>>,
     '/posts/use-search': RouteRecordInfo<'/posts/use-search', '/posts/use-search', Record<never, never>, Record<never, never>>,
     '/posts/webpack-building-speed-up': RouteRecordInfo<'/posts/webpack-building-speed-up', '/posts/webpack-building-speed-up', Record<never, never>, Record<never, never>>,
     '/posts/window-print': RouteRecordInfo<'/posts/window-print', '/posts/window-print', Record<never, never>, Record<never, never>>,

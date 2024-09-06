@@ -1,12 +1,12 @@
 {
-  "\u0000/Users/ajiu9/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.11/node_modules/dayjs/dayjs.min.js?commonjs-module": [],
-  "\u0000/Users/ajiu9/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.11/node_modules/dayjs/plugin/localizedFormat.js?commonjs-module": [],
-  "\u0000/Users/ajiu9/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js?commonjs-module": [],
-  "\u0000/Users/ajiu9/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/p5@1.9.4/node_modules/p5/lib/p5.min.js?commonjs-module": [
-    "/assets/ArtDots-BNwmSKNu.js"
+  "\u0000/Users/wulongbiao/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.11/node_modules/dayjs/dayjs.min.js?commonjs-module": [],
+  "\u0000/Users/wulongbiao/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.11/node_modules/dayjs/plugin/localizedFormat.js?commonjs-module": [],
+  "\u0000/Users/wulongbiao/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js?commonjs-module": [],
+  "\u0000/Users/wulongbiao/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/p5@1.9.4/node_modules/p5/lib/p5.min.js?commonjs-module": [
+    "/assets/ArtDots-CqRrxoAy.js"
   ],
   "\u0000commonjs-dynamic-modules": [
-    "/assets/ArtDots-BNwmSKNu.js"
+    "/assets/ArtDots-CqRrxoAy.js"
   ],
   "\u0000commonjsHelpers.js": [],
   "\u0000plugin-vue:export-helper": [],
@@ -23,7 +23,7 @@
   "node_modules/.pnpm/@unhead+shared@1.9.14/node_modules/@unhead/shared/dist/index.mjs": [],
   "node_modules/.pnpm/@unhead+vue@1.9.14_vue@3.4.30/node_modules/@unhead/vue/dist/shared/vue.cf295fb1.mjs": [],
   "node_modules/.pnpm/@unhead+vue@1.9.14_vue@3.4.30/node_modules/@unhead/vue/dist/shared/vue.f36acd1f.mjs": [
-    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-gkW2Gv9q.js"
+    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-CbTFF4jC.js"
   ],
   "node_modules/.pnpm/@unocss+reset@0.61.0/node_modules/@unocss/reset/tailwind.css": [],
   "node_modules/.pnpm/@vue+reactivity@3.4.30/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js": [],
@@ -42,10 +42,10 @@
   "node_modules/.pnpm/markdown-it-github-alerts@0.3.0_markdown-it@14.1.0/node_modules/markdown-it-github-alerts/styles/github-colors-light.css": [],
   "node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js": [],
   "node_modules/.pnpm/p5@1.9.4/node_modules/p5/lib/p5.min.js": [
-    "/assets/ArtDots-BNwmSKNu.js"
+    "/assets/ArtDots-CqRrxoAy.js"
   ],
   "node_modules/.pnpm/p5i@0.5.0/node_modules/p5i/dist/p5i.mjs": [
-    "/assets/ArtDots-BNwmSKNu.js"
+    "/assets/ArtDots-CqRrxoAy.js"
   ],
   "node_modules/.pnpm/pinia@2.1.7_typescript@5.5.2_vue@3.4.30/node_modules/pinia/dist/pinia.mjs": [],
   "node_modules/.pnpm/shiki-magic-move@0.4.2_shiki@1.9.0_vue@3.4.30/node_modules/shiki-magic-move/dist/style.css": [],
@@ -57,155 +57,158 @@
   "node_modules/.pnpm/vue-router-better-scroller@0.0.0_vue-router@4.2.5_vue@3.4.30/node_modules/vue-router-better-scroller/dist/index.mjs": [],
   "node_modules/.pnpm/vue-router@4.2.5_vue@3.4.30/node_modules/vue-router/dist/vue-router.mjs": [],
   "pages/[...404].md": [
-    "/assets/_...404_-DxGhQxdW.js"
+    "/assets/_...404_-BbQqrIa-.js"
   ],
   "pages/bookmarks.md": [
-    "/assets/bookmarks-BUNszqv3.js"
+    "/assets/bookmarks-C1NMhkZt.js"
   ],
   "pages/index.md": [
-    "/assets/index-DvyN_4kI.js",
+    "/assets/index-aR079AH4.js",
     "/assets/qrcode_for_gh-Qj-0AFY8.jpg"
   ],
   "pages/notes.md": [
-    "/assets/notes-C7L3pb6y.js"
+    "/assets/notes-npETweVd.js"
   ],
   "pages/photos.md": [
-    "/assets/photos-DOgNjFh0.js"
+    "/assets/photos-CedTaSTw.js"
   ],
   "pages/posts/are-you-a-morning-bird-or-a-night-owl.md": [
-    "/assets/are-you-a-morning-bird-or-a-night-owl-BG523U-_.js"
+    "/assets/are-you-a-morning-bird-or-a-night-owl-Fnp56ret.js"
   ],
   "pages/posts/browser-rendering-mechanism.md": [
-    "/assets/browser-rendering-mechanism-BYsawjRI.js"
+    "/assets/browser-rendering-mechanism-Cq4ZMMI_.js"
   ],
   "pages/posts/common-shortcuts-for-vscode.md": [
-    "/assets/common-shortcuts-for-vscode-hpjy-uFX.js"
+    "/assets/common-shortcuts-for-vscode-CsZIpf9u.js"
   ],
   "pages/posts/configure-my-Mac-from-0.md": [
-    "/assets/configure-my-Mac-from-0-CQ2ucHvl.js"
+    "/assets/configure-my-Mac-from-0-DVgbV1Q_.js"
   ],
   "pages/posts/construction-and-use-of-picture-bed.md": [
-    "/assets/construction-and-use-of-picture-bed-3nX-wYTg.js"
+    "/assets/construction-and-use-of-picture-bed-CmxGBY1Q.js"
   ],
   "pages/posts/constructor-instance-prototype-chain.md": [
-    "/assets/constructor-instance-prototype-chain-JGlQq0fu.js"
+    "/assets/constructor-instance-prototype-chain-BuniGcgz.js"
   ],
   "pages/posts/cross-domain-methods.md": [
-    "/assets/cross-domain-methods-P6y_IUDp.js"
+    "/assets/cross-domain-methods-BsxJ9OIN.js"
   ],
   "pages/posts/csrf-xss.md": [
-    "/assets/csrf-xss-DO63xf_q.js"
+    "/assets/csrf-xss-BCpavQzw.js"
   ],
   "pages/posts/css-box-model-and-margin-overlap-solution.md": [
-    "/assets/css-box-model-and-margin-overlap-solution-DIHdg_70.js"
+    "/assets/css-box-model-and-margin-overlap-solution-SKg-HAEs.js"
   ],
   "pages/posts/daily-tips-1.md": [
-    "/assets/daily-tips-1-laQ0i5M6.js"
+    "/assets/daily-tips-1-BzRBeOXx.js"
   ],
   "pages/posts/directive-number.md": [
-    "/assets/directive-number-BCIbf8Lh.js"
+    "/assets/directive-number-DJ2dCoNn.js"
   ],
   "pages/posts/dom-event.md": [
-    "/assets/dom-event-DXi3uOY7.js"
+    "/assets/dom-event-BaLPcnTu.js"
   ],
   "pages/posts/front-end-error-monitoring.md": [
-    "/assets/front-end-error-monitoring-DYVGRQny.js"
+    "/assets/front-end-error-monitoring-xgHGQS_x.js"
   ],
   "pages/posts/how-to-achieve-a-deep-copy.md": [
-    "/assets/how-to-achieve-a-deep-copy-DTt-4uP3.js"
+    "/assets/how-to-achieve-a-deep-copy-ClJtodcT.js"
   ],
   "pages/posts/how-to-debug-local-code-in-WeChat-development-tools.md": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-CuUcCRII.js"
+    "/assets/how-to-debug-local-code-in-WeChat-development-tools-CykGEVPi.js"
   ],
   "pages/posts/how-to-determine-the-plan.md": [
-    "/assets/how-to-determine-the-plan-D_ILLDs7.js"
+    "/assets/how-to-determine-the-plan-CPAFWCF7.js"
   ],
   "pages/posts/http-protocol-class.md": [
-    "/assets/http-protocol-class-fKu6pQ2U.js"
+    "/assets/http-protocol-class-3QP22nDq.js"
   ],
   "pages/posts/index.md": [
-    "/assets/index-D0yLUXw_.js"
+    "/assets/index-CyuWxsus.js"
   ],
   "pages/posts/javascript-data-type.md": [
-    "/assets/javascript-data-type-DiMKOHn8.js"
+    "/assets/javascript-data-type-DdfElx1M.js"
   ],
   "pages/posts/js-type-about-type-and-Reference.md": [
-    "/assets/js-type-about-type-and-Reference-vdCVvoRO.js"
+    "/assets/js-type-about-type-and-Reference-BnjjFkwU.js"
   ],
   "pages/posts/lodash-webpack-plugin-problem.md": [
-    "/assets/lodash-webpack-plugin-problem-DQ6P_yF4.js"
+    "/assets/lodash-webpack-plugin-problem-BaZKVB0f.js"
   ],
   "pages/posts/map-set-array-object.md": [
-    "/assets/map-set-array-object-Ds-lx8CO.js"
+    "/assets/map-set-array-object-B7916UAd.js"
   ],
   "pages/posts/match-chinese-characters.md": [
-    "/assets/match-chinese-characters-S6k681wz.js"
+    "/assets/match-chinese-characters-C2oo8Yyb.js"
   ],
   "pages/posts/object-oriented-class-and-inheritance.md": [
-    "/assets/object-oriented-class-and-inheritance-ClnmOVlH.js"
+    "/assets/object-oriented-class-and-inheritance-BXAI4Zx3.js"
   ],
   "pages/posts/page-layout-three-column.md": [
-    "/assets/page-layout-three-column-B5MNSgze.js"
+    "/assets/page-layout-three-column-B3z5a7cq.js"
   ],
   "pages/posts/professional-thinking.md": [
-    "/assets/professional-thinking-CWls8urE.js"
+    "/assets/professional-thinking-CT1dbl4m.js"
   ],
   "pages/posts/proxy-reflect.md": [
-    "/assets/proxy-reflect-BaMI7LpG.js"
+    "/assets/proxy-reflect-DEGcazVU.js"
+  ],
+  "pages/posts/publish-esm-and-cjs.md": [
+    "/assets/publish-esm-and-cjs-CqTFmWNE.js"
   ],
   "pages/posts/use-search.md": [
-    "/assets/use-search-Jo1X_Iba.js"
+    "/assets/use-search-NNALnorc.js"
   ],
   "pages/posts/webpack-building-speed-up.md": [
-    "/assets/webpack-building-speed-up-B8w5Uq14.js"
+    "/assets/webpack-building-speed-up-BmcnJ2cs.js"
   ],
   "pages/posts/window-print.md": [
-    "/assets/window-print-CJTdP-nB.js"
+    "/assets/window-print-Cs6xo32F.js"
   ],
   "pages/projects.md": [
-    "/assets/projects-Cwb2UKFP.js",
+    "/assets/projects-BJDCDboI.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "photos/2024-03-23.md": [
-    "/assets/photos-DOgNjFh0.js"
+    "/assets/photos-CedTaSTw.js"
   ],
   "photos/data.ts": [
-    "/assets/photos-DOgNjFh0.js"
+    "/assets/photos-CedTaSTw.js"
   ],
   "public/qrcode_for_gh.jpg": [
-    "/assets/index-DvyN_4kI.js",
+    "/assets/index-aR079AH4.js",
     "/assets/qrcode_for_gh-Qj-0AFY8.jpg"
   ],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/ArtDots.vue": [
-    "/assets/ArtDots-BNwmSKNu.js"
+    "/assets/ArtDots-CqRrxoAy.js"
   ],
   "src/components/ArtDots.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/ArtDots-BNwmSKNu.js"
+    "/assets/ArtDots-CqRrxoAy.js"
   ],
   "src/components/ArtPlum.vue": [
-    "/assets/ArtPlum-DBzKDsAO.js"
+    "/assets/ArtPlum-KnfPRE4C.js"
   ],
   "src/components/ArtPlum.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/ArtPlum-DBzKDsAO.js"
+    "/assets/ArtPlum-KnfPRE4C.js"
   ],
   "src/components/Footer.vue": [],
   "src/components/ListPhotos.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/photos-DOgNjFh0.js"
+    "/assets/photos-CedTaSTw.js"
   ],
   "src/components/ListPosts.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BM64uSr-.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BcW2kKPI.js"
   ],
   "src/components/ListProjects.vue": [
-    "/assets/projects-Cwb2UKFP.js",
+    "/assets/projects-BJDCDboI.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/projects-Cwb2UKFP.js",
+    "/assets/projects-BJDCDboI.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=style&index=0&scoped=6235e163&lang.css": [
-    "/assets/projects-Cwb2UKFP.js",
+    "/assets/projects-BJDCDboI.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/Logo.vue": [],
@@ -214,14 +217,14 @@
   "src/components/NavBar.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/NavBar.vue?vue&type=style&index=0&scoped=89b7cfe3&lang.css": [],
   "src/components/SubNav.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BM64uSr-.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BcW2kKPI.js"
   ],
   "src/components/ToggleTheme.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/WrapperPhoto.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/photos-DOgNjFh0.js"
+    "/assets/photos-CedTaSTw.js"
   ],
   "src/components/WrapperPost.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-gkW2Gv9q.js"
+    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-CbTFF4jC.js"
   ],
   "src/logics/index.ts": [],
   "src/main.ts": [],
