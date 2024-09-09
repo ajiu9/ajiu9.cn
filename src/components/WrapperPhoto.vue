@@ -18,10 +18,7 @@ const { frontmatter, date } = defineProps({
 
 <template>
   <div>
-    <iframe src="https://www.datinginfo.top/game/RobotCarTransform/" frameborder="0" width="414" height="832"/>
-    <iframe src="https://ams.cdn.arkadiumhosted.com/assets/global/game/webgl-mahjong/?show_game_end=false&locale=en-us&device_type=pc&arena_name=gamedistribution.arkadiumarena.com&game_name=Mahjong&events=game_start,game_end,pause_ready,event_change,abtest_init,reward_start&play_id=LTUzMTY=?show_game_end=false&locale=en-us&device_type=pc&arena_name=gamedistribution.arkadiumarena.com&game_name=Mahjong&events=game_start,game_end,pause_ready,event_change,abtest_init,reward_start&play_id=LTUzMTY=" frameborder="0" width="414" height="832"/>
-
-    <!-- <a
+    <a
       border="~ base rounded-lg" block of-hidden
       class="group"
       rounded-3
@@ -40,6 +37,6 @@ const { frontmatter, date } = defineProps({
         <slot />
         <div op50 text-sm pt2>{{ formatDate(date, false) }}</div>
       </div>
-    </a> -->
+    </a>
   </div>
 </template>

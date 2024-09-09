@@ -1,0 +1,8 @@
+{
+	"front":"skybox_Front.jpg",
+	"back":"skybox_Back.jpg",
+	"left":"skybox_Left.jpg",
+	"right":"skybox_Right.jpg",
+	"up":"skybox_Top.jpg",
+	"down":"skybox_Bottom.jpg"
+}
