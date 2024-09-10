@@ -1,0 +1,52 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.0 # 或者其他版本
+
+      - name: Install pnpm
+        run: |
+          npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run build
+        run: pnpm run build
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.0
+
+      - name: Install pnpm
+        run: |
+          npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run release
+        run: pnpm run release
