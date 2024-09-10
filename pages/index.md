@@ -23,3 +23,5 @@ art: random
 <p flex="~ gap-3 wrap" class="mt--2!">
   <a href="https://github.com/ajiu9" target="_blank"><span op75 i-simple-icons-github />GitHub</a>
 </p>
+
+或者发邮件给我： <span font-mono>anine.9<span i-carbon-at/>qq.com</span>
