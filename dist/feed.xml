@@ -1,0 +1,3961 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Ajiu9</title>
+        <link>https://ajiu9.cn/</link>
+        <description>Ajiu9' Blog</description>
+        <lastBuildDate>Wed, 11 Sep 2024 14:26:28 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <image>
+            <title>Ajiu9</title>
+            <url>https://ajiu9.cn/avatar.png</url>
+            <link>https://ajiu9.cn/</link>
+        </image>
+        <copyright>@2024-2025 湘ICP备2024048835号</copyright>
+        <atom:link href="https://ajiu9.cn/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[在一个项目中同时使用ESM和CJS]]></title>
+            <link>https://ajiu9.cn/posts/publish-esm-and-cjs</link>
+            <guid>https://ajiu9.cn/posts/publish-esm-and-cjs</guid>
+            <pubDate>Mon, 02 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[在单项目中运行ESM和CJS的简单介绍]]></description>
+            <content:encoded><![CDATA[<h2>ESM &amp; CJS</h2>
+<p>[[commonjs和esm]]</p>
+<ul>
+<li>ESM - <a href="https://nodejs.org/api/esm.html">ECMAScript Modules</a></li>
+<li>CJS - <a href="https://nodejs.org/api/modules.html#modules_commonjs_modules">CommonJS</a></li>
+</ul>
+<p>在过去的十年中，由于缺乏标准的 JavaScript 模块系统，CommonJS（又名“require(‘xxx’)”和“module.exports”语法）一直是 Node.js 和 NPM 包的工作方式。直到 2015 年，当 ECMAScript 模块最终作为标准解决方案出现时，社区开始逐渐迁移到原生 ESM。</p>
+<p>CJS</p>
+<pre><code class="language-js">// addTwo.js
+function addTwo(num) {
+  return num + 2
+}
+
+module.exports = addTwo
+</code></pre>
+<pre><code class="language-js">// app.js
+const addTwo = require('./addTwo.js')
+
+// Prints: 6
+console.log(addTwo(4))
+</code></pre>
+<p>ESM</p>
+<pre><code class="language-js">// addTwo.mjs
+function addTwo(num) {
+  return num + 2
+}
+
+export { addTwo }
+</code></pre>
+<pre><code class="language-js">// app.mjs
+import { addTwo } from './addTwo.mjs'
+
+// Prints: 6
+console.log(addTwo(4))
+</code></pre>
+<p>ESM 支持命名导出、更好的静态分析、tree-shaking、浏览器原生支持；最重要的是，作为一个标准，它基本上是 JavaScript 的未来。Node.js v12 中引入了对 ESM 的实验性支持，并在 v12.22.0 和 v14.17.0 中稳定下来。</p>
+<p>截至 2024，很多软件包都提供 ESM 格式或者 CJS 和 ESM 两种格式支持。毕竟nodejs生态庞大，迁移到 ESM 生态是一个长期过程。</p>
+<p>所以对于项目的作者来说，提供两种格式的兼容性，是必要的。在这篇文章中，我将提供一个简单的示例，以解释如何使用 CJS 和 ESM 在同一个项目中同时工作。</p>
+<h2>兼容性</h2>
+<p>如果 ESM 更好，代表未来，为何不全面转向ESM？尽管Node.js能够兼容CJS和ESM包，但主要障碍在于<strong>CJS无法使用ESM包</strong>。</p>
+<pre><code class="language-js">// app.cjs
+const pkg = require('./addTwo-only-esm.mjs')
+</code></pre>
+<pre><code class="language-bash">Error [ERR_REQUIRE_ESM]: Must use import to load ES Module: /private/tmp/ajiu9-MiETrR/addTwo-only-esm.mjs
+</code></pre>
+<p>根本原因是 ESM 本质上是异步的，你无法在“require”所在的同步上下文中导入异步模块。这通常意味着如果想使用 ESM 软件包，则也必须使用 ESM。<br>
+唯一的例外是，可以使用 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import#dynamic_imports">dynamic 'import()'</a> 在 CJS 中使用 ESM 包：</p>
+<pre><code class="language-js">// app.mjs
+async function awaitFunction() {
+  const { default: pkg } = await import('./addTwo-only-esm.mjs')
+  console.log(pkg)
+}
+awaitFunction()
+</code></pre>
+<p>由于动态导入将返回 Promise，这意味着所有后续被调用者也需要异步。在某些情况下它可能会起作用，但通常这对用户来说不是一个简单易用的解决方案。</p>
+<p>如果你能够直接使用ESM，那会容易得多，因为<code>import</code>同时支持ESM和CJS。</p>
+<pre><code class="language-js">// in ESM
+import { foo } from 'esm-package'
+import cjs from 'cjs-package'
+</code></pre>
+<p>一些软件包现在提供纯ESM版本，倡导从CJS转向ESM。尽管这是趋势，但由于大多数项目仍在使用CJS且迁移不易，我选择同时发布CJS和ESM版本，以使过渡更加平滑。</p>
+<h3><code>package.json</code></h3>
+<p>幸运的是，Node 允许你在同一个软件包中同时使用这两种格式。通过 <code>package.json</code> 中的新 <a href="https://nodejs.org/api/packages.html#conditional-exports"><code>exports</code></a> 字段，提供了一种根据特定条件映射到不同路径的方法。它们支持 CommonJS 和 ES 模块导入。</p>
+<pre><code class="language-js">{
+  &quot;exports&quot;: {
+    &quot;node&quot;: {
+      &quot;import&quot;: &quot;./feature-node.mjs&quot;, // EMS
+      &quot;require&quot;: &quot;./feature-node.cjs&quot; // CJS
+    },
+    &quot;default&quot;: &quot;./feature.mjs&quot;
+  }
+}
+</code></pre>
+<h2>打包</h2>
+<p>如果需要支持两种模块方式，复制两份代码肯定不是一个好的解决方案。此时，我们需要考虑引入一些构建工具或打包工具。比如 <a href="https://rollupjs.org/">Rollup</a> 和 <a href="https://webpack.js.org/">Webpack</a>。将你的代码构建成多种格式。但是它们的配置很复杂，需要花很多时间去学习。这里有两个非常棒的工具，它们只需要简单的配置就可以工作。</p>
+<ul>
+<li><a href="#tsup"><code>tsup</code></a></li>
+<li><a href="#unbuild"><code>unbuild</code></a></li>
+</ul>
+<h3>tsup</h3>
+<p><a href="https://github.com/egoist/tsup"><code>tsup</code></a>它具有零配置构建 TypeScript 项目的特点。使用方法如下：</p>
+<pre><code class="language-bash">tsup src/index.ts
+</code></pre>
+<p>它将输出一个 <code>dist/index.js</code> 文件。</p>
+<p>若要支持双格式，只需添加一个标志即可：</p>
+<pre><code class="language-bash">$ tsup src/index.ts --format cjs,esm
+</code></pre>
+<p>使用该工具会生成两个文件 <code>dist/index.js</code> 和 <code>dist/index.mjs</code>，之后你就可以直接使用了。由于采用了 <a href="https://github.com/evanw/esbuild"><code>esbuild</code></a>，<code>tsup</code> 不仅非常易用，而且速度惊人。</p>
+<p>这是一个使用<code>tsup</code>的<code>package.json</code>模版配置。</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;pakage-name&quot;,
+  &quot;main&quot;: &quot;./dist/index.js&quot;,
+  &quot;module&quot;: &quot;./dist/index.mjs&quot;,
+  &quot;types&quot;: &quot;./dist/index.d.ts&quot;,
+  &quot;exports&quot;: {
+    &quot;.&quot;: {
+      &quot;require&quot;: &quot;./dist/index.js&quot;,
+      &quot;import&quot;: &quot;./dist/index.mjs&quot;,
+      &quot;types&quot;: &quot;./dist/index.d.ts&quot;
+    }
+  },
+  &quot;scripts&quot;: {
+    &quot;build&quot;: &quot;tsup src/index.ts --format cjs,esm --dts --clean&quot;,
+    &quot;watch&quot;: &quot;npm run build -- --watch src&quot;,
+    &quot;prepublishOnly&quot;: &quot;npm run build&quot;
+  }
+}
+</code></pre>
+<h3>unbuild</h3>
+<p><code>tsup</code> 是一个轻量级的 TypeScript 打包工具，而<a href="https://github.com/unjs/unbuild"><code>unbuild</code></a> 则更加通用、可定制且功能强大。</p>
+<p>要使用它，我们需要在根目录下创建 <code>build.config.ts</code> 文件。</p>
+<pre><code class="language-ts">// build.config.ts
+import { defineBuildConfig } from 'unbuild'
+
+export default defineBuildConfig({
+  entries: [
+    './src/index'
+  ],
+  declaration: true, // 生成 .d.ts files
+})
+</code></pre>
+<p>然后运行构建命令：</p>
+<pre><code class="language-bash">$ unbuild
+</code></pre>
+<p>默认情况下，“unbuild”将生成ESM和CJS！</p>
+<h2>上下文差异</h2>
+<p>使用上述工具，我们现在能够将 TypeScript 作为唯一的代码源，同时生成 CJS 和 ESM 模块，使整体代码库更容易维护，但仍然有一些需要注意的细节。</p>
+<p><strong>在 ESM 中，没有 <code>__dirname</code>, <code>__filename</code>, <code>require</code>, <code>require.resolve</code></strong>。需要使用 <code>import.meta.url</code> 并做一些转换来获取文件路径字符串。</p>
+<p>由于我们的代码将被编译为 CJS 和 ESM，尽量避免使用这些特定于环境的上下文。如果确实需要，可以参考以下代码：</p>
+<pre><code class="language-ts">import { dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const _dirname = typeof __dirname !== 'undefined'
+  ? __dirname
+  : dirname(fileURLToPath(import.meta.url))
+</code></pre>
+<p>关于 require 和 require.resolve，你可以使用：</p>
+<pre><code class="language-ts">import { createRequire } from 'node:module'
+
+const require = createRequire(import.meta.url)
+</code></pre>
+<p><code>如果你使用</code>unbuild<code>，可以开启 </code>cjsBridge<code> 标志，</code>unbuild` 会自动为你在 ESM 中模拟这些 CJS 上下文！</p>
+<pre><code class="language-ts">import { defineBuildConfig } from 'unbuild'
+
+export default defineBuildConfig({
+  cjsBridge: true, // &lt;--
+})
+</code></pre>
+<p>另外，如果你使用 <code>tsup</code>，它会在 CJS 中为你模拟 ESM 的 <code>import.meta.url</code>。</p>
+<h2>验证你的包</h2>
+<p>一旦你发布了你的包，可以使用 <a href="https://publint.dev/">publint.dev</a>（由 <a href="https://github.com/bluwy">@bluwy</a> 制作）来验证它是否遵循最佳实践。它还会给你一些如何进一步改进的建议。</p>
+<h2>最后</h2>
+<p>这篇文章很大部分是参考了<a href="https://antfu.me/posts/publish-esm-and-cjs">publish-esm-and-cjs</a>。同时这两种工具的使用也只是一部分，请查看它们的文档以获取更多详细信息。希望这些设置对你构建自己的库有所帮助，祝你编程愉快！</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[在页面上实现当前搜索查询，支持快捷键搜索]]></title>
+            <link>https://ajiu9.cn/posts/use-search</link>
+            <guid>https://ajiu9.cn/posts/use-search</guid>
+            <pubDate>Fri, 14 Jun 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>先看效果：<br>
+<img src="https://static.ajiu9.cn/images/20240702165015.gif" alt="image"></p>
+<p>实现思路：1.加载完所有数据后，处理数据，得到源数据。2.在搜索框中输入关键字，触发搜索事件，根据关键字过滤源数据，得到搜索结果。</p>
+<h3>代码实现</h3>
+<p>search 文件</p>
+<pre><code class="language-vue">// search.vue
+&lt;template&gt;
+	&lt;div class=&quot;search-wrapper&quot;&gt;
+		&lt;el-input
+			v-model.trim=&quot;keyword&quot;
+			class=&quot;border-bottom&quot;
+			placeholder=&quot;请输入参数&quot;
+			clearable
+			@focus=&quot;onInputFocus&quot;
+			@blur=&quot;onInputBlur&quot;
+		&gt;
+			&lt;span slot=&quot;append&quot;&gt; {{ currentNumber }}/{{ filterCount }} &lt;/span&gt;
+		&lt;/el-input&gt;
+		&lt;el-divider direction=&quot;vertical&quot;/&gt;
+		&lt;i
+			class=&quot;el-icon-arrow-up pointer ml-1&quot;
+			:class=&quot;filterCount &amp;&amp; currentNumber !== 1 ? '' : 'disabled'&quot;
+			@click=&quot;onSearchPrev&quot;
+		/&gt;
+		&lt;i
+			class=&quot;el-icon-arrow-down pointer ml-2&quot;
+			:class=&quot;filterCount &amp;&amp; currentNumber !== filterCount ? '' : 'disabled'&quot;
+			@click=&quot;onSearchNext&quot;
+		/&gt;
+	&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+import { useSearch } from './index'
+
+export default {
+	name: 'SearchFocus',
+	props: {
+		allFields: {
+			type: [Array, Function],
+			default: () =&gt; []
+		},
+		fieldsBefore: {
+			type: Function,
+			default: () =&gt; new Promise(resolve =&gt; resolve())
+		},
+		onChange: {
+			type: Function,
+			default: () =&gt; {}
+		}
+	},
+	setup(props) {
+		const {
+			keyword,
+			filterCount,
+			currentNumber,
+			onSearchNext,
+			onSearchPrev,
+			onInputFocus,
+			onInputBlur
+		} = useSearch({
+			allFields: props.allFields,
+			fieldsBefore: props.fieldsBefore,
+			onChange: props.onChange
+		})
+		return {
+			keyword,
+			filterCount,
+			currentNumber,
+			onSearchNext,
+			onSearchPrev,
+			onInputFocus,
+			onInputBlur
+		}
+	}
+}
+&lt;/script&gt;
+
+&lt;style lang=&quot;less&quot; scoped&gt;
+.search-wrapper {
+	display: flex;
+	line-height: 32px;
+	align-items: center;
+	.disabled {
+		color: #c0c4cc;
+		cursor: not-allowed;
+	}
+	.ml-1 {
+		margin-left: 10px;
+	}
+	.ml-2 {
+		margin-left: 20px;
+	}
+}
+&lt;/style&gt;
+
+&lt;style lang=&quot;less&quot;&gt;
+.heighlight {
+	.el-form-item__label span {
+		background: yellow;
+	}
+}
+&lt;/style&gt;
+
+</code></pre>
+<p>until 文件</p>
+<pre><code class="language-js">// until.js
+export function getAllData(data) {
+	const ret = []
+
+	data.forEach(item =&gt; {
+		const { field, el } = item
+		ret.push({
+			el,
+			field,
+			label: getFieldName(el),
+			prop: el.prop
+		})
+	})
+	return ret
+}
+
+function getFieldName(formItemVNode) {
+	// 按照el-form-item的label的规则
+	// 优先展示slot:label的文本，如果没有再展示label属性的值
+	let name = ''
+	if (formItemVNode.$slots?.label) {
+		const label = formItemVNode.$slots.label[0]
+		name = label.elm.innerText
+	}
+	return name || formItemVNode.label
+}
+</code></pre>
+<p>index 文件</p>
+<pre><code class="language-js">// index.js
+import { computed, getCurrentInstance, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { addClass, removeClass } from 'tool'
+import { getAllData } from './util'
+
+/**
+ *
+ * @param {function} fieldsBefore 获取所有查询字段前的函数，需要返回Promise
+ * @param {function, Array} allFields 获取所有查询字段的函数或数组
+ * @param {function} onChange 查询事件
+ * @returns
+ */
+
+function useSearch({ fieldsBefore, allFields = [], onChange } = {}) {
+	const { proxy } = getCurrentInstance()
+	const allFieldsList = ref([])
+
+	const current = ref(-1)
+	const currentNumber = computed(() =&gt; {
+		if (current.value === -1) return 0
+		return current.value + 1
+	})
+
+	const inputElIsFocus = ref(false)
+	const onInputFocus = () =&gt; (inputElIsFocus.value = true)
+	const onInputBlur = () =&gt; (inputElIsFocus.value = false)
+
+	// 缓存前一个元素
+	const prevEl = ref(null)
+
+	const filterFieldsData = ref([])
+	const filterCount = computed(() =&gt; filterFieldsData.value.length)
+
+	const changeEvent = () =&gt; {
+		if (onChange &amp;&amp; typeof onChange === 'function') {
+			const currentField =
+				filterCount.value &gt; 0 ? filterFieldsData.value[current.value].field : null
+			onChange({ currentField })
+		}
+
+		if (prevEl.value) {
+			removeClass(prevEl.value, 'heighlight')
+		}
+
+		if (!filterCount.value) return
+
+		const el = filterFieldsData.value[current.value].el.$el
+		addClass(el, 'heighlight')
+		prevEl.value = el
+		proxy.$nextTick(() =&gt; {
+			el.scrollIntoView()
+		})
+	}
+
+	const keyword = ref('')
+	watch(keyword, val =&gt; {
+		proxy.$delay.register(
+			'paramtersFilter',
+			() =&gt; {
+				if (!val) {
+					filterFieldsData.value = []
+				} else {
+					filterFieldsData.value = allFieldsList.value.filter(item =&gt; {
+						return item.label.includes(val)
+					})
+				}
+				if (filterCount.value === 0) {
+					current.value = -1
+				} else {
+					current.value = 0
+				}
+				changeEvent()
+			},
+			800
+		)
+	})
+
+	const onSearchNext = () =&gt; {
+		if (!filterCount.value) return
+		if (current.value === filterCount.value - 1) current.value = 0
+		else current.value = current.value + 1
+
+		changeEvent()
+	}
+	const onSearchPrev = () =&gt; {
+		if (!filterCount.value) return
+		if (current.value === 0) current.value = filterCount.value - 1
+		else current.value = current.value - 1
+
+		changeEvent()
+	}
+
+	onMounted(async () =&gt; {
+		console.log('fieldsBefore', fieldsBefore.toString())
+		if (fieldsBefore &amp;&amp; typeof fieldsBefore === 'function') await fieldsBefore()
+		if (allFields &amp;&amp; typeof allFields === 'function') {
+			allFieldsList.value = allFields()
+		} else {
+			allFieldsList.value = allFields
+		}
+
+		console.log('allFieldsList', allFieldsList.value)
+		// Bind keyEvent
+		proxy.$keyMap.bind(['enter'], () =&gt; {
+			if (!inputElIsFocus.value) return
+			proxy.$delay.register(
+				'onSearchNextText',
+				() =&gt; {
+					if (filterCount.value === 0) return
+					onSearchNext()
+				},
+				500
+			)
+		})
+		proxy.$keyMap.bind(['shift+enter'], () =&gt; {
+			if (!inputElIsFocus.value) return
+			proxy.$delay.register(
+				'onSearchPrevText',
+				() =&gt; {
+					if (filterCount.value === 0) return
+					onSearchPrev()
+				},
+				500
+			)
+		})
+	})
+
+	onBeforeUnmount(() =&gt; {
+		proxy.$keyMap.unbind(['enter', 'shift+enter'])
+	})
+	return {
+		keyword,
+		filterCount,
+		currentNumber,
+		onSearchNext,
+		onSearchPrev,
+		onInputFocus,
+		onInputBlur
+	}
+}
+
+export { useSearch, getAllData, useSearch as default }
+
+</code></pre>
+<h3>使用：</h3>
+<pre><code class="language-vue">&lt;template&gt;
+&lt;SearchFocus
+			slot=&quot;btn-group&quot;
+			:all-fields=&quot;allFields&quot;
+			:fields-before=&quot;fieldsBefore&quot;
+			:on-change=&quot;onChangeEvent&quot;
+		/&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+
+import { getAllData } from '@/hooks/useSearch'
+
+export default {
+	components: {
+		SearchFocus,
+	},
+
+	setup() {
+		const { proxy } = getCurrentInstance()
+
+		const fieldsBefore = async () =&gt; {
+			await until(permissionLoaded).toBe(true)
+			await until(allMounted).toBe(true)
+		}
+		const allFields = () =&gt; {
+			const data = []
+			formWrapper.value.forEach(item =&gt; {
+				item.formRef?.fields.forEach(el =&gt; {
+					data.push({
+						field: item.field,
+						el
+					})
+				})
+			})
+			return getAllData(data)
+		}
+		const onChangeEvent = data =&gt; {
+			activeName.value = data.currentField || INIT_ACTIVE_NAME
+		}
+
+		return {
+			fieldsBefore,
+			allFields,
+			onChangeEvent
+		}
+	}
+}
+&lt;/script&gt;
+
+&lt;style lang=&quot;less&quot; scoped&gt;
+.tabs-wrapper {
+	height: 100%;
+	overflow-y: scroll;
+	::v-deep .el-tabs__content {
+		height: 100%;
+		overflow-y: auto;
+	}
+}
+&lt;/style&gt;
+
+&lt;style lang=&quot;less&quot;&gt;
+.w-1 {
+	width: 100px;
+}
+.w-4 {
+	width: 400px;
+}
+.ml-2 {
+	margin-left: 20px;
+}
+.ml-4 {
+	margin-left: 40px;
+}
+.textarea.el-textarea .el-textarea__inner {
+	padding-right: 60px;
+}
+.textarea.el-input .el-input__inner {
+	padding-right: 60px;
+}
+.center .el-input__inner {
+	text-align: center;
+}
+.parameter-tip {
+	&amp;.el-tooltip__popper {
+		border: 1px solid #e1e9ea;
+		background-color: #f6ffaf;
+		color: #333;
+		line-height: 24px;
+		.popper__arrow::after {
+			border-right-color: #f6ffaf;
+		}
+		.popper__arrow {
+			border-right-color: #e1e9ea;
+		}
+	}
+}
+&lt;/style&gt;
+
+</code></pre>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[如何在微信开发工具中调试本地web代码]]></title>
+            <link>https://ajiu9.cn/posts/how-to-debug-local-code-in-WeChat-development-tools</link>
+            <guid>https://ajiu9.cn/posts/how-to-debug-local-code-in-WeChat-development-tools</guid>
+            <pubDate>Fri, 17 May 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<blockquote>
+<p>在开发微信公众号的代码时，会用到微信提供的<a href="https://developers.weixin.qq.com/doc/offiaccount/OA_Web_Apps/JS-SDK.html#62">jsapi</a>,只有在公众号后台中绑定域名才能访问到。本地ip无法授权。</p>
+</blockquote>
+<ol>
+<li>使用代理工具把本地端口映射到微信公众号绑定的域名。<br>
+安装<a href="https://github.com/avwo/whistle">whistle</a></li>
+</ol>
+<p>启动whistle代理</p>
+<pre><code>w2 start
+</code></pre>
+<p>启动成功后会在控制台输出以下信息：<br>
+<img src="https://static.ajiu9.cn/images/20240517095140.png" alt="image"></p>
+<p>然后在浏览器中打开里面的地址</p>
+<ol start="2">
+<li>配置whistle代理<br>
+<img src="https://static.ajiu9.cn/images/20240517095452.png" alt="image"></li>
+</ol>
+<p><code>请使用http代理</code></p>
+<ol start="3">
+<li>开启系统代理，或者在李立群插件中安装<a href="chrome://extensions/?id=padekgcemlokbadohgkifijomclgjgif">Proxy SwitchyOmega</a></li>
+</ol>
+<p><img src="https://static.ajiu9.cn/images/20240517095833.png" alt="image"></p>
+<ol start="4">
+<li>微信开发者工具打开代理设置：设置 &gt; 代理设置<br>
+<img src="https://static.ajiu9.cn/images/20240517100019.png" alt="image"></li>
+</ol>
+<p>完成这些后，访问微信配置的域名会代理到本地ip，就可以在微信开发者工具中调试本地代码了。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[职业思考]]></title>
+            <link>https://ajiu9.cn/posts/professional-thinking</link>
+            <guid>https://ajiu9.cn/posts/professional-thinking</guid>
+            <pubDate>Sun, 21 Apr 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>现在大环境很差，怎么才能提升自己的安全感呢？<br>
+有一个观点就是<strong>对技术有追求的程序员</strong>不要依附于公司，而是要依附于行业，成为行业专家，有自己影响力！用行业对抗公司的脆弱性。</p>
+<p>在《10x Is Easier Than 2x》一书中提到一个观点——<strong>做到10倍好可能比做到2倍好更容易</strong></p>
+<ol>
+<li>能达到2倍好的途径很多，但达到10倍好的途径可能很少，你的方向会更聚焦</li>
+<li>10倍目标要求创新和突破性思维</li>
+</ol>
+<h2>如何成为行业专家</h2>
+<p><strong>成为行业专家</strong>是个10x目标，要求创新和突破性思维，从专家这个最终结果反推新的职业路径。</p>
+<p>需要有自己的一套理论体系作为背书，通常这套理论体系的载体是纸质书，这也是为什么很多行业专家都会出书。</p>
+<p>这张广为流传的图：<br>
+<img src="https://static.ajiu9.cn/images/20240421153354.png" alt=""></p>
+<ul>
+<li>行业信息经过提炼，成为知识</li>
+<li>当有足够的行业知识，就会产生行业洞察</li>
+<li>当有足够的行业洞察，就能形成独特的理论体系</li>
+</ul>
+<p><strong>成为行业专家</strong>的起点是<strong>吸收足够多的行业信息</strong>。</p>
+<p>所有的信息都要加工成自己的知识，从信息中<strong>学到</strong>什么。<br>
+从这个方向出发，那么我现在结合自己的自身情况，可以做的有几个方面：</p>
+<ol>
+<li>学习数据结构和算法，顺便整理成自己的学习文档，最后学成后分享，提升自己的专业能力和影响力。</li>
+<li>阅读vue相关的知识（文章、官方文档、团队成员发言、源码），整理成自己的vue源码的个人知识后发布文章。</li>
+<li>获取组件库的知识，学习开源组件库的方式，整理成自己的常用组件库分析理解和代码实现的文章和代码库，最后发布。</li>
+</ol>
+<p>这是2024年4月下旬的思考，等待具体实践。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[排除一个在开发环境下Lodash的问题]]></title>
+            <link>https://ajiu9.cn/posts/lodash-webpack-plugin-problem</link>
+            <guid>https://ajiu9.cn/posts/lodash-webpack-plugin-problem</guid>
+            <pubDate>Thu, 11 Apr 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<blockquote>
+<p>今天同事在开发环境运行时候，发现lodash的cloneDeep方法返回的数组对象是同一个对象，没有进行深拷贝，这种反直觉的行为必然是发生了什么。</p>
+</blockquote>
+<p>首先我想到的是是否是全局参数配置引起的，我看了<a href="https://lodash.com/docs/4.17.15#cloneDeep">deepClone</a>的文档,发现只有一个入参。</p>
+<p>然后我看了下<a href="https://github.com/lodash/lodash/blob/main/src/cloneDeep.ts">源码</a>，也没有可以配置的参数。</p>
+<pre><code class="language-js">import baseClone from './.internal/baseClone.js'
+
+/** Used to compose bitmasks for cloning. */
+const CLONE_DEEP_FLAG = 1
+const CLONE_SYMBOLS_FLAG = 4
+
+/**
+ * This method is like `clone` except that it recursively clones `value`.
+ * Object inheritance is preserved.
+ *
+ * @since 1.0.0
+ * @category Lang
+ * @param {*} value The value to recursively clone.
+ * @returns {*} Returns the deep cloned value.
+ * @see clone
+ * @example
+ *
+ * const objects = [{ 'a': 1 }, { 'b': 2 }]
+ *
+ * const deep = cloneDeep(objects)
+ * console.log(deep[0] === objects[0])
+ * // =&gt; false
+ */
+function cloneDeep(value) {
+  return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG)
+}
+
+export default cloneDeep
+</code></pre>
+<p>没找到问题所在，我调试了下面这段代码</p>
+<pre><code class="language-js">import { cloneDeep } from 'lodash'
+const test1 = [{ id: 1, name: '测试1' }]
+const deep = cloneDeep(test1)
+console.log(deep[0] === test1[0]) // true
+</code></pre>
+<p><img src="https://static.ajiu9.cn/images/20240411170613.png" alt="image"></p>
+<p>发现原本<code>cloneDeep</code>依赖了<code>baseClone</code>函数，但是却变成了<a href="https://lodash.com/docs/4.17.15#identity">identity</a>这个函数就是返回函数的第一个参数。</p>
+<pre><code class="language-js">/**
+ * This method returns the first argument it receives.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Util
+ * @param {*} value Any value.
+ * @returns {*} Returns `value`.
+ * @example
+ *
+ * var object = { 'a': 1 };
+ *
+ * console.log(_.identity(object) === object);
+ * // =&gt; true
+ */
+function identity(value) {
+  return value
+}
+</code></pre>
+<p>原因找到了，是怎么引起的呢？</p>
+<p>网上搜到了这篇文章<a href="https://zhuanlan.zhihu.com/p/349260482">为什么你应该立即停止使用 lodash-webpack-plugin</a></p>
+<p>原来是<a href="https://github.com/lodash/lodash-webpack-plugin">lodash-webpack-plugin</a>插件搞出来的。</p>
+<p>通过用 noop、identity 或更简单的替代方案替换模块的功能集来创建更小的 Lodash 构建。该插件通过进一步缩小精选的构建来补充 babel-plugin-lodash！<br>
+在未启用适当功能集的情况下使用此插件可能会导致 lodash 函数以意想不到的方式运行。方法可能看起来有效，但它们可能返回不正确的结果，其中就包括克隆函数。</p>
+<p>最后看了下生产构建，生产没有引用到这个插件，所以没发现影响。开发环境去掉这个插件。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[匹配中文字符]]></title>
+            <link>https://ajiu9.cn/posts/match-chinese-characters</link>
+            <guid>https://ajiu9.cn/posts/match-chinese-characters</guid>
+            <pubDate>Thu, 21 Mar 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>当需要检查是否包含中文字符时，需要使用正则匹配，网上搜索的<a href="https://stackoverflow.com/a/21113538">结果</a>:</p>
+<pre><code class="language-ts">/[\u4E00-\u9FCC\u3400-\u4DB5\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29]|[\uD840-\uD868][\uDC00-\uDFFF]|\uD869[\uDC00-\uDED6\uDF00-\uDFFF]|[\uD86A-\uD86C][\uDC00-\uDFFF]|\uD86D[\uDC00-\uDF34\uDF40-\uDFFF]|\uD86E[\uDC00-\uDC1D]/
+</code></pre>
+<p>这个方案可以，但是太难用，还有一个<a href="https://stackoverflow.com/a/61151122">简单的解决方案</a> :</p>
+<pre><code class="language-ts">/\p{Script=Han}/u
+</code></pre>
+<pre><code class="language-ts">!!'九州'.match(/\p{Script=Han}/u) // true
+</code></pre>
+<p>这是<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Unicode_Property_Escapes">Unicode 属性转义</a><br>
+浏览器兼容性 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#browser_compatibility">Chrome 64, Firefox 79, Safari 11.1 and Node.js 10</a>.</p>
+<p><a href="https://www.regular-expressions.info/unicode.html">所有可用的支持</a>.</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[vue数字指令]]></title>
+            <link>https://ajiu9.cn/posts/directive-number</link>
+            <guid>https://ajiu9.cn/posts/directive-number</guid>
+            <pubDate>Sat, 16 Mar 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>指令功能</h4>
+<ol>
+<li>能够实现常用数字和金额校验</li>
+<li>能够自定义小数位,整数位，是否包含0，负数</li>
+<li>对数据边界进行处理</li>
+<li>能够处理复制过来的数据（转出收费项目1245租赁保证金余额0.09转入收费项目 =&gt; 12450.09）</li>
+</ol>
+<h4>优势：可以去除代码中校验的正则表达，优化代码，最重要的是提升用户体验，输入的就是正确</h4>
+<h4>指令实现</h4>
+<pre><code class="language-js">const MAX_INT_PRECISION = 13 // 最大整数位精度
+const MAX_PRECISION = 15 // 最大小数位精度
+const IS_IE = !!window.ActiveXObject || 'ActiveXObject' in window
+let inputEvent
+if (IS_IE) {
+  // ie 支持方式
+  inputEvent = document.createEvent('Event')
+  inputEvent.initEvent('input', true, false)
+}
+else {
+  inputEvent = new Event('input')
+}
+
+export default {
+  bind(el, binding, vNode) {
+    let { minus = false, zero = false } = binding.modifiers // 修饰符的对象 是否为负数，是否包含零
+    let elInput = el
+    const isComponentInstance = vNode.componentInstance // true 组件， false 原生input
+    let effect = true // 原生input是否执行input事件
+    let intPrecision = MAX_INT_PRECISION // 整数位精度
+    let precision = MAX_PRECISION // 小数位精度
+    let max // 最大值
+    let min // 最小值
+    const bindingValue = binding.value
+
+    if (el.tagName.toLocaleUpperCase() !== 'INPUT')
+      elInput = el.getElementsByTagName('input')[0]
+
+    // 指令的绑定值
+    if (typeof bindingValue === 'object') {
+      const valueMinus = bindingValue.minus || minus
+      const valueIntPrecision = Math.floor(bindingValue.intPrecision)
+      const valuePrecision = Math.floor(bindingValue.precision)
+
+      minus = !!valueMinus
+      intPrecision = Math.min(Number.isNaN(valueIntPrecision) ? MAX_INT_PRECISION : valueIntPrecision, MAX_INT_PRECISION)
+      precision = Math.min(Number.isNaN(valuePrecision) ? MAX_PRECISION : valuePrecision, MAX_PRECISION)
+      max = bindingValue.max
+      min = bindingValue.min
+    }
+    const setVal = (val) =&gt; {
+      effect = false
+      elInput.value = val
+      // 如果是自定义组件就触发自定义组件的input事件
+      // 如果是原生组件就触发原生组件的input事件
+      isComponentInstance ? vNode.componentInstance.$emit('input', val) : elInput.dispatchEvent(inputEvent)
+    }
+    const listener = function (e) {
+      if (!isComponentInstance &amp;&amp; !effect) {
+        effect = true
+        return
+      }
+      let elVal = e.target.value
+      let hasMinus = false
+
+      if (minus) {
+        elVal = elVal.replace(/[^0-9\.\-]/g, '')
+        if (elVal &amp;&amp; elVal.substring(0, 1) === '-')
+          hasMinus = true
+      }
+      elVal = elVal.replace(/[^0-9\.]/g, '')
+      const reg = new RegExp(`^0+(\\d+)|[^0-9\\.]+|^\\.|(^\\d+)(\\.{2,})|(^\\d+\\.{1}\\d{0,${precision}})[0-9\\.]\*|(^[0-9]{${intPrecision}})[0-9]+`, 'g')
+      elVal = elVal.replace(reg, (match, p1, p2, p3, p4, p5) =&gt; {
+        return p1 || p4 || p5 || (p3 ? p2 : '')
+      })
+      if (minus &amp;&amp; hasMinus)
+        elVal = `-${elVal}`
+      setVal(elVal)
+    }
+    elInput.addEventListener('input', listener, true)
+    // 用来清除监听
+    el.unbindEventListener = () =&gt; {
+      elInput.removeEventListener('input', listener, true)
+    }
+    elInput.onblur = function (e) {
+      let value = e.target.value
+      if (zero &amp;&amp; value === '0')
+        return
+
+      value = value.replace(/(^[0-9]+|^-[0-9]+)\.$/, '$1')
+      value = value.replace(/^-$|^0+$|^-0+$|^0\.0*$|^-0\.0*$/, '')
+      if (value !== '') {
+        if (min)
+          value = Math.max(value, min)
+        if (max)
+          value = Math.min(value, max)
+      }
+      if (e.target.value !== value)
+        setVal(value)
+    }
+  },
+  unbind(el) {
+    el.unbindEventListener()
+  },
+}
+</code></pre>
+<h4>index.js注册指令</h4>
+<pre><code class="language-js">import number from './number'
+
+const install = function (Vue) {
+  Vue.directive('number', number)
+}
+
+if (window.Vue) {
+  window.number = number
+  Vue.use(install)
+}
+
+number.install = install
+export default number
+</code></pre>
+<h4>在vue文件中引用指令</h4>
+<pre><code class="language-vue">// 组件中引入
+directives: { number }
+
+// v-number
+
+// 整数最多13位，小数15位数
+&lt;el-input v-number&gt;&lt;/el-input&gt;
+
+// 整数数最多3位, 小数2位数
+&lt;el-input v-number=&quot;{ intPrecision: 3, precision: 2 }&quot;&gt;&lt;/el-input&gt;
+
+// 最大值100 最小值0
+&lt;el-input v-number=&quot;{ max: 100, min: 0 }&quot;&gt;&lt;/el-input&gt;
+
+// 可输入0
+&lt;el-input v-number.zero&gt;&lt;/el-input&gt;
+
+// 可输入负-
+&lt;el-input v-number.minus&gt;&lt;/el-input&gt;
+</code></pre>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[日常工作小技巧和问题集（1）]]></title>
+            <link>https://ajiu9.cn/posts/daily-tips-1</link>
+            <guid>https://ajiu9.cn/posts/daily-tips-1</guid>
+            <pubDate>Fri, 15 Mar 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<ol>
+<li>
+<p>使用.gitignore_global忽略.vscode文件夹</p>
+</li>
+<li>
+<p>eslint 对 const 和 let 的格式处理有问题，需要再次查看问题项确认</p>
+</li>
+<li>
+<p>git 快速切换到前一分支 <code>git chekcout -</code></p>
+</li>
+<li>
+<p>clashx配置代理节点</p>
+</li>
+<li>
+<p>git回撤代码 <code>git revert {{}}</code></p>
+</li>
+<li>
+<p><code>git commit —amend -m “New commit message”</code> 覆盖上次提交</p>
+</li>
+<li>
+<p>setup中 watch 一个数组，这个数组需要解构赋值，重新触发setter函数,watch才能监听到，不然就需要使用deep参数深度监听</p>
+</li>
+</ol>
+<pre><code class="language-js">const pages = computed(() =&gt; {
+// 解构赋值
+  return [...store.state.pages]
+})
+watch(pages, (val) =&gt; {
+  delGuideMapEl(val)
+})
+</code></pre>
+<pre><code class="language-js">const pages = computed(() =&gt; {
+  return store.state.pages
+})
+watch(pages, (val) =&gt; {
+  delGuideMapEl(val)
+}, {
+  // 深度监听
+  deep: true
+})
+</code></pre>
+<ol start="8">
+<li>
+<p>在vue 中使用setup,需要注意重名问题，比如使用了ref=“form”, 又声明了form = reactive(), 那么一不注意就会出现报错：[Vue warn]: Avoid adding reactive properties to a Vue instance or its root $data at runtime - declare it upfront in the data option.<br>
+此时要把ref=“form”改成 ref=“formRef”，避免隐藏的重名问题</p>
+</li>
+<li>
+<p>shallowRef 和 ref 的使用</p>
+</li>
+</ol>
+<p><code>ref</code></p>
+<p>接受一个内部值，返回一个响应式的、可更改的 ref 对象，此对象只有一个指向其内部值的属性 .value。</p>
+<p>类型</p>
+<pre><code class="language-ts">function ref&lt;T&gt;(value: T): Ref&lt;UnwrapRef&lt;T&gt;&gt;
+
+interface Ref&lt;T&gt; {
+  value: T
+}
+</code></pre>
+<p>详细信息</p>
+<p>ref 对象是可更改的，也就是说你可以为 .value 赋予新的值。它也是响应式的，即所有对 .value 的操作都将被追踪，并且写操作会触发与之相关的副作用。</p>
+<p>如果将一个对象赋值给 ref，那么这个对象将通过 reactive() 转为具有深层次响应式的对象。这也意味着如果对象中包含了嵌套的 ref，它们将被深层地解包。</p>
+<p>若要避免这种深层次的转换，请使用 shallowRef() 来替代。</p>
+<p>示例</p>
+<pre><code class="language-js">const count = ref(0)
+console.log(count.value) // 0
+
+count.value = 1
+console.log(count.value) // 1
+</code></pre>
+<p><code>shallowRef</code></p>
+<p>ref() 的浅层作用形式。</p>
+<p>类型</p>
+<pre><code class="language-ts">function shallowRef&lt;T&gt;(value: T): ShallowRef&lt;T&gt;
+
+interface ShallowRef&lt;T&gt; {
+  value: T
+}
+</code></pre>
+<p>详细信息</p>
+<p>和 ref() 不同，浅层 ref 的内部值将会原样存储和暴露，并且不会被深层递归地转为响应式。只有对 .value 的访问是响应式的。</p>
+<p>shallowRef() 常常用于对大型数据结构的性能优化或是与外部的状态管理系统集成。</p>
+<p>示例</p>
+<pre><code class="language-js">const state = shallowRef({ count: 1 })
+
+// 不会触发更改
+state.value.count = 2
+
+// 会触发更改
+state.value = { count: 2 }
+</code></pre>
+<ol start="10">
+<li>在Mac中查看Finder打开的地址</li>
+</ol>
+<pre><code class="language-bash">function pfd() {
+  osascript 2&gt;/dev/null &lt;&lt;EOF
+    tell application &quot;Finder&quot;
+      return POSIX path of (target of window 1 as alias)
+    end tell
+EOF
+}
+</code></pre>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[在浏览器中实现页面打印]]></title>
+            <link>https://ajiu9.cn/posts/window-print</link>
+            <guid>https://ajiu9.cn/posts/window-print</guid>
+            <pubDate>Sat, 09 Mar 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>如何在浏览器中打印页面内容？</p>
+<p>通过iframe调用window.print打印</p>
+<ol>
+<li>创建一个隐藏的iframe</li>
+<li>通过iframe的contentWindow属性获取iframe的window对象，然后调用window.print()方法</li>
+</ol>
+<p>iframe 通过设置style为display:none，position:absolute，width:0px，height:0px，left:-500px，top:-500px，这样可以隐藏iframe，但是不影响页面的布局。</p>
+<p>注意： 如果有写入图片，因为是异步，需要在下一个宏任务中执行。</p>
+<p>下面是一段代码：</p>
+<pre><code class="language-js">function print(content) {
+  let iframe = document.body.querySelector('#window-print')
+  if (!iframe) {
+    iframe = document.createElement('iframe')
+    iframe.id = 'window-print'
+    iframe.setAttribute('style', 'display:none;position:absolute;width:0px;height:0px;left:-500px;top:-500px;')
+    document.body.appendChild(iframe)
+  }
+  const printDocument = iframe.contentWindow.document
+  printDocument.write(content)
+  printDocument.close()
+  iframe.contentWindow.focus()
+  setTimeout(() =&gt; {
+    iframe.contentWindow.print()
+  }, 0)
+}
+</code></pre>
+<p>打印效果：<br>
+<img src="https://static.ajiu9.cn/images/20240310203634jdJVNW.png" alt=""></p>
+<p>该方法的优点是可以在不离开当前页面的情况下实现打印功能，且可以对打印的页面进行一些自定义设置，比如隐藏一些元素或者设置页面样式等。</p>
+<p>使用该方法需要注意的是，由于涉及到跨域访问的问题，可能存在一些安全性和兼容性的问题，需要进行适当的测试和处理。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[从0开始配置我的Mac]]></title>
+            <link>https://ajiu9.cn/posts/configure-my-Mac-from-0</link>
+            <guid>https://ajiu9.cn/posts/configure-my-Mac-from-0</guid>
+            <pubDate>Thu, 04 Jan 2024 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<blockquote>
+<p>我的电脑重装了系统，重新梳理了下软件和工具，以及配置，用了大概5个小时，使用起来爽多了</p>
+</blockquote>
+<h3>安装clashX</h3>
+<h3>安装APP和Cli工具</h3>
+<ol>
+<li>安装HomeBrew 并用它安装app和cli工具。App 可以在homebrew-cask — Homebrew Formulae里找有没有，Cli 工具可以在homebrew-core — Homebrew Formulae 找有没有。</li>
+</ol>
+<pre><code class="language-bash"># 先开代理
+export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890
+
+# 安装 HomeBrew
+/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+
+# 用 HomeBrew 安装 App，以下是我可以用 HomeBrew 安装的 App 列表
+brew install --cask  battery-buddy  espanso google-chrome gas-mask obsidian visual-studio-code Paycast Picsee
+
+# 安装 Cli 工具
+brew install autojump diff-so-fancy  fd gh git nvm pnpm tree
+</code></pre>
+<ol>
+<li>用 Mac App Store 安装额外 App。</li>
+</ol>
+<ul>
+<li>Bob</li>
+<li>RunCat</li>
+<li>Influse</li>
+</ul>
+<h3>准本本地目录</h3>
+<p>在 ~/Documents 下建目录Code, SoftwareConfigurationCode和Notes。（后续添加更多）Code用于存代码；SoftwareConfiguration 用于保存各种软件配置，把 Espanso 等的配置放在这里。</p>
+<h3>配置App</h3>
+<ol>
+<li>
+<p>Karabiner-Elements<br>
+参考 Karabiner-Element 配置 F19 键 - HackMD 。在 Karabiner-Elements complex_modifications rules 搜「Change caps_lock key」，import 后只保留一条和 F19 相关的，然后在命令行里编辑「~/.config/karabiner/karabiner.json」，把刚才那条规则的「caps_lock」换成「right_command」（两处）。这样你就把基本不会用到的「右⌘」废物利用变成了「F19」键，然后你的快捷键组合会多很多。</p>
+<p>如果你仔细看配置，会发现「F19」是由四个键「⌘⇧⌃⌥」组成的，在一些 App 的快捷键配置里你会看到四个键，不要奇怪，这也是他。</p>
+</li>
+<li>
+<p>Raycast<br>
+快捷键操作集成窗口，超级好用，用来组合F19可以玩出很多花样</p>
+</li>
+<li>
+<p>zsh<br>
+安装 zsh 和 starship，starship 是 rust 写的 prompt 工具，极快</p>
+</li>
+</ol>
+<pre><code class="language-bash">brew install starshipecho 'eval &quot;$(starship init zsh)&quot;' &gt;&gt; ~/.zshrc
+</code></pre>
+<p>安装 zsh 的插件 zsh-autosuggestions、zsh-completions 和 fast-syntax-highlighting。</p>
+<pre><code class="language-bash">git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/Documents/SoftwareConfiguration/zsh}/zsh-autosuggestionsgit ÏÏÏclone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-$HOME/Documents/SoftwareConfiguration/zsh}/zsh-completionsgit clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/Documents/SoftwareConfiguration/zsh}/fast-syntax-highlighting
+</code></pre>
+<pre><code class="language-bash">export HOMEBREW_NO_AUTO_UPDATE=1
+
+# Alias
+alias ip=&quot;ipconfig getifaddr en0&quot;
+alias sshconfig=&quot;vim ~/.ssh/config&quot;
+alias gitconfig=&quot;vim ~/.gitconfig&quot;
+
+# chore
+alias br=&quot;bun run&quot;
+alias c='code .'
+alias pi=&quot;echo 'Pinging Baidu' &amp;&amp; ping www.baidu.com&quot;
+alias ip=&quot;ipconfig getifaddr en0 &amp;&amp; ipconfig getifaddr en1&quot;
+alias cip=&quot;curl cip.cc&quot;
+alias hosts=&quot;vi /etc/hosts&quot;
+alias cdtemp=&quot;cd `mktemp -d /tmp/ajiu9-XXXXXX`&quot;
+
+function grandom() {
+  # 获取当前日期
+  current_date=$(date &quot;+%Y-%m-%d&quot;)
+  # 生成4个随机数字
+  random_number=$(( RANDOM % 676 ))
+  # 将随机数转换为A-Z随机字符
+  random_chars=&quot;&quot;
+  for (( i=0; i&lt;4; i++)); do
+    random_char_index=$(( RANDOM % 26 ))
+    random_char=$(printf \\$(printf '%03o' $((65 + random_char_index))))
+    random_chars=&quot;${random_chars}${random_char}&quot;
+  done
+  # 格式化为指定格式的字符串
+  formatted_string=&quot;${current_date}-${random_chars}&quot;
+  if [[ -n $1 ]]; then
+    echo `git checkout -b &quot;$1&quot;/ajiu9-&quot;$formatted_string&quot;`
+  else
+    echo `git checkout -b ajiu9-&quot;$formatted_string&quot;`
+  fi
+}
+
+## system
+alias showFiles=&quot;defaults write com.apple.finder AppleShowAllFiles YES &amp;&amp; killall Finder&quot;
+alias hideFiles=&quot;defaults write com.apple.finder AppleShowAllFiles NO &amp;&amp; killall Finder&quot;
+
+# cd
+alias ..='cd ../'
+alias ...='cd ../../'
+alias ..l.='cd ../../ &amp;&amp; ll'
+alias ....='cd ../../../'
+alias ~=&quot;cd ~&quot;
+alias -- -=&quot;cd -&quot;
+alias ll=&quot;ls -alhG&quot;
+alias ls=&quot;ls -G&quot;
+
+# git
+alias gps=&quot;git push&quot;
+alias gpl=&quot;git pull&quot;
+alias gt=&quot;git status -sb&quot;
+alias ga=&quot;git add .&quot;
+alias gc=&quot;git commit -av&quot;
+alias gcr=&quot;git checkout master &amp;&amp; git fetch &amp;&amp; git rebase&quot;
+alias gclean=&quot;git reset --hard &amp;&amp; git clean -df&quot;
+alias grebase=&quot;git fetch &amp;&amp; git rebase -i&quot;
+alias glg=&quot;git log --pretty='%C(red)%h%Creset%C(yellow)%d%Creset %s %C(cyan)(%ar)%Creset'&quot;
+alias gdel=&quot;git branch --merged master | egrep -v '(\*|master|release|bug$|dev)' | xargs -n 1 -r git branch -d&quot;
+alias gck=&quot;git checkout&quot;
+function gb() {
+  echo `git checkout &quot;$1&quot; &amp;&amp; git pull &amp;&amp; git checkout -b &quot;$2&quot;`
+}
+
+function record() {
+cd ~/screencapture/jpg;
+RES_WIDTH=$(/usr/sbin/system_profiler SPDisplaysDataType | grep Resolution);
+RES_WIDTH=(${RES_WIDTH:22:4});
+RES_WIDTH=$((RES_WIDTH/2));
+while :
+NOW=$(date +&quot;%y%m%d%H%M%S&quot;);
+do screencapture -C -t jpg -x ~/screencapture/jpg/$NOW.jpg;
+sleep 7 &amp; pid=$!
+NOW=$(date +&quot;%y%m%d%H%M%S&quot;);
+wait $pid
+done
+}
+
+function movie() {
+NOW=$(date +&quot;%y%m%d%H%M%S&quot;);
+cd ~/screencapture/jpg;
+cnt=0
+rm -rf .DS_Store;
+for file in *
+do
+if [ -f &quot;$file&quot; ] ; then
+ext=${file##*.}
+printf -v pad &quot;%05d&quot; &quot;$cnt&quot;
+mv &quot;$file&quot; &quot;${pad}.${ext}&quot;
+cnt=$(( $cnt + 1 ))
+fi
+done;
+rm -rf 00000.jpg;
+for pic in *.jpg;
+do convert $pic -resize 50% $pic;
+done;
+ffmpeg -r 24 -i %05d.jpg -b 20000k ~/screencapture/mov/$USER-$NOW.mov;
+rm -rf ./*.jpg;
+}
+
+function mcd {
+mkdir $1 &amp;&amp; cd $1;
+}
+
+function pfd() {
+
+osascript 2&gt;/dev/null &lt;&lt;EOF
+
+tell application &quot;Finder&quot;
+
+return POSIX path of (target of window 1 as alias)
+
+end tell
+
+EOF
+
+}
+
+function cdf() {
+cd &quot;$(pfd)&quot;
+}
+
+function ,touch {
+mkdir -p &quot;$(dirname &quot;$1&quot;)&quot; &amp;&amp; touch &quot;$1&quot;
+}
+
+function ,take() {
+mkdir -p &quot;$(dirname &quot;$1&quot;)&quot; &amp;&amp; touch &quot;$1&quot; &amp;&amp; take &quot;$(dirname &quot;$1&quot;)&quot;
+}
+
+# load zsh-completions
+autoload -U compinit &amp;&amp; compinit
+source ~/Documents/SoftwareConfiguration/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/Documents/SoftwareConfiguration/zsh/zsh-completions/zsh-completions.plugin.zsh
+source ~/Documents/SoftwareConfiguration/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.bash_profile
+
+[ -f &quot;/usr/local/etc/profile.d/autojump.sh&quot; ] &amp;&amp; . &quot;/usr/local/etc/profile.d/autojump.sh&quot; # This loads autojump
+
+# bun completions
+[ -s &quot;/Users/wulongbiao/.bun/_bun&quot; ] &amp;&amp; source &quot;/Users/wulongbiao/.bun/_bun&quot;
+
+# bun
+export BUN_INSTALL=&quot;$HOME/.bun&quot;
+export PATH=&quot;$BUN_INSTALL/bin:$PATH&quot;
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.aliyun.com/homebrew/homebrew-bottles
+# pnpm
+export PNPM_HOME=&quot;/Users/wulongbiao/Library/pnpm&quot;
+export PATH=&quot;$PNPM_HOME:$PATH&quot;
+
+# use starship theme (needs to be at the end)
+eval &quot;$(starship init zsh)&quot;
+</code></pre>
+<ol start="4">
+<li>额外的命令行工具：Bun 和 Projj</li>
+</ol>
+<p>安装 Bun。主要是用他的 run 命令，极快，上面也有别名 <code>br</code>，比如执行比如 <code>br dev</code> 即 <code>npm run dev</code>。</p>
+<pre><code>curl -fsSL https://bun.sh/install | bash
+</code></pre>
+<p>安装 PROJJ，用他来管理 Code 下的仓库，按「domain/group/repo」这样组织，找起来会比较容易。</p>
+<pre><code class="language-bash">pnpm i projj projj-hooks -g
+projj init
+</code></pre>
+<ol start="5">
+<li>然后编辑 ~/.projj/config.json</li>
+</ol>
+<pre><code class="language-json">{
+  &quot;base&quot;: [
+    &quot;/Users/wulongbiao/Documents/Code&quot;
+  ],
+  &quot;hooks&quot;: {
+    &quot;postadd&quot;: &quot;projj_git_config_user&quot;,
+    &quot;clean&quot;: &quot;clean&quot;
+  },
+
+  &quot;postadd&quot;: {
+    &quot;github.com&quot;: {
+      &quot;name&quot;: &quot;ajiu9&quot;,
+      &quot;email&quot;: &quot;615944323@qq.com&quot;
+    }
+  },
+  &quot;alias&quot;: {
+    &quot;github://&quot;: &quot;https://github.com/&quot;
+  }
+}
+</code></pre>
+<p>然后就可以愉快地用 PROJJ 添加项目了，比如。</p>
+<pre><code class="language-bash">projj add git@github.com:ajiu9/eslint-config.git
+</code></pre>
+<ol start="6">
+<li>Espanso<br>
+在 ~/Documents/SoftwareConfiguration/Espanso 下建了个 base.yml，并软链到 Espanso 原来的配置文件夹里。</li>
+</ol>
+<pre><code class="language-yml"># espanso match file
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+# Matches are substitution rules: when you type the &quot;trigger&quot; string
+# it gets replaced by the &quot;replace&quot; string.
+matches:
+  # Simple text replacement
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+  # But matches can also be dynamic:
+  # Print the current date
+  - trigger: ':date'
+    replace: '{{mydate}}'
+    vars:
+      - name: mydate
+    type: date
+    params:
+      format: '%m/%d/%Y'
+  # Print the output of a shell command
+  - trigger: ':shell'
+    replace: '{{output}}'
+    vars:
+      - name: output
+    type: shell
+    params:
+      cmd: 'echo ''Hello from your shell'''
+  # And much more! For more information, visit the docs: https://espanso.org/docs/
+  # misc
+  - trigger: ;&gt;&gt;
+    replace: ➡
+  - trigger: ;vv
+    replace: ⬇
+  - trigger: ;^^
+    replace: ⬆
+  - trigger: ;&lt;&lt;
+    replace: ⬅
+  # life
+  - trigger: ;mobi
+    replace: 我的手机号
+  - trigger: ;mail
+    replace: 我的邮箱
+  - trigger: ;addr
+    replace: 我的家庭住址
+  - trigger: ;officeAddr
+    replace: 公司地址
+  # faq
+  - trigger: chongt
+    replace: 冲突了，merge 下 master。
+  # code
+  - trigger: ;log
+    replace: console.log($|$)
+  - trigger: ;delay
+    replace: const delay = (ms) =&gt; new Promise((res) =&gt; setTimeout(res, ms));
+  # mac symbols
+  - trigger: ':cmd'
+    replace: ⌘
+  - trigger: ':shift'
+    replace: ⇧
+  - trigger: ':ctrl'
+    replace: ⌃
+  - trigger: ':alt'
+    replace: ⌥
+  - trigger: ':opt'
+    replace: ⌥
+  - trigger: ':left'
+    replace: ←
+  - trigger: ':right'
+    replace: →
+  - trigger: ':up'
+    replace: ↑
+  - trigger: ':down'
+    replace: ↓
+  - trigger: ':caps_lock'
+    replace: ⇪
+  - trigger: ':esc'
+    replace: ⎋
+  - trigger: ':eject'
+    replace: ⏏
+  - trigger: ':return'
+    replace: ↵
+  - trigger: ':enter'
+    replace: ⌅
+  - trigger: ':tab'
+    replace: ⇥
+  - trigger: ':backtab'
+    replace: ⇤
+  - trigger: ':pgup'
+    replace: ⇞
+  - trigger: ':pgdown'
+    replace: ⇟
+  - trigger: ':home'
+    replace: ↖
+  - trigger: ':end'
+    replace: ↘
+  - trigger: ':space'
+    replace: ␣
+  - trigger: ':del'
+    replace: ⌫
+  - trigger: ':fdel'
+    replace: ⌦
+</code></pre>
+<ol start="7">
+<li>
+<p>VSCode<br>
+略</p>
+</li>
+<li>
+<p>Git</p>
+</li>
+</ol>
+<p>先配 name 和 email。</p>
+<pre><code>git config --global user.name &quot;Your Name&quot;git config --global user.email &quot;you@your-domain.com&quot;
+</code></pre>
+<p>再执行这两条命令。</p>
+<pre><code>git config --global --add push.default currentgit config --global --add push.autoSetupRemote true
+</code></pre>
+<p>你会收获两个好处。1）不需要「git push origin xxx」，只要「git push」，2）再也不会遇到「no upstream branch」的报错，也不需要「git push --set-upstream origin test &amp;&amp; git push」。因为我们执行 git push 的大部分场景都是 push 到同名的 remote branch。来源是 Auto setup remote branch and never again see an error about the missing upstream | <a href="http://pawelgrzybek.com">pawelgrzybek.com</a>。</p>
+<p>再修改 ~/.gitignore_global，加入和你 IDE 相关的 ignore 配置。我会把 .idea 加进去，这是和你相关的专有配置，如果给其他用 VSCode 的作者的项目提交时，都加上 .idea 的 .gitignore 配置，其实并不太礼貌。反之，VSCode 或其他编辑器工具的用户也要加上自己的。</p>
+<pre><code>*~.DS_Store.idea
+</code></pre>
+<ol start="9">
+<li>NVM 和 Node</li>
+</ol>
+<pre><code>nvm install 18node -v
+</code></pre>
+<h2>系统设置</h2>
+<ol>
+<li>General。1）Default Web Browser 用「Google Chrome」</li>
+<li>Siri。直接禁掉。</li>
+<li>Keyboard。1）Keyboard 里把 Key Repeat 调到「Fast」，把 Delay Util Repeat 调到「Short」，需要一点时间适应，适应后会感受到光标快速移动带来的效率提升，2）Text 里 use <code>&quot;</code> for double quotes，use <code>'</code> for single quotes，然后把其他都禁掉，不需要系统帮忙改，基本都是帮倒忙的，3）Shortcuts 里，Mission Control 用「⌥A」,Application windows 用「⌥S」，Show Desktop 用「⌥D」</li>
+<li>Spotlight。只开 Applications、Bookmarks &amp; History、Documents、Folders、System Preferences。</li>
+<li>Mission Control。把 Hot Corners 里的全部关掉，不需要，因为有 Thor 了，可以更快切除应用。</li>
+<li>Notification。不必要的全关掉，我只开了 Calendar、Find By。</li>
+<li>执行 <code>defaults write -g NSWindowShouldDragOnGesture -bool true</code>，然后就可以按住「⌘+⌃」然后鼠标点击任意地方拖动窗口了。</li>
+</ol>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[vscode常用快捷键]]></title>
+            <link>https://ajiu9.cn/posts/common-shortcuts-for-vscode</link>
+            <guid>https://ajiu9.cn/posts/common-shortcuts-for-vscode</guid>
+            <pubDate>Wed, 25 Oct 2023 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>⇧⌘P</td>
+<td>Show Command Palette （显示命令面板）</td>
+</tr>
+<tr>
+<td>⌘P</td>
+<td>Quick Open, Go to File… （快速打开文件）</td>
+</tr>
+<tr>
+<td>⌘W</td>
+<td>Close window/instance (关闭窗口/当前页)</td>
+</tr>
+<tr>
+<td>⌃P</td>
+<td>Select Previous in Quick Open (快速打开已选择过的文件)</td>
+</tr>
+<tr>
+<td>⌃Q</td>
+<td>Quick open navigate next in view picker (快速打开视图选择器导航)</td>
+</tr>
+<tr>
+<td>⇧⌘.</td>
+<td>Focus and select breadcrumbs, go to symbol inaccessible view (聚焦并选择面包屑，转到可访问视图中的符号)</td>
+</tr>
+<tr>
+<td>⌘F</td>
+<td>Find (搜索)</td>
+</tr>
+<tr>
+<td>⌥⌘F</td>
+<td>Replace (替换)</td>
+</tr>
+<tr>
+<td>⇧⌘F</td>
+<td>Show Search （-全局搜索）</td>
+</tr>
+<tr>
+<td>⇧⌥F</td>
+<td>Format document （格式化代码）</td>
+</tr>
+<tr>
+<td>⌘G</td>
+<td>Go to line (跳转行)</td>
+</tr>
+<tr>
+<td>⌘B</td>
+<td>Toggle sidebar visibility(切换侧边栏显示)</td>
+</tr>
+<tr>
+<td>⌃`</td>
+<td>Show integrated terminal (显示集成终端)</td>
+</tr>
+<tr>
+<td>⌃-</td>
+<td>Input back (光标返回)</td>
+</tr>
+<tr>
+<td>⇧⌘\</td>
+<td>Jump to matching bracket (跳转到匹配的括号)</td>
+</tr>
+<tr>
+<td>⌘Enter/⇧⌘Enter</td>
+<td>Insert the line below/above</td>
+</tr>
+<tr>
+<td>⇧⌘B/⌘B</td>
+<td>View: Toggle Secondary Side Bar Visibility(切换侧边栏)</td>
+</tr>
+<tr>
+<td>⌥⌘⬅</td>
+<td>View: Open Previous Editor/Tab(打开上一个标签页)</td>
+</tr>
+<tr>
+<td>⌥⌘➡</td>
+<td>View: Open Next Editor/Tab(打开下一个标签页)</td>
+</tr>
+<tr>
+<td>⌃-</td>
+<td>Navigate Back (返回上一个导航)</td>
+</tr>
+<tr>
+<td>⇧⌃-</td>
+<td>Navigate Forward (打开后一个导航)</td>
+</tr>
+<tr>
+<td>⌘\</td>
+<td>Split Right （右拆分）</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://static.ajiu9.cn/Notes/2023101020015616969393161696939316647dHJymT.png" alt="hotkey"></p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[怎么确定年目标，周计划，日计划]]></title>
+            <link>https://ajiu9.cn/posts/how-to-determine-the-plan</link>
+            <guid>https://ajiu9.cn/posts/how-to-determine-the-plan</guid>
+            <pubDate>Sun, 17 Sep 2023 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>这是一篇自我学习和思考的记录，同时参考自己的实际来实现自己应该怎么确定目标和完成计划。</p>
+<p>1、首先介绍<strong>4个我个人认同的理念</strong>，健康第一、选择难的、选择可以带来更多可能性的、选择有复利效应的。在做选择时多想想这些，可以更快并且做出更符合长期利益的选择。</p>
+<p>2、介绍一些方法论，包括定目标的WHEN、HOW、WHAT，以及基于LexFridman的方法改造的每日工作流。</p>
+<h3>理念</h3>
+<p>先说一些虚的理念，或者是指导性原则。<br>
+1、<strong>健康第一</strong>。自己的身体健康永远第一位，否则没法好好陪伴家人，也没法好好工作。跑步锻炼老是提起，又很快忘掉，没有坚持下去。现在计划每天拿出一个小时来锻炼身体。</p>
+<p>2、<strong>选择难的</strong>。左传中有一段话<em>取人之上，得其中也；取人之中，得其下也。</em> 如果你追求最高的标准，你可能会达到一种中等的状态；如果你只追求中等的标准，你可能会降至一个低等的状态。提醒我们要有高的目标和期望。应为实际结果往往要比期望的要低一些。</p>
+<p>3、<strong>选择可以带来更多可能性的</strong>。和上一条有些重合，选择难的通常可以带来更多可能性。比如科学上网、ChatGPT、Copilot、English、Google等，因为它们可以带来更多可能性。</p>
+<p>4、<strong>选择有复利效应的</strong>。有复利效应的事有写工具、写文档、学英语、写作、当然还有摇人【人多力量大】、懂取舍（知道不做什么）、解决痛点问题、多教多分享、多输入（只有输入足够多的知识才能做更好的决策）、本质解和现象解等。</p>
+<h3>方法</h3>
+<p>不管工作还是个人的，都是在走[定目标，拆目标，执行，完成🎉]这个循环，但是要确保目标很好地被完成，需要考虑什么时候定，怎么定，怎么执行。</p>
+<p><strong>什么时候定目标</strong> ？越早越好，我刚开始执行，所以就是现在，我的目标包括个人的和工作的，最近思考了下自己的未来，自己以后想做什么，爱好是什么，能做什么，然后开始定目标，立flag。</p>
+<p><strong>怎么定目标</strong>？我把自己想到的，眼前想做的，以后想做的，能做的，都写下来，然后问下家人的想法，然后作为今年的目标，今年只剩下一个季度了，哎，时间如流水，不舍昼夜。然后从中选出3-5个作为今年的最终目标。</p>
+<p><strong>怎么执行</strong>？先拆目标，到里程碑维度，每个里程碑包含时间、负责人和具体的大任务；负责人主要是我自己。然后通过月计划、周计划、日计划进一步拆分；月计划和周计划拆分到以h为单位，日计划拆分到最多1h能完成的程度。我现在只做周计划和日计划，还没有月计划。每周日确定下周的日计划，每天前一天确定后一天的日计划。月末我会做定期回顾和整理，先这样执行，视情况调整。</p>
+<p><strong>每天怎么安排</strong>？我参考的是Lex Fridman的每日工作流。他的日常是这样的：</p>
+<ul>
+<li>deep work 4h</li>
+<li>社交媒体和音乐 30m</li>
+<li>运动 2h</li>
+<li>deep work 4h</li>
+<li>晚餐</li>
+<li>shallow work 4h</li>
+<li>晚间阅读 2h</li>
+</ul>
+<p>我的时间安排：</p>
+<ul>
+<li>6:30 - 7:30 英语</li>
+<li>7:30 - 8:50 上班</li>
+<li>9:00 - 11: 15 Deep Work</li>
+<li>11:15 - 11: 40 午饭</li>
+<li>11：40 - 12:10 资讯</li>
+<li>12:10 - 13:10 读书</li>
+<li>13:10 - 13:30 午休</li>
+<li>13:30 - 17:30 Deep Work</li>
+<li>17:30 - 16:20 社交媒体</li>
+<li>18:20 - 19:00 回家</li>
+<li>19:00 - 20:00 锻炼</li>
+<li>20:00 - 21:00 亲子时间</li>
+<li>21:00 - 23:00 Shallow Work</li>
+</ul>
+<p>工作时间不回复不重要的消息，早上优先做昨天设定的3Frog任务，周日周末时间表不同，我可能在家带娃，或者户外活动。同时保证4小时的长文阅读，4小时的Deep Work。</p>
+<p><img src="https://static.ajiu9.cn/Notes/2023101520370316973734231697373423408sJebk1.png" alt="daily plan"></p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[图床，uPic和阿里oss搭建和使用]]></title>
+            <link>https://ajiu9.cn/posts/construction-and-use-of-picture-bed</link>
+            <guid>https://ajiu9.cn/posts/construction-and-use-of-picture-bed</guid>
+            <pubDate>Sat, 16 Sep 2023 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<blockquote>
+<p>对于经常写笔记的人来说，图片是必然不可少的。为了更好地管理和展示图片，可以搭建自己的图床。这是一篇总结如何使用uPic和阿里OSS来搭建和使用个人图床，轻松使用图片</p>
+</blockquote>
+<h3>图床使用uPic</h3>
+<pre><code class="language-cmd">brew install bigwig-club/brew/upic --cask
+</code></pre>
+<h3>阿里OSS申请购买</h3>
+<blockquote>
+<p>OSS使阿里云的对象存储服务，需要付费使用，但是对于平常的博客文章而言，很便宜，我现在是申请的3个月免费使用，实际付费也不贵，一个月就2.16元，（资源包关联的按量付费实例不停机，按使用量收费），就平常的访问量而言，估计是很难超过使用量的。</p>
+</blockquote>
+<p><img src="https://static.ajiu9.cn/Notes/IITkfA.png" alt="每月价格"></p>
+<h3>配置OSS</h3>
+<p>有了OSS后，需要简单配置下，阿里云有官方教程，一步一步几分钟搞定。</p>
+<ul>
+<li>
+<ol>
+<li>创建bucket <img src="https://static.ajiu9.cn/Notes/5eGHP4.png" alt="bucket"></li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>击立即创建，勾选配置<img src="https://static.ajiu9.cn/Notes/nKvi0c.png" alt="配置"></li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>配置完成，如果有自己的域名的话可以配置好自己的域名，<s>我现在用的是阿里云的默认域名，还没买，下次再申请</s></li>
+</ol>
+</li>
+</ul>
+<ol>
+<li>在 AccessKey管理中找到对应的key填写到uPic中<img src="https://static.ajiu9.cn/Notes/20230917112327.png" alt="AccessKey"></li>
+</ol>
+<h3>uPic图床配置</h3>
+<p>在uPic偏好设置中，设置好图床！<br>
+<img src="https://static.ajiu9.cn/Notes/20230917162239169493895916949389595970bFTu6.png" alt="图床配置"></p>
+<h3>完成</h3>
+<p>配置完成后就可以愉快的引用图片到文章中了，最后可以设置下图床的快捷键<img src="https://static.ajiu9.cn/Notes/2023091716261416949391741694939174953lwT8Qv.png" alt="快捷键"></p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[前端webpack构建提速]]></title>
+            <link>https://ajiu9.cn/posts/webpack-building-speed-up</link>
+            <guid>https://ajiu9.cn/posts/webpack-building-speed-up</guid>
+            <pubDate>Wed, 04 Jan 2023 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>1.使用speed-measure-webpack-plugin进行速度分析</p>
+<pre><code class="language-javascript">// 安装
+npm install --save-dev speed-measure-webpack-plugin
+// 使用方式
+const SpeedMeasurePlugin = require(&quot;speed-measure-webpack-plugin&quot;);
+const smp = new SpeedMeasurePlugin();
+const webpackConfig = smp.wrap({
+  plugins: [
+    new MyPlugin(),
+    new MyOtherPlugin()
+  ]
+});
+</code></pre>
+<ol start="2">
+<li>使用webpack-bundle-analyzer进行体积分析</li>
+</ol>
+<pre><code class="language-javascript">// 安装
+npm install --save-dev webpack-bundle-analyzer
+// 使用
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+module.exports = {
+ plugins: [
+   new BundleAnalyzerPlugin()
+ ]
+}
+</code></pre>
+<ol start="3">
+<li>使用多进程、多实例构建
+<blockquote>
+<p>使用<a href="https://webpack.js.org/loaders/thread-loader/">thread-loader</a>: 每次 webpack 解析一个模块，thread-loader 会将它及它的依赖分配给 worker 线程中</p>
+</blockquote>
+</li>
+</ol>
+<pre><code class="language-javascript">// webpack.config.js
+const os = require('os')
+const threads = os.cpus().length
+console.info('编译线程数 =&gt; ', threads)
+module.exports = {
+  config.module
+    .rule('vue')
+    .use('thread-loader')
+    .loader('thread-loader')
+    .options({
+      workers: threads
+    })
+    .end()
+  config.module
+    .rule('js')
+    .use('thread-loader')
+    .loader('thread-loader')
+    .options({
+      workers: threads
+    })
+    .end()
+};
+</code></pre>
+<ol start="4">
+<li>利用缓存提升二次构建速度
+<blockquote>
+<p><a href="https://webpack.js.org/configuration/cache/#cachetype">bable-loader</a>提供了一个参数来使用缓存, 有false,memory, filesystem等配置</p>
+</blockquote>
+</li>
+</ol>
+<pre><code class="language-javascript">module.exports = {
+  //...
+  cache: {
+    type: 'filesystem',
+  },
+};
+</code></pre>
+<ol start="5">
+<li>在webpack构建过程中移除无用的css代码方式
+<blockquote>
+<p><a href="https://www.npmjs.com/package/mini-css-extract-plugin">mini-css-extract-plugin</a>此插件将CSS提取到单独的文件中。它为每个包含CSS的JS文件创建一个CSS文件。它支持CSS和SourceMaps的按需加载。<br>
+它建立在新的webpack v5功能之上，需要webpack 5才能工作。</p>
+</blockquote>
+</li>
+</ol>
+<pre><code class="language-javascript">const MiniCssExtractPlugin = require(&quot;mini-css-extract-plugin&quot;);
+
+module.exports = {
+  plugins: [new MiniCssExtractPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, &quot;css-loader&quot;],
+      },
+    ],
+  },
+};
+</code></pre>
+<p>6.对图片进行优化</p>
+<blockquote>
+<p>使用<a href="https://webpack.js.org/configuration/module/#ruleparserdataurlcondition">ruleparserdataurlcondition</a>减少http请求</p>
+</blockquote>
+<pre><code class="language-javascript">module.exports = {
+  //...
+  module: {
+    rules: [
+      {
+        //...
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024,
+          },
+        },
+      },
+    ],
+  },
+};
+</code></pre>
+<p>7.在生产构建时，使用代码拆分、splitChunks优化</p>
+<blockquote>
+<p><a href="https://webpack.js.org/configuration/optimization/">optimization</a>开启minimize： true, 配置<a href="https://webpack.js.org/configuration/optimization/#optimizationsplitchunks">splitChunks</a>来拆分合并代码，优化生产环境的代码，对常用的公用代码使用CDN<br>
+<a href="https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366">webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization</a><br>
+比如对第二步中使用webpack-bundle-analyzer进行体积分析后得到的优化建议，可以配置一下代码来进行优化</p>
+</blockquote>
+<pre><code class="language-javascript">module.exports = {
+splitChunks: {
+      chunks: 'async',
+      minChunks: 1,
+      maxInitialRequests: 30,
+      minSize: 0,
+      cacheGroups: {
+        default: {
+          minChunks: 1,
+          priority: -20,
+          reuseExistingChunk: true
+        },
+        coreJs: {
+          chunks: 'all',
+          name: 'lib.core-js',
+          test: /[\\/]node_modules[\\/]core-js[\\/]/
+        },
+        axios: {
+          chunks: 'all',
+          name: 'lib.axios',
+          test: /[\\/]node_modules[\\/](axios|axios-ex)[\\/]/
+        },
+        handsontable: {
+          chunks: 'all',
+          name: 'lib.handsontable',
+          test: /[\\/]node_modules[\\/](handsontable|@handsontable)[\\/]/
+        },
+        lodash: {
+          chunks: 'all',
+          name: 'lib.lodash',
+          test: /[\\/]node_modules[\\/]lodash[\\/]/
+        },
+        moment: {
+          chunks: 'all',
+          name: 'lib.moment',
+          test: /[\\/]node_modules[\\/]moment[\\/]/
+        },
+        i18n: {
+          chunks: 'all',
+          name: 'lib.i18n',
+          test: /[\\/]node_modules[\\/]vue-i18n[\\/]/
+        },
+        common: {
+          chunks: 'all',
+          name: 'lib.common',
+          priority: 0,
+          test(module) {
+            const includes = [
+              'intro.js',
+              'countup.js',
+              'qs',
+              'node-rsa',
+              'vue-grid-layout'
+            ]
+            return (
+              module.resource &amp;&amp;
+              includes.some(pkg =&gt;
+                module.resource.includes(
+                  `${sep}node_modules${sep}${pkg}${sep}`
+                )
+              )
+            )
+          }
+        }
+      }
+    }
+}
+</code></pre>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[如何实现一个深浅拷贝]]></title>
+            <link>https://ajiu9.cn/posts/how-to-achieve-a-deep-copy</link>
+            <guid>https://ajiu9.cn/posts/how-to-achieve-a-deep-copy</guid>
+            <pubDate>Thu, 21 Jan 2021 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>在 JavaScript 的编程中经常需要对数据进行复制，什么时候用深拷贝、什么时候用浅拷贝？<br>
+拷贝一个很多嵌套的对象怎么实现？<br>
+写成什么样的深拷贝代码才能算合格？</p>
+<h3>浅拷贝的原理和实现</h3>
+<p>对于浅拷贝的定义我们可以初步理解为：</p>
+<blockquote>
+<p>自己创建一个新的对象，来接受你要重新复制或引用的对象值。如果对象属性是基本的数据类型，复制的就是基本类型的值给新对象；但如果属性是引用数据类型，复制的就是内存中的地址，如果其中一个对象改变了这个内存中的地址，肯定会影响到另一个对象。</p>
+</blockquote>
+<p>下面总结了一些 JavaScript 提供的浅拷贝方法，一起来看看哪些方法能实现上述定义所描述的过程。</p>
+<h4>方法一：object.assign</h4>
+<p>object.assign 是 ES6 中 object 的一个方法，该方法可以用于 JS 对象的合并等多个用途，其中一个用途就是可以进行浅拷贝。该方法的第一个参数是拷贝的目标对象，后面的参数是拷贝的来源对象（也可以是多个来源）。</p>
+<blockquote>
+<p><code>**Object.assign()**</code>方法用于将所有可枚举属性的值从一个或多个源对象分配到目标对象。它将返回目标对象。</p>
+</blockquote>
+<pre><code class="language-js">const target = {}
+const source = { a: { b: 1 } }
+Object.assign(target, source)
+console.log(target) // { a: { b: 1 } };
+</code></pre>
+<p>从上面的代码中可以看到，通过 object.assign 简单实现了一个浅拷贝，“target”就是新拷贝的对象，下面再看一个和上面不太一样的例子。</p>
+<pre><code class="language-js">const target = {}
+const source = { a: { b: 1 } }
+Object.assign(target, source)
+console.log(target) // { a: { b: 10 } };
+source.a.b = 10
+console.log(source) // { a: { b: 10 } };
+console.log(target) // { a: { b: 10 } };
+</code></pre>
+<p>从上面代码中可以看到，首先通过 Object.assign 将 source 拷贝到 target 对象中，然后将 source 对象中的 b 属性由 2 修改为 10。通过控制台可以发现，打印结果中，三个 target 里的 b 属性都变为 10 了，证明 Object.assign 暂时实现了我们想要的拷贝效果。</p>
+<p>使用 object.assign 方法有几点需要注意：</p>
+<ul>
+<li>它不会拷贝对象的继承属性；</li>
+<li>它不会拷贝对象的不可枚举的属性；</li>
+<li>可以拷贝 Symbol 类型的属性。</li>
+</ul>
+<p>可以简单理解为：Object.assign 循环遍历原对象的属性，通过复制的方式将其赋值给目标对象的相应属性，来看一下这段代码，以验证它可以拷贝 Symbol 类型的对象。</p>
+<pre><code class="language-js">const obj1 = { a: { b: 1 }, sym: Symbol(1) }
+Object.defineProperty(obj1, 'innumerable', {
+  value: '不可枚举属性',
+  enumerable: false
+})
+const obj2 = {}
+Object.assign(obj2, obj1)
+obj1.a.b = 2
+console.log('obj1', obj1)
+console.log('obj2', obj2)
+</code></pre>
+<p>我们来看一下控制台打印的结果，如下图所示。</p>
+<p><img src="https://static.ajiu9.cn/images/20240316211739l57kt9.png" alt="图片"></p>
+<p>从上面的代码中可以看到，利用 object.assign 也可以拷贝 Symbol 类型的对象，但是如果到了对象的第二层属性 obj1.a.b 这里的时候，前者值的改变也会影响后者的第二层属性的值，说明其中依旧存在着访问共同堆内存的问题，也就是说这种方法还不能进一步复制，而只是完成了浅拷贝的功能。</p>
+<h4>方法二：扩展运算符方式</h4>
+<p>利用 JS 的扩展运算符，在构造对象的同时完成浅拷贝的功能。</p>
+<p>扩展运算符的语法为：let cloneObj = { …obj };</p>
+<pre><code class="language-js">/* 对象的拷贝 */
+const obj = { a: 1, b: { c: 1 } }
+const obj2 = { ...obj }
+obj.a = 2
+console.log(obj) // {a:2,b:{c:1}} console.log(obj2); //{a:1,b:{c:1}}
+obj.b.c = 2
+console.log(obj) // {a:2,b:{c:2}} console.log(obj2); //{a:1,b:{c:2}}
+/* 数组的拷贝 */
+const arr = [1, 2, 3]
+const newArr = [...arr] // 跟arr.slice()是一样的效果
+</code></pre>
+<p>扩展运算符 和 object.assign 有同样的缺陷，也就是实现的浅拷贝的功能差不多，但是如果属性都是基本类型的值，使用扩展运算符进行浅拷贝会更加方便。</p>
+<h4>方法三：concat 拷贝数组</h4>
+<p>数组的 concat 方法其实也是浅拷贝，所以连接一个含有引用类型的数组时，需要注意修改原数组中的元素的属性，因为它会影响拷贝之后连接的数组。不过 concat 只能用于数组的浅拷贝，使用场景比较局限。代码如下所示。</p>
+<pre><code class="language-js">const arr = [1, 2, 3]
+const newArr = arr.concat()
+newArr[1] = 100
+console.log(arr) // [ 1, 2, 3 ]
+console.log(newArr) // [ 1, 100, 3 ]
+</code></pre>
+<h4>方法四：slice 拷贝数组</h4>
+<p>slice 方法也比较有局限性，因为它仅仅针对数组类型。slice 方法会返回一个新的数组对象，这一对象由该方法的前两个参数来决定原数组截取的开始和结束时间，是不会影响和改变原始数组的。</p>
+<blockquote>
+<p>slice 的语法为：arr.slice(begin, end);</p>
+</blockquote>
+<pre><code class="language-js">const arr = [1, 2, { val: 4 }]
+const newArr = arr.slice()
+newArr[2].val = 1000
+console.log(arr) // [ 1, 2, { val: 1000 } ]
+</code></pre>
+<p>浅拷贝——它只能拷贝一层对象。如果存在对象的嵌套，那么浅拷贝将无能为力。因此深拷贝就是为了解决这个问题而生的，它能解决多层对象嵌套问题，彻底实现拷贝。</p>
+<h3>手工实现一个浅拷贝</h3>
+<ol>
+<li>对基础类型做一个最基本的一个拷贝；</li>
+<li>对引用类型开辟一个新的存储，并且拷贝一层对象属性。</li>
+</ol>
+<pre><code class="language-js">function shallowClone(target) {
+  if (typeof target == 'object' &amp;&amp; target !== null) {
+    const cloneTarget = Array.isArray(target) ? [] : {}
+    for (const prop in target) {
+      if (target.hasOwnProperty(prop))
+        cloneTarget[prop] = target[prop]
+    }
+    return cloneTarget
+  }
+  else {
+    return target
+  }
+}
+</code></pre>
+<h3>深拷贝的原理和实现</h3>
+<p>浅拷贝只是创建了一个新的对象，复制了原有对象的基本类型的值，而引用数据类型只拷贝了一层属性，再深层的还是无法进行拷贝。深拷贝则不同，对于复杂引用数据类型，其在堆内存中完全开辟了一块内存地址，并将原有的对象完全复制过来存放。</p>
+<p>这两个对象是相互独立、不受影响的，彻底实现了内存上的分离。总的来说，深拷贝的原理可以总结如下：</p>
+<p>将一个对象从内存中完整地拷贝出来一份给目标对象，并从堆内存中开辟一个全新的空间存放新对象，且新对象的修改并不会改变原对象，二者实现真正的分离。</p>
+<h4>方法一：JSON.stringfly</h4>
+<p>JSON.stringfly() 是目前开发过程中最简单的深拷贝方法，其实就是把一个对象序列化成为 JSON 的字符串，并将对象里面的内容转换成字符串，最后再用 JSON.parse() 的方法将JSON 字符串生成一个新的对象。示例代码如下所示。</p>
+<pre><code class="language-js">const obj1 = { a: 1, b: [1, 2, 3] }
+const str = JSON.stringify(obj1)
+const obj2 = JSON.parse(str)
+console.log(obj2) // {a:1,b:[1,2,3]}
+obj1.a = 2
+obj1.b.push(4)
+console.log(obj1) // {a:2,b:[1,2,3,4]}
+console.log(obj2) // {a:1,b:[1,2,3]}
+</code></pre>
+<p>从上面的代码可以看到，通过 JSON.stringfly 可以初步实现一个对象的深拷贝，通过改变 obj1 的 b 属性，其实可以看出 obj2 这个对象也不受影响。<br>
+但是使用 JSON.stringfly 实现深拷贝还是有一些地方值得注意，总结下来主要有这几点：</p>
+<ol>
+<li>拷贝的对象的值中如果有函数、undefined、symbol 这几种类型，经过 JSON.stringify 序列化之后的字符串中这个键值对会消失；</li>
+<li>拷贝 Date 引用类型会变成字符串；</li>
+<li>无法拷贝不可枚举的属性；</li>
+<li>无法拷贝对象的原型链；</li>
+<li>拷贝 RegExp 引用类型会变成空对象；</li>
+<li>对象中含有 NaN、Infinity 以及 -Infinity，JSON 序列化的结果会变成 null；</li>
+</ol>
+<pre><code class="language-js">function Obj() {
+  this.func = function () { alert(1) }
+  this.obj = { a: 1 }
+  this.arr = [1, 2, 3]
+  this.und = undefined
+  this.reg = /123/
+  this.date = new Date(0)
+  this.NaN = Number.NaN
+  this.infinity = Number.POSITIVE_INFINITY
+  this.sym = Symbol(1)
+}
+const obj1 = new Obj()
+Object.defineProperty(obj1, 'innumerable', {
+  enumerable: false,
+  value: 'innumerable'
+})
+console.log('obj1', obj1)
+const str = JSON.stringify(obj1)
+const obj2 = JSON.parse(str)
+console.log('obj2', obj2)
+</code></pre>
+<p>通过上面这段代码可以看到执行结果如下图所示</p>
+<p><img src="https://static.ajiu9.cn/images/20240316211813QB9z6C.png" alt="图片"></p>
+<p>使用 JSON.stringify 方法实现深拷贝对象，虽然到目前为止还有很多无法实现的功能，<br>
+对于其他的也要实现深拷贝的，JSON.stringify 暂时还是无法满足的，就需要下面的几种方法。</p>
+<h4>方法二：基础版（手写递归实现）</h4>
+<p>下面是一个实现 deepClone 函数封装的例子，通过 for in 遍历传入参数的属性值，如果值是引用类型则再次递归调用该函数，如果是基础数据类型就直接复制，代码如下所示。</p>
+<pre><code class="language-js">const obj1 = {
+  a: {
+    b: 1,
+  },
+}
+function deepClone(obj) {
+  const cloneObj = {}
+  for (const key in obj) {
+    if (typeof obj[key] === 'object' &amp;&amp; typeof obj[key] !== null)
+      cloneObj[key] = deepClone(obj[key])
+    else
+      cloneObj[key] = obj[key]
+  }
+  return cloneObj
+}
+const obj2 = deepClone(obj1)
+obj1.a.b = 2
+console.log(obj2) //  {a:{b:1}}
+</code></pre>
+<p>虽然利用递归能实现一个深拷贝，但是同上面的 JSON.stringfly 一样，还是有一些问题没有完全解决，例如：</p>
+<ol>
+<li>这个深拷贝函数并不能复制不可枚举的属性以及 Symbol 类型；</li>
+<li>这种方法只是针对普通的引用类型的值做递归复制，而对于 Array、Date、RegExp、Error、Function 这样的引用类型并不能正确地拷贝；</li>
+<li>对象的属性里面成环，即循环引用没有解决。</li>
+</ol>
+<p>下面一起看看改进的版本。</p>
+<h4>方法三：改进版（改进后递归实现）</h4>
+<p>针对上面几个待解决问题，先通过四点相关的理论分析分别应该怎么做。</p>
+<ol>
+<li>针对能够遍历对象的不可枚举属性以及 Symbol 类型，我们可以使用 Reflect.ownKeys 方法；</li>
+<li>当参数为 Date、RegExp 类型，则直接生成一个新的实例返回；</li>
+<li>利用 Object 的 getOwnPropertyDescriptors 方法可以获得对象的所有属性，以及对应的特性，顺便结合 Object 的 create 方法创建一个新对象，并继承传入原对象的原型链；</li>
+<li>利用 WeakMap 类型作为 Hash 表，因为 WeakMap 是弱引用类型，可以有效防止内存泄漏（你可以关注一下 Map 和 weakMap 的关键区别，这里要用 weakMap），作为检测循环引用很有帮助，如果存在循环，则引用直接返回 WeakMap 存储的值。</li>
+</ol>
+<p>那么针对上面这几个问题，我们来看下改进后的递归实现的深拷贝代码应该是什么样子的，如下所示。</p>
+<pre><code class="language-js">const isComplexDataType = obj =&gt; (typeof obj === 'object' || typeof obj === 'function') &amp;&amp; (obj !== null)
+const deepClone = function (obj, hash = new WeakMap()) {
+  if (obj.constructor === Date)
+    return new Date(obj) // 日期对象直接返回一个新的日期对象
+  if (obj.constructor === RegExp)
+    return new RegExp(obj) // 正则对象直接返回一个新的正则对象
+  // 如果循环引用了就用 weakMap 来解决
+  if (hash.has(obj))
+    return hash.get(obj)
+  const allDesc = Object.getOwnPropertyDescriptors(obj)
+  // 遍历传入参数所有键的特性
+  const cloneObj = Object.create(Object.getPrototypeOf(obj), allDesc)
+  // 继承原型链
+  hash.set(obj, cloneObj)
+  for (const key of Reflect.ownKeys(obj))
+    cloneObj[key] = (isComplexDataType(obj[key]) &amp;&amp; typeof obj[key] !== 'function') ? deepClone(obj[key], hash) : obj[key]
+
+  return cloneObj
+}
+// 下面是验证代码
+let obj = {
+  num: 0,
+  str: '',
+  boolean: true,
+  unf: undefined,
+  nul: null,
+  obj: { name: '我是一个对象', id: 1 },
+  arr: [0, 1, 2],
+  func() { console.log('我是一个函数') },
+  date: new Date(0),
+  reg: new RegExp('/我是一个正则/ig'),
+  [Symbol('1')]: 1,
+}
+Object.defineProperty(obj, 'innumerable', {
+  enumerable: false,
+  value: '不可枚举属性'
+})
+obj = Object.create(obj, Object.getOwnPropertyDescriptors(obj))
+obj.loop = obj // 设置loop成循环引用的属性
+const cloneObj = deepClone(obj)
+cloneObj.arr.push(4)
+console.log('obj', obj)
+console.log('cloneObj', cloneObj)
+</code></pre>
+<p><img src="https://static.ajiu9.cn/images/202403162118438RZn3P.png" alt="图片"></p>
+<p>从这张截图的结果可以看出，改进版的 deepClone 函数已经对基础版的那几个问题进行了改进，也验证了上面提到的那四点理论。</p>
+<h3>总结</h3>
+<p>其实到最后我们可以看到，自己完整实现一个深拷贝，还是考察了不少的知识点和编程能力，总结下来大致分为这几点。</p>
+<ul>
+<li>基础编码能力（递归，代码严谨性，抽象能力）。</li>
+<li>js编码能力（Weak Map能力，引用类型的各种API熟练程度，准确判断JS各种数量类型能力。</li>
+<li>考虑问题的全面性（边界情况，解决循环引用的能力）。</li>
+</ul>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[JavaScript-数据类型问题]]></title>
+            <link>https://ajiu9.cn/posts/javascript-data-type</link>
+            <guid>https://ajiu9.cn/posts/javascript-data-type</guid>
+            <pubDate>Wed, 20 Jan 2021 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>我将从数据类型的概念、检测方法、转换方法三个方面梳理数据类型的知识点。能够熟练掌握数据类型的判断以及转换等知识点。（包括隐式转换等问题）。</p>
+<h2>数据类型的概念</h2>
+<p>JavaScript 的数据类型有下图所示的 8 种：</p>
+<p><img src="https://static.ajiu9.cn/images/20240316205349r3tol1.png" alt="图片"></p>
+<p>其中，前 7 种类型为基础类型，最后 1 种（Object）为引用类型，也是你需要重点关注的，因为它在日常工作中是使用得最频繁，也是需要关注最多技术细节的数据类型。<br>
+而引用数据类型（Object）又分为图上这几种常见的类型：Array - 数组对象、RegExp - 正则对象、Date - 日期对象、Math - 数学函数、Function - 函数对象。<br>
+因为各种 JavaScript 的数据类型最后都会在初始化之后放在不同的内存中，因此上面的数据类型大致可以分成两类来进行存储：</p>
+<ol>
+<li>基础类型存储在栈内存，被引用或拷贝时，会创建一个完全相等的变量；</li>
+<li>引用类型存储在堆内存，存储的是地址，多个引用指向同一个地址，这里会涉及一个“共享”的概念。</li>
+</ol>
+<p>关于引用类型下面直接看两段代码：</p>
+<pre><code class="language-js">const a = {
+  name: 'lee',
+  age: 18
+}
+const b = a
+console.log(a.name) // 第一个console
+b.name = 'son'
+console.log(a.name) // 第二个console
+console.log(b.name) // 第三个console
+</code></pre>
+<p>这道题比较简单，我们可以看到第一个 console 打出来 name 是 'lee'；但是在执行了 b.name='son' 之后，结果你会发现 a 和 b 的属性 name 都是 'son'，第二个和第三个打印结果是一样的，这里就体现了引用类型的“共享”的特性，即这两个值都存在同一块内存中共享，一个发生了改变，另外一个也随之跟着变化。</p>
+<pre><code class="language-js">const a = {
+  name: 'Julia',
+  age: 20
+}
+function change(o) {
+  o.age = 24
+  o = {
+    name: 'Kaph',
+    age: 30
+  }
+  return o
+}
+const b = change(a) // 注意这里没有new，后面new相关会有专门文章讲解
+console.log(b.age) // 第一个console
+console.log(a.age) // 第二个console
+</code></pre>
+<p>这道题涉及了 function，通过上述代码可以看到第一个 console 的结果是 30，b 最后打印结果是 {name: &quot;Kaph&quot;, age: 30}；第二个 console 的返回结果是 24，而 a 最后的打印结果是 {name: &quot;Julia&quot;, age: 24}。</p>
+<p>是不是和预想的有些区别？要注意的是，这里的 function 和 return 带来了不一样的东西。</p>
+<p>原因在于：函数传参进来的 o，传递的是对象在堆中的内存地址值，通过调用 o.age = 24（第 7 行代码）确实改变了 a 对象的 age 属性；但是第 12 行代码的 return 却又把 o 变成了另一个内存地址，将 {name: &quot;Kaph&quot;, age: 30} 存入其中，最后返回 b 的值就变成了 {name: &quot;Kaph&quot;, age: 30}。而如果把第 12 行去掉，那么 b 就会返回 undefined。</p>
+<h2>数据类型检测</h2>
+<p>数据类型的判断方法其实有多种，比如 typeof 和 instanceof，下面我来重点介绍三种在工作中经常会遇到的数据类型检测方法。</p>
+<h4>第一种判断方法：typeof</h4>
+<pre><code class="language-js">typeof 1 // 'number'
+typeof '1' // 'string'
+typeof undefined // 'undefined'
+typeof true // 'boolean'
+typeof Symbol('1') // 'symbol'
+typeof null // 'object'
+typeof [] // 'object'
+typeof {} // 'object'
+typeof console // 'object'
+typeof console.log // 'function'
+</code></pre>
+<p>可以看到，前 6 个都是基础数据类型，而为什么第 6 个 null 的 typeof 是 'object' 呢？虽然 typeof null 会输出 object，但这只是 JS 存在的一个悠久 Bug，不代表 null 就是引用数据类型，并且 null 本身也不是对象。因此，null 在 typeof 之后返回的是有问题的结果，不能作为判断 null 的方法。如果需要在 if 语句中判断是否为 null，直接通过 ‘===null’来判断就好。</p>
+<p>此外还要注意，引用数据类型 Object，用 typeof 来判断的话，除了 function 会判断为 OK 以外，其余都是 'object'，是无法判断出来的。</p>
+<h4>第二种判断方法：instanceof</h4>
+<p>new 一个对象，这个新对象就是它原型链继承上面的对象，通过 instanceof 能判断这个对象是否是之前那个构造函数生成的对象，这样就基本可以判断出这个新对象的数据类型。下面通过代码来了解一下。</p>
+<pre><code class="language-js">const Car = function () {}
+const benz = new Car()
+benz instanceof Car // true
+const car = new String('Mercedes Benz')
+car instanceof String // true
+const str = 'Covid-19'
+str instanceof String // false
+</code></pre>
+<p>上面就是用 instanceof 方法判断数据类型的大致流程，如果自己实现一个 instanceof 的底层实现，应该怎么写呢？请看下面的代码。</p>
+<pre><code class="language-js">function myInstanceof(left, right) {
+  // 这里先用typeof来判断基础数据类型，如果是，直接返回false
+  if (typeof left !== 'object' || left === null)
+    return false
+  // getProtypeOf是Object对象自带的API，能够拿到参数的原型对象
+  let proto = Object.getPrototypeOf(left)
+  while (true) { // 循环往下寻找，直到找到相同的原型对象
+    if (proto === null)
+      return false
+    if (proto === right.prototype)
+      return true// 找到相同原型对象，返回true
+    proto = Object.getPrototypeof(proto)
+  }
+}
+// 验证一下自己实现的myInstanceof是否OK
+console.log(myInstanceof(new Number(123), Number)) // true
+console.log(myInstanceof(123, Number)) // false
+</code></pre>
+<h4>第三种判断方法：Object.prototype.toString</h4>
+<p>toString() 是 Object 的原型方法，调用该方法，可以统一返回格式为 “[object Xxx]” 的字符串，其中 Xxx 就是对象的类型。对于 Object 对象，直接调用 toString() 就能返回 [object Object]；而对于其他对象，则需要通过 call 来调用，才能返回正确的类型信息。我们来看一下代码。</p>
+<pre><code class="language-js">Object.prototype.toString({}) // &quot;[object Object]&quot;
+Object.prototype.toString.call({}) // 同上结果，加上call也ok
+Object.prototype.toString.call(1) // &quot;[object Number]&quot;
+Object.prototype.toString.call('1') // &quot;[object String]&quot;
+Object.prototype.toString.call(true) // &quot;[object Boolean]&quot;
+Object.prototype.toString.call(() =&gt; {}) // &quot;[object Function]&quot;
+Object.prototype.toString.call(null) // &quot;[object Null]&quot;
+Object.prototype.toString.call(undefined) // &quot;[object Undefined]&quot;
+Object.prototype.toString.call(/123/g) // &quot;[object RegExp]&quot;
+Object.prototype.toString.call(new Date()) // &quot;[object Date]&quot;
+Object.prototype.toString.call([]) // &quot;[object Array]&quot;
+Object.prototype.toString.call(document) // &quot;[object HTMLDocument]&quot;
+Object.prototype.toString.call(window) // &quot;[object Window]&quot;
+</code></pre>
+<p>可以看出：instanceof 可以准确地判断复杂引用数据类型，但是不能正确判断基础数据类型；</p>
+<p>而 typeof 也存在弊端，它虽然可以判断基础数据类型（null 除外），但是引用数据类型中，除了 function 类型以外，其他的也无法判断；Object.prototype.toString.call() 可以很好地判断引用类型，甚至可以把 document 和 window 都区分开来。</p>
+<p>但是在写判断条件的时候一定要注意，使用这个方法最后返回统一字符串格式为 &quot;[object Xxx]&quot; ，而这里字符串里面的 &quot;Xxx&quot; ，第一个首字母要大写（注意：使用 typeof 返回的是小写）。</p>
+<p>下面来实现一个全局通用的数据类型判断方法，来加深你的理解，代码如下。</p>
+<pre><code class="language-js">function getType(obj) {
+  const type = typeof obj
+  if (type !== 'object') { // 先进行typeof判断，如果是基础数据类型，直接返回
+    return type
+  }
+  // 对于typeof返回结果是object的，再进行如下的判断，正则返回结果
+  return Object.prototype.toString.call(obj).replace(/^\[object (\S+)\]$/, '$1') // 注意正则中间有个空格
+}
+/* 代码验证，需要注意大小写，哪些是typeof判断，哪些是toString判断？思考下 */
+getType([]) // &quot;Array&quot; typeof []是object，因此toString返回
+getType('123') // &quot;string&quot; typeof 直接返回
+getType(window) // &quot;Window&quot; toString返回
+getType(null) // &quot;Null&quot;首字母大写，typeof null是object，需toString来判断
+getType(undefined) // &quot;undefined&quot; typeof 直接返回
+getType() // &quot;undefined&quot; typeof 直接返回
+getType(() =&gt; {}) // &quot;function&quot; typeof能判断，因此首字母小写
+getType(/123/g) // &quot;RegExp&quot; toString返回
+</code></pre>
+<h3>数据类型转换</h3>
+<p>在日常的开发中，经常会遇到 JavaScript 数据类型转换问题，有的时候需要我们主动进行强制转换，而有的时候 JavaScript 会进行隐式转换，隐式转换的时候就需要我们多加留心。</p>
+<p>那么这部分都会涉及哪些内容呢？我们先看一段代码，了解下大致的情况。</p>
+<pre><code class="language-js">'123' == 123   // true
+'' == null    // false
+'' == 0        // true
+[] == 0        // true
+[] == ''       // true
+[] == ![]      // true
+null == undefined // true
+Number(null)     //0
+Number('')      // 0
+parseInt('');    // NaN
+{}+10           // 10
+let obj = {
+    [Symbol.toPrimitive]() {
+        return 200;
+    },
+    valueOf() {
+        return 300;
+    },
+    toString() {
+        return 'Hello';
+    }
+}
+console.log(obj + 200); // 400
+</code></pre>
+<p>上面这 12 个问题，基本涵盖了我们平常容易疏漏的一些情况，这就是在做数据类型转换时经常会遇到的强制转换和隐式转换的方式。</p>
+<h4>强制类型转换</h4>
+<p>强制类型转换方式包括 Number()、parseInt()、parseFloat()、toString()、String()、Boolean()，这几种方法都比较类似，通过字面意思可以很容易理解，都是通过自身的方法来进行数据类型的强制转换。下面我列举一些来详细说明。</p>
+<p>上面代码中，第 8 行的结果是 0，第 9 行的结果同样是 0，第 10 行的结果是 NaN。这些都是很明显的强制类型转换，因为用到了 Number() 和 parseInt()。</p>
+<p>其实上述几个强制类型转换的原理大致相同，下面我挑两个比较有代表性的方法进行讲解。</p>
+<h4>Number() 方法的强制转换规则</h4>
+<ol>
+<li>如果是布尔值，true 和 false 分别被转换为 1 和 0；</li>
+<li>如果是数字，返回自身；</li>
+<li>如果是 null，返回 0；</li>
+<li>如果是 undefined，返回 NaN；</li>
+<li>如果是字符串，遵循以下规则：如果字符串中只包含数字（或者是0X/0x 开头的十六进制数字字符串，允许包含正负号），则将其转换为十进制；如果字符串中包含有效的浮点格式，将其转换为浮点数值；如果是空字符串，将其转换为 0；如果不是以上格式的字符串，均返回 NaN；</li>
+<li>如果是 Symbol，抛出错误；</li>
+<li>如果是对象，并且部署了 [Symbol.toPrimitive] ，那么调用此方法，否则调用对象的 valueOf()方法，然后依据前面的规则转换返回的值；如果转换的结果是 NaN ，则调用对象的 toString()方法，再次依照前面的顺序转换返回对应的值（Object 转换规则会在下面细讲）。</li>
+</ol>
+<p>下面通过一段代码来说明上述规则。</p>
+<pre><code class="language-js">Number(true) // 1
+</code></pre>
+<p>其中，我分别列举了比较常见的 Number 转换的例子，它们都会把对应的非数字类型转换成数字类型，而有一些实在无法转换成数字的，最后只能输出 NaN 的结果。</p>
+<h3>Boolean() 方法的强制转换规则</h3>
+<p>这个方法的规则是：除了 undefined、 null、 false、 ''、 0（包括 +0，-0）、 NaN 转换出来是 false，其他都是 true。</p>
+<p>这个规则应该很好理解，没有那么多条条框框，我们还是通过代码来形成认知，如下所示。</p>
+<pre><code class="language-js">Number(true) // 1
+Number(false) // 0
+Number('0111') // 111
+Number(null) // 0
+Number('') // 0
+Number('1a') // NaN
+Number(-0x11) // -17
+Number('0X11') // 17
+</code></pre>
+<h3>隐式类型转换</h3>
+<p>凡是通过逻辑运算符 (&amp;&amp;、 ||、 !)、运算符 (+、-、*、/)、关系操作符 (&gt;、 &lt;、 &lt;= 、&gt;=)、相等运算符 (==) 或者 if/while 条件的操作，如果遇到两个数据类型不一样的情况，都会出现隐式类型转换。这里你需要重点关注一下，因为比较隐蔽，特别容易让人忽视。</p>
+<p>下面着重讲解一下日常用得比较多的“==”和“+”这两个符号的隐式转换规则。</p>
+<h4>'==' 的隐式类型转换规则</h4>
+<ol>
+<li>如果类型相同，无须进行类型转换；</li>
+<li>如果其中一个操作值是 null 或者 undefined，那么另一个操作符必须为 null 或者 undefined，才会返回 true，否则都返回 false；</li>
+<li>如果其中一个是 Symbol 类型，那么返回 false；</li>
+<li>两个操作值如果都为 string 和 number 类型，那么就会将字符串转换为 number；</li>
+<li>如果一个操作值是 boolean，那么转换成 number；</li>
+<li>如果一个操作值为 object 且另一方为 string、number 或者 symbol，就会把 object 转为原始类型再进行判断（调用 object 的 valueOf/toString 方法进行转换）。</li>
+<li>
+<pre><code>null == undefined       // true  规则2
+</code></pre>
+</li>
+</ol>
+<p>'+' 的隐式类型转换规则</p>
+<p>'+' 号操作符，不仅可以用作数字相加，还可以用作字符串拼接。仅当 '+' 号两边都是数字时，进行的是加法运算；</p>
+<ol>
+<li>
+<p>如果两边都是字符串，则直接拼接，无须进行隐式类型转换。</p>
+</li>
+<li>
+<p>如果其中有一个是字符串，另外一个是 undefined、null 或布尔型，则调用 toString() 方法进行字符串拼接；如果是纯对象、数组、正则等，则默认调用对象的转换方法会存在优先级（下一讲会专门介绍），然后再进行拼接。</p>
+</li>
+<li>
+<p>如果其中有一个是数字，另外一个是 undefined、null、布尔型或数字，则会将其转换成数字进行加法运算，对象的情况还是参考上一条规则。</p>
+</li>
+<li>
+<p>如果其中一个是字符串、一个是数字，则按照字符串规则进行拼接。</p>
+</li>
+</ol>
+<pre><code class="language-js">1 + 2 // 3  常规情况
+'1' + '2' // '12' 常规情况
+// 下面看一下特殊情况
+// eslint-disable-next-line prefer-template
+'1' + undefined // &quot;1undefined&quot; 规则1，undefined转换字符串
+// eslint-disable-next-line prefer-template
+'1' + null // &quot;1null&quot; 规则1，null转换字符串
+// eslint-disable-next-line prefer-template
+'1' + true // &quot;1true&quot; 规则1，true转换字符串
+// eslint-disable-next-line prefer-template
+'1' + 1n // '11' 比较特殊字符串和BigInt相加，BigInt转换为字符串
+1 + undefined // NaN  规则2，undefined转换数字相加NaN
+1 + null // 1    规则2，null转换为0
+1 + true // 2    规则2，true转换为1，二者相加为2
+1 + 1n // 错误  不能把BigInt和Number类型直接混合相加
+// eslint-disable-next-line prefer-template
+'1' + 3 // '13' 规则3，字符串拼接
+</code></pre>
+<p>整体来看，如果数据中有字符串，JavaScript 类型转换还是更倾向于转换成字符串，因为第三条规则中可以看到，在字符串和数字相加的过程中最后返回的还是字符串。</p>
+<h4>Object 的转换规则</h4>
+<p>对象转换的规则，会先调用内置的 [ToPrimitive] 函数，其规则逻辑如下：</p>
+<ol>
+<li>
+<p>如果部署了 Symbol.toPrimitive 方法，优先调用再返回；</p>
+</li>
+<li>
+<p>调用 valueOf()，如果转换为基础类型，则返回；</p>
+</li>
+<li>
+<p>调用 toString()，如果转换为基础类型，则返回；</p>
+</li>
+<li>
+<p>如果都没有返回基础类型，会报错。</p>
+</li>
+</ol>
+<pre><code class="language-js">const obj = {
+  value: 1,
+  valueOf() {
+    return 2
+  },
+  toString() {
+    return '3'
+  },
+  [Symbol.toPrimitive]() {
+    return 4
+  }
+}
+console.log(obj + 1) // 输出5
+// 因为有Symbol.toPrimitive，就优先执行这个；如果Symbol.toPrimitive这段代码删掉，则执行valueOf打印结果为3；如果valueOf也去掉，则调用toString返回'31'(字符串拼接)
+// 再看两个特殊的case：
+10 + {};
+// &quot;10[object Object]&quot;，注意：{}会默认调用valueOf是{}，不是基础类型继续转换，调用toString，返回结果&quot;[object Object]&quot;，于是和10进行'+'运算，按照字符串拼接规则来，参考'+'的规则C
+[1, 2, undefined, 4, 5] + 10
+// &quot;1,2,,4,510&quot;，注意[1,2,undefined,4,5]会默认先调用valueOf结果还是这个数组，不是基础数据类型继续转换，也还是调用toString，返回&quot;1,2,,4,5&quot;，然后再和10进行运算，还是按照字符串拼接规则，参考'+'的第3条规则
+</code></pre>
+<h3>总结</h3>
+<p>从三个方面学习了数据类型相关内容:</p>
+<ul>
+<li>
+<p>数据类型的基本概念：这是必须掌握的知识点，作为深入理解 JavaScript 的基础。</p>
+</li>
+<li>
+<p>数据类型的判断方法：typeof 和 instanceof，以及 Object.prototype.toString 的判断数据类型、手写 instanceof 代码片段。</p>
+</li>
+<li>
+<p>数据类型的转换方式：两种数据类型的转换方式，日常写代码过程中隐式转换需要多留意，如果理解不到位，很容易引起在编码过程中的 bug，得到一些意想不到的结果。</p>
+</li>
+</ul>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[Proxy和Reflect]]></title>
+            <link>https://ajiu9.cn/posts/proxy-reflect</link>
+            <guid>https://ajiu9.cn/posts/proxy-reflect</guid>
+            <pubDate>Wed, 31 Oct 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>计算机中代理模式的定义：为其他对象提供一种代理以控制这个对象的访问。在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户端和目标对象之间起到中介作用。</p>
+<h4>Proxy和Reflect</h4>
+<ul>
+<li>
+<p>Proxy对象用于定义基本操作的自定义行为（如属性查找，赋值，枚举，函数调用等）。</p>
+</li>
+<li>
+<p>Reflect是一个内置的对象，它提供拦截 JavaScript 操作的方法。这些方法与处理器对象的方法相同。Reflect不是一个函数对象，因此它是不可构造的。</p>
+</li>
+</ul>
+<h4>Proxy的方法</h4>
+<pre><code class="language-js">let obj = {
+time: '2018-10-31',
+name: 'vender',
+_r: 123
+
+}
+let monitor = new Proxy(obj, {
+    //拦截对象读取属性值
+    get(target, key) {
+        return obj[key].replace(/-/g, ':')
+    },
+    //拦截对象设置属性值
+    set(target, key, value) {
+        if (key === 'name') {
+        return target[key] = value
+      } else {
+        return target[key]
+      }
+    },
+    // 拦截 key in object 操作
+    has(target, key) {
+    if (key === 'name') {
+        return true
+      } else {
+        return false
+    }
+    // 拦截delete
+    deleteProperty(target, key) {
+        if (key === '_r') {
+        delete target[key]
+        return true
+      } else {
+        return target[key]
+      }
+    },
+    // 拦截 Object.getOwnPropertyNames(),Object.getOwnProptySymbols(), Object.keys(), Reflect.ownKeys()
+    ownKeys(target) {
+        return Object.keys(target).filter(item =&gt; item !== 'time')
+    }
+
+})
+</code></pre>
+<p>上面定义了一个对象<code>obj</code>, 同时使用了Proxy代理分别拦截了<code>get</code>,<code>set</code>,<code>has</code>,<code>deleteProperty</code>,<code>ownKeys</code>五种比较常用的方法。</p>
+<pre><code class="language-js">console.log('get', monitor.time) // get 2018:10:31
+</code></pre>
+<p>代理<code>get</code>方法拦截对象读取属性值。</p>
+<pre><code class="language-js">monitor.time = '2019'
+monitor.name = 'apple'
+console.log('set', monitor.name, monitor) // set apple Proxy {time: &quot;2018-10-31&quot;, name: &quot;apple&quot;, _r: 123}
+</code></pre>
+<p>代理<code>set</code>方法拦截对象设置属性值。</p>
+<pre><code class="language-js">console.log('has', 'name' in monitor, 'time' in monitor) // has true false
+</code></pre>
+<p>代理<code>has</code>方法拦截 key in object 操作。</p>
+<pre><code class="language-js">delete monitor.name
+console.log('delete', monitor) // delete Proxy {time: &quot;2018-10-31&quot;, name: &quot;apple&quot;, _r: 123}
+delete monitor._r
+console.log('delete', monitor) // delete Proxy {time: &quot;2018-10-31&quot;, name: &quot;apple&quot;}
+</code></pre>
+<p>代理<code>deleteProperty</code>方法拦截delete。</p>
+<pre><code class="language-js">console.log('ownKeys', Object.keys(monitor)) // ownKeys [&quot;name&quot;]
+</code></pre>
+<p>代理<code>ownKeys</code>方法拦截<code>Object.getOwnPropertyNames()</code>,<code>Object.getOwnProptoSymbols()</code>,<code>Object.keys()</code>,<code>Reflect.ownKeys()</code>。</p>
+<h4>Reflect的方法</h4>
+<p>如前面所说，Reflect的方法与处理器对象的方法相同。Reflect不是一个函数对象，因此它是不可构造的。<br>
+一下简单举例：</p>
+<pre><code class="language-js">const obj = {
+  time: '2018-10-31',
+  name: 'vender',
+  _r: 123
+}
+console.log('Reflect get:', Reflect.get(obj, 'time')) // Reflect get: 2018-10-31Reflect.set(obj, 'name', 'banana')
+console.log('Reflect set:', obj) // Reflect set: {time: &quot;2018-10-31&quot;, name: &quot;banana&quot;, _r: 123}
+console.log('Reflect has:', Reflect.has(obj, 'time')) // Reflect has: trueReflect.deleteProperty(obj, '_r')
+console.log('Reflect delete:', obj) // Reflect delete: {time: &quot;2018-10-31&quot;, name: &quot;banana&quot;}
+console.log('Reflect ownKeys:', Reflect.ownKeys(obj)) // Reflect ownKeys: [&quot;time&quot;, &quot;name&quot;]
+</code></pre>
+<h4>简单应用</h4>
+<p>在开发中通常会对数据进行校验，提交数据的时候会判断数据是否符合，利用<code>Proxy</code>和<code>Reflect</code>来实现一个简单的验证，实现数据和业务解耦，功能：1.对用户填写的原始数据进行验证。2.数据和业务解耦</p>
+<p>思路：</p>
+<ul>
+<li>1.通过定义一个函数，这个函数的功能就是接收俩个参数(<code>target</code>原始对象和<code>validator</code>验证规则)返回一个代理对象，拦截原始对象的设置属性值，也就是<code>set</code>方法。</li>
+<li>2.定义一个类<code>Person</code>,在<code>constructor</code>中重写<code>this</code>（<code>return validator(this, personValidator)</code>这里返回的是代理对象）从而达到对这个对象实例的代理。</li>
+<li>3.定义第二步这个类<code>Person</code>所需要的验证规则定义<code>personValidator</code>，在这个对象里，实现对数据的具体验证。</li>
+<li>4.使用时，实例化第二步定义的类<code>Person</code>。</li>
+</ul>
+<pre><code class="language-js">// 定义一个验证函数，这个函数返回一个代理对象。它的功能就是验证
+function validator(target, validator) {
+  return new Proxy(target, {
+    _validator: validator, // 保存原始校验对象
+    set(target, key, value, proxy) {
+      // 拦截target设置属性
+      if (target.hasOwnProperty(key)) { // target属性key存在就继续下一步，不存在抛出错误
+        const va = this._validator[key]
+        if (va(value)) { // 校验规则是否通过
+          return Reflect.set(target, key, value, proxy) // 拦截target设置属性，验证通过
+        }
+        else {
+          throw new Error(`${key}不能设置为${value}`)
+        }
+      }
+      else {
+        throw new Error(`${key} 不存在`)
+      }
+    }
+  })
+}
+
+// 定义验证规则
+const personValidator = {
+  name(val) {
+    return typeof val === 'string'
+  },
+  age(val) {
+    return typeof val === 'number' &amp;&amp; val &gt; 18
+  }
+}
+// 定义类
+
+class Person {
+  constructor(name, age) {
+    this.name = name
+    this.age = age
+    return validator(this, personValidator)
+  }
+}
+
+// 实例
+const person = new Person('wu', 20)
+person.name = 'zhuli'
+console.info(person) // Proxy {name: &quot;hell&quot;, age: 20}
+
+person.age = 'year' // Uncaught Error: age不能设置为year
+</code></pre>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[你是晨鸟型还是夜猫子型？]]></title>
+            <link>https://ajiu9.cn/posts/are-you-a-morning-bird-or-a-night-owl</link>
+            <guid>https://ajiu9.cn/posts/are-you-a-morning-bird-or-a-night-owl</guid>
+            <pubDate>Mon, 29 Oct 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>一天中身体的重要身理功能如唤醒水平、新陈代谢和心率体温会经历变化。尽管这些昼夜节律在每个人身上都是确实存在的但具体的时间在不同的人身上有很大的差异。实际上，研究者提出根据所偏好的睡眠-觉醒模式人们可以分成不同的时型。</p>
+<p>考虑这样一个研究，一组研究者让数千秘名欧洲成年人回答一系列问题(比如你何时上床睡觉？你需要睡多久？)。在参与者不需起床工作的日子里，最常见的回答是午夜后不久睡觉，早上8.20起床（Roenneberg et al.,2017）。与这样的标准相比，你的偏好是怎样的？如果你早起早睡，你可以算做晨鸟型。如果你习惯午夜后起床，你算做夜猫子型。你离标准越远，晨鸟型和夜猫子型的程度就越高。随着成人的年龄增大，人们的偏好往往转向晨鸟型:祖父母一般偏向于比他们十几岁的孙子起床早得多。然而，与这种总体的转变相反，个体差异似乎保持稳定。相对成年人来说，夜猫子型的青少年起床更晚。现在让我们看看为什么你的时型很重要。</p>
+<p>研究者提供了大量的证据，表明身理节律帮助确定人们在一天的哪些时段最佳(BLatter &amp; Cajochen,2007)。由于身理节律的影响，时型不同的人最佳表现的时间也不同。这个规律同时适用于生理任务和认知任务。例如，足球运动员的运动相关技能(如用脚颠球的能力)因测试的时间而表现出变化(Reillyetal.,2007)。许多表现上的差异与体温变化的生理模式有关。</p>
+<p>为了证明时型对认知的影响，研究者招募了一组年龄从11岁到14岁的青少年(Goldsteinetal.,2007)研究者挑选了40名参与者，他们都是鲜明的晨鸟型或夜猫子型。青少年在一天的最佳时段或非最佳时段来完成自标准智力测验(WISC)的一部分项目。例如，一半的晨鸟型在早晨完成测验，另一半则在下午。在他们偏好的时段接受测验的参与者，其智力测验得分高出6分。(这是一个非常大的差异)。</p>
+<p>研究者还从青少年的父母和亲属那里获得关于他们日常行为的信息。晨鸟型的学生在这些测量方式中表现出更强的社交能力——比夜猫子型的青少年更少报告注意问题和攻击行为。这类结果支持了夜猫子型学生具有一种“社交时差”的观点(Wittmannetal.,2006)。因为他们是被闹钟叫醒，所以他们的行为表现总是发生在与个人节律不同步时段。缺乏同步性对成绩和行为都有负面影响。那么，你是明确的晨鸟型还是夜猫子型？你可能曾在学校做出一天的计划时或之后认真思考过这个问题。如果你有很强的时型，想想该如何安排工作和娱乐以获得最佳表现。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[ES6中Map，Set与数组和对象的比较]]></title>
+            <link>https://ajiu9.cn/posts/map-set-array-object</link>
+            <guid>https://ajiu9.cn/posts/map-set-array-object</guid>
+            <pubDate>Mon, 29 Oct 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>在es6中常用的数据集合有这几种，Object、Array、Map、Set。他们之间有什么区别？在什么情况下选用哪种数据集合类型？下来看这几种数据集合的使用比较。</p>
+<ul>
+<li>Object：Object构造函数创建一个对象包装器。</li>
+<li>Array：Array对象是用于构造数组的全局对象，数组是类似于列表的高阶对象。</li>
+<li>Map：Map 对象保存键值对。<code>任何值</code>(对象或者原始值) 都可以作为一个键或一个值。</li>
+<li>Set：Set 对象允许你存储任何类型的<code>唯一值</code>，无论是原始值或者是对象引用。</li>
+</ul>
+<h4>Map与数组比较</h4>
+<pre><code class="language-js">const map = new Map()
+const arr = []
+
+// add
+map.set('a', 1)
+arr.push({ a: 1 })
+console.log('map-array', map, arr)
+// map-array Map(1) {&quot;a&quot; =&gt; 1} [{…}]
+
+// exist
+const map_exist = map.has('a')
+const arr_exist = arr.find(item =&gt; item.a)
+console.log('map-array', map_exist, arr_exist)
+// map-array true {a: 1}
+
+// modify
+map.set('a', 2)
+arr.forEach(item =&gt; item.a ? item.a = 2 : '')
+console.log('map-array', map, arr)
+// map-array Map(1) {&quot;a&quot; =&gt; 2} [{…}]
+
+// delete
+map.delete('a')
+const index = arr.findIndex(item =&gt; item.a)
+arr.splice(arr.findIndex(item =&gt; item.b), 1)
+console.log('map-array', map, arr)
+// map-array Map(0) {} []
+</code></pre>
+<h4>Set与数组比较</h4>
+<pre><code class="language-js">const set = new Set()
+const array = []
+
+// add
+const a1 = {
+  a: 11
+}
+set.add(a1)
+array.push({ a: 11 })
+console.log('set-array', set, array)
+// set-array Set(1) {{…}} [{…}]
+
+// exist
+const set_exist = set.has('a')
+const array_exist = array.find(item =&gt; item.a)
+console.info('map-array', set_exist, array_exist)
+// map-array false {a: 11}
+
+// modify
+set.forEach(item =&gt; item.a ? item.a = 2 : '')
+array.forEach(item =&gt; item.a ? item.a = 2 : '')
+console.log('set-array', set, array)
+// set-array Set(1) {{…}} [{…}]
+
+// delete
+set.forEach(item =&gt; item.a ? set.delete(item) : '')
+array.splice(array.findIndex(item =&gt; item.b), 1)
+console.log('map-array', set, array) // map-array Set(0) {} []
+</code></pre>
+<h4>Map-Set与Object比较</h4>
+<pre><code class="language-js">const item = { a: 1 }
+const map = new Map()
+const set = new Set()
+const obj = new Object()
+
+// add
+map.set('a', 1)
+set.add(item)
+obj.a = 1
+console.log('map-set-object', map, set, obj)
+// map-set-object Map(1) {&quot;a&quot; =&gt; 1} Set(1) {{…}} {a: 1}
+
+// exist
+console.info({
+  map_exist: map.has('a'),
+  set_exist: set.has(item),
+  ibj_exist: 'a' in obj
+})
+// {map_exist: true, set_exist: true, ibj_exist: true}
+
+// modify
+map.set('a', 2)
+item.a = 2
+obj.a = 2
+console.log('map-set-object', map, set, obj)
+// map-set-object Map(1) {&quot;a&quot; =&gt; 2} Set(1) {{…}} {a: 2}
+
+// delete
+map.delete('a')
+set.delete(item)
+delete obj.a
+console.log('map-set-object', map, set, obj)
+// map-set-object Map(0) {} Set(0) {} {}
+</code></pre>
+<h4>总结</h4>
+<p>从上面对数据结构的增查改删中可以看出，能使用Map不用Array,如果要保证数据的唯一性，可以使用Set。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[前端错误监控]]></title>
+            <link>https://ajiu9.cn/posts/front-end-error-monitoring</link>
+            <guid>https://ajiu9.cn/posts/front-end-error-monitoring</guid>
+            <pubDate>Thu, 18 Oct 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>写在前面</h4>
+<p>做好错误监控，将用户使用时的错误上报，可以帮助我们定位解决一些出现的问题。本次主要了解一下几个问题：前端错误的分类，每一种分类的错误捕获方式是什么，如何把这些错误上报？</p>
+<h3>前端错误分类</h3>
+<ul>
+<li>即时运行错误：代码错误</li>
+<li>资源加载错误</li>
+<li>接口错误<br>
+即时运行错误的捕获方式：</li>
+<li><code>try..catch</code></li>
+<li><code>window.onerror</code></li>
+</ul>
+<p>资源加载错误的捕获方式：</p>
+<ul>
+<li><code>object.onerror</code></li>
+<li><code>performance.getEntries()</code></li>
+<li><code>addEventListener(&quot;error&quot;,function{}, true)</code>error事件捕获（资源加载错误不会冒泡，所以window.onerror不能捕获资源加载错误）。</li>
+</ul>
+<p>接口错误捕获方式<br>
+所有http请求都是基于<code>xmlHttpRequest</code>或者<code>fetch</code>封装的。所以要捕获全局的接口错误，方法就是封装xmlHttpRequest或者fetch。<br>
+这个捕获可以用状态码作为出错条件处理</p>
+<pre><code class="language-js">function axios() {
+  if (!window.XMLHttpRequest)
+    return
+  const xmlhttp = window.XMLHttpRequest
+  _oldSend = xmlhttp.prototype.send
+  const _handleEvent = function (event) {
+    if (event &amp;&amp; event.currentTarget &amp;&amp; event.currentTarget.status !== 200) {
+      // 自定义错误上报
+    }
+  }
+  xmlhttp.prototype.send = function () {
+    if (this.addEventListener) {
+      this.addEventListener('error', _handleEvent)
+      this.addEventListener('load', _handleEvent)
+      this.addEventListener('abort', _handleEvent)
+    }
+    else {
+      const _oldStateChange = this.onreadystatechange
+      this.onreadystatechange = function (event) {
+        if (this.readyState === 4)
+          _handleEvent(event)
+
+        _oldStateChange &amp;&amp; _oldStateChange.apply(this, arguments)
+      }
+    }
+    return _oldSend.apply(this, arguments)
+  }
+}
+</code></pre>
+<pre><code class="language-js">function axios() {
+  if (!window.fetch)
+    return
+  const _oldFetch = window.fetch
+  window.fetch = function () {
+    return _oldFetch.apply(this, arguments)
+      .then((res) =&gt; {
+        if (!res.ok) {
+          // True if status is HTTP 2xx
+          // 上报错误
+        }
+        return res
+      })
+      .catch((error) =&gt; {
+        // 上报错误throw error;
+      })
+  }
+}
+</code></pre>
+<p>跨域的js运行错误捕获错误提示：</p>
+<p><img src="https://static.ajiu9.cn/images/20240316133018d6be9j.png" alt="图片"></p>
+<p>处理方法：</p>
+<ul>
+<li>在script标签中增加crossorigin属性。</li>
+<li>设置js资源响应头Access-Control-Allow-Origin。</li>
+</ul>
+<h4>上报错误的基本原理</h4>
+<ul>
+<li>采用Ajax通信的方式上报。</li>
+<li>利用Image对象上报</li>
+</ul>
+<p>推荐用Image对象上报错误类型，比Ajax方式简单，并且不用借助任何第三方库。</p>
+<pre><code class="language-js">(new Image()).src = 'http://baidu.com/error?err=error'
+</code></pre>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[浏览器渲染机制]]></title>
+            <link>https://ajiu9.cn/posts/browser-rendering-mechanism</link>
+            <guid>https://ajiu9.cn/posts/browser-rendering-mechanism</guid>
+            <pubDate>Thu, 11 Oct 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>什么是DOCTYPE及作用</h4>
+<p>DOCTYPE标签是一种标准通用标记语言的文档类型声明，它的目的是要告诉标准通用标记语言解析器，它应该使用什么样的文档类型定义（DTD）来解析文档。</p>
+<ul>
+<li>
+<p>HTML5：<code>&lt;!DOCTYPE html&gt;</code></p>
+</li>
+<li>
+<p>HTML4.01 Strict <code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01//EN&quot; &quot; http://www.w3.org/TR/html4/strict.dtd&quot;&gt;</code>(该DTD包含所有HTML元素和属性，但是不包括展示性的和弃用的元素如(font))</p>
+</li>
+<li>
+<p>HTML4.01 Transitional <code>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot; http://www.w3.org/TR/html4/loose.dtd&quot; &gt;</code>(该DTD包含所有HTML元素和属性，包括展示性的和弃用的元素如(font))</p>
+</li>
+</ul>
+<h4>浏览器渲染过程</h4>
+<p>webkit的主要流程：</p>
+<p><img src="https://static.ajiu9.cn/images/20240316130401LakYs1.png" alt="图片"></p>
+<p>解析html以构建dom树 -&gt; 构建render树 -&gt; 布局render树 -&gt; 绘制render树</p>
+<ul>
+<li>
+<p>浏览器会将HTML解析成一个DOM树，DOM树的构建过程是一个深度遍历过程：当前节点的所有子节点都构建好后才会去构建当前节点的下一个兄弟节点。</p>
+</li>
+<li>
+<p>将CSS解析成 CSS Rule Tree 。</p>
+</li>
+<li>
+<p>根据DOM树和CSSDOM来构造 Rendering Tree。注意：Rendering Tree 渲染树并不等同于 DOM 树，因为一些像Header或display:none的东西就没必要放在渲染树中了。</p>
+</li>
+<li>
+<p>有了Render Tree，浏览器已经能知道网页中有哪些节点、各个节点的CSS定义以及他们的从属关系。下一步操作称之为layout，顾名思义就是计算出每个节点在屏幕中的位置。</p>
+</li>
+<li>
+<p>再下一步就是绘制，即遍历render树，并使用UI后端层绘制每个节点。</p>
+</li>
+</ul>
+<h4>reflow（回流）和erepaint（重绘）</h4>
+<ul>
+<li>
+<p>reflow（回流）：当浏览器发现某个部分发生了点变化影响了布局，需要倒回去重新渲染，内行称这个回退的过程叫 reflow。reflow 会从 这个 root frame 开始递归往下，依次计算所有的结点几何尺寸和位置。reflow 几乎是无法避免的。现在界面上流行的一些效果，比如树状目录的折叠、展开（实质上是元素的显 示与隐藏）等，都将引起浏览器的 reflow。鼠标滑过、点击……只要这些行为引起了页面上某些元素的占位面积、定位方式、边距等属性的变化，都会引起它内部、周围甚至整个页面的重新渲染。通常我们都无法预估浏览器到底会 reflow 哪一部分的代码，它们都彼此相互影响着。</p>
+</li>
+<li>
+<p>repaint（重绘）：改变某个元素的背景色、文字颜色、边框颜色等等不影响它周围或内部布局的属性时，屏幕的一部分要重画，但是元素的几何尺寸没有变。</p>
+</li>
+</ul>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[前端安全类CSRF,XSS]]></title>
+            <link>https://ajiu9.cn/posts/csrf-xss</link>
+            <guid>https://ajiu9.cn/posts/csrf-xss</guid>
+            <pubDate>Sat, 29 Sep 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>前端安全类</h4>
+<p><em>CSRF</em><br>
+<em>XSS</em></p>
+<h4>CSRF</h4>
+<p>CSRF，通常称为跨站请求伪造，英文名为Cross-site request forgery缩写。<br>
+<strong>攻击原理：</strong><br>
+攻击通过在授权用户访问的页面中包含链接或者脚本的方式工作。例如：一个网站用户Bob可能正在浏览聊天论坛，而同时另一个用户Alice也在此论坛中，并且后者刚刚发布了一个具有Bob银行链接的图片消息。设想一下，Alice编写了一个在Bob的银行站点上进行取款的form提交的链接，并将此链接作为图片src。如果Bob的银行在cookie中保存他的授权信息，并且此cookie没有过期，那么当Bob的浏览器尝试装载图片时将提交这个取款form和他的cookie，这样在没经Bob同意的情况下便授权了这次事务。<br>
+实现CSRF攻击不可缺少的两大因素：</p>
+<ul>
+<li>这个网站的接口有漏洞。</li>
+<li>用户在这个注册网站登录过。</li>
+</ul>
+<p><strong>防御措施</strong></p>
+<ul>
+<li>token验证</li>
+<li>Referer验证</li>
+<li>隐藏令牌</li>
+</ul>
+<h4>XSS</h4>
+<p>XSS又叫CSS (Cross Site Script) ，跨站脚本攻击。它指的是恶意攻击者往Web页面里插入恶意html代码，当用户浏览该页之时，嵌入其中Web里面的html代码会被执行，从而达到恶意用户的特殊目的。</p>
+<p><strong>攻击原理：</strong><br>
+利用合法的渠道向页面注入脚本，运行攻击者自己想做的事情。<br>
+攻击方式：</p>
+<ul>
+<li>反射型：发出请求时，XSS代码出现在URL中，做为输入提交到服务器端，服务器端简析后响应，XSS代码随响应内容一起传回浏览器，最后浏览器解析并执行代码。这个过程像一次反射，故称反射型XSS。</li>
+<li>存储型：存储型和反射型的差别在于，提交的代码会存储在服务端（数据库、内存、系统文件等），下次请求页面时不用再提交XSS代码。</li>
+</ul>
+<p><strong>防御措施</strong></p>
+<ul>
+<li>编码：对用户输入的数据进行HTML Entity编码。</li>
+<li>过滤：移除用户上传的DOM属性，例如onerror事件等；移除用户上传的style节点、script节点、iframe节点等。</li>
+<li>校正：避免直接对HTML Entity解码；使用DOM Parse转换，校正不配对的DOM标签。</li>
+</ul>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[面向对象-类与继承]]></title>
+            <link>https://ajiu9.cn/posts/object-oriented-class-and-inheritance</link>
+            <guid>https://ajiu9.cn/posts/object-oriented-class-and-inheritance</guid>
+            <pubDate>Sat, 29 Sep 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>概念</h4>
+<ul>
+<li>对象：对象是人们要进行研究的任何事物，从最简单的整数到复杂的飞机等均可看作对象，它不仅能表示具体的事物，还能表示抽象的规则、计划或事件。</li>
+<li>对象的状态和行为：对象具有状态，一个对象用数据值来描述它的状态；对象还有操作，用于改变对象的状态，对象及其操作就是对象的行为；对象实现了数据和操作的结合，使数据和操作封装于对象的统一体中。</li>
+<li>类：具有相同特性（数据元素）和行为（功能）的对象的抽象就是类。因此，对象的抽象是类，类的具体化就是对象，也可以说类的实例是对象，类实际上就是一种数据类型。类具有属性，它是对象的状态的抽象，用数据结构来描述类的属性。类具有操作，它是对象的行为的抽象，用操作名和实现该操作的方法来描述。</li>
+<li>javascript是面向对象的编程语言，是通过原型实现继承的。</li>
+</ul>
+<h4>类与实例</h4>
+<p>类的声明:</p>
+<pre><code class="language-js">/*
+* 类的声明
+*/
+function Animal() {
+  this.name = 'name'
+}
+
+/*
+* ES6中class声明
+*/
+class Animal2 {
+  constructor() {
+    this.name = name
+  }
+
+  walk() {
+    console.log(this.name)
+  }
+}
+/*
+* 实例化
+*/
+const o1 = new Animal(); const o2 = new Animal2()
+</code></pre>
+<h4>类与继承</h4>
+<p>类的继承本质上是通过原型链实现继承。<br>
+<strong>借助构造函数实现继承</strong></p>
+<pre><code class="language-js">/*
+* 借助构造函数实现继承
+*/
+function Parent1() {
+  this.name = 'parent1'
+}
+Parent1.prototype.say = function () {
+  console.log('say')
+}
+function Child1() {
+  Parent1.call(this); this.type = 'child1'
+}
+console.log(new Child1())
+// {name: &quot;parent1&quot;, type: &quot;child1&quot;}
+// `Parent1`函数原型上的方法没有继承，报错console.log(new Child1().say())
+// Uncaught TypeError: (intermediate value).say is not a function
+</code></pre>
+<p>借助构造函数实现继承是通过<code>call()</code>或者<code>apply()</code>指定<code>this</code>来实现改变<code>Parent1</code>函数上下文来实现继承。但是不能继承<code>Parent1</code>函数原型上的方法。</p>
+<p><strong>借助原型链实现继承</strong></p>
+<pre><code class="language-js">/*
+ * 借助原型链实现继承
+ */
+function Parent2() {
+  this.name = 'parent2'; this.list = [1, 2, 3]
+}
+Parent2.prototype.say = function () {
+  console.log('say2')
+}; function Child2() {
+  this.type = 'child2'
+}
+Child2.prototype = new Parent2()
+const s1 = new Child2()
+const s2 = new Child2()
+console.log(s1.list, s2.list)
+// [1,2,3],[1,2,3]s2.list.push(4);console.log(s1.list,s2.list);
+// [1, 2, 3, 4], [1, 2, 3, 4]console.log(s1.say()); // say2
+</code></pre>
+<p>这种方式是通过<code>prototype</code>来实现继承的，函数的原型指向<code>new Parent2()</code>。所以这种方法的缺点是继承的属性都是原型链上的，只要一个实例上继承的属性改变，就是改变原型链上的属性，导致所有实例属性都变了。</p>
+<p><strong>组合方式</strong></p>
+<pre><code class="language-js">/*
+* 组合方式
+*/
+function Parent3() {
+  this.name = 'parent3'; this.list = [1, 2, 3]
+}
+Parent3.prototype.say = function () {
+  console.log('say3')
+}
+function Child3() {
+  Parent3.call(this); this.type = 'child3'
+}
+Child3.prototype = new Parent3()
+const s3 = new Child3()
+const s4 = new Child3()
+console.log(s3.list, s4.list)
+// [1,2,3],[1,2,3]s4.list.push(4);console.log(s3.list,s4.list);
+// [1, 2, 3], [1, 2, 3, 4]console.log(s3.say());
+// say3
+</code></pre>
+<p>通过上面两种组合方式实现继承，结合了他们的优点，但这里<code>Parent3.call(this)</code>,<code>Child3.prototype = new Parent3()</code>构造函数执行了俩次。</p>
+<p><strong>组合继承优化方式1</strong></p>
+<pre><code class="language-js">/*
+* 组合继承优化方式1
+*/
+function Parent4() {
+  this.name = 'parent4'; this.list = [1, 2, 3]
+}
+Parent4.prototype.say = function () {
+  console.log('say4')
+}
+function Child4() {
+  Parent4.call(this); this.type = 'child4'
+}
+Child4.prototype = Parent4.prototype
+const s5 = new Child4()
+const s6 = new Child4()
+console.log(s5.list, s6.list)
+// [1,2,3],[1,2,3]s5.list.push(4);console.log(s5.list,s6.list);
+// [1, 2, 3], [1, 2, 3, 4]console.log(s5.say()); //say4
+</code></pre>
+<p>这里通过<code>Child4.prototype = Parent4.prototype</code>把函数的原型指向构造函数的原型，通过简单的引用来实现继承。</p>
+<p><strong>组合继承优化方式2</strong></p>
+<pre><code class="language-js">/*
+ * 组合继承优化方式2
+ */
+function Parent5() {
+  this.name = 'parent5'; this.list = [1, 2, 3]
+}
+Parent5.prototype.say = function () {
+  console.log('say5')
+}
+function Child5() {
+  Parent5.call(this); this.type = 'child5'
+}
+Child5.prototype = Object.create(Parent5.prototype)
+Child5.prototype.constructor = Child5
+const s7 = new Child5()
+const s8 = new Child5()
+console.log(s7.list, s8.list)
+// [1,2,3],[1,2,3]s7.list.push(4);console.log(s7.list,s8.list);
+// [1, 2, 3], [1, 2, 3, 4]console.log(s7.say());
+// say5console.log(s7.constructor); // Child5
+</code></pre>
+<p>这是组合继承的完美写法，通过<code>call()</code>或者<code>apply()</code>方法执行构造函数，通过改变this上下文实现属性继承；然后通过对子类函数的原型采用Object.create(Parent.prototype)，实现子类函数继承构造函数的原型上的方法；最后重新指定子类函数原型的<code>constructor</code>，从而完美实现类的继承。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[构造函数、原型、实例、原型链的关系]]></title>
+            <link>https://ajiu9.cn/posts/constructor-instance-prototype-chain</link>
+            <guid>https://ajiu9.cn/posts/constructor-instance-prototype-chain</guid>
+            <pubDate>Fri, 28 Sep 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>创建对象的几种方法</h4>
+<pre><code class="language-js">// 1.使用new Object()
+var o1 = new Object({name: 'o1'});
+// 2.对象字面量 (这种方法其实就是第一种的简写)
+var o2 = {name: 'o2'};
+// 3.构造函数
+var A = function(name) {
+this.name = name;
+}
+var o3 = new A('o3');
+// 4.Object.create()
+var B = {name: 'o4'};
+var o4 = Object.create(B);
+</code></pre>
+<h4>构造函数、原型、实例、原型链</h4>
+<p>JavaScript是一门面向对象基于原型继承的语言,那么原型到底是怎么实现继承的？</p>
+<p><img src="https://static.ajiu9.cn/images/20240311231356CGtgQw.png" alt="图片"></p>
+<p>prototype原型是一个对象，只有函数才有的属性，这是在创建函数是js引擎自动添加的属性，其他对象可以通过它实现属性继承。<br>
+<code>__proto__</code>是每个对象都有的属性，但不是一个规范属性，它指向的是构造函数的原型对象。(<code>__proto__</code>通过上面第四种方式<code>Object.create(O))</code>指向的是对象O)</p>
+<pre><code class="language-js">// 1.创建构造函数Animal
+var Animal = function(name) {    
+  this.name = name
+}
+// 2.实例化一个对象dog
+var dog = new Animal('dog');
+// Animal 构造函数的原型的constructor属性指向构造函数本身
+Animal.prototype.constructor === Animal // true
+// dog实例的__proto__指向构造函数的原型
+dog.__proto__ === Animal.prototype // true
+</code></pre>
+<p>原型链指由于<code>__proto__</code>是对象都有的属性，所以会形成一条由<code>__proto__</code>连起来的链条，递归访问<code>__proto__</code>最终到终点，最后指向<code>null</code>.<br>
+当js查找对象的属性时，先查找对象本身有没有这个属性，如果不存在，就会在原型链上查找，直到找到或者到达终点的<code>null</code>。</p>
+<h4>instanceof运算符</h4>
+<p><code>instanceof</code>运算符用于测试构造函数的prototype属性是否出现在对象的原型链中的任何位置</p>
+<p><img src="https://static.ajiu9.cn/images/20240311231424c991rT.png" alt="图片"></p>
+<p>用<code>instanceof</code>来判断实例对象是否为构造函数直接生成的对象并不严格，因为出现在对象原型链中任何位置都会返回true，这时可以使用对象的<code>__proto__.constructor</code>是否严格等于构造函数来判断。</p>
+<pre><code class="language-js">// 测试构造函数的prototype属性是否出现在对象的原型链中
+dog instanceof Animal; // true
+dog instanceof Object; // true
+// 判断实例对象是否为构造函数直接生成
+dog.__proto__.constructor === Animal; // true
+</code></pre>
+<h4>new 运算符</h4>
+<p>执行new后</p>
+<ul>
+<li>一个新对象被创建，它继承自构造函数foo.prototype</li>
+<li>构造函数foo被执行。执行的时候，相应的参数被传入，同时上下文<code>this</code>会被指定为这个新实例。 <code>new foo</code> 等于 <code>new foo()</code>,只能用在不传递任何参数的情况下。</li>
+<li>如果构造函数返回了一个对象，那么这个对象会整个取代new出来的结果。如果构造函数没有返回对象，那么new出来的结果为第一步创建的对象。</li>
+</ul>
+<pre><code class="language-js">// new 的执行如下
+var new1 = function(func) {    
+// 第一步:一个新对象被创建，它继承自构造函数func.prototype  
+  var o = Object.create(func.prototype);    
+ // 第二步：构造函数func被执行。执行的时候，相应的参数被传入，同时上下文`this`会被指定为这个新实例。    
+ var k = func.call(o);    
+ // 第三步   
+  if (typeof k === 'object') {
+     return k
+   } else {
+     return o
+   }
+}
+// 验证new内部原理是否和new1函数的执行过程一样
+//构造函数
+var A = function(name) {   
+   this.name = name;
+}
+// new运算符
+var o3 = new A('o3');
+// new1()
+var o6 = new1(A);
+// 接下来验证通过new1生成的o6对象是否和new生成的o3一样
+o6 instanceof A; // true
+o6 instanceof Object; // true
+o6.__proto__.constructor === A; // true
+A.prototype.walk= function(){
+  console.log('walk')
+}
+o6.walk() // walk
+o3.walk() // walk
+</code></pre>
+<p>通过上面的代码可以看出，new的执行原理了吧。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[前端通信类以及跨域的几种方法]]></title>
+            <link>https://ajiu9.cn/posts/cross-domain-methods</link>
+            <guid>https://ajiu9.cn/posts/cross-domain-methods</guid>
+            <pubDate>Thu, 27 Sep 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>什么是同源策略及限制</h4>
+<p>同源策略，它是由Netscape提出的一个著名的安全策略，现在所有支持JavaScript 的浏览器都会使用这个策略。限制从一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的关键的安全机制。<br>
+所谓同源是指，域名，协议，端口（http协议的默认端口是80）相同。<br>
+例如一个浏览器的两个tab页中分别打开来百度和谷歌的页面，当浏览器的百度tab页执行一个脚本的时候会检查这个脚本是属于哪个页面的，即检查是否同源，只有和百度同源的脚本才会被执行。如果非同源，那么在请求数据时，浏览器会在控制台中报一个异常，提示拒绝访问。</p>
+<p>限制：</p>
+<ul>
+<li>
+<p>Cookie、LocalStorage和IndexDB无法获取。</p>
+</li>
+<li>
+<p>无法获取和操作DOM。</p>
+</li>
+<li>
+<p>不能发送Ajax请求。</p>
+</li>
+</ul>
+<h4>前后端如何通信</h4>
+<ul>
+<li>
+<p>Ajax：同源下的通信方式。</p>
+</li>
+<li>
+<p>WebSocket：不受同源策略的限制，支持跨域。</p>
+</li>
+<li>
+<p>CORS： CORS是跨源资源分享（Cross-Origin Resource Sharing）的缩写。它是W3C标准，是跨源AJAX请求的根本解决方法。相比JSONP只能发GET请求，CORS允许任何类型的请求。</p>
+</li>
+</ul>
+<h4>如何创建Ajax</h4>
+<p>需要知道以下几点：</p>
+<ul>
+<li>
+<p>XMLHttpRequest的工作原理</p>
+</li>
+<li>
+<p>兼容性处理（XMLHttpRequest只在高版本的浏览器支持）</p>
+</li>
+<li>
+<p>事件的触发条件</p>
+</li>
+<li>
+<p>事件的触发顺序</p>
+</li>
+</ul>
+<pre><code class="language-js">util.ajax = function (options) {
+  const opt = Object.assin({
+    url: '',
+    ype: 'get',
+    data: {},
+    success() {},
+    error() {},
+  }, options)
+
+  if (opt.url) {
+    // 兼容性处理
+    const xhr = XMLHttpRequest
+      ? new XMLHttpRequest()
+      : new ActiveXObject('Microsoft.XMLHTTP')
+    const data = opt.data
+    let url = opt.url
+    const type = opt.type.toUpperCase()
+    const dataArr = []
+    for (const k in data)
+      dataArr.push(`${k}=${data[k]}`)
+
+    if (type === 'GET') {
+      url = `${url}?${dataArr.join('&amp;')}`
+      xhr.open(type, url.replace(/\?$/g, ''), true)
+      xhr.send()
+    }
+    if (type === 'POST') {
+      xhr.open(type, url, true)
+      xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+      xhr.send(dataArr.join('&amp;'))
+    }
+    xhr.onload = function () {
+      if (xhr.status === 200 || xhr === 304) {
+        var res
+        if (opt.success &amp;&amp; opt.success instanceof Function) {
+          res = xhr.responseText
+          if (typeof res === 'string') {
+            res = JSON.parse(res)
+            opt.success.call(xhr, res)
+          }
+        }
+      }
+      else {
+        if (opt.error &amp;&amp; opt.error instanceof Function)
+          opt.error.call(xhr, res)
+      }
+    }
+  }
+}
+</code></pre>
+<h4>跨域通信的几种方式</h4>
+<ul>
+<li>jsonp</li>
+<li>Hash</li>
+<li>webSocket</li>
+<li>postMessage</li>
+<li>CORS</li>
+</ul>
+<p><strong>1.jsonp</strong><br>
+jsonp原理： 通过<code>&lt;script&gt;</code>标签的异步加载来实现。例如在<code>&lt;head&gt;</code>标签中通过<code>&lt;script&gt;</code>中的url加载的js。</p>
+<pre><code class="language-js">/**
+* [function 拼接url]
+* @param  {[Object]]} data [description]
+* @return {[value=key&amp;value1=key1]} [description]
+*/var util = {}
+util.param = function (data) {
+  var url = ''
+  for (var k in data) {
+    let value = data[k] !== undefined ? data[k] : ''
+    url += `&amp;${k}=${encodeURIComponent(value)}`
+  }
+  return url ? url.substring(1) : ''
+}
+/**
+  * [function 判断是否为函数]
+  * @param  {[type]} source [description]
+  * @return {[type]}        [description]
+  */
+util.isFunction = function (source) {
+  return '[object Function]' === Object.prototype.toString.call(source);
+};
+/**
+  * [function 获取一个随机的5位字符串]
+  * @param  {[type]} prefix [description]
+  * @return {[type]}        [description]
+  */
+ util.getName = function (prefix) {
+    return prefix + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+  };
+/**
+  * [function 在页面中注入js脚本]
+  * @param  {[type]} url     [description]
+  * @param  {[type]} charset [description]
+  * @return {[type]}         [description]
+  */
+ util.createScript = function (url, charset) {
+  var script = document.createElement('script');
+  script.setAttribute('type', 'text/javascript');
+  charset &amp;&amp; script.setAttribute('charset', charset);
+  script.setAttribute('src', url);
+  script.async = true;
+  return script;
+};
+// jsop实现
+util.jsonp = function(url, data, onsuccess, onerror, charset) {
+  // 第一步，全局注册一个callback回调函数
+  var callbackName = util.getName(_callback);
+  window[callbackName] = function() {
+    if (onsuccess &amp;&amp; onsuccess.util.isFunction) {
+       onsuccess(arguments[0]);
+    }
+  }
+  // 第二步 动态创建Script标签
+  url += (url.indexOf('?') &lt; 0 ? '?' : '&amp;') + util.param(data);
+  var script = util.createScript(url + '&amp;callback=' + callbackName, charset);
+  // 第三步 发送script请求
+  document.getElementsByTagName('head')[0].appendChild(script);
+  // 第四步 监听函数
+  script.onload = script.onreadystatechange = function () {
+    if (!script.readyState || /loaded|complete/.test(script.readyState)) {
+      script.onload = script.onreadystatechange = null;// 移除该script的 DOM 对象
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    // 删除函数或变量
+    window[callbackName] = null;
+  }
+};
+script.onerror = function () {
+  if (onerror &amp;&amp; util.isFunction(onerror)) {
+    onerror();
+  }
+};
+}
+</code></pre>
+<p>实例：</p>
+<pre><code class="language-js">util.jsonp('https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg', {
+  g_tk: 5381,
+  inCharset: 'utf-8',
+  outCharset: 'utf-8',
+  notice: 0,
+  format: 'jsonp',
+  platform: ' h5',
+  uin: 0,
+  needNewCode: 1
+}, function () {
+  console.log(arguments)
+})
+</code></pre>
+<p><strong>2.Hash（片段识别符）</strong><br>
+url的<code>#</code>后面的内容就叫Hash。Hash的改变，页面不会刷新。这就是用 Hash 做跨域通信的基本原理(url的?后面的内容叫Search。Search的改变，会导致页面刷新)。<br>
+实例：<br>
+页面A通过iframe或frame嵌入了跨域页面B。<br>
+窗口可以把信息，写入子窗口的片段标识符。</p>
+<pre><code class="language-js">var src = originURL + '#' + data;
+document.getElementById('myIFrame').src = src;
+</code></pre>
+<p>子窗口通过监听hashchange事件得到通知。</p>
+<pre><code class="language-js">window.onhashchange = checkMessage;
+function checkMessage() {var message = window.location.hash;
+// ...
+}
+</code></pre>
+<p>同样的，子窗口也可以改变父窗口的片段标识符。</p>
+<pre><code class="language-js">parent.location.href= target + &quot;#&quot; + hash;
+</code></pre>
+<p><strong>3.postMessage</strong><br>
+HTML5引入了一个全新的API：跨文档通信 API（Cross-document messaging）。这个API为window对象新增了一个window.postMessage方法，允许跨窗口通信，不论这两个窗口是否同源。</p>
+<pre><code class="language-js">// postMessage
+// 窗口A(http:A.com)向跨域的窗口B(http:B.com)发送信息B
+window.postMessage('data', 'http://B.com');
+// 在窗口B中监听A
+window.addEventListener('message', function (event) {console.log(event.origin)});
+// 发送消息的窗口console.log(event.source); 
+// 消息发向的网址console.log(event.data); 
+// 消息内容}, false);
+</code></pre>
+<p><strong>4.webSocket</strong><br>
+WebSocket是一种通信协议，使用ws://（非加密）和wss://（加密）作为协议前缀。该协议不实行同源政策，只要服务器支持，就可以通过它进行跨源通信。</p>
+<pre><code class="language-js">var ws = new webSocket(&quot;wss://echo.websocket.org&quot;);
+ws.onopen = function(evt) {console.log(&quot;Connection open ...&quot;);
+ws.send(&quot;Hello WebSockets!&quot;);
+};
+
+ws.onmessage = function(evt) {console.log( &quot;Received Message: &quot; + evt.data);
+ws.close();
+};
+
+ws.onclose = function(evt) {console.log(&quot;Connection closed.&quot;);
+};
+</code></pre>
+<blockquote>
+<p>Websocket【参考资料】<a href="http://www.ruanyifeng.com/blog/2017/05/websocket.html">http://www.ruanyifeng.com/blog/2017/05/websocket.html</a></p>
+</blockquote>
+<p><strong>4.CORS</strong><br>
+CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resource sharing）。它允许浏览器向跨源服务器，发出XMLHttpRequest请求，从而克服了AJAX只能同源使用的限制。<br>
+跨域时，浏览器会拦截Ajax请求，并在http头中加Origin。</p>
+<pre><code class="language-js">fetch('/some/url/', {
+  method: 'get',
+}).then(function (response) {
+  // 请求成功后执行操作
+}).catch(function (err) {
+  // 请求失败后执行操作
+});
+</code></pre>
+<p><a href="http://www.ruanyifeng.com/blog/2016/04/cors.html">CORS【参考资料】</a></p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[DOM事件]]></title>
+            <link>https://ajiu9.cn/posts/dom-event</link>
+            <guid>https://ajiu9.cn/posts/dom-event</guid>
+            <pubDate>Wed, 26 Sep 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>事件级别</h4>
+<ul>
+<li>DOM0<br>
+<code>element.onclick = function(){}</code></li>
+<li>DOM2<br>
+<code>element.addEventListener('click', function(){}, false)</code></li>
+<li>DOM3<br>
+<code>element.addEventListener('keyup', function(){}, false</code><br>
+在DOM2事件后新增了UI事件、鼠标事件、键盘事件等事件类型</li>
+</ul>
+<h4>事件模型</h4>
+<ul>
+<li>事件捕获</li>
+<li>事件冒泡</li>
+</ul>
+<h4>DOM事件流</h4>
+<p>DOM(文档对象模型)结构是一个树型结构，当一个HTML元素产生一个事件时，该事件会在元素节点与根结点之间的路径传播，路径所经过的结点都会收到该事件，这个传播过程可称为DOM事件流。</p>
+<h4>DOM事件流的具体流程</h4>
+<p>在DOM兼容浏览器中，事件流中分三个级段：</p>
+<ul>
+<li>捕获阶段（Capture Phase）：事件从window自上而下向目标节点传播的阶段；</li>
+<li>目标阶段（Target Phase）：正的目标节点正在处理事件的阶段；</li>
+<li>冒泡阶段（Bubbling Phase）：事件从目标节点自上而下向window传播的阶段。<br>
+<img src="https://static.ajiu9.cn/images/20240310220404oy7dPw.png" alt="图片"></li>
+</ul>
+<h4>Event对象的常见应用</h4>
+<ul>
+<li>event.preventDefault() 阻止默认事件</li>
+<li>event.stopPropagation() 阻止捕获和冒泡阶段中当前事件的进一步传播</li>
+<li>event.stopImmediatePropagation() 阻止事件冒泡并且阻止相同事件的其他侦听器被调用</li>
+<li>event.currentTarget 当事件遍历DOM时，标识事件的当前目标。它总是引用事件处理程序附加到的元素(当前绑定的事件元素)</li>
+<li>event.target 标识事件发生的元素（当前被点击的元素）</li>
+</ul>
+<h4>自定义事件</h4>
+<blockquote>
+<p>语法<code>event = new Event(typeArg, eventInit);</code><br>
+typeArg 是DOMString 类型，表示所创建事件的名称。<br>
+eventInit可选,是 EventInit 类型的字典，接受以下字段:</p>
+<ul>
+<li>“bubbles”，可选，Boolean类型，默认值为 false，表示该事件是否冒泡。</li>
+<li>“cancelable”，可选，Boolean类型，默认值为 false， 表示该事件能否被取消。</li>
+<li>“composed”，可选，Boolean类型，默认值为 false，指示事件是否会在影子DOM根节点之外触发侦听器。</li>
+</ul>
+</blockquote>
+<pre><code>// 创建一个支持冒泡且不能被取消的attach事件var ev = new Event(&quot;attach&quot;, {&quot;bubbles&quot;:true, &quot;cancelable&quot;:false});document.dispatchEvent(ev);// 事件可以在任何元素触发，不仅仅是documentmyDiv.dispatchEvent(ev);
+</code></pre>
+<p><code>customEvent</code>事件是由程序创建的，可以有任意自定义功能的事件。</p>
+<pre><code>// 添加一个适当的事件监听器obj.addEventListener(&quot;cat&quot;, function(e) { process(e.detail) })// 创建并分发事件var event = new CustomEvent(&quot;cat&quot;, {&quot;bubbles&quot;: true, &quot;cancelable&quot;: false, &quot;detail&quot;:{&quot;hazcheeseburger&quot;:true}})
+obj.dispatchEvent(event)
+</code></pre>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[CSS盒模型和边距重叠解决方案（BFC）]]></title>
+            <link>https://ajiu9.cn/posts/css-box-model-and-margin-overlap-solution</link>
+            <guid>https://ajiu9.cn/posts/css-box-model-and-margin-overlap-solution</guid>
+            <pubDate>Tue, 25 Sep 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h3>CSS盒模型的基本概念</h3>
+<p>盒模型由内向外由content,padding, border, margin组成。<br>
+盒模型有两种：标准模型，IE模型。</p>
+<h3>标准模型和IE模型的区别</h3>
+<p>这俩种盒模型的区别是计算宽度和高度的不同。<br>
+标准模型的宽高只计算内容（content）,IE模型宽高计算为内容（content）+填充（padding）+边框（border）的总宽高。</p>
+<p><img src="https://static.ajiu9.cn/images/20240310214341Gxd31S.png" alt="图片"></p>
+<p><img src="https://static.ajiu9.cn/images/20240310214237UjGOJB.png" alt="图片"></p>
+<h3>如何设置这俩种盒模型</h3>
+<pre><code>/*标准模型*/
+box-sizing: content-box;
+/*IE模型*/
+box-sizing: border-box;
+</code></pre>
+<h3>JS如何获取盒模型的宽和高</h3>
+<pre><code>var node = document.getElementById('node')
+</code></pre>
+<ul>
+<li>
+<p>node.style.width/height<br>
+这种方式只能取到dom元素内联样式的宽和高，通过外联样式link引入和在style标签中设置的样式这两者都是获取不到node的宽和高的</p>
+</li>
+<li>
+<p>node.currentStyle.width/height<br>
+这种方式是获取渲染后的结果，但只在旧版本的IE浏览器中支持，该特性是非标准的，尽量不要在生产环境中使用它。</p>
+</li>
+<li>
+<p>window.getComputerStyle(node).width/height<br>
+Window.getComputedStyle()方法返回一个对象，该对象在应用活动样式表并解析这些值可能包含的任何基本计算后报告元素的所有CSS属性的值。和上一种方式是相似的，但通用性更好。</p>
+</li>
+<li>
+<p>node.getBoundingClientRect().width/height<br>
+Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。包含边框(border)、内边距(padding)以及CSS设置的宽度(width)值</p>
+</li>
+<li>
+<p>node.offsetWidth/offsetHeight<br>
+这种方式是测量包含元素的边框(border)、内边距(padding)、滚动条(scrollbar)（如果存在的话）、以及CSS设置的宽度(width)和高度（height）的值。</p>
+</li>
+</ul>
+<h3>边距重叠</h3>
+<ul>
+<li>
+<p>父子元素边距重叠（子元素设置margin-top:20px; 父元素也一起有了上边距）</p>
+</li>
+<li>
+<p>兄弟元素边距重叠（兄弟元素的下边距margin-bottom和他兄弟元素上边margin-top距重叠，重叠规则是取它们之间最大值）</p>
+</li>
+<li>
+<p>空元素的边距重叠（空元素的上边距margin-top和下边距margin-bottom重叠，重叠规则是取它们之间最大值）</p>
+</li>
+</ul>
+<h3>边距重叠解决方案（BFC）</h3>
+<p>BFC(Block formatting context)直译为”块级格式化上下文”。它是一个独立的渲染区域，只有Block-level box参与， 它规定了内部的Block-level Box如何布局，并且与这个区域外部毫不相干。</p>
+<h4>W3C对BFC的定义如下：</h4>
+<p>浮动元素和绝对定位元素，非块级盒子的块级容器（例如 inline-blocks, table-cells, 和 table-captions），以及overflow值不为“visiable”的块级盒子，都会为他们的内容创建新的BFC（块级格式上下文）。</p>
+<h4>BFC布局规则：</h4>
+<ul>
+<li>
+<p>内部的Box会在垂直方向属于同一个BFC的两个相邻Box的margin会发生重叠。</p>
+</li>
+<li>
+<p>BFC的区域不会与float box重叠。</p>
+</li>
+<li>
+<p>BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之也如此。</p>
+</li>
+<li>
+<p>计算BFC的高度时，浮动元素也参与计算。</p>
+</li>
+</ul>
+<h3>如何创建BFC</h3>
+<p>根据BFC的定义，创建方式有几种</p>
+<ul>
+<li>
+<p>float属性不为none</p>
+</li>
+<li>
+<p>position为absolute或fixed</p>
+</li>
+<li>
+<p>display为inline-block, table-cell, table-caption, flex, inline-flex</p>
+</li>
+<li>
+<p>overflow不为visible</p>
+</li>
+</ul>
+<h3>应用场景</h3>
+<ul>
+<li>
+<p>自适应浮动布局中浮动重叠（给该自适应元素创建BFC）</p>
+</li>
+<li>
+<p>解决父子元素边距重叠（给父元素创建BFC）</p>
+</li>
+<li>
+<p>清楚浮动（给浮动元素的父元素创建BFC）</p>
+</li>
+</ul>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[HTTP协议类]]></title>
+            <link>https://ajiu9.cn/posts/http-protocol-class</link>
+            <guid>https://ajiu9.cn/posts/http-protocol-class</guid>
+            <pubDate>Tue, 25 Sep 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h4>http简介</h4>
+<p>超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议，是一个客户端和服务器端请求和应答的标准（TCP）。<br>
+通常，由HTTP客户端发起一个请求，建立一个到服务器指定端口（默认是80端口）的TCP连接。HTTP服务器则在那个端口监听客户端发送过来的请求。一旦收到请求，服务器（向客户端）发回一个状态行，比如”HTTP/1.1 200 OK”，和（响应的）消息，消息的消息体可能是请求的文件、错误消息、或者其它一些信息。</p>
+<h4>http协议的主要特点</h4>
+<ul>
+<li>
+<p>简单快速 ：HTTP使用统一资源标识符（Uniform Resource Identifiers, URI）来传输数据和建立连接，URL是一种特殊类型的URI。访问某个资源只要输入URI即可。</p>
+</li>
+<li>
+<p>灵活：每个http协议中。有一个头部分，有个数据类型，通过一个http协议的就可以完成不同数据类型的传输。</p>
+</li>
+<li>
+<p>无连接：连接一次就会断开，不会保持连接。</p>
+</li>
+<li>
+<p>无状态：客户端和服务端通信，客户端向服务端发送请求，http建立连接、传输结束后，连接断开，下次客户端再请求数据，服务端是无法区分上次连接和这次连接是否是同一身份，因为服务端没有记住你的状态，从http协议上是无法区分两次连接者的身份。</p>
+</li>
+</ul>
+<h4>http报文的组成部分</h4>
+<ul>
+<li>请求报文：请求行、请求头、空行、请求体</li>
+<li>响应报文：状态行、响应头、空行、响应体</li>
+</ul>
+<p><img src="https://static.ajiu9.cn/images/20240310214516948RBW.png" alt="图片"></p>
+<p>请求报文格式</p>
+<p><img src="https://static.ajiu9.cn/images/20240310214534AyGWUp.png" alt="图片"></p>
+<h5>请求报文示例</h5>
+<pre><code>GET /build/music/ HTTP/1.1
+Host: www.ajiu9.com
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+If-None-Match: W/&quot;5ba9f717-234&quot;
+If-Modified-Since: Tue, 25 Sep 2018 08:51:35 GMT
+</code></pre>
+<ul>
+<li>
+<p>第一部分：请求行，用来说明请求类型,要访问的资源以及所使用协议和版本。</p>
+</li>
+<li>
+<p>第二部分：求头部，紧接着请求行（即第一行）之后的部分，用来说明服务器要使用的附加信息。</p>
+</li>
+<li>
+<p>第三部分：空行，请求头部后面的空行是必须的。</p>
+</li>
+<li>
+<p>第四部分：请求数据也叫主体，可以添加任意的其他数据（这个例子的请求数据为空）。</p>
+</li>
+</ul>
+<h5>响应报文示例</h5>
+<pre><code>HTTP/1.1 304 Not Modified
+Date: Tue, 25 Sep 2018 08:53:14 GMT
+Via: 1.1 varnish
+Cache-Control: max-age=600
+ETag: W/&quot;5ba9f717-234&quot;
+Expires: Tue, 25 Sep 2018 09:03:04 GMT
+Age: 10
+Connection: keep-alive
+X-Served-By: cache-tyo19932-TYO
+X-Cache: HIT
+X-Cache-Hits: 1
+X-Timer: S1537865594.266742,VS0,VE0
+Vary: Accept-Encoding
+X-Fastly-Request-ID: d33e186dc5ff53c01d8128c32ff8a0f1092c9832
+</code></pre>
+<ul>
+<li>
+<p>第一部分：状态行，由HTTP协议版本号， 状态码， 状态消息 三部分组成。</p>
+</li>
+<li>
+<p>第二部分：消息报头，用来说明客户端要使用的一些附加信息</p>
+</li>
+<li>
+<p>第三部分：空行，消息报头后面的空行是必须的。</p>
+</li>
+<li>
+<p>第四部分：响应正文，服务器返回给客户端的文本信息。</p>
+</li>
+</ul>
+<h4>http请求方法</h4>
+<ul>
+<li>get ———— 获取资源</li>
+<li>post ———— 传输资源</li>
+<li>put ———— 更新资源</li>
+<li>delete ———— 删除资源</li>
+<li>head ———— 获得报文首部</li>
+</ul>
+<h4>get和post的区别</h4>
+<ul>
+<li>
+<p><code>get在浏览器回退是无害的，而post会再次提交请求</code></p>
+</li>
+<li>
+<p><code>get请求会被浏览器主动缓存，而post不会，除非手动设置</code></p>
+</li>
+<li>
+<p><code>get请求参数会被完整保留在浏览器的历史记录里，而post中的参数不会被保留</code></p>
+</li>
+<li>
+<p><code>get请求中传送的参数是有长度限制的（一般是2kb，不同浏览器不一样），post没有长度限制</code></p>
+</li>
+<li>
+<p><code>get参数通过URL传递，post放在Request body中</code></p>
+</li>
+<li>
+<p>get产生的URL地址可以被收藏，而get不可以</p>
+</li>
+<li>
+<p>get请求只能进行url编码，而post支持多种编码方式</p>
+</li>
+<li>
+<p>对参数的数据类型，get只接受ASCLL字符，而post没有限制</p>
+</li>
+<li>
+<p>get比post更不安全，因为参数直接暴露在URL上，所以不能用来传递敏感信息</p>
+</li>
+</ul>
+<h4>http状态码</h4>
+<ul>
+<li>
+<p>1xx：指示信息 ——表示请求已接收，继续处理</p>
+</li>
+<li>
+<p>2xx：成功——表示请求已被成功接收</p>
+</li>
+<li>
+<p>3xx：重定向——要完成请求必须进行更进一步的操作</p>
+</li>
+<li>
+<p>4xx：客户端错误——请求有语法错误或请求无法实现</p>
+</li>
+<li>
+<p>5xx：服务端错误——服务器未能实现合法的请求</p>
+</li>
+<li>
+<p>200 OK：客户端请求成功</p>
+</li>
+<li>
+<p>206 Partial Content: 客户发送了一个带Range头的GET请求，服务器完成了它</p>
+</li>
+<li>
+<p>301 Move Parmanently：所请求的页面已经转移到新的url</p>
+</li>
+<li>
+<p>302 Found：所请求的页面已经临时转移至新的url</p>
+</li>
+<li>
+<p>304 Not Modified：客户端有缓冲的文档并发出了一个条件性的请求，服务器告诉客户，原来缓冲的文档还可以继续使用</p>
+</li>
+<li>
+<p>400 Bad Request：客户端请求有语法错误，不能被服务端所理解</p>
+</li>
+<li>
+<p>401 Unauthorized：请求未经授权,这个状态代码必须和WWW-Authenticate报头域一起使用</p>
+</li>
+<li>
+<p>403 Forboidden：对被请求页面的访问被禁止</p>
+</li>
+<li>
+<p>404 NOt Found：请求资源不存在</p>
+</li>
+<li>
+<p>500 Internal Server Error：服务器发送不可预期的错误原来缓冲文档还可以继续使用</p>
+</li>
+<li>
+<p>503 Server Unavailable：请求未完成，服务器临时过载或当机，一段时间后可能恢复正常</p>
+</li>
+</ul>
+<h4>持久连接</h4>
+<p>HTTP协议采用“请求-应答”模式，当使用普通模式，即非Keep-Alive模式时，每个请求/应答客户和服务器都要新建一个连接，完成 之后立即断开连接（HTTP协议为无连接的协议）；<br>
+当使用Keep-Alive模式（又称持久连接、连接重用）时，Keep-Alive功能使客户端到服 务器端的连接持续有效，当出现对服务器的后继请求时，Keep-Alive功能避免了建立或者重新建立连接。</p>
+<p>http 1.0中默认是关闭的，需要在http头加入”Connection: Keep-Alive”，才能启用Keep-Alive；<br>
+http 1.1中默认启用Keep-Alive，如果加入”Connection: close “，才关闭。</p>
+<p>目前大部分浏览器都是用http1.1协议，也就是说默认都会发起Keep-Alive的连接请求了，所以是否能完成一个完整的Keep-Alive连接就看服务器设置情况。</p>
+<h4>管线化</h4>
+<ul>
+<li>
+<p>1.在使用持久连接的情况下，某个连接上消息的传递类似于，请求一次响应一次并且不断开<br>
+请求1-&gt; 响应1-&gt;请求2-&gt;响应2-&gt;请求3-&gt;响应3</p>
+</li>
+<li>
+<p>2.管线化通道是持久建立的，把所有请求打包一次传输，所有响应打包一次传输<br>
+请求1-&gt;请求2-&gt;请求3-&gt;响应1-&gt;响应2-&gt;响应3</p>
+</li>
+</ul>
+<h4>管线化特点</h4>
+<ul>
+<li>
+<p>管线化机制通过持久连接完成，仅HTTP/1.1支持此技术</p>
+</li>
+<li>
+<p>只有get和head请求可以进行管线化，而post则有所限制</p>
+</li>
+<li>
+<p>初次创建连接是不应启动管线机制，因为对方(服务器)不一定支持HTTP/1.1版本的协议</p>
+</li>
+<li>
+<p>管线化不会影响响应到来的顺序，如上面的例子所示，响应返还的顺序并未改变</p>
+</li>
+<li>
+<p>HTTP/1.1要求服务器端支持管线化，但并不要求服务器端也对响应进行管线化处理，只是要求对于管线化的请求不失败即可</p>
+</li>
+<li>
+<p>由于上面提到的服务器端问题，开启管线化很可能并不会带来大幅度的性能提升，而且很多服务器端和代理程序对管线化的支持并不好，因此现代浏览器如Chrome和Firefox默认并未开启管线化支持</p>
+</li>
+</ul>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[页面布局-三栏布局解决方案]]></title>
+            <link>https://ajiu9.cn/posts/page-layout-three-column</link>
+            <guid>https://ajiu9.cn/posts/page-layout-three-column</guid>
+            <pubDate>Fri, 21 Sep 2018 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<h3>问题</h3>
+<p>假设高度固定，请写出三栏布局，其中左栏、右栏宽度搁置200px,中间自适应。</p>
+<p><img src="https://static.ajiu9.cn/images/20240314230158hA5bJW.png" alt="图片"></p>
+<p>解决方案</p>
+<p>写在前面，共用样式</p>
+<pre><code class="language-html">&lt;style&gt;
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  .layout .content &gt; div {
+    min-height: 100px;
+    color: #fff;
+  }
+  .left {
+    width: 200px;
+    background: #facd89;
+  }
+  .center {
+    background: #f19149;
+  }
+  .right {
+    width: 200px;
+    background: #88abda;
+  }
+&lt;/style&gt;
+</code></pre>
+<h4>1.float布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout float&quot;&gt;
+  &lt;style&gt;
+    .layout.float .left {
+      float: left;
+    }
+    .layout.float .right {
+      float: right;
+    }
+  &lt;/style&gt;
+
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;center&quot;&gt;
+      &lt;h1&gt;这是浮动布局解决方案&lt;/h1&gt;
+    &lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>优点：布局简单，兼容性好。</li>
+<li>缺点：脱离了文档流，需要清除浮动。</li>
+</ul>
+<h4>2.绝对定位</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout absolute&quot;&gt;
+  &lt;style&gt;
+    .layout.absolute .content &gt; div {
+      position: absolute;
+    }
+    .layout.absolute .left {
+      left: 0;
+    }
+    .layout.absolute .center {
+      left: 200px;
+      right: 200px;
+    }
+    .layout.absolute .right {
+      right: 0;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是绝对定位布局解决方案&lt;/h1&gt;&lt;/div&gt;
+  &lt;/article&gt;
+  /section&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>优点：布局简单，兼容性好,不容易出问题。</li>
+<li>缺点：脱离了文档流，下面的所有子元素也会脱离文档流，导致很多时候的可使用性差。</li>
+</ul>
+<h4>3.flex布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout absolute&quot;&gt;
+  &lt;style&gt;
+    .layout.absolute .content {
+      display: flex;
+    }
+    .layout.absolute .center {
+      flex: 1;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是flex布局解决方案&lt;/h1&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>优点：css3新出的属性，比较完美的解决方式，移动端布局常用。</li>
+<li>缺点：不兼容ie8以下的浏览器</li>
+</ul>
+<h4>4.table表格布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout table&quot;&gt;
+  &lt;style&gt;
+    .layout.table .content {
+      width: 100%;
+      display: table;
+      min-height: 100px;
+    }
+    .layout.table .content &gt; div {
+      display: table-cell;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是table表格解决方案&lt;/h1&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>
+<p>优点：兼容性好。</p>
+</li>
+<li>
+<p>缺点：单元格的高度都是一样的，有时候这种效果并不是我们想要的，当然这在高度自适应的情况下是一种比较好的解决方案。</p>
+</li>
+</ul>
+<h4>5.grid栅格布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout gird&quot;&gt;
+  &lt;style&gt;
+    .layout.gird .content {
+      display: grid;
+      grid-template-rows: 100px;
+      grid-template-columns: 200px auto 200px;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是grid栅格布局解决方案&lt;/h1&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>
+<p>优点：将页面分割成数个主要区域，或者用来定义组件内部元素间大小、位置和图层之间的关系。</p>
+</li>
+<li>
+<p>缺点：兼容性差。</p>
+</li>
+</ul>
+<h4>6.双飞翼布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout fly&quot;&gt;
+  &lt;style&gt;
+    .layout.fly .main {
+      float: left;
+      width: 100%;
+    }
+    .layout.fly .main .center {
+      margin: 0 200px;
+      min-height: 100px;
+    }
+    .layout.fly .left {
+      float: left;
+      margin-left: -100%;
+    }
+    .layout.fly .right {
+      float: right;
+      margin-left: -200px;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;main&quot;&gt;
+      &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是双飞翼布局解决方案&lt;/h1&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>优点：main主体部分能优先加载。</li>
+<li>缺点：脱离文档流，布局和样式复杂一些。</li>
+</ul>
+<h4>7.圣杯布局</h4>
+<pre><code class="language-html">&lt;section class=&quot;layout grail&quot;&gt;
+  &lt;style&gt;
+    .layout.grail .content {
+      margin: 0 200px;
+    }
+    .layout.grail .center {
+      float: left;
+      width: 100%;
+    }
+    .layout.grail .left {
+      float: left;
+      margin-left: -100%;
+      position: relative;
+      left: -200px;
+    }
+    .layout.grail .right {
+      float: right;
+      margin-left: -200px;
+      position: relative;
+      right: -200px;
+    }
+  &lt;/style&gt;
+  &lt;article class=&quot;content&quot;&gt;
+    &lt;div class=&quot;center&quot;&gt;&lt;h1&gt;这是圣杯布局解决方案&lt;/h1&gt;&lt;/div&gt;
+    &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;
+  &lt;/article&gt;
+&lt;/section&gt;
+</code></pre>
+<ul>
+<li>优点：main主体部分能优先加载,布局简单。</li>
+<li>缺点：脱离文档流，样式复杂。</li>
+</ul>
+<h3>清除浮动</h3>
+<p>第六种双飞翼布局和第七种圣杯布局，是在浮动布局的基础上的演变。浮动布局需要清除浮动，它又有哪些清除浮动的方法呢？</p>
+<h3>其他类似布局</h3>
+<ul>
+<li>三栏布局同上，高度也自适应？</li>
+<li>中间和右侧固定，左侧自适应？</li>
+<li>左侧和中间固定， 右侧自适应？</li>
+<li>上下固定，中间自适应？</li>
+<li>两栏布局？</li>
+</ul>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+        <item>
+            <title><![CDATA[JavaScript基本类型和引用类型]]></title>
+            <link>https://ajiu9.cn/posts/js-type-about-type-and-Reference</link>
+            <guid>https://ajiu9.cn/posts/js-type-about-type-and-Reference</guid>
+            <pubDate>Fri, 01 Dec 2017 00:00:00 GMT</pubDate>
+            <content:encoded><![CDATA[<p>CMAScript的变量可能包含两种不同数据类型的值：基本类型值和引用类型值。基本类型的值是简单的数据段，引用类型的值是多个值构成的对象。</p>
+<p>把一个值赋值给变量时，解析器首先确定这个值是基本类型的值还是引用类型的值。基本数据类型有5种：Undefined、Null、Boolean、Number、String。这5种基本数据类型是按值访问的，因为可以操作保存在变量中的实际值。引用类型的值是按照引用访问的，因为javaScript不允许访问内存中的位置，不能直接操作对象的内存空间。（为对象添加属性操作的是实际对象）</p>
+<p><strong>动态属性</strong></p>
+<p>首先我们来定义一个引用类型的值：</p>
+<p><img src="https://static.ajiu9.cn/images/202403102118517qwJD2.png" alt="图片"></p>
+<p>以上代码创建了一个对象并将其保存在person变量中，然后为变量添加了一个名为name的属性，并将字符串“江月夜”赋给了这个属性。之后通过函数alert（）访问了这个新属性。如果对象不被销毁或者这个属性不被删除，则各属性将一直存在。</p>
+<p>但是，不能给基本类型的值添加属性（不会导致错误）</p>
+<p><img src="https://static.ajiu9.cn/images/20240310211733UOVZPP.png" alt="图片"></p>
+<p><strong>赋值变量值</strong></p>
+<p>除了保存方式不一样，变量复制也有区别。</p>
+<p>基本类型复制后的俩个变量彼此独立，此后，这俩个变量可以参与任何操作而不会互相影响。</p>
+<p>引用类型的变量复制其实是一个指针，而这个指针指向存储在堆中的一个对象。复制结束后，俩个对象实际上引用同一个对象。改变其中一个变量，就会影响另一个变量。</p>
+<p><img src="https://static.ajiu9.cn/images/20240310211540NpJlfl.png" alt="图片"></p>
+<p><strong>传递参数</strong></p>
+<p>函数的参数是按值传递的，基本类型的传递会把值复制给arguments对象中的一个元素（局部变量），引用类型的传递会把这个值在内存中的地址复制给一个局部变量，所以会反应在函数的外部。</p>
+]]></content:encoded>
+            <author>615944323@qq.com (Ajiu9)</author>
+        </item>
+    </channel>
+</rss>
