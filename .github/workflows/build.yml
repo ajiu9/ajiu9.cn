@@ -50,3 +50,5 @@ jobs:
 
       - name: Run release
         run: pnpm run release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
