@@ -1,8 +1,6 @@
-// @ts-check
-/* eslint perfectionist/sort-objects: "error" */
-import antfu from '@antfu/eslint-config'
+import ajiu9 from '@ajiu9/eslint-config'
 
-export default antfu(
+export default ajiu9(
   {
     formatters: true,
   },

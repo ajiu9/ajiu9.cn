@@ -6,6 +6,7 @@ settings:
 
 importers:
 
+<<<<<<< Updated upstream
   .:
     dependencies:
       '@vueuse/core':
@@ -204,6 +205,174 @@ importers:
       vite-svg-loader:
         specifier: ^5.1.0
         version: 5.1.0(vue@3.4.30)
+=======
+devDependencies:
+  '@ajiu9/eslint-config':
+    specifier: ^2.0.2
+    version: 2.0.2(eslint-plugin-format@0.1.2)(eslint@9.5.0)(typescript@5.5.2)
+  '@iconify/json':
+    specifier: ^2.2.218
+    version: 2.2.222
+  '@octokit/rest':
+    specifier: ^20.1.1
+    version: 20.1.1
+  '@shikijs/markdown-it':
+    specifier: ^1.6.4
+    version: 1.9.0
+  '@shikijs/twoslash':
+    specifier: ^1.6.4
+    version: 1.9.0(typescript@5.5.2)
+  '@types/d3-hierarchy':
+    specifier: ^3.1.7
+    version: 3.1.7
+  '@types/degit':
+    specifier: ^2.8.6
+    version: 2.8.6
+  '@types/diacritics':
+    specifier: ^1.3.3
+    version: 1.3.3
+  '@types/fs-extra':
+    specifier: ^11.0.4
+    version: 11.0.4
+  '@types/markdown-it':
+    specifier: ^14.1.1
+    version: 14.1.1
+  '@types/markdown-it-link-attributes':
+    specifier: ^3.0.5
+    version: 3.0.5
+  '@types/nprogress':
+    specifier: ^0.2.3
+    version: 0.2.3
+  '@types/prompts':
+    specifier: ^2.4.9
+    version: 2.4.9
+  '@unhead/vue':
+    specifier: ^1.9.13
+    version: 1.9.14(vue@3.4.30)
+  '@unocss/reset':
+    specifier: ^0.61.0
+    version: 0.61.0
+  '@vitejs/plugin-vue':
+    specifier: ^5.0.5
+    version: 5.0.5(vite@5.3.1)(vue@3.4.30)
+  cross-env:
+    specifier: ^7.0.3
+    version: 7.0.3
+  d3-hierarchy:
+    specifier: ^3.1.2
+    version: 3.1.2
+  degit:
+    specifier: ^2.8.4
+    version: 2.8.4
+  diacritics:
+    specifier: ^1.3.0
+    version: 1.3.0
+  eslint:
+    specifier: ^9.4.0
+    version: 9.5.0
+  eslint-plugin-format:
+    specifier: ^0.1.1
+    version: 0.1.2(eslint@9.5.0)
+  fast-glob:
+    specifier: ^3.3.2
+    version: 3.3.2
+  feed:
+    specifier: ^4.2.2
+    version: 4.2.2
+  fs-extra:
+    specifier: ^11.2.0
+    version: 11.2.0
+  gray-matter:
+    specifier: ^4.0.3
+    version: 4.0.3
+  lint-staged:
+    specifier: ^15.2.7
+    version: 15.2.7
+  markdown-it:
+    specifier: ^14.1.0
+    version: 14.1.0
+  markdown-it-anchor:
+    specifier: ^8.6.7
+    version: 8.6.7(@types/markdown-it@14.1.1)(markdown-it@14.1.0)
+  markdown-it-github-alerts:
+    specifier: ^0.3.0
+    version: 0.3.0(markdown-it@14.1.0)
+  markdown-it-link-attributes:
+    specifier: ^4.0.1
+    version: 4.0.1
+  markdown-it-magic-link:
+    specifier: ^0.1.4
+    version: 0.1.4
+  markdown-it-table-of-contents:
+    specifier: ^0.6.0
+    version: 0.6.0
+  p5i:
+    specifier: ^0.5.0
+    version: 0.5.0
+  picocolors:
+    specifier: ^1.0.1
+    version: 1.0.1
+  pinia:
+    specifier: ^2.1.7
+    version: 2.1.7(typescript@5.5.2)(vue@3.4.30)
+  pnpm:
+    specifier: ^9.3.0
+    version: 9.4.0
+  prompts:
+    specifier: ^2.4.2
+    version: 2.4.2
+  rimraf:
+    specifier: ^5.0.7
+    version: 5.0.7
+  sharp:
+    specifier: 0.32.6
+    version: 0.32.6
+  shiki:
+    specifier: ^1.6.4
+    version: 1.9.0
+  simple-git:
+    specifier: ^3.25.0
+    version: 3.25.0
+  simple-git-hooks:
+    specifier: ^2.11.1
+    version: 2.11.1
+  tsx:
+    specifier: ^4.19.0
+    version: 4.19.0
+  typescript:
+    specifier: ^5.4.5
+    version: 5.5.2
+  unocss:
+    specifier: ^0.61.0
+    version: 0.61.0(postcss@8.4.38)(vite@5.3.1)
+  unplugin-auto-import:
+    specifier: ^0.17.6
+    version: 0.17.6(@vueuse/core@10.11.0)
+  unplugin-icons:
+    specifier: ^0.19.0
+    version: 0.19.0
+  unplugin-vue-components:
+    specifier: ^0.27.0
+    version: 0.27.0(vue@3.4.30)
+  unplugin-vue-markdown:
+    specifier: ^0.26.2
+    version: 0.26.2(vite@5.3.1)
+  unplugin-vue-router:
+    specifier: ^0.9.1
+    version: 0.9.1(vue-router@4.2.5)(vue@3.4.30)
+  vite:
+    specifier: ^5.3.0
+    version: 5.3.1
+  vite-plugin-inspect:
+    specifier: ^0.8.4
+    version: 0.8.4(vite@5.3.1)
+  vite-ssg:
+    specifier: ^0.23.7
+    version: 0.23.7(vite@5.3.1)(vue-router@4.2.5)(vue@3.4.30)
+  vite-svg-loader:
+    specifier: ^5.1.0
+    version: 5.1.0(vue@3.4.30)
+>>>>>>> Stashed changes
 
 packages:
 
@@ -211,10 +380,45 @@ packages:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
 
+<<<<<<< Updated upstream
   '@ampproject/remapping@2.3.0':
+=======
+  /@ajiu9/eslint-config@2.0.2(eslint-plugin-format@0.1.2)(eslint@9.5.0)(typescript@5.5.2):
+    resolution: {integrity: sha512-vcb5MIbr567dFqB0VGlt5EP2T5+0FPdf6gKfNoVWGUzNjVxc/Av2FJKaPrF3JDoZejhnQq9m1siyB3ihTUKdOA==}
+    hasBin: true
+    peerDependencies:
+      '@prettier/plugin-xml': ^3.4.1
+      eslint-plugin-format: ^0.1.2
+    peerDependenciesMeta:
+      '@prettier/plugin-xml':
+        optional: true
+    dependencies:
+      '@clack/prompts': 0.7.0
+      '@eslint/markdown': 6.2.1
+      '@stylistic/eslint-plugin': 2.9.0(eslint@9.5.0)(typescript@5.5.2)
+      '@typescript-eslint/eslint-plugin': 8.11.0(@typescript-eslint/parser@8.11.0)(eslint@9.5.0)(typescript@5.5.2)
+      '@typescript-eslint/parser': 8.11.0(eslint@9.5.0)(typescript@5.5.2)
+      eslint-config-flat-gitignore: 0.3.0(eslint@9.5.0)
+      eslint-flat-config-utils: 0.4.0
+      eslint-plugin-eslint-comments: 3.2.0(eslint@9.5.0)
+      eslint-plugin-format: 0.1.2(eslint@9.5.0)
+      eslint-plugin-import-x: 4.3.1(eslint@9.5.0)(typescript@5.5.2)
+      eslint-plugin-n: 17.11.1(eslint@9.5.0)
+      eslint-plugin-unused-imports: 4.1.4(@typescript-eslint/eslint-plugin@8.11.0)(eslint@9.5.0)
+      globals: 15.11.0
+      local-pkg: 0.5.0
+    transitivePeerDependencies:
+      - eslint
+      - supports-color
+      - typescript
+    dev: true
+
+  /@ampproject/remapping@2.3.0:
+>>>>>>> Stashed changes
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
 
+<<<<<<< Updated upstream
   '@antfu/eslint-config@2.21.1':
     resolution: {integrity: sha512-CG7U7nihU73zufrxe5Rr4pxsHrW60GXl9yzRpRY+ImGQ2CVhd0eb3fqJYdNwDJBgKgqHGWX4p1ovYvno/jfWHA==}
     hasBin: true
@@ -3839,6 +4043,10 @@ snapshots:
       - vitest
 
   '@antfu/install-pkg@0.1.1':
+=======
+  /@antfu/install-pkg@0.1.1:
+    resolution: {integrity: sha512-LyB/8+bSfa0DFGC06zpCEfs89/XoWZwws5ygEa5D+Xsm3OfI+aXQ86VgVG7Acyef+rSZ5HE7J8rrxzrQeM3PjQ==}
+>>>>>>> Stashed changes
     dependencies:
       execa: 5.1.1
       find-up: 5.0.0
@@ -3851,12 +4059,18 @@ snapshots:
 
   '@antfu/utils@0.7.8': {}
 
+<<<<<<< Updated upstream
   '@babel/code-frame@7.23.5':
     dependencies:
       '@babel/highlight': 7.23.4
       chalk: 2.4.2
 
   '@babel/code-frame@7.24.7':
+=======
+  /@babel/code-frame@7.24.7:
+    resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==}
+    engines: {node: '>=6.9.0'}
+>>>>>>> Stashed changes
     dependencies:
       '@babel/highlight': 7.24.7
       picocolors: 1.0.1
@@ -4003,6 +4217,7 @@ snapshots:
       '@babel/template': 7.24.7
       '@babel/types': 7.24.7
 
+<<<<<<< Updated upstream
   '@babel/highlight@7.23.4':
     dependencies:
       '@babel/helper-validator-identifier': 7.24.7
@@ -4010,6 +4225,11 @@ snapshots:
       js-tokens: 4.0.0
 
   '@babel/highlight@7.24.7':
+=======
+  /@babel/highlight@7.24.7:
+    resolution: {integrity: sha512-EStJpq4OuY8xYfhGVXngigBJRWxftKX9ksiGDnmlY3o7B/V7KIAc9X4oiK87uPJSc/vs5L869bem5fhZa8caZw==}
+    engines: {node: '>=6.9.0'}
+>>>>>>> Stashed changes
     dependencies:
       '@babel/helper-validator-identifier': 7.24.7
       chalk: 2.4.2
@@ -4114,6 +4334,7 @@ snapshots:
 
   '@dprint/toml@0.6.2': {}
 
+<<<<<<< Updated upstream
   '@es-joy/jsdoccomment@0.43.1':
     dependencies:
       '@types/eslint': 8.56.5
@@ -4124,6 +4345,15 @@ snapshots:
       jsdoc-type-pratt-parser: 4.0.0
 
   '@esbuild/aix-ppc64@0.21.5':
+=======
+  /@esbuild/aix-ppc64@0.21.5:
+    resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
+    engines: {node: '>=12'}
+    cpu: [ppc64]
+    os: [aix]
+    requiresBuild: true
+    dev: true
+>>>>>>> Stashed changes
     optional: true
 
   '@esbuild/aix-ppc64@0.23.1':
@@ -4271,7 +4501,25 @@ snapshots:
 
   '@eslint-community/regexpp@4.10.0': {}
 
+<<<<<<< Updated upstream
   '@eslint/config-array@0.16.0':
+=======
+  /@eslint/compat@1.2.1(eslint@9.5.0):
+    resolution: {integrity: sha512-JbHG2TWuCeNzh87fXo+/46Z1LEo9DBA9T188d0fZgGxAD+cNyS6sx9fdiyxjGPBMyQVRlCutTByZ6a5+YMkF7g==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: ^9.10.0
+    peerDependenciesMeta:
+      eslint:
+        optional: true
+    dependencies:
+      eslint: 9.5.0
+    dev: true
+
+  /@eslint/config-array@0.16.0:
+    resolution: {integrity: sha512-/jmuSd74i4Czf1XXn7wGRWZCuyaUZ330NH1Bek0Pplatt4Sy1S5haN21SCLLdbeKslQ+S0wEJ+++v5YibSi+Lg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+>>>>>>> Stashed changes
     dependencies:
       '@eslint/object-schema': 2.1.4
       debug: 4.3.4
@@ -4295,9 +4543,38 @@ snapshots:
 
   '@eslint/js@9.5.0': {}
 
+<<<<<<< Updated upstream
   '@eslint/object-schema@2.1.4': {}
 
   '@floating-ui/core@1.6.0':
+=======
+  /@eslint/markdown@6.2.1:
+    resolution: {integrity: sha512-cKVd110hG4ICHmWhIwZJfKmmJBvbiDWyrHODJknAtudKgZtlROGoLX9UEOA0o746zC0hCY4UV4vR+aOGW9S6JQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    dependencies:
+      '@eslint/plugin-kit': 0.2.1
+      mdast-util-from-markdown: 2.0.1
+      mdast-util-gfm: 3.0.0
+      micromark-extension-gfm: 3.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@eslint/object-schema@2.1.4:
+    resolution: {integrity: sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    dev: true
+
+  /@eslint/plugin-kit@0.2.1:
+    resolution: {integrity: sha512-HFZ4Mp26nbWk9d/BpvP0YNL6W4UoZF0VFcTw/aPPA8RpOxeFQgK+ClABGgAUXs9Y/RGX/l1vOmrqz1MQt9MNuw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    dependencies:
+      levn: 0.4.1
+    dev: true
+
+  /@floating-ui/core@1.6.0:
+    resolution: {integrity: sha512-PcF++MykgmTj3CIyOQbKA/hDzOAiqI3mhuoN44WRCopIs1sgoDoU4oty4Jtqaj/y3oDU6fnVSm4QG0a3t5i0+g==}
+>>>>>>> Stashed changes
     dependencies:
       '@floating-ui/utils': 0.2.1
 
@@ -4547,6 +4824,7 @@ snapshots:
       - supports-color
       - typescript
 
+<<<<<<< Updated upstream
   '@stylistic/eslint-plugin-js@2.2.2(eslint@9.5.0)':
     dependencies:
       '@types/eslint': 8.56.10
@@ -4559,9 +4837,21 @@ snapshots:
     dependencies:
       '@stylistic/eslint-plugin-js': 2.2.2(eslint@9.5.0)
       '@types/eslint': 8.56.10
+=======
+  /@stylistic/eslint-plugin@2.9.0(eslint@9.5.0)(typescript@5.5.2):
+    resolution: {integrity: sha512-OrDyFAYjBT61122MIY1a3SfEgy3YCMgt2vL4eoPmvTwDBwyQhAXurxNQznlRD/jESNfYWfID8Ej+31LljvF7Xg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: '>=8.40.0'
+    dependencies:
+      '@typescript-eslint/utils': 8.11.0(eslint@9.5.0)(typescript@5.5.2)
+>>>>>>> Stashed changes
       eslint: 9.5.0
+      eslint-visitor-keys: 4.1.0
+      espree: 10.2.0
       estraverse: 5.3.0
       picomatch: 4.0.2
+<<<<<<< Updated upstream
 
   '@stylistic/eslint-plugin-plus@2.2.2(eslint@9.5.0)(typescript@5.5.2)':
     dependencies:
@@ -4590,6 +4880,8 @@ snapshots:
       '@stylistic/eslint-plugin-ts': 2.2.2(eslint@9.5.0)(typescript@5.5.2)
       '@types/eslint': 8.56.10
       eslint: 9.5.0
+=======
+>>>>>>> Stashed changes
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -4598,10 +4890,23 @@ snapshots:
 
   '@types/d3-hierarchy@3.1.7': {}
 
+<<<<<<< Updated upstream
   '@types/degit@2.8.6': {}
+=======
+  /@types/debug@4.1.12:
+    resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
+    dependencies:
+      '@types/ms': 0.7.34
+    dev: true
+
+  /@types/degit@2.8.6:
+    resolution: {integrity: sha512-y0M7sqzsnHB6cvAeTCBPrCQNQiZe8U4qdzf8uBVmOWYap5MMTN/gB2iEqrIqFiYcsyvP74GnGD5tgsHttielFw==}
+    dev: true
+>>>>>>> Stashed changes
 
   '@types/diacritics@1.3.3': {}
 
+<<<<<<< Updated upstream
   '@types/eslint@8.56.10':
     dependencies:
       '@types/estree': 1.0.5
@@ -4613,15 +4918,25 @@ snapshots:
       '@types/json-schema': 7.0.15
 
   '@types/estree@1.0.5': {}
+=======
+  /@types/estree@1.0.5:
+    resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+    dev: true
+>>>>>>> Stashed changes
 
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
       '@types/node': 20.11.25
 
+<<<<<<< Updated upstream
   '@types/json-schema@7.0.15': {}
 
   '@types/jsonfile@6.1.4':
+=======
+  /@types/jsonfile@6.1.4:
+    resolution: {integrity: sha512-D5qGUYwjvnNNextdU59/+fI+spnwtTFmyQP0h+PfIOSkNfpU6AOICUOkm4i0OnSk+NyjdPJrxCDro0sJsWlRpQ==}
+>>>>>>> Stashed changes
     dependencies:
       '@types/node': 20.11.25
 
@@ -4636,19 +4951,42 @@ snapshots:
       '@types/linkify-it': 5.0.0
       '@types/mdurl': 2.0.0
 
+<<<<<<< Updated upstream
   '@types/mdast@3.0.15':
     dependencies:
       '@types/unist': 2.0.10
+=======
+  /@types/mdast@4.0.4:
+    resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
+    dependencies:
+      '@types/unist': 3.0.3
+    dev: true
+>>>>>>> Stashed changes
 
   '@types/mdurl@2.0.0': {}
 
+<<<<<<< Updated upstream
   '@types/node@20.11.25':
+=======
+  /@types/ms@0.7.34:
+    resolution: {integrity: sha512-nG96G3Wp6acyAgJqGasjODb+acrI7KltPiRxzHPXnP3NgI28bpQDRv53olbqGXbfcgF5aiiHmO3xpwEpS5Ld9g==}
+    dev: true
+
+  /@types/node@20.11.25:
+    resolution: {integrity: sha512-TBHyJxk2b7HceLVGFcpAUjsa5zIdsPWlR6XHfyGzd0SFu+/NFgQgMAl96MSDZgQDvJAvV6BKsFOrt6zIL09JDw==}
+>>>>>>> Stashed changes
     dependencies:
       undici-types: 5.26.5
 
+<<<<<<< Updated upstream
   '@types/normalize-package-data@2.4.4': {}
 
   '@types/nprogress@0.2.3': {}
+=======
+  /@types/nprogress@0.2.3:
+    resolution: {integrity: sha512-k7kRA033QNtC+gLc4VPlfnue58CM1iQLgn1IMAU8VPHGOj7oIHPp9UlhedEnD/Gl8evoCjwkZjlBORtZ3JByUA==}
+    dev: true
+>>>>>>> Stashed changes
 
   '@types/p5@1.7.6': {}
 
@@ -4657,20 +4995,39 @@ snapshots:
       '@types/node': 20.11.25
       kleur: 3.0.3
 
+<<<<<<< Updated upstream
   '@types/semver@7.5.8': {}
 
   '@types/unist@2.0.10': {}
+=======
+  /@types/unist@3.0.3:
+    resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
+    dev: true
+>>>>>>> Stashed changes
 
   '@types/web-bluetooth@0.0.20': {}
 
+<<<<<<< Updated upstream
   '@typescript-eslint/eslint-plugin@7.13.1(@typescript-eslint/parser@7.13.1)(eslint@9.5.0)(typescript@5.5.2)':
+=======
+  /@typescript-eslint/eslint-plugin@8.11.0(@typescript-eslint/parser@8.11.0)(eslint@9.5.0)(typescript@5.5.2):
+    resolution: {integrity: sha512-KhGn2LjW1PJT2A/GfDpiyOfS4a8xHQv2myUagTM5+zsormOmBlYsnQ6pobJ8XxJmh6hnHwa2Mbe3fPrDJoDhbA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      '@typescript-eslint/parser': ^8.0.0 || ^8.0.0-alpha.0
+      eslint: ^8.57.0 || ^9.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+>>>>>>> Stashed changes
     dependencies:
       '@eslint-community/regexpp': 4.10.0
-      '@typescript-eslint/parser': 7.13.1(eslint@9.5.0)(typescript@5.5.2)
-      '@typescript-eslint/scope-manager': 7.13.1
-      '@typescript-eslint/type-utils': 7.13.1(eslint@9.5.0)(typescript@5.5.2)
-      '@typescript-eslint/utils': 7.13.1(eslint@9.5.0)(typescript@5.5.2)
-      '@typescript-eslint/visitor-keys': 7.13.1
+      '@typescript-eslint/parser': 8.11.0(eslint@9.5.0)(typescript@5.5.2)
+      '@typescript-eslint/scope-manager': 8.11.0
+      '@typescript-eslint/type-utils': 8.11.0(eslint@9.5.0)(typescript@5.5.2)
+      '@typescript-eslint/utils': 8.11.0(eslint@9.5.0)(typescript@5.5.2)
+      '@typescript-eslint/visitor-keys': 8.11.0
       eslint: 9.5.0
       graphemer: 1.4.0
       ignore: 5.3.1
@@ -4680,18 +5037,31 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< Updated upstream
   '@typescript-eslint/parser@7.13.1(eslint@9.5.0)(typescript@5.5.2)':
+=======
+  /@typescript-eslint/parser@8.11.0(eslint@9.5.0)(typescript@5.5.2):
+    resolution: {integrity: sha512-lmt73NeHdy1Q/2ul295Qy3uninSqi6wQI18XwSpm8w0ZbQXUpjCAWP1Vlv/obudoBiIjJVjlztjQ+d/Md98Yxg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+>>>>>>> Stashed changes
     dependencies:
-      '@typescript-eslint/scope-manager': 7.13.1
-      '@typescript-eslint/types': 7.13.1
-      '@typescript-eslint/typescript-estree': 7.13.1(typescript@5.5.2)
-      '@typescript-eslint/visitor-keys': 7.13.1
-      debug: 4.3.4
+      '@typescript-eslint/scope-manager': 8.11.0
+      '@typescript-eslint/types': 8.11.0
+      '@typescript-eslint/typescript-estree': 8.11.0(typescript@5.5.2)
+      '@typescript-eslint/visitor-keys': 8.11.0
+      debug: 4.3.5
       eslint: 9.5.0
       typescript: 5.5.2
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< Updated upstream
   '@typescript-eslint/scope-manager@7.1.1':
     dependencies:
       '@typescript-eslint/types': 7.1.1
@@ -4703,16 +5073,35 @@ snapshots:
       '@typescript-eslint/visitor-keys': 7.13.1
 
   '@typescript-eslint/type-utils@7.13.1(eslint@9.5.0)(typescript@5.5.2)':
+=======
+  /@typescript-eslint/scope-manager@8.11.0:
+    resolution: {integrity: sha512-Uholz7tWhXmA4r6epo+vaeV7yjdKy5QFCERMjs1kMVsLRKIrSdM6o21W2He9ftp5PP6aWOVpD5zvrvuHZC0bMQ==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     dependencies:
-      '@typescript-eslint/typescript-estree': 7.13.1(typescript@5.5.2)
-      '@typescript-eslint/utils': 7.13.1(eslint@9.5.0)(typescript@5.5.2)
-      debug: 4.3.4
-      eslint: 9.5.0
+      '@typescript-eslint/types': 8.11.0
+      '@typescript-eslint/visitor-keys': 8.11.0
+    dev: true
+
+  /@typescript-eslint/type-utils@8.11.0(eslint@9.5.0)(typescript@5.5.2):
+    resolution: {integrity: sha512-ItiMfJS6pQU0NIKAaybBKkuVzo6IdnAhPFZA/2Mba/uBjuPQPet/8+zh5GtLHwmuFRShZx+8lhIs7/QeDHflOg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+>>>>>>> Stashed changes
+    dependencies:
+      '@typescript-eslint/typescript-estree': 8.11.0(typescript@5.5.2)
+      '@typescript-eslint/utils': 8.11.0(eslint@9.5.0)(typescript@5.5.2)
+      debug: 4.3.5
       ts-api-utils: 1.3.0(typescript@5.5.2)
       typescript: 5.5.2
     transitivePeerDependencies:
+      - eslint
       - supports-color
 
+<<<<<<< Updated upstream
   '@typescript-eslint/types@7.1.1': {}
 
   '@typescript-eslint/types@7.13.1': {}
@@ -4737,14 +5126,35 @@ snapshots:
       '@typescript-eslint/visitor-keys': 7.13.1
       debug: 4.3.4
       globby: 11.1.0
+=======
+  /@typescript-eslint/types@8.11.0:
+    resolution: {integrity: sha512-tn6sNMHf6EBAYMvmPUaKaVeYvhUsrE6x+bXQTxjQRp360h1giATU0WvgeEys1spbvb5R+VpNOZ+XJmjD8wOUHw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    dev: true
+
+  /@typescript-eslint/typescript-estree@8.11.0(typescript@5.5.2):
+    resolution: {integrity: sha512-yHC3s1z1RCHoCz5t06gf7jH24rr3vns08XXhfEqzYpd6Hll3z/3g23JRi0jM8A47UFKNc3u/y5KIMx8Ynbjohg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@typescript-eslint/types': 8.11.0
+      '@typescript-eslint/visitor-keys': 8.11.0
+      debug: 4.3.5
+      fast-glob: 3.3.2
+>>>>>>> Stashed changes
       is-glob: 4.0.3
       minimatch: 9.0.4
-      semver: 7.6.0
+      semver: 7.6.2
       ts-api-utils: 1.3.0(typescript@5.5.2)
       typescript: 5.5.2
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< Updated upstream
   '@typescript-eslint/utils@7.1.1(eslint@9.5.0)(typescript@5.5.2)':
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.5.0)
@@ -4765,11 +5175,24 @@ snapshots:
       '@typescript-eslint/scope-manager': 7.13.1
       '@typescript-eslint/types': 7.13.1
       '@typescript-eslint/typescript-estree': 7.13.1(typescript@5.5.2)
+=======
+  /@typescript-eslint/utils@8.11.0(eslint@9.5.0)(typescript@5.5.2):
+    resolution: {integrity: sha512-CYiX6WZcbXNJV7UNB4PLDIBtSdRmRI/nb0FMyqHPTQD1rMjA0foPLaPUV39C/MxkTd/QKSeX+Gb34PPsDVC35g==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0
+    dependencies:
+      '@eslint-community/eslint-utils': 4.4.0(eslint@9.5.0)
+      '@typescript-eslint/scope-manager': 8.11.0
+      '@typescript-eslint/types': 8.11.0
+      '@typescript-eslint/typescript-estree': 8.11.0(typescript@5.5.2)
+>>>>>>> Stashed changes
       eslint: 9.5.0
     transitivePeerDependencies:
       - supports-color
       - typescript
 
+<<<<<<< Updated upstream
   '@typescript-eslint/visitor-keys@7.1.1':
     dependencies:
       '@typescript-eslint/types': 7.1.1
@@ -4778,6 +5201,13 @@ snapshots:
   '@typescript-eslint/visitor-keys@7.13.1':
     dependencies:
       '@typescript-eslint/types': 7.13.1
+=======
+  /@typescript-eslint/visitor-keys@8.11.0:
+    resolution: {integrity: sha512-EaewX6lxSjRJnc+99+dqzTeoDZUfyrA52d2/HRrkI830kgovWsmIiTfmr0NZorzqic7ga+1bS60lRBUgR3n/Bw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    dependencies:
+      '@typescript-eslint/types': 8.11.0
+>>>>>>> Stashed changes
       eslint-visitor-keys: 3.4.3
 
   '@typescript/vfs@1.5.0':
@@ -5052,11 +5482,18 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
+<<<<<<< Updated upstream
   acorn-jsx@5.3.2(acorn@8.11.3):
     dependencies:
       acorn: 8.11.3
 
   acorn-jsx@5.3.2(acorn@8.12.0):
+=======
+  /acorn-jsx@5.3.2(acorn@8.12.0):
+    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
+    peerDependencies:
+      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
+>>>>>>> Stashed changes
     dependencies:
       acorn: 8.12.0
 
@@ -5100,17 +5537,28 @@ snapshots:
       normalize-path: 3.0.0
       picomatch: 2.3.1
 
+<<<<<<< Updated upstream
   are-docs-informative@0.0.2: {}
 
   argparse@1.0.10:
+=======
+  /argparse@1.0.10:
+    resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
+>>>>>>> Stashed changes
     dependencies:
       sprintf-js: 1.0.3
 
   argparse@2.0.1: {}
 
+<<<<<<< Updated upstream
   array-union@2.1.0: {}
 
   ast-kit@0.12.2:
+=======
+  /ast-kit@0.12.2:
+    resolution: {integrity: sha512-es1zHFsnZ4Y4efz412nnrU3KvVAhgqy90a7Yt9Wpi5vQ3l4aYMOX0Qx4FD0elKr5ITEhiUGCSFcgGYf4YTuACg==}
+    engines: {node: '>=16.14.0'}
+>>>>>>> Stashed changes
     dependencies:
       '@babel/parser': 7.24.7
       pathe: 1.1.2
@@ -5188,9 +5636,15 @@ snapshots:
       base64-js: 1.5.1
       ieee754: 1.2.1
 
+<<<<<<< Updated upstream
   builtin-modules@3.3.0: {}
 
   bundle-name@4.1.0:
+=======
+  /bundle-name@4.1.0:
+    resolution: {integrity: sha512-tjwM5exMg6BGRI+kNmTntNsvdZS1X8BFYS6tnJ2hdH0kVxM6/eVZ2xy+FqStSWvYmtfFMDLIxurorHwDKfDz5Q==}
+    engines: {node: '>=18'}
+>>>>>>> Stashed changes
     dependencies:
       run-applescript: 7.0.0
 
@@ -5207,7 +5661,17 @@ snapshots:
 
   caniuse-lite@1.0.30001596: {}
 
+<<<<<<< Updated upstream
   chalk@2.4.2:
+=======
+  /ccount@2.0.1:
+    resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
+    dev: true
+
+  /chalk@2.4.2:
+    resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
+    engines: {node: '>=4'}
+>>>>>>> Stashed changes
     dependencies:
       ansi-styles: 3.2.1
       escape-string-regexp: 1.0.5
@@ -5220,11 +5684,17 @@ snapshots:
 
   chalk@5.3.0: {}
 
+<<<<<<< Updated upstream
   character-entities-legacy@1.1.4: {}
 
   character-entities@1.2.4: {}
 
   character-reference-invalid@1.1.4: {}
+=======
+  /character-entities@2.0.2:
+    resolution: {integrity: sha512-shx7oQ0Awen/BRIdkjkvz54PnEEI/EjwXDSIZp86/KKdbafHh1Df/RYGBhn4hbe2+uKC9FnT5UCEdyPz3ai9hQ==}
+    dev: true
+>>>>>>> Stashed changes
 
   chokidar@3.6.0:
     dependencies:
@@ -5240,17 +5710,29 @@ snapshots:
 
   chownr@1.1.4: {}
 
+<<<<<<< Updated upstream
   ci-info@4.0.0: {}
 
   clean-css@4.2.4:
+=======
+  /clean-css@4.2.4:
+    resolution: {integrity: sha512-EJUDT7nDVFDvaQgAo2G/PJvxmp1o/c6iXLbswsBbUFXi1Nr+AjA2cKmfbKDMjMvzEe75g3P6JkaDDAKk96A85A==}
+    engines: {node: '>= 4.0'}
+>>>>>>> Stashed changes
     dependencies:
       source-map: 0.6.1
 
+<<<<<<< Updated upstream
   clean-regexp@1.0.0:
     dependencies:
       escape-string-regexp: 1.0.5
 
   cli-cursor@4.0.0:
+=======
+  /cli-cursor@4.0.0:
+    resolution: {integrity: sha512-VGtlMu3x/4DOtIUwEkRezxUZ2lBacNJCHash0N0WeZDBS+7Ux1dm3XWAgWYxLJFMMdOeXMHXorshEFhbMSGelg==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+>>>>>>> Stashed changes
     dependencies:
       restore-cursor: 4.0.0
 
@@ -5299,9 +5781,15 @@ snapshots:
 
   commander@7.2.0: {}
 
+<<<<<<< Updated upstream
   comment-parser@1.4.1: {}
 
   concat-map@0.0.1: {}
+=======
+  /concat-map@0.0.1:
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    dev: true
+>>>>>>> Stashed changes
 
   confbox@0.1.7: {}
 
@@ -5309,11 +5797,18 @@ snapshots:
 
   convert-source-map@2.0.0: {}
 
+<<<<<<< Updated upstream
   core-js-compat@3.37.1:
     dependencies:
       browserslist: 4.23.0
 
   cross-env@7.0.3:
+=======
+  /cross-env@7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+>>>>>>> Stashed changes
     dependencies:
       cross-spawn: 7.0.3
 
@@ -5343,9 +5838,15 @@ snapshots:
 
   css-what@6.1.0: {}
 
+<<<<<<< Updated upstream
   cssesc@3.0.0: {}
 
   csso@5.0.5:
+=======
+  /csso@5.0.5:
+    resolution: {integrity: sha512-0LrrStPOdJj+SPCCrGhzryycLjwcgUSHBtxNA8aIDxf0GLsRh1cKYhB00Gd1lDOS4yGH69+SNn13+TWbVHETFQ==}
+    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0, npm: '>=7.0.0'}
+>>>>>>> Stashed changes
     dependencies:
       css-tree: 2.2.1
 
@@ -5378,7 +5879,19 @@ snapshots:
 
   decimal.js@10.4.3: {}
 
+<<<<<<< Updated upstream
   decompress-response@6.0.0:
+=======
+  /decode-named-character-reference@1.0.2:
+    resolution: {integrity: sha512-O8x12RzrUF8xyVcY0KJowWsmaJxQbmy0/EtnNtHRpsOcT7dFk5W598coHqBVpmWo1oQQfsCqfCmkZN5DJrZVdg==}
+    dependencies:
+      character-entities: 2.0.2
+    dev: true
+
+  /decompress-response@6.0.0:
+    resolution: {integrity: sha512-aW35yZM6Bb/4oJlZncMH2LCoZtJXTRxES17vE3hoRiowU2kWHaJKFkSBDnDR+cm9J+9QhXmREyIfv0pji9ejCQ==}
+    engines: {node: '>=10'}
+>>>>>>> Stashed changes
     dependencies:
       mimic-response: 3.1.0
 
@@ -5403,19 +5916,48 @@ snapshots:
 
   deprecation@2.3.1: {}
 
+<<<<<<< Updated upstream
   destr@2.0.3: {}
+=======
+  /dequal@2.0.3:
+    resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
+    engines: {node: '>=6'}
+    dev: true
+
+  /destr@2.0.3:
+    resolution: {integrity: sha512-2N3BOUU4gYMpTP24s5rF5iP7BDr7uNTCs4ozw3kf/eKfvWSIu93GEBi5m427YoyJoeOzQ5smuu4nNAPGb8idSQ==}
+    dev: true
+>>>>>>> Stashed changes
 
   detect-libc@2.0.2: {}
 
+<<<<<<< Updated upstream
   diacritics@1.3.0: {}
+=======
+  /devlop@1.1.0:
+    resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
+    dependencies:
+      dequal: 2.0.3
+    dev: true
+
+  /diacritics@1.3.0:
+    resolution: {integrity: sha512-wlwEkqcsaxvPJML+rDh/2iS824jbREk6DUMUKkEaSlxdYHeS43cClJtsWglvw2RfeXGm6ohKDqsXteJ5sP5enA==}
+    dev: true
+>>>>>>> Stashed changes
 
   diff-match-patch-es@0.1.0: {}
 
+<<<<<<< Updated upstream
   dir-glob@3.0.1:
     dependencies:
       path-type: 4.0.0
 
   doctrine@3.0.0:
+=======
+  /doctrine@3.0.0:
+    resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
+    engines: {node: '>=6.0.0'}
+>>>>>>> Stashed changes
     dependencies:
       esutils: 2.0.3
 
@@ -5460,6 +6002,7 @@ snapshots:
 
   entities@4.5.0: {}
 
+<<<<<<< Updated upstream
   error-ex@1.3.2:
     dependencies:
       is-arrayish: 0.2.1
@@ -5469,6 +6012,17 @@ snapshots:
   es-module-lexer@1.5.4: {}
 
   esbuild@0.21.5:
+=======
+  /error-stack-parser-es@0.1.1:
+    resolution: {integrity: sha512-g/9rfnvnagiNf+DRMHEVGuGuIBlCIMDFoTA616HaP2l9PlCjGjVhD98PNbVSJvmK4TttqT5mV5tInMhoFgi+aA==}
+    dev: true
+
+  /esbuild@0.21.5:
+    resolution: {integrity: sha512-mg3OPMV4hXywwpoDxu3Qda5xCKQi+vCTZq8S9J/EpkhB2HzKXq4SNFZE3+NK93JYxc8VMSep+lOUSC/RVKaBqw==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+>>>>>>> Stashed changes
     optionalDependencies:
       '@esbuild/aix-ppc64': 0.21.5
       '@esbuild/android-arm': 0.21.5
@@ -5533,9 +6087,18 @@ snapshots:
     dependencies:
       eslint: 9.5.0
 
+<<<<<<< Updated upstream
   eslint-compat-utils@0.5.1(eslint@9.5.0):
+=======
+  /eslint-config-flat-gitignore@0.3.0(eslint@9.5.0):
+    resolution: {integrity: sha512-0Ndxo4qGhcewjTzw52TK06Mc00aDtHNTdeeW2JfONgDcLkRO/n/BteMRzNVpLQYxdCC/dFEilfM9fjjpGIJ9Og==}
+    peerDependencies:
+      eslint: ^9.5.0
+>>>>>>> Stashed changes
     dependencies:
+      '@eslint/compat': 1.2.1(eslint@9.5.0)
       eslint: 9.5.0
+<<<<<<< Updated upstream
       semver: 7.6.0
 
   eslint-config-flat-gitignore@0.1.5:
@@ -5546,6 +6109,14 @@ snapshots:
   eslint-flat-config-utils@0.2.5:
     dependencies:
       '@types/eslint': 8.56.10
+=======
+      find-up-simple: 1.0.0
+    dev: true
+
+  /eslint-flat-config-utils@0.4.0:
+    resolution: {integrity: sha512-kfd5kQZC+BMO0YwTol6zxjKX1zAsk8JfSAopbKjKqmENTJcew+yBejuvccAg37cvOrN0Mh+DVbeyznuNWEjt4A==}
+    dependencies:
+>>>>>>> Stashed changes
       pathe: 1.1.2
 
   eslint-formatting-reporter@0.0.0(eslint@9.5.0):
@@ -5561,6 +6132,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< Updated upstream
   eslint-merge-processors@0.1.0(eslint@9.5.0):
     dependencies:
       eslint: 9.5.0
@@ -5578,6 +6150,17 @@ snapshots:
       eslint: 9.5.0
 
   eslint-plugin-es-x@7.5.0(eslint@9.5.0):
+=======
+  /eslint-parser-plain@0.1.0:
+    resolution: {integrity: sha512-oOeA6FWU0UJT/Rxc3XF5Cq0nbIZbylm7j8+plqq0CZoE6m4u32OXJrR+9iy4srGMmF6v6pmgvP1zPxSRIGh3sg==}
+    dev: true
+
+  /eslint-plugin-es-x@7.5.0(eslint@9.5.0):
+    resolution: {integrity: sha512-ODswlDSO0HJDzXU0XvgZ3lF3lS3XAZEossh15Q2UHjwrJggWeBoKqqEsLTZLXl+dh5eOAozG0zRcYtuE35oTuQ==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    peerDependencies:
+      eslint: '>=8'
+>>>>>>> Stashed changes
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.5.0)
       '@eslint-community/regexpp': 4.10.0
@@ -5601,22 +6184,32 @@ snapshots:
       prettier: 3.3.2
       synckit: 0.9.0
 
+<<<<<<< Updated upstream
   eslint-plugin-import-x@0.5.1(eslint@9.5.0)(typescript@5.5.2):
+=======
+  /eslint-plugin-import-x@4.3.1(eslint@9.5.0)(typescript@5.5.2):
+    resolution: {integrity: sha512-5TriWkXulDl486XnYYRgsL+VQoS/7mhN/2ci02iLCuL7gdhbiWxnsuL/NTcaKY9fpMgsMFjWZBtIGW7pb+RX0g==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: ^8.57.0 || ^9.0.0
+>>>>>>> Stashed changes
     dependencies:
-      '@typescript-eslint/utils': 7.13.1(eslint@9.5.0)(typescript@5.5.2)
-      debug: 4.3.4
+      '@typescript-eslint/utils': 8.11.0(eslint@9.5.0)(typescript@5.5.2)
+      debug: 4.3.5
       doctrine: 3.0.0
       eslint: 9.5.0
       eslint-import-resolver-node: 0.3.9
-      get-tsconfig: 4.7.3
+      get-tsconfig: 4.8.0
       is-glob: 4.0.3
       minimatch: 9.0.4
-      semver: 7.6.0
-      tslib: 2.6.2
+      semver: 7.6.3
+      stable-hash: 0.0.4
+      tslib: 2.8.0
     transitivePeerDependencies:
       - supports-color
       - typescript
 
+<<<<<<< Updated upstream
   eslint-plugin-jsdoc@48.3.0(eslint@9.5.0):
     dependencies:
       '@es-joy/jsdoccomment': 0.43.1
@@ -5652,14 +6245,22 @@ snapshots:
       - supports-color
 
   eslint-plugin-n@17.9.0(eslint@9.5.0):
+=======
+  /eslint-plugin-n@17.11.1(eslint@9.5.0):
+    resolution: {integrity: sha512-93IUD82N6tIEgjztVI/l3ElHtC2wTa9boJHrD8iN+NyDxjxz/daZUZKfkedjBZNdg6EqDk4irybUsiPwDqXAEA==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: '>=8.23.0'
+>>>>>>> Stashed changes
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.5.0)
       enhanced-resolve: 5.17.0
       eslint: 9.5.0
       eslint-plugin-es-x: 7.5.0(eslint@9.5.0)
-      get-tsconfig: 4.7.3
-      globals: 15.6.0
+      get-tsconfig: 4.8.0
+      globals: 15.11.0
       ignore: 5.3.1
+<<<<<<< Updated upstream
       minimatch: 9.0.4
       semver: 7.6.0
 
@@ -5720,9 +6321,24 @@ snapshots:
       - supports-color
 
   eslint-plugin-unused-imports@3.2.0(@typescript-eslint/eslint-plugin@7.13.1)(eslint@9.5.0):
+=======
+      minimatch: 9.0.5
+      semver: 7.6.2
+    dev: true
+
+  /eslint-plugin-unused-imports@4.1.4(@typescript-eslint/eslint-plugin@8.11.0)(eslint@9.5.0):
+    resolution: {integrity: sha512-YptD6IzQjDardkl0POxnnRBhU1OEePMV0nd6siHaRBbd+lyh6NAhFEobiznKU7kTsSsDeSD62Pe7kAM1b7dAZQ==}
+    peerDependencies:
+      '@typescript-eslint/eslint-plugin': ^8.0.0-0 || ^7.0.0 || ^6.0.0 || ^5.0.0
+      eslint: ^9.0.0 || ^8.0.0
+    peerDependenciesMeta:
+      '@typescript-eslint/eslint-plugin':
+        optional: true
+>>>>>>> Stashed changes
     dependencies:
-      '@typescript-eslint/eslint-plugin': 7.13.1(@typescript-eslint/parser@7.13.1)(eslint@9.5.0)(typescript@5.5.2)
+      '@typescript-eslint/eslint-plugin': 8.11.0(@typescript-eslint/parser@8.11.0)(eslint@9.5.0)(typescript@5.5.2)
       eslint: 9.5.0
+<<<<<<< Updated upstream
       eslint-rule-composer: 0.3.0
 
   eslint-plugin-vitest@0.5.4(@typescript-eslint/eslint-plugin@7.13.1)(eslint@9.5.0)(typescript@5.5.2):
@@ -5770,6 +6386,9 @@ snapshots:
     dependencies:
       esrecurse: 4.3.0
       estraverse: 5.3.0
+=======
+    dev: true
+>>>>>>> Stashed changes
 
   eslint-scope@8.0.1:
     dependencies:
@@ -5780,7 +6399,19 @@ snapshots:
 
   eslint-visitor-keys@4.0.0: {}
 
+<<<<<<< Updated upstream
   eslint@9.5.0:
+=======
+  /eslint-visitor-keys@4.1.0:
+    resolution: {integrity: sha512-Q7lok0mqMUSf5a/AdAZkA5a/gHcO6snwQClVNNvFKCAVlxXucdU8pKydU5ZVZjBx5xr37vGbFFWtLQYreLzrZg==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    dev: true
+
+  /eslint@9.5.0:
+    resolution: {integrity: sha512-+NAOZFrW/jFTS3dASCGBxX1pkFD0/fsO+hfAkJ4TyYKwgsXZbqzrw+seCYFCcPCYXvnD67tAnglU7GQTz6kcVw==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    hasBin: true
+>>>>>>> Stashed changes
     dependencies:
       '@eslint-community/eslint-utils': 4.4.0(eslint@9.5.0)
       '@eslint-community/regexpp': 4.10.0
@@ -5825,11 +6456,22 @@ snapshots:
       acorn-jsx: 5.3.2(acorn@8.12.0)
       eslint-visitor-keys: 4.0.0
 
+<<<<<<< Updated upstream
   espree@9.6.1:
     dependencies:
       acorn: 8.11.3
       acorn-jsx: 5.3.2(acorn@8.11.3)
       eslint-visitor-keys: 3.4.3
+=======
+  /espree@10.2.0:
+    resolution: {integrity: sha512-upbkBJbckcCNBDBDXEbuhjbP68n+scUd3k/U2EkyM9nw+I/jPiL4cLF/Al06CF96wRltFda16sxDFrxsI1v0/g==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    dependencies:
+      acorn: 8.12.0
+      acorn-jsx: 5.3.2(acorn@8.12.0)
+      eslint-visitor-keys: 4.1.0
+    dev: true
+>>>>>>> Stashed changes
 
   esprima@4.0.1: {}
 
@@ -5921,16 +6563,24 @@ snapshots:
     dependencies:
       to-regex-range: 5.0.1
 
+<<<<<<< Updated upstream
   find-up@4.1.0:
     dependencies:
       locate-path: 5.0.0
       path-exists: 4.0.0
+=======
+  /find-up-simple@1.0.0:
+    resolution: {integrity: sha512-q7Us7kcjj2VMePAa02hDAF6d+MzsdsAWEwYyOpwUtlerRBkOEPBCRZrAV4XfcSN8fHAgaD0hP7miwoay6DCprw==}
+    engines: {node: '>=18'}
+    dev: true
+>>>>>>> Stashed changes
 
   find-up@5.0.0:
     dependencies:
       locate-path: 6.0.0
       path-exists: 4.0.0
 
+<<<<<<< Updated upstream
   find-up@7.0.0:
     dependencies:
       locate-path: 7.2.0
@@ -5938,6 +6588,11 @@ snapshots:
       unicorn-magic: 0.1.0
 
   flat-cache@4.0.1:
+=======
+  /flat-cache@4.0.1:
+    resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
+    engines: {node: '>=16'}
+>>>>>>> Stashed changes
     dependencies:
       flatted: 3.3.1
       keyv: 4.5.4
@@ -5984,11 +6639,16 @@ snapshots:
 
   get-stream@8.0.1: {}
 
+<<<<<<< Updated upstream
   get-tsconfig@4.7.3:
     dependencies:
       resolve-pkg-maps: 1.0.0
 
   get-tsconfig@4.8.0:
+=======
+  /get-tsconfig@4.8.0:
+    resolution: {integrity: sha512-Pgba6TExTZ0FJAn1qkJAjIeKoDJ3CsI2ChuLohJnZl/tTU8MVrq3b+2t5UOPfRa4RMsorClBjJALkJUMjG1PAw==}
+>>>>>>> Stashed changes
     dependencies:
       resolve-pkg-maps: 1.0.0
 
@@ -6012,6 +6672,7 @@ snapshots:
 
   globals@11.12.0: {}
 
+<<<<<<< Updated upstream
   globals@13.24.0:
     dependencies:
       type-fest: 0.20.2
@@ -6030,6 +6691,21 @@ snapshots:
       slash: 3.0.0
 
   graceful-fs@4.2.11: {}
+=======
+  /globals@14.0.0:
+    resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
+    engines: {node: '>=18'}
+    dev: true
+
+  /globals@15.11.0:
+    resolution: {integrity: sha512-yeyNSjdbyVaWurlwCpcA6XNBrHTMIeDdj0/hnvX/OLJ9ekOXYbLsLinH/MucQyGvNnXhidTdNhTtJaffL2sMfw==}
+    engines: {node: '>=18'}
+    dev: true
+
+  /graceful-fs@4.2.11:
+    resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+    dev: true
+>>>>>>> Stashed changes
 
   graphemer@1.4.0: {}
 
@@ -6056,9 +6732,15 @@ snapshots:
 
   hookable@5.5.3: {}
 
+<<<<<<< Updated upstream
   hosted-git-info@2.8.9: {}
 
   html-encoding-sniffer@4.0.0:
+=======
+  /html-encoding-sniffer@4.0.0:
+    resolution: {integrity: sha512-Y22oTqIU4uuPgEemfz7NDJz6OeKf12Lsu+QC+s3BVpda64lTiMYCyGwg5ki4vFxkMwQdeZDl2adZoqUgdFuTgQ==}
+    engines: {node: '>=18'}
+>>>>>>> Stashed changes
     dependencies:
       whatwg-encoding: 3.1.1
 
@@ -6109,12 +6791,19 @@ snapshots:
 
   imurmurhash@0.1.4: {}
 
+<<<<<<< Updated upstream
   indent-string@4.0.0: {}
 
   inherits@2.0.4: {}
+=======
+  /inherits@2.0.4:
+    resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
+    dev: true
+>>>>>>> Stashed changes
 
   ini@1.3.8: {}
 
+<<<<<<< Updated upstream
   is-alphabetical@1.0.4: {}
 
   is-alphanumerical@1.0.4:
@@ -6125,22 +6814,40 @@ snapshots:
   is-arrayish@0.2.1: {}
 
   is-arrayish@0.3.2: {}
+=======
+  /is-arrayish@0.3.2:
+    resolution: {integrity: sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==}
+    dev: true
+>>>>>>> Stashed changes
 
   is-binary-path@2.1.0:
     dependencies:
       binary-extensions: 2.2.0
 
+<<<<<<< Updated upstream
   is-builtin-module@3.2.1:
     dependencies:
       builtin-modules: 3.3.0
 
   is-core-module@2.13.1:
+=======
+  /is-core-module@2.13.1:
+    resolution: {integrity: sha512-hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw==}
+>>>>>>> Stashed changes
     dependencies:
       hasown: 2.0.1
 
+<<<<<<< Updated upstream
   is-decimal@1.0.4: {}
 
   is-docker@3.0.0: {}
+=======
+  /is-docker@3.0.0:
+    resolution: {integrity: sha512-eljcgEDlEns/7AXFosB5K/2nCM4P7FQPkGc/DWLy5rmFEWvZayGrik1d9/QIY5nJ4f9YsVvBkA6kJpHn9rISdQ==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+    hasBin: true
+    dev: true
+>>>>>>> Stashed changes
 
   is-extendable@0.1.1: {}
 
@@ -6158,9 +6865,16 @@ snapshots:
     dependencies:
       is-extglob: 2.1.1
 
+<<<<<<< Updated upstream
   is-hexadecimal@1.0.4: {}
 
   is-inside-container@1.0.0:
+=======
+  /is-inside-container@1.0.0:
+    resolution: {integrity: sha512-KIYLCCJghfHZxqjYBE7rEy0OBuTd5xCHS7tHVgvCLkx7StIoaxwNW3hCALgEUjFfeRk+MG/Qxmp/vtETEF3tRA==}
+    engines: {node: '>=14.16'}
+    hasBin: true
+>>>>>>> Stashed changes
     dependencies:
       is-docker: 3.0.0
 
@@ -6199,9 +6913,20 @@ snapshots:
     dependencies:
       argparse: 2.0.1
 
+<<<<<<< Updated upstream
   jsdoc-type-pratt-parser@4.0.0: {}
 
   jsdom@24.1.0:
+=======
+  /jsdom@24.1.0:
+    resolution: {integrity: sha512-6gpM7pRXCwIOKxX47cgOyvyQDN/Eh0f1MeKySBV2xGdKtqJBLj8P25eY3EVCWo2mglDDzozR2r2MW4T+JiNUZA==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      canvas: ^2.11.2
+    peerDependenciesMeta:
+      canvas:
+        optional: true
+>>>>>>> Stashed changes
     dependencies:
       cssstyle: 4.0.1
       data-urls: 5.0.0
@@ -6229,6 +6954,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+<<<<<<< Updated upstream
   jsesc@0.5.0: {}
 
   jsesc@2.5.2: {}
@@ -6240,11 +6966,27 @@ snapshots:
   json-parse-even-better-errors@2.3.1: {}
 
   json-schema-traverse@0.4.1: {}
+=======
+  /jsesc@2.5.2:
+    resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
+    engines: {node: '>=4'}
+    hasBin: true
+    dev: true
+
+  /json-buffer@3.0.1:
+    resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
+    dev: true
+
+  /json-schema-traverse@0.4.1:
+    resolution: {integrity: sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==}
+    dev: true
+>>>>>>> Stashed changes
 
   json-stable-stringify-without-jsonify@1.0.1: {}
 
   json5@2.2.3: {}
 
+<<<<<<< Updated upstream
   jsonc-eslint-parser@2.4.0:
     dependencies:
       acorn: 8.11.3
@@ -6253,6 +6995,11 @@ snapshots:
       semver: 7.6.0
 
   jsonc-parser@3.2.1: {}
+=======
+  /jsonc-parser@3.2.1:
+    resolution: {integrity: sha512-AilxAyFOAcK5wA1+LeaySVBrHsGQvUFCDWXKpZjzaL0PqW+xfBOttn8GNtWKFWqneyMZj41MWF9Kl6iPWLwgOA==}
+    dev: true
+>>>>>>> Stashed changes
 
   jsonfile@6.1.0:
     dependencies:
@@ -6277,9 +7024,14 @@ snapshots:
 
   lilconfig@3.1.2: {}
 
+<<<<<<< Updated upstream
   lines-and-columns@1.2.4: {}
 
   linkify-it@5.0.0:
+=======
+  /linkify-it@5.0.0:
+    resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
+>>>>>>> Stashed changes
     dependencies:
       uc.micro: 2.1.0
 
@@ -6309,17 +7061,24 @@ snapshots:
 
   local-pkg@0.5.0:
     dependencies:
+<<<<<<< Updated upstream
       mlly: 1.6.1
       pkg-types: 1.0.3
 
   locate-path@5.0.0:
     dependencies:
       p-locate: 4.1.0
+=======
+      mlly: 1.7.1
+      pkg-types: 1.1.1
+    dev: true
+>>>>>>> Stashed changes
 
   locate-path@6.0.0:
     dependencies:
       p-locate: 5.0.0
 
+<<<<<<< Updated upstream
   locate-path@7.2.0:
     dependencies:
       p-locate: 6.0.0
@@ -6329,6 +7088,15 @@ snapshots:
   lodash@4.17.21: {}
 
   log-update@6.0.0:
+=======
+  /lodash.merge@4.6.2:
+    resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+    dev: true
+
+  /log-update@6.0.0:
+    resolution: {integrity: sha512-niTvB4gqvtof056rRIrTZvjNYE4rCUzO6X/X+kYjd7WFxXeJ0NwEFnRxX6ehkvv3jTwrXnNdtAak5XYZuIyPFw==}
+    engines: {node: '>=18'}
+>>>>>>> Stashed changes
     dependencies:
       ansi-escapes: 6.2.0
       cli-cursor: 4.0.0
@@ -6336,7 +7104,17 @@ snapshots:
       strip-ansi: 7.1.0
       wrap-ansi: 9.0.0
 
+<<<<<<< Updated upstream
   lower-case@1.1.4: {}
+=======
+  /longest-streak@3.1.0:
+    resolution: {integrity: sha512-9Ri+o0JYgehTaVBBDoMqIl8GXtbWg711O3srftcHhZ0dqnETqLaoIK0x17fUw9rFSlK/0NlsKe0Ahhyl5pXE2g==}
+    dev: true
+
+  /lower-case@1.1.4:
+    resolution: {integrity: sha512-2Fgx1Ycm599x+WGpIYwJOvsjmXFzTSc34IwDWALRA/8AopUKAVPwfJ+h5+f85BCp0PWmmJcWzEpxOpoXycMpdA==}
+    dev: true
+>>>>>>> Stashed changes
 
   lru-cache@10.2.0: {}
 
@@ -6382,21 +7160,149 @@ snapshots:
       punycode.js: 2.3.1
       uc.micro: 2.1.0
 
+<<<<<<< Updated upstream
   matter-attractors@0.1.6: {}
+=======
+  /markdown-table@3.0.3:
+    resolution: {integrity: sha512-Z1NL3Tb1M9wH4XESsCDEksWoKTdlUafKc4pt0GRwjUyXaCFZ+dc3g2erqB6zm3szA2IUSi7VnPI+o/9jnxh9hw==}
+    dev: true
+
+  /matter-attractors@0.1.6:
+    resolution: {integrity: sha512-vGFsFHS9m0hXnaswfKXT2nKfPXJs4lwnQJwkGrs1IHrVldKAmlBKBb4OcYh0rwQga3CFWGUq3JvKpWZvZuqlDQ==}
+    dev: false
+>>>>>>> Stashed changes
 
   matter-js@0.19.0: {}
 
+<<<<<<< Updated upstream
   mdast-util-from-markdown@0.8.5:
+=======
+  /mdast-util-find-and-replace@3.0.1:
+    resolution: {integrity: sha512-SG21kZHGC3XRTSUhtofZkBzZTJNM5ecCi0SK2IMKmSXR8vO3peL+kb1O0z7Zl83jKtutG4k5Wv/W7V3/YHvzPA==}
+>>>>>>> Stashed changes
     dependencies:
-      '@types/mdast': 3.0.15
-      mdast-util-to-string: 2.0.0
-      micromark: 2.11.4
-      parse-entities: 2.0.0
-      unist-util-stringify-position: 2.0.3
+      '@types/mdast': 4.0.4
+      escape-string-regexp: 5.0.0
+      unist-util-is: 6.0.0
+      unist-util-visit-parents: 6.0.1
+    dev: true
+
+  /mdast-util-from-markdown@2.0.1:
+    resolution: {integrity: sha512-aJEUyzZ6TzlsX2s5B4Of7lN7EQtAxvtradMMglCQDyaTFgse6CmtmdJ15ElnVRlCg1vpNyVtbem0PWzlNieZsA==}
+    dependencies:
+      '@types/mdast': 4.0.4
+      '@types/unist': 3.0.3
+      decode-named-character-reference: 1.0.2
+      devlop: 1.1.0
+      mdast-util-to-string: 4.0.0
+      micromark: 4.0.0
+      micromark-util-decode-numeric-character-reference: 2.0.1
+      micromark-util-decode-string: 2.0.0
+      micromark-util-normalize-identifier: 2.0.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+      unist-util-stringify-position: 4.0.0
     transitivePeerDependencies:
       - supports-color
 
+<<<<<<< Updated upstream
   mdast-util-to-string@2.0.0: {}
+=======
+  /mdast-util-gfm-autolink-literal@2.0.1:
+    resolution: {integrity: sha512-5HVP2MKaP6L+G6YaxPNjuL0BPrq9orG3TsrZ9YXbA3vDw/ACI4MEsnoDpn6ZNm7GnZgtAcONJyPhOP8tNJQavQ==}
+    dependencies:
+      '@types/mdast': 4.0.4
+      ccount: 2.0.1
+      devlop: 1.1.0
+      mdast-util-find-and-replace: 3.0.1
+      micromark-util-character: 2.1.0
+    dev: true
+
+  /mdast-util-gfm-footnote@2.0.0:
+    resolution: {integrity: sha512-5jOT2boTSVkMnQ7LTrd6n/18kqwjmuYqo7JUPe+tRCY6O7dAuTFMtTPauYYrMPpox9hlN0uOx/FL8XvEfG9/mQ==}
+    dependencies:
+      '@types/mdast': 4.0.4
+      devlop: 1.1.0
+      mdast-util-from-markdown: 2.0.1
+      mdast-util-to-markdown: 2.1.0
+      micromark-util-normalize-identifier: 2.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /mdast-util-gfm-strikethrough@2.0.0:
+    resolution: {integrity: sha512-mKKb915TF+OC5ptj5bJ7WFRPdYtuHv0yTRxK2tJvi+BDqbkiG7h7u/9SI89nRAYcmap2xHQL9D+QG/6wSrTtXg==}
+    dependencies:
+      '@types/mdast': 4.0.4
+      mdast-util-from-markdown: 2.0.1
+      mdast-util-to-markdown: 2.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /mdast-util-gfm-table@2.0.0:
+    resolution: {integrity: sha512-78UEvebzz/rJIxLvE7ZtDd/vIQ0RHv+3Mh5DR96p7cS7HsBhYIICDBCu8csTNWNO6tBWfqXPWekRuj2FNOGOZg==}
+    dependencies:
+      '@types/mdast': 4.0.4
+      devlop: 1.1.0
+      markdown-table: 3.0.3
+      mdast-util-from-markdown: 2.0.1
+      mdast-util-to-markdown: 2.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /mdast-util-gfm-task-list-item@2.0.0:
+    resolution: {integrity: sha512-IrtvNvjxC1o06taBAVJznEnkiHxLFTzgonUdy8hzFVeDun0uTjxxrRGVaNFqkU1wJR3RBPEfsxmU6jDWPofrTQ==}
+    dependencies:
+      '@types/mdast': 4.0.4
+      devlop: 1.1.0
+      mdast-util-from-markdown: 2.0.1
+      mdast-util-to-markdown: 2.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /mdast-util-gfm@3.0.0:
+    resolution: {integrity: sha512-dgQEX5Amaq+DuUqf26jJqSK9qgixgd6rYDHAv4aTBuA92cTknZlKpPfa86Z/s8Dj8xsAQpFfBmPUHWJBWqS4Bw==}
+    dependencies:
+      mdast-util-from-markdown: 2.0.1
+      mdast-util-gfm-autolink-literal: 2.0.1
+      mdast-util-gfm-footnote: 2.0.0
+      mdast-util-gfm-strikethrough: 2.0.0
+      mdast-util-gfm-table: 2.0.0
+      mdast-util-gfm-task-list-item: 2.0.0
+      mdast-util-to-markdown: 2.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /mdast-util-phrasing@4.1.0:
+    resolution: {integrity: sha512-TqICwyvJJpBwvGAMZjj4J2n0X8QWp21b9l0o7eXyVJ25YNWYbJDVIyD1bZXE6WtV6RmKJVYmQAKWa0zWOABz2w==}
+    dependencies:
+      '@types/mdast': 4.0.4
+      unist-util-is: 6.0.0
+    dev: true
+
+  /mdast-util-to-markdown@2.1.0:
+    resolution: {integrity: sha512-SR2VnIEdVNCJbP6y7kVTJgPLifdr8WEU440fQec7qHoHOUz/oJ2jmNRqdDQ3rbiStOXb2mCDGTuwsK5OPUgYlQ==}
+    dependencies:
+      '@types/mdast': 4.0.4
+      '@types/unist': 3.0.3
+      longest-streak: 3.1.0
+      mdast-util-phrasing: 4.1.0
+      mdast-util-to-string: 4.0.0
+      micromark-util-decode-string: 2.0.0
+      unist-util-visit: 5.0.0
+      zwitch: 2.0.4
+    dev: true
+
+  /mdast-util-to-string@4.0.0:
+    resolution: {integrity: sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg==}
+    dependencies:
+      '@types/mdast': 4.0.4
+    dev: true
+>>>>>>> Stashed changes
 
   mdn-data@2.0.28: {}
 
@@ -6408,10 +7314,253 @@ snapshots:
 
   merge2@1.4.1: {}
 
+<<<<<<< Updated upstream
   micromark@2.11.4:
+=======
+  /micromark-core-commonmark@2.0.1:
+    resolution: {integrity: sha512-CUQyKr1e///ZODyD1U3xit6zXwy1a8q2a1S1HKtIlmgvurrEpaw/Y9y6KSIbF8P59cn/NjzHyO+Q2fAyYLQrAA==}
+>>>>>>> Stashed changes
     dependencies:
-      debug: 4.3.4
-      parse-entities: 2.0.0
+      decode-named-character-reference: 1.0.2
+      devlop: 1.1.0
+      micromark-factory-destination: 2.0.0
+      micromark-factory-label: 2.0.0
+      micromark-factory-space: 2.0.0
+      micromark-factory-title: 2.0.0
+      micromark-factory-whitespace: 2.0.0
+      micromark-util-character: 2.1.0
+      micromark-util-chunked: 2.0.0
+      micromark-util-classify-character: 2.0.0
+      micromark-util-html-tag-name: 2.0.0
+      micromark-util-normalize-identifier: 2.0.0
+      micromark-util-resolve-all: 2.0.0
+      micromark-util-subtokenize: 2.0.1
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-extension-gfm-autolink-literal@2.1.0:
+    resolution: {integrity: sha512-oOg7knzhicgQ3t4QCjCWgTmfNhvQbDDnJeVu9v81r7NltNCVmhPy1fJRX27pISafdjL+SVc4d3l48Gb6pbRypw==}
+    dependencies:
+      micromark-util-character: 2.1.0
+      micromark-util-sanitize-uri: 2.0.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-extension-gfm-footnote@2.1.0:
+    resolution: {integrity: sha512-/yPhxI1ntnDNsiHtzLKYnE3vf9JZ6cAisqVDauhp4CEHxlb4uoOTxOCJ+9s51bIB8U1N1FJ1RXOKTIlD5B/gqw==}
+    dependencies:
+      devlop: 1.1.0
+      micromark-core-commonmark: 2.0.1
+      micromark-factory-space: 2.0.0
+      micromark-util-character: 2.1.0
+      micromark-util-normalize-identifier: 2.0.0
+      micromark-util-sanitize-uri: 2.0.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-extension-gfm-strikethrough@2.1.0:
+    resolution: {integrity: sha512-ADVjpOOkjz1hhkZLlBiYA9cR2Anf8F4HqZUO6e5eDcPQd0Txw5fxLzzxnEkSkfnD0wziSGiv7sYhk/ktvbf1uw==}
+    dependencies:
+      devlop: 1.1.0
+      micromark-util-chunked: 2.0.0
+      micromark-util-classify-character: 2.0.0
+      micromark-util-resolve-all: 2.0.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-extension-gfm-table@2.1.0:
+    resolution: {integrity: sha512-Ub2ncQv+fwD70/l4ou27b4YzfNaCJOvyX4HxXU15m7mpYY+rjuWzsLIPZHJL253Z643RpbcP1oeIJlQ/SKW67g==}
+    dependencies:
+      devlop: 1.1.0
+      micromark-factory-space: 2.0.0
+      micromark-util-character: 2.1.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-extension-gfm-tagfilter@2.0.0:
+    resolution: {integrity: sha512-xHlTOmuCSotIA8TW1mDIM6X2O1SiX5P9IuDtqGonFhEK0qgRI4yeC6vMxEV2dgyr2TiD+2PQ10o+cOhdVAcwfg==}
+    dependencies:
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-extension-gfm-task-list-item@2.1.0:
+    resolution: {integrity: sha512-qIBZhqxqI6fjLDYFTBIa4eivDMnP+OZqsNwmQ3xNLE4Cxwc+zfQEfbs6tzAo2Hjq+bh6q5F+Z8/cksrLFYWQQw==}
+    dependencies:
+      devlop: 1.1.0
+      micromark-factory-space: 2.0.0
+      micromark-util-character: 2.1.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-extension-gfm@3.0.0:
+    resolution: {integrity: sha512-vsKArQsicm7t0z2GugkCKtZehqUm31oeGBV/KVSorWSy8ZlNAv7ytjFhvaryUiCUJYqs+NoE6AFhpQvBTM6Q4w==}
+    dependencies:
+      micromark-extension-gfm-autolink-literal: 2.1.0
+      micromark-extension-gfm-footnote: 2.1.0
+      micromark-extension-gfm-strikethrough: 2.1.0
+      micromark-extension-gfm-table: 2.1.0
+      micromark-extension-gfm-tagfilter: 2.0.0
+      micromark-extension-gfm-task-list-item: 2.1.0
+      micromark-util-combine-extensions: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-factory-destination@2.0.0:
+    resolution: {integrity: sha512-j9DGrQLm/Uhl2tCzcbLhy5kXsgkHUrjJHg4fFAeoMRwJmJerT9aw4FEhIbZStWN8A3qMwOp1uzHr4UL8AInxtA==}
+    dependencies:
+      micromark-util-character: 2.1.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-factory-label@2.0.0:
+    resolution: {integrity: sha512-RR3i96ohZGde//4WSe/dJsxOX6vxIg9TimLAS3i4EhBAFx8Sm5SmqVfR8E87DPSR31nEAjZfbt91OMZWcNgdZw==}
+    dependencies:
+      devlop: 1.1.0
+      micromark-util-character: 2.1.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-factory-space@2.0.0:
+    resolution: {integrity: sha512-TKr+LIDX2pkBJXFLzpyPyljzYK3MtmllMUMODTQJIUfDGncESaqB90db9IAUcz4AZAJFdd8U9zOp9ty1458rxg==}
+    dependencies:
+      micromark-util-character: 2.1.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-factory-title@2.0.0:
+    resolution: {integrity: sha512-jY8CSxmpWLOxS+t8W+FG3Xigc0RDQA9bKMY/EwILvsesiRniiVMejYTE4wumNc2f4UbAa4WsHqe3J1QS1sli+A==}
+    dependencies:
+      micromark-factory-space: 2.0.0
+      micromark-util-character: 2.1.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-factory-whitespace@2.0.0:
+    resolution: {integrity: sha512-28kbwaBjc5yAI1XadbdPYHX/eDnqaUFVikLwrO7FDnKG7lpgxnvk/XGRhX/PN0mOZ+dBSZ+LgunHS+6tYQAzhA==}
+    dependencies:
+      micromark-factory-space: 2.0.0
+      micromark-util-character: 2.1.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-util-character@2.1.0:
+    resolution: {integrity: sha512-KvOVV+X1yLBfs9dCBSopq/+G1PcgT3lAK07mC4BzXi5E7ahzMAF8oIupDDJ6mievI6F+lAATkbQQlQixJfT3aQ==}
+    dependencies:
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-util-chunked@2.0.0:
+    resolution: {integrity: sha512-anK8SWmNphkXdaKgz5hJvGa7l00qmcaUQoMYsBwDlSKFKjc6gjGXPDw3FNL3Nbwq5L8gE+RCbGqTw49FK5Qyvg==}
+    dependencies:
+      micromark-util-symbol: 2.0.0
+    dev: true
+
+  /micromark-util-classify-character@2.0.0:
+    resolution: {integrity: sha512-S0ze2R9GH+fu41FA7pbSqNWObo/kzwf8rN/+IGlW/4tC6oACOs8B++bh+i9bVyNnwCcuksbFwsBme5OCKXCwIw==}
+    dependencies:
+      micromark-util-character: 2.1.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-util-combine-extensions@2.0.0:
+    resolution: {integrity: sha512-vZZio48k7ON0fVS3CUgFatWHoKbbLTK/rT7pzpJ4Bjp5JjkZeasRfrS9wsBdDJK2cJLHMckXZdzPSSr1B8a4oQ==}
+    dependencies:
+      micromark-util-chunked: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-util-decode-numeric-character-reference@2.0.1:
+    resolution: {integrity: sha512-bmkNc7z8Wn6kgjZmVHOX3SowGmVdhYS7yBpMnuMnPzDq/6xwVA604DuOXMZTO1lvq01g+Adfa0pE2UKGlxL1XQ==}
+    dependencies:
+      micromark-util-symbol: 2.0.0
+    dev: true
+
+  /micromark-util-decode-string@2.0.0:
+    resolution: {integrity: sha512-r4Sc6leeUTn3P6gk20aFMj2ntPwn6qpDZqWvYmAG6NgvFTIlj4WtrAudLi65qYoaGdXYViXYw2pkmn7QnIFasA==}
+    dependencies:
+      decode-named-character-reference: 1.0.2
+      micromark-util-character: 2.1.0
+      micromark-util-decode-numeric-character-reference: 2.0.1
+      micromark-util-symbol: 2.0.0
+    dev: true
+
+  /micromark-util-encode@2.0.0:
+    resolution: {integrity: sha512-pS+ROfCXAGLWCOc8egcBvT0kf27GoWMqtdarNfDcjb6YLuV5cM3ioG45Ys2qOVqeqSbjaKg72vU+Wby3eddPsA==}
+    dev: true
+
+  /micromark-util-html-tag-name@2.0.0:
+    resolution: {integrity: sha512-xNn4Pqkj2puRhKdKTm8t1YHC/BAjx6CEwRFXntTaRf/x16aqka6ouVoutm+QdkISTlT7e2zU7U4ZdlDLJd2Mcw==}
+    dev: true
+
+  /micromark-util-normalize-identifier@2.0.0:
+    resolution: {integrity: sha512-2xhYT0sfo85FMrUPtHcPo2rrp1lwbDEEzpx7jiH2xXJLqBuy4H0GgXk5ToU8IEwoROtXuL8ND0ttVa4rNqYK3w==}
+    dependencies:
+      micromark-util-symbol: 2.0.0
+    dev: true
+
+  /micromark-util-resolve-all@2.0.0:
+    resolution: {integrity: sha512-6KU6qO7DZ7GJkaCgwBNtplXCvGkJToU86ybBAUdavvgsCiG8lSSvYxr9MhwmQ+udpzywHsl4RpGJsYWG1pDOcA==}
+    dependencies:
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-util-sanitize-uri@2.0.0:
+    resolution: {integrity: sha512-WhYv5UEcZrbAtlsnPuChHUAsu/iBPOVaEVsntLBIdpibO0ddy8OzavZz3iL2xVvBZOpolujSliP65Kq0/7KIYw==}
+    dependencies:
+      micromark-util-character: 2.1.0
+      micromark-util-encode: 2.0.0
+      micromark-util-symbol: 2.0.0
+    dev: true
+
+  /micromark-util-subtokenize@2.0.1:
+    resolution: {integrity: sha512-jZNtiFl/1aY73yS3UGQkutD0UbhTt68qnRpw2Pifmz5wV9h8gOVsN70v+Lq/f1rKaU/W8pxRe8y8Q9FX1AOe1Q==}
+    dependencies:
+      devlop: 1.1.0
+      micromark-util-chunked: 2.0.0
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
+    dev: true
+
+  /micromark-util-symbol@2.0.0:
+    resolution: {integrity: sha512-8JZt9ElZ5kyTnO94muPxIGS8oyElRJaiJO8EzV6ZSyGQ1Is8xwl4Q45qU5UOg+bGH4AikWziz0iN4sFLWs8PGw==}
+    dev: true
+
+  /micromark-util-types@2.0.0:
+    resolution: {integrity: sha512-oNh6S2WMHWRZrmutsRmDDfkzKtxF+bc2VxLC9dvtrDIRFln627VsFP6fLMgTryGDljgLPjkrzQSDcPrjPyDJ5w==}
+    dev: true
+
+  /micromark@4.0.0:
+    resolution: {integrity: sha512-o/sd0nMof8kYff+TqcDx3VSrgBTcZpSvYcAHIfHhv5VAuNmisCxjhx6YmxS8PFEpb9z5WKWKPdzf0jM23ro3RQ==}
+    dependencies:
+      '@types/debug': 4.1.12
+      debug: 4.3.5
+      decode-named-character-reference: 1.0.2
+      devlop: 1.1.0
+      micromark-core-commonmark: 2.0.1
+      micromark-factory-space: 2.0.0
+      micromark-util-character: 2.1.0
+      micromark-util-chunked: 2.0.0
+      micromark-util-combine-extensions: 2.0.0
+      micromark-util-decode-numeric-character-reference: 2.0.1
+      micromark-util-encode: 2.0.0
+      micromark-util-normalize-identifier: 2.0.0
+      micromark-util-resolve-all: 2.0.0
+      micromark-util-sanitize-uri: 2.0.0
+      micromark-util-subtokenize: 2.0.1
+      micromark-util-symbol: 2.0.0
+      micromark-util-types: 2.0.0
     transitivePeerDependencies:
       - supports-color
 
@@ -6437,17 +7586,34 @@ snapshots:
 
   mimic-response@3.1.0: {}
 
+<<<<<<< Updated upstream
   min-indent@1.0.1: {}
 
   minimatch@3.1.2:
+=======
+  /minimatch@3.1.2:
+    resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
+>>>>>>> Stashed changes
     dependencies:
       brace-expansion: 1.1.11
 
+<<<<<<< Updated upstream
   minimatch@9.0.3:
+=======
+  /minimatch@9.0.4:
+    resolution: {integrity: sha512-KqWh+VchfxcMNRAJjj2tnsSJdNbHsVgnkBhTNrW7AjVo6OvLtxw8zfT9oLw1JSohlFzJ8jCoTgaoXvJ+kHt6fw==}
+    engines: {node: '>=16 || 14 >=14.17'}
+>>>>>>> Stashed changes
     dependencies:
       brace-expansion: 2.0.1
 
+<<<<<<< Updated upstream
   minimatch@9.0.4:
+=======
+  /minimatch@9.0.5:
+    resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
+    engines: {node: '>=16 || 14 >=14.17'}
+>>>>>>> Stashed changes
     dependencies:
       brace-expansion: 2.0.1
 
@@ -6481,9 +7647,15 @@ snapshots:
 
   napi-build-utils@1.0.2: {}
 
+<<<<<<< Updated upstream
   natural-compare-lite@1.4.0: {}
 
   natural-compare@1.4.0: {}
+=======
+  /natural-compare@1.4.0:
+    resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+    dev: true
+>>>>>>> Stashed changes
 
   no-case@2.3.2:
     dependencies:
@@ -6499,6 +7671,7 @@ snapshots:
 
   node-releases@2.0.14: {}
 
+<<<<<<< Updated upstream
   normalize-package-data@2.5.0:
     dependencies:
       hosted-git-info: 2.8.9
@@ -6507,6 +7680,12 @@ snapshots:
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
+=======
+  /normalize-path@3.0.0:
+    resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+>>>>>>> Stashed changes
 
   npm-run-path@4.0.1:
     dependencies:
@@ -6560,14 +7739,21 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
+<<<<<<< Updated upstream
   p-limit@2.3.0:
     dependencies:
       p-try: 2.2.0
 
   p-limit@3.1.0:
+=======
+  /p-limit@3.1.0:
+    resolution: {integrity: sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ==}
+    engines: {node: '>=10'}
+>>>>>>> Stashed changes
     dependencies:
       yocto-queue: 0.1.0
 
+<<<<<<< Updated upstream
   p-limit@4.0.0:
     dependencies:
       yocto-queue: 1.0.0
@@ -6577,9 +7763,15 @@ snapshots:
       p-limit: 2.3.0
 
   p-locate@5.0.0:
+=======
+  /p-locate@5.0.0:
+    resolution: {integrity: sha512-LaNjtRWUBY++zB5nE/NwcaoMylSPk+S+ZHNB1TzdbMJMny6dynpAGt7X/tl/QYq3TIeE6nxHppbo2LGymrG5Pw==}
+    engines: {node: '>=10'}
+>>>>>>> Stashed changes
     dependencies:
       p-limit: 3.1.0
 
+<<<<<<< Updated upstream
   p-locate@6.0.0:
     dependencies:
       p-limit: 4.0.0
@@ -6587,6 +7779,11 @@ snapshots:
   p-try@2.2.0: {}
 
   p5@1.9.4: {}
+=======
+  /p5@1.9.4:
+    resolution: {integrity: sha512-dhiZ9mvXx5pm8eRwml34xbeUwce4uS9Q2za0YOHg2p97N9iNAb5hTIHAt77CHKHXAh6A16u/oalz5egRfTyFWw==}
+    dev: true
+>>>>>>> Stashed changes
 
   p5i@0.5.0:
     dependencies:
@@ -6601,6 +7798,7 @@ snapshots:
     dependencies:
       callsites: 3.1.0
 
+<<<<<<< Updated upstream
   parse-entities@2.0.0:
     dependencies:
       character-entities: 1.2.4
@@ -6625,14 +7823,25 @@ snapshots:
       lines-and-columns: 1.2.4
 
   parse5@7.1.2:
+=======
+  /parse5@7.1.2:
+    resolution: {integrity: sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==}
+>>>>>>> Stashed changes
     dependencies:
       entities: 4.5.0
 
   path-exists@4.0.0: {}
 
+<<<<<<< Updated upstream
   path-exists@5.0.0: {}
 
   path-key@3.1.1: {}
+=======
+  /path-key@3.1.1:
+    resolution: {integrity: sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q==}
+    engines: {node: '>=8'}
+    dev: true
+>>>>>>> Stashed changes
 
   path-key@4.0.0: {}
 
@@ -6643,9 +7852,15 @@ snapshots:
       lru-cache: 10.2.0
       minipass: 7.0.4
 
+<<<<<<< Updated upstream
   path-type@4.0.0: {}
 
   pathe@1.1.2: {}
+=======
+  /pathe@1.1.2:
+    resolution: {integrity: sha512-whLdWMYL2TwI08hn8/ZqAbrVemu0LNaNNJZX73O6qaIdCTfXutsLhMkjdENX0qhsQ9uIimo4/aQOmXkoon2nDQ==}
+    dev: true
+>>>>>>> Stashed changes
 
   perfect-debounce@1.0.0: {}
 
@@ -6676,6 +7891,7 @@ snapshots:
       mlly: 1.7.1
       pathe: 1.1.2
 
+<<<<<<< Updated upstream
   pluralize@8.0.0: {}
 
   pnpm@9.4.0: {}
@@ -6686,6 +7902,17 @@ snapshots:
       util-deprecate: 1.0.2
 
   postcss@8.4.38:
+=======
+  /pnpm@9.4.0:
+    resolution: {integrity: sha512-9Um4pSydK4U2di+ZwHIiBe/Fr5E+d4NdvMw7CwssqefcgCK3gGLBcpHEjoh0nHDOiOtadPH6jEv14Yu0bIvYOg==}
+    engines: {node: '>=18.12'}
+    hasBin: true
+    dev: true
+
+  /postcss@8.4.38:
+    resolution: {integrity: sha512-Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==}
+    engines: {node: ^10 || ^12 || >=14}
+>>>>>>> Stashed changes
     dependencies:
       nanoid: 3.3.7
       picocolors: 1.0.1
@@ -6745,6 +7972,7 @@ snapshots:
       minimist: 1.2.8
       strip-json-comments: 2.0.1
 
+<<<<<<< Updated upstream
   read-pkg-up@7.0.1:
     dependencies:
       find-up: 4.1.0
@@ -6759,6 +7987,11 @@ snapshots:
       type-fest: 0.6.0
 
   readable-stream@3.6.2:
+=======
+  /readable-stream@3.6.2:
+    resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
+    engines: {node: '>= 6'}
+>>>>>>> Stashed changes
     dependencies:
       inherits: 2.0.4
       string_decoder: 1.3.0
@@ -6768,6 +8001,7 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
+<<<<<<< Updated upstream
   refa@0.12.1:
     dependencies:
       '@eslint-community/regexpp': 4.10.0
@@ -6784,6 +8018,12 @@ snapshots:
       jsesc: 0.5.0
 
   relateurl@0.2.7: {}
+=======
+  /relateurl@0.2.7:
+    resolution: {integrity: sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==}
+    engines: {node: '>= 0.10'}
+    dev: true
+>>>>>>> Stashed changes
 
   require-directory@2.1.1: {}
 
@@ -6854,6 +8094,7 @@ snapshots:
     dependencies:
       xmlchars: 2.2.0
 
+<<<<<<< Updated upstream
   scslre@0.3.0:
     dependencies:
       '@eslint-community/regexpp': 4.10.0
@@ -6861,15 +8102,27 @@ snapshots:
       regexp-ast-analysis: 0.7.1
 
   scule@1.3.0: {}
+=======
+  /scule@1.3.0:
+    resolution: {integrity: sha512-6FtHJEvt+pVMIB9IBY+IcCJ6Z5f1iQnytgyfKMhDKgmzYG+TeH/wx1y3l27rshSbLiSanrR9ffZDrEsmjlQF2g==}
+    dev: true
+>>>>>>> Stashed changes
 
   section-matter@1.0.0:
     dependencies:
       extend-shallow: 2.0.1
       kind-of: 6.0.3
 
+<<<<<<< Updated upstream
   semver@5.7.2: {}
 
   semver@6.3.1: {}
+=======
+  /semver@6.3.1:
+    resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
+    hasBin: true
+    dev: true
+>>>>>>> Stashed changes
 
   semver@7.6.0:
     dependencies:
@@ -6877,7 +8130,20 @@ snapshots:
 
   semver@7.6.2: {}
 
+<<<<<<< Updated upstream
   sharp@0.32.6:
+=======
+  /semver@7.6.3:
+    resolution: {integrity: sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dev: true
+
+  /sharp@0.32.6:
+    resolution: {integrity: sha512-KyLTWwgcR9Oe4d9HwCwNM2l7+J0dUQwn/yf7S0EnTtb0eVS4RxO0eUSvxPtzT4F3SY+C4K6fqdv/DO27sJ/v/w==}
+    engines: {node: '>=14.15.0'}
+    requiresBuild: true
+>>>>>>> Stashed changes
     dependencies:
       color: 4.2.3
       detect-libc: 2.0.2
@@ -6939,11 +8205,17 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
+<<<<<<< Updated upstream
   slash@3.0.0: {}
 
   slashes@3.0.12: {}
 
   slice-ansi@5.0.0:
+=======
+  /slice-ansi@5.0.0:
+    resolution: {integrity: sha512-FC+lgizVPfie0kkhqUScwRu1O/lF6NOgJmlCgK+/LYxDCTk8sGelYaHDhFcDN+Sn3Cv+3VSa4Byeo+IMCzpMgQ==}
+    engines: {node: '>=12'}
+>>>>>>> Stashed changes
     dependencies:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 4.0.0
@@ -6959,6 +8231,7 @@ snapshots:
 
   source-map@0.6.1: {}
 
+<<<<<<< Updated upstream
   spdx-correct@3.2.0:
     dependencies:
       spdx-expression-parse: 3.0.1
@@ -6981,6 +8254,18 @@ snapshots:
   sprintf-js@1.0.3: {}
 
   streamx@2.16.1:
+=======
+  /sprintf-js@1.0.3:
+    resolution: {integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==}
+    dev: true
+
+  /stable-hash@0.0.4:
+    resolution: {integrity: sha512-LjdcbuBeLcdETCrPn9i8AYAZ1eCtu4ECAWtP7UleOiZ9LzVxRzzUZEoZ8zB24nhkQnDWyET0I+3sWokSDS3E7g==}
+    dev: true
+
+  /streamx@2.16.1:
+    resolution: {integrity: sha512-m9QYj6WygWyWa3H1YY69amr4nVgy61xfjys7xO7kviL5rfIEc2naf+ewFiOA+aEJD7y0JO3h2GoiUv4TDwEGzQ==}
+>>>>>>> Stashed changes
     dependencies:
       fast-fifo: 1.3.2
       queue-tick: 1.0.1
@@ -7025,11 +8310,18 @@ snapshots:
 
   strip-final-newline@3.0.0: {}
 
+<<<<<<< Updated upstream
   strip-indent@3.0.0:
     dependencies:
       min-indent: 1.0.1
 
   strip-json-comments@2.0.1: {}
+=======
+  /strip-json-comments@2.0.1:
+    resolution: {integrity: sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ==}
+    engines: {node: '>=0.10.0'}
+    dev: true
+>>>>>>> Stashed changes
 
   strip-json-comments@3.1.1: {}
 
@@ -7059,11 +8351,17 @@ snapshots:
 
   symbol-tree@3.2.4: {}
 
+<<<<<<< Updated upstream
   synckit@0.6.2:
     dependencies:
       tslib: 2.6.2
 
   synckit@0.9.0:
+=======
+  /synckit@0.9.0:
+    resolution: {integrity: sha512-7RnqIMq572L8PeEzKeBINYEJDDxpcH8JEgLwUqBd3TkofhFRbkq4QLR0u+36avGAhCRbk2nnmjcW9SE531hPDg==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+>>>>>>> Stashed changes
     dependencies:
       '@pkgr/core': 0.1.1
       tslib: 2.6.2
@@ -7107,11 +8405,18 @@ snapshots:
     dependencies:
       is-number: 7.0.0
 
+<<<<<<< Updated upstream
   toml-eslint-parser@0.9.3:
     dependencies:
       eslint-visitor-keys: 3.4.3
 
   totalist@3.0.1: {}
+=======
+  /totalist@3.0.1:
+    resolution: {integrity: sha512-sf4i37nQ2LBx4m3wB74y+ubopq6W/dIzXg0FDGjsYnZHVa1Da8FH853wlL2gtUhg+xJXjfk3kUZS3BRoQeoQBQ==}
+    engines: {node: '>=6'}
+    dev: true
+>>>>>>> Stashed changes
 
   tough-cookie@4.1.4:
     dependencies:
@@ -7130,7 +8435,18 @@ snapshots:
 
   tslib@2.6.2: {}
 
+<<<<<<< Updated upstream
   tsx@4.19.0:
+=======
+  /tslib@2.8.0:
+    resolution: {integrity: sha512-jWVzBLplnCmoaTr13V9dYbiQ99wvZRd0vNWaDRg+aVYRcjDF3nDksxFDE/+fkXnKhpnUUkmx5pK/v8mCtLVqZA==}
+    dev: true
+
+  /tsx@4.19.0:
+    resolution: {integrity: sha512-bV30kM7bsLZKZIOCHeMNVMJ32/LuJzLVajkQI/qf92J2Qr08ueLQvW00PUZGiuLPP760UINwupgUj8qrSCPUKg==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+>>>>>>> Stashed changes
     dependencies:
       esbuild: 0.23.1
       get-tsconfig: 4.8.0
@@ -7157,6 +8473,7 @@ snapshots:
 
   type-detect@4.0.8: {}
 
+<<<<<<< Updated upstream
   type-fest@0.20.2: {}
 
   type-fest@0.6.0: {}
@@ -7164,6 +8481,12 @@ snapshots:
   type-fest@0.8.1: {}
 
   type-fest@3.13.1: {}
+=======
+  /type-fest@3.13.1:
+    resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
+    engines: {node: '>=14.16'}
+    dev: true
+>>>>>>> Stashed changes
 
   typescript@5.5.2: {}
 
@@ -7190,9 +8513,14 @@ snapshots:
       '@unhead/shared': 1.9.14
       hookable: 5.5.3
 
+<<<<<<< Updated upstream
   unicorn-magic@0.1.0: {}
 
   unimport@3.7.1:
+=======
+  /unimport@3.7.1:
+    resolution: {integrity: sha512-V9HpXYfsZye5bPPYUgs0Otn3ODS1mDUciaBlXljI4C2fTwfFpvFZRywmlOu943puN9sncxROMZhsZCjNXEpzEQ==}
+>>>>>>> Stashed changes
     dependencies:
       '@rollup/pluginutils': 5.1.0
       acorn: 8.11.3
@@ -7210,9 +8538,38 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
+<<<<<<< Updated upstream
   unist-util-stringify-position@2.0.3:
     dependencies:
       '@types/unist': 2.0.10
+=======
+  /unist-util-is@6.0.0:
+    resolution: {integrity: sha512-2qCTHimwdxLfz+YzdGfkqNlH0tLi9xjTnHddPmJwtIG9MGsdbutfTc4P+haPD7l7Cjxf/WZj+we5qfVPvvxfYw==}
+    dependencies:
+      '@types/unist': 3.0.3
+    dev: true
+
+  /unist-util-stringify-position@4.0.0:
+    resolution: {integrity: sha512-0ASV06AAoKCDkS2+xw5RXJywruurpbC4JZSm7nr7MOt1ojAzvyyaO+UxZf18j8FCF6kmzCZKcAgN/yu2gm2XgQ==}
+    dependencies:
+      '@types/unist': 3.0.3
+    dev: true
+
+  /unist-util-visit-parents@6.0.1:
+    resolution: {integrity: sha512-L/PqWzfTP9lzzEa6CKs0k2nARxTdZduw3zyh8d2NVBnsyvHjSX4TWse388YrrQKbvI8w20fGjGlhgT96WwKykw==}
+    dependencies:
+      '@types/unist': 3.0.3
+      unist-util-is: 6.0.0
+    dev: true
+
+  /unist-util-visit@5.0.0:
+    resolution: {integrity: sha512-MR04uvD+07cwl/yhVuVWAtw+3GOR/knlL55Nd/wAdblk27GCVt3lqpTivy/tkJcZoNPzTwS1Y+KMojlLDhoTzg==}
+    dependencies:
+      '@types/unist': 3.0.3
+      unist-util-is: 6.0.0
+      unist-util-visit-parents: 6.0.1
+    dev: true
+>>>>>>> Stashed changes
 
   universal-user-agent@6.0.1: {}
 
@@ -7262,12 +8619,33 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
+<<<<<<< Updated upstream
   unplugin-icons@0.19.0(@vue/compiler-sfc@3.4.30):
+=======
+  /unplugin-icons@0.19.0:
+    resolution: {integrity: sha512-u5g/gIZPZEj1wUGEQxe9nzftOSqmblhusc+sL3cawIRoIt/xWpE6XYcPOfAeFTYNjSbRrX/3QiX89PFiazgU1w==}
+    peerDependencies:
+      '@svgr/core': '>=7.0.0'
+      '@svgx/core': ^1.0.1
+      '@vue/compiler-sfc': ^3.0.2 || ^2.7.0
+      vue-template-compiler: ^2.6.12
+      vue-template-es2015-compiler: ^1.9.0
+    peerDependenciesMeta:
+      '@svgr/core':
+        optional: true
+      '@svgx/core':
+        optional: true
+      '@vue/compiler-sfc':
+        optional: true
+      vue-template-compiler:
+        optional: true
+      vue-template-es2015-compiler:
+        optional: true
+>>>>>>> Stashed changes
     dependencies:
       '@antfu/install-pkg': 0.3.3
       '@antfu/utils': 0.7.7
       '@iconify/utils': 2.1.25
-      '@vue/compiler-sfc': 3.4.30
       debug: 4.3.4
       kolorist: 1.8.0
       local-pkg: 0.5.0
@@ -7351,12 +8729,24 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
+<<<<<<< Updated upstream
   validate-npm-package-license@3.0.4:
     dependencies:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
 
   vite-plugin-inspect@0.8.4(vite@5.3.1):
+=======
+  /vite-plugin-inspect@0.8.4(vite@5.3.1):
+    resolution: {integrity: sha512-G0N3rjfw+AiiwnGw50KlObIHYWfulVwaCBUBLh2xTW9G1eM9ocE5olXkEYUbwyTmX+azM8duubi+9w5awdCz+g==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      '@nuxt/kit': '*'
+      vite: ^3.1.0 || ^4.0.0 || ^5.0.0-0
+    peerDependenciesMeta:
+      '@nuxt/kit':
+        optional: true
+>>>>>>> Stashed changes
     dependencies:
       '@antfu/utils': 0.7.8
       '@rollup/pluginutils': 5.1.0
@@ -7409,6 +8799,7 @@ snapshots:
     dependencies:
       vue: 3.4.30(typescript@5.5.2)
 
+<<<<<<< Updated upstream
   vue-demi@0.14.8(vue@3.4.30):
     dependencies:
       vue: 3.4.30(typescript@5.5.2)
@@ -7427,6 +8818,12 @@ snapshots:
       - supports-color
 
   vue-resize@2.0.0-alpha.1(vue@3.4.30):
+=======
+  /vue-resize@2.0.0-alpha.1(vue@3.4.30):
+    resolution: {integrity: sha512-7+iqOueLU7uc9NrMfrzbG8hwMqchfVfSzpVlCMeJQe4pyibqyoifDNbKTZvwxZKDvGkB+PdFeKvnGZMoEb8esg==}
+    peerDependencies:
+      vue: ^3.0.0
+>>>>>>> Stashed changes
     dependencies:
       vue: 3.4.30(typescript@5.5.2)
 
@@ -7500,9 +8897,16 @@ snapshots:
     dependencies:
       sax: 1.3.0
 
+<<<<<<< Updated upstream
   xml-name-validator@4.0.0: {}
 
   xml-name-validator@5.0.0: {}
+=======
+  /xml-name-validator@5.0.0:
+    resolution: {integrity: sha512-EvGK8EJ3DhaHfbRlETOWAS5pO9MZITeauHKJyb8wyajUfQUenkIg2MvLDTZ4T/TgIcm3HU0TFBgWWboAZ30UHg==}
+    engines: {node: '>=18'}
+    dev: true
+>>>>>>> Stashed changes
 
   xmlchars@2.2.0: {}
 
@@ -7512,6 +8916,7 @@ snapshots:
 
   yallist@4.0.0: {}
 
+<<<<<<< Updated upstream
   yaml-eslint-parser@1.2.3:
     dependencies:
       eslint-visitor-keys: 3.4.3
@@ -7519,6 +8924,13 @@ snapshots:
       yaml: 2.4.5
 
   yaml@2.4.5: {}
+=======
+  /yaml@2.4.5:
+    resolution: {integrity: sha512-aBx2bnqDzVOyNKfsysjA2ms5ZlnjSAW2eG3/L5G/CSujfjLJTJsEw1bGw8kCf04KodQWk1pxlGnZ56CRxiawmg==}
+    engines: {node: '>= 14'}
+    hasBin: true
+    dev: true
+>>>>>>> Stashed changes
 
   yargs-parser@21.1.1: {}
 
@@ -7534,6 +8946,16 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
+<<<<<<< Updated upstream
   yocto-queue@1.0.0: {}
 
   zhead@2.2.4: {}
+=======
+  /zhead@2.2.4:
+    resolution: {integrity: sha512-8F0OI5dpWIA5IGG5NHUg9staDwz/ZPxZtvGVf01j7vHqSyZ0raHY+78atOVxRqb73AotX22uV1pXt3gYSstGag==}
+    dev: true
+
+  /zwitch@2.0.4:
+    resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
+    dev: true
+>>>>>>> Stashed changes
