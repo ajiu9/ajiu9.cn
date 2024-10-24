@@ -30,6 +30,10 @@ projects:
       desc: 'shell script for obsidian'
       icon: 'i-simple-icons:obsidian h-1em'
   Configurations:
+    - name: 'eslint-config'
+      link: 'https://github.com/ajiu9/eslint-config'
+      desc: 'My ESLint config presets'
+      icon: 'i-mdi:eslint h-1em'
     - name: 'zsh'
       link: 'https://github.com/ajiu9/SoftwareConfiguration/tree/main//zsh'
       desc: 'my software configuration for zsh'
