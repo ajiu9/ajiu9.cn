@@ -68,5 +68,5 @@ jobs:
           git config user.name "ajiu9"
           git config user.email "615944323@qq.com"
           git checkout main
-          git merge release --no-ff -m "Merge release into main"
+          git merge release --no-ff -m "Merge release into main" --allow-unrelated-histories
           git push origin main
