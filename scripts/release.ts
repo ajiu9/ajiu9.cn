@@ -10,7 +10,6 @@ function buildAndPush() {
     execSync('git add .', { stdio: 'inherit' })
     execSync('git commit -m "chore: build"', { stdio: 'inherit' })
     execSync('git push', { stdio: 'inherit' })
-    execSync('git checkout main && git merge release', { stdio: 'inherit' })
     console.log('Successfully pushed to origin.')
   }
   catch (error) {
