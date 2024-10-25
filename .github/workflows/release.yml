@@ -46,6 +46,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Ensure main branch exists
+        run: |
+          git config user.name "ajiu9"
+          git config user.email "615944323@qq.com"
+          if ! git show-ref --verify --quiet refs/heads/main; then
+            git checkout -b main
+            git push origin main
+          fi
+
       - name: Merge release to main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
