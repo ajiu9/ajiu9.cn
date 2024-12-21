@@ -4,7 +4,11 @@
         <title>Ajiu9</title>
         <link>https://ajiu9.cn/</link>
         <description>Ajiu9' Blog</description>
+<<<<<<< HEAD
         <lastBuildDate>Fri, 25 Oct 2024 08:17:19 GMT</lastBuildDate>
+=======
+        <lastBuildDate>Fri, 25 Oct 2024 08:30:31 GMT</lastBuildDate>
+>>>>>>> release
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
