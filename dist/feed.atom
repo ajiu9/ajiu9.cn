@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajiu9.cn/</id>
     <title>Ajiu9</title>
-    <updated>2024-10-25T08:30:31.341Z</updated>
+    <updated>2024-12-21T13:50:12.488Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Ajiu9</name>
@@ -588,20 +588,20 @@ export default {
 <pre><code>w2 start
 </code></pre>
 <p>启动成功后会在控制台输出以下信息：<br>
-<img src="https://static.ajiu9.cn/images/20240517095140.png" alt="image"></p>
+<img src="https://ajiu9.cn/images/20240517095140.png" alt="image"></p>
 <p>然后在浏览器中打开里面的地址</p>
 <ol start="2">
 <li>配置whistle代理<br>
-<img src="https://static.ajiu9.cn/images/20240517095452.png" alt="image"></li>
+<img src="/images/20240517095452.png" alt="image"></li>
 </ol>
 <p><code>请使用http代理</code></p>
 <ol start="3">
 <li>开启系统代理，或者在李立群插件中安装<a href="chrome://extensions/?id=padekgcemlokbadohgkifijomclgjgif">Proxy SwitchyOmega</a></li>
 </ol>
-<p><img src="https://static.ajiu9.cn/images/20240517095833.png" alt="image"></p>
+<p><img src="/images/20240517095833.png" alt="image"></p>
 <ol start="4">
 <li>微信开发者工具打开代理设置：设置 &gt; 代理设置<br>
-<img src="https://static.ajiu9.cn/images/20240517100019.png" alt="image"></li>
+<img src="/images/20240517100019.png" alt="image"></li>
 </ol>
 <p>完成这些后，访问微信配置的域名会代理到本地ip，就可以在微信开发者工具中调试本地代码了。</p>
 ]]></content>
@@ -1616,7 +1616,7 @@ matches:
 <li>21:00 - 23:00 Shallow Work</li>
 </ul>
 <p>工作时间不回复不重要的消息，早上优先做昨天设定的3Frog任务，周日周末时间表不同，我可能在家带娃，或者户外活动。同时保证4小时的长文阅读，4小时的Deep Work。</p>
-<p><img src="https://static.ajiu9.cn/Notes/2023101520370316973734231697373423408sJebk1.png" alt="daily plan"></p>
+<p><img src="https://ajiu9.cn/images/2023101520370316973734231697373423408sJebk1.png" alt="daily plan"></p>
 ]]></content>
         <author>
             <name>Ajiu9</name>
@@ -1639,18 +1639,18 @@ matches:
 <blockquote>
 <p>OSS使阿里云的对象存储服务，需要付费使用，但是对于平常的博客文章而言，很便宜，我现在是申请的3个月免费使用，实际付费也不贵，一个月就2.16元，（资源包关联的按量付费实例不停机，按使用量收费），就平常的访问量而言，估计是很难超过使用量的。</p>
 </blockquote>
-<p><img src="https://static.ajiu9.cn/Notes/IITkfA.png" alt="每月价格"></p>
+<p><img src="https://ajiu9.cn/images/IITkfA.png" alt="每月价格"></p>
 <h3>配置OSS</h3>
 <p>有了OSS后，需要简单配置下，阿里云有官方教程，一步一步几分钟搞定。</p>
 <ul>
 <li>
 <ol>
-<li>创建bucket <img src="https://static.ajiu9.cn/Notes/5eGHP4.png" alt="bucket"></li>
+<li>创建bucket <img src="/images/5eGHP4.png" alt="bucket"></li>
 </ol>
 </li>
 <li>
 <ol start="2">
-<li>击立即创建，勾选配置<img src="https://static.ajiu9.cn/Notes/nKvi0c.png" alt="配置"></li>
+<li>击立即创建，勾选配置<img src="/images/nKvi0c.png" alt="配置"></li>
 </ol>
 </li>
 <li>
@@ -1660,13 +1660,13 @@ matches:
 </li>
 </ul>
 <ol>
-<li>在 AccessKey管理中找到对应的key填写到uPic中<img src="https://static.ajiu9.cn/Notes/20230917112327.png" alt="AccessKey"></li>
+<li>在 AccessKey管理中找到对应的key填写到uPic中<img src="/images/20230917112327.png" alt="AccessKey"></li>
 </ol>
 <h3>uPic图床配置</h3>
 <p>在uPic偏好设置中，设置好图床！<br>
-<img src="https://static.ajiu9.cn/Notes/20230917162239169493895916949389595970bFTu6.png" alt="图床配置"></p>
+<img src="/images/20230917162239169493895916949389595970bFTu6.png" alt="图床配置"></p>
 <h3>完成</h3>
-<p>配置完成后就可以愉快的引用图片到文章中了，最后可以设置下图床的快捷键<img src="https://static.ajiu9.cn/Notes/2023091716261416949391741694939174953lwT8Qv.png" alt="快捷键"></p>
+<p>配置完成后就可以愉快的引用图片到文章中了，最后可以设置下图床的快捷键<img src="/images/2023091716261416949391741694939174953lwT8Qv.png" alt="快捷键"></p>
 ]]></content>
         <author>
             <name>Ajiu9</name>

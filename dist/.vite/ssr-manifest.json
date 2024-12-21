@@ -3,15 +3,48 @@
   "\u0000/home/runner/work/ajiu9.cn/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.11/node_modules/dayjs/plugin/localizedFormat.js?commonjs-module": [],
   "\u0000/home/runner/work/ajiu9.cn/ajiu9.cn/node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js?commonjs-module": [],
   "\u0000/home/runner/work/ajiu9.cn/ajiu9.cn/node_modules/.pnpm/p5@1.9.4/node_modules/p5/lib/p5.min.js?commonjs-module": [
-    "/assets/ArtDots-HrqLqF0g.js"
+    "/assets/ArtDots-BzIGgStE.js"
   ],
   "\u0000commonjs-dynamic-modules": [
-    "/assets/ArtDots-HrqLqF0g.js"
+    "/assets/ArtDots-BzIGgStE.js"
   ],
   "\u0000commonjsHelpers.js": [],
   "\u0000plugin-vue:export-helper": [],
   "\u0000vite/modulepreload-polyfill.js": [],
   "\u0000vite/preload-helper.js": [],
+  "\u0000vite:asset:public/images/20230917112327.png": [
+    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
+  ],
+  "\u0000vite:asset:public/images/20230917162239169493895916949389595970bFTu6.png": [
+    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
+  ],
+  "\u0000vite:asset:public/images/2023091716261416949391741694939174953lwT8Qv.png": [
+    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
+  ],
+  "\u0000vite:asset:public/images/2023101520370316973734231697373423408sJebk1.png": [
+    "/assets/how-to-determine-the-plan-fi4lGo1Q.js"
+  ],
+  "\u0000vite:asset:public/images/20240517095140.png": [
+    "/assets/how-to-debug-local-code-in-WeChat-development-tools-Bmk_QsFV.js"
+  ],
+  "\u0000vite:asset:public/images/20240517095452.png": [
+    "/assets/how-to-debug-local-code-in-WeChat-development-tools-Bmk_QsFV.js"
+  ],
+  "\u0000vite:asset:public/images/20240517095833.png": [
+    "/assets/how-to-debug-local-code-in-WeChat-development-tools-Bmk_QsFV.js"
+  ],
+  "\u0000vite:asset:public/images/20240517100019.png": [
+    "/assets/how-to-debug-local-code-in-WeChat-development-tools-Bmk_QsFV.js"
+  ],
+  "\u0000vite:asset:public/images/5eGHP4.png": [
+    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
+  ],
+  "\u0000vite:asset:public/images/IITkfA.png": [
+    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
+  ],
+  "\u0000vite:asset:public/images/nKvi0c.png": [
+    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
+  ],
   "../../../../../__uno.css": [],
   "assets/app-!~{001}~.js-unocss-hash.css": [],
   "index.html": [],
@@ -23,7 +56,7 @@
   "node_modules/.pnpm/@unhead+shared@1.9.14/node_modules/@unhead/shared/dist/index.mjs": [],
   "node_modules/.pnpm/@unhead+vue@1.9.14_vue@3.4.30_typescript@5.5.2_/node_modules/@unhead/vue/dist/shared/vue.cf295fb1.mjs": [],
   "node_modules/.pnpm/@unhead+vue@1.9.14_vue@3.4.30_typescript@5.5.2_/node_modules/@unhead/vue/dist/shared/vue.f36acd1f.mjs": [
-    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-CszaXyBB.js"
+    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-B8hOmlFs.js"
   ],
   "node_modules/.pnpm/@unocss+reset@0.61.0/node_modules/@unocss/reset/tailwind.css": [],
   "node_modules/.pnpm/@vue+reactivity@3.4.30/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js": [],
@@ -42,10 +75,10 @@
   "node_modules/.pnpm/markdown-it-github-alerts@0.3.0_markdown-it@14.1.0/node_modules/markdown-it-github-alerts/styles/github-colors-light.css": [],
   "node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js": [],
   "node_modules/.pnpm/p5@1.9.4/node_modules/p5/lib/p5.min.js": [
-    "/assets/ArtDots-HrqLqF0g.js"
+    "/assets/ArtDots-BzIGgStE.js"
   ],
   "node_modules/.pnpm/p5i@0.5.0/node_modules/p5i/dist/p5i.mjs": [
-    "/assets/ArtDots-HrqLqF0g.js"
+    "/assets/ArtDots-BzIGgStE.js"
   ],
   "node_modules/.pnpm/pinia@2.1.7_typescript@5.5.2_vue@3.4.30_typescript@5.5.2_/node_modules/pinia/dist/pinia.mjs": [],
   "node_modules/.pnpm/shiki-magic-move@0.4.2_shiki@1.9.0_vue@3.4.30_typescript@5.5.2_/node_modules/shiki-magic-move/dist/style.css": [],
@@ -57,158 +90,158 @@
   "node_modules/.pnpm/vue-router-better-scroller@0.0.0_vue-router@4.2.5_vue@3.4.30_typescript@5.5.2___vue@3.4.30_typescript@5.5.2_/node_modules/vue-router-better-scroller/dist/index.mjs": [],
   "node_modules/.pnpm/vue-router@4.2.5_vue@3.4.30_typescript@5.5.2_/node_modules/vue-router/dist/vue-router.mjs": [],
   "pages/[...404].md": [
-    "/assets/_...404_-C1ztqIiP.js"
+    "/assets/_...404_-DQuebLlM.js"
   ],
   "pages/bookmarks.md": [
-    "/assets/bookmarks-vO9hQwBx.js"
+    "/assets/bookmarks-B_WARdWh.js"
   ],
   "pages/index.md": [
-    "/assets/index-CIyrZQUK.js",
+    "/assets/index-M5NyPu6R.js",
     "/assets/qrcode_for_gh-Qj-0AFY8.jpg"
   ],
   "pages/notes.md": [
-    "/assets/notes-B1AwNza5.js"
+    "/assets/notes-BzW6Azz9.js"
   ],
   "pages/photos.md": [
-    "/assets/photos-CA8Emw1a.js"
+    "/assets/photos-DyEHVD3f.js"
   ],
   "pages/posts/are-you-a-morning-bird-or-a-night-owl.md": [
-    "/assets/are-you-a-morning-bird-or-a-night-owl-DDsKvviN.js"
+    "/assets/are-you-a-morning-bird-or-a-night-owl-SwzWLNqr.js"
   ],
   "pages/posts/browser-rendering-mechanism.md": [
-    "/assets/browser-rendering-mechanism-ZhaFiph8.js"
+    "/assets/browser-rendering-mechanism-CMKwhEau.js"
   ],
   "pages/posts/common-shortcuts-for-vscode.md": [
-    "/assets/common-shortcuts-for-vscode-BovSOhDr.js"
+    "/assets/common-shortcuts-for-vscode-zMLqv-FZ.js"
   ],
   "pages/posts/configure-my-Mac-from-0.md": [
-    "/assets/configure-my-Mac-from-0-CoRxvdjC.js"
+    "/assets/configure-my-Mac-from-0-CEjDkfnD.js"
   ],
   "pages/posts/construction-and-use-of-picture-bed.md": [
-    "/assets/construction-and-use-of-picture-bed-BmH8OUS9.js"
+    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
   ],
   "pages/posts/constructor-instance-prototype-chain.md": [
-    "/assets/constructor-instance-prototype-chain-DBJdlc-m.js"
+    "/assets/constructor-instance-prototype-chain-CAgsC2hz.js"
   ],
   "pages/posts/cross-domain-methods.md": [
-    "/assets/cross-domain-methods-Bln7d_3u.js"
+    "/assets/cross-domain-methods-C7cgPfEQ.js"
   ],
   "pages/posts/csrf-xss.md": [
-    "/assets/csrf-xss-Bzz235R_.js"
+    "/assets/csrf-xss-BNBwYDfP.js"
   ],
   "pages/posts/css-box-model-and-margin-overlap-solution.md": [
-    "/assets/css-box-model-and-margin-overlap-solution-CQBrjz62.js"
+    "/assets/css-box-model-and-margin-overlap-solution-BixGgXwX.js"
   ],
   "pages/posts/daily-tips-1.md": [
-    "/assets/daily-tips-1-CP_8mzZ2.js"
+    "/assets/daily-tips-1-JXglS6UU.js"
   ],
   "pages/posts/directive-number.md": [
-    "/assets/directive-number-sGFOUmmr.js"
+    "/assets/directive-number-crewxkR0.js"
   ],
   "pages/posts/dom-event.md": [
-    "/assets/dom-event-Cr6ZsD2l.js"
+    "/assets/dom-event-D3q0CT0p.js"
   ],
   "pages/posts/front-end-error-monitoring.md": [
-    "/assets/front-end-error-monitoring-BDtZdXwl.js"
+    "/assets/front-end-error-monitoring-C4rGIiWF.js"
   ],
   "pages/posts/how-to-achieve-a-deep-copy.md": [
-    "/assets/how-to-achieve-a-deep-copy-Rrrak9i3.js"
+    "/assets/how-to-achieve-a-deep-copy-BemSMMq9.js"
   ],
   "pages/posts/how-to-debug-local-code-in-WeChat-development-tools.md": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-b_NFYzTR.js"
+    "/assets/how-to-debug-local-code-in-WeChat-development-tools-Bmk_QsFV.js"
   ],
   "pages/posts/how-to-determine-the-plan.md": [
-    "/assets/how-to-determine-the-plan-BMd6AIqj.js"
+    "/assets/how-to-determine-the-plan-fi4lGo1Q.js"
   ],
   "pages/posts/http-protocol-class.md": [
-    "/assets/http-protocol-class-BU8K7x9S.js"
+    "/assets/http-protocol-class-C7F1PKC5.js"
   ],
   "pages/posts/index.md": [
-    "/assets/index-BxQzdqHX.js"
+    "/assets/index-BYVeXBHb.js"
   ],
   "pages/posts/javascript-data-type.md": [
-    "/assets/javascript-data-type-BNNbGFZk.js"
+    "/assets/javascript-data-type-DCrCnBYY.js"
   ],
   "pages/posts/js-type-about-type-and-Reference.md": [
-    "/assets/js-type-about-type-and-Reference-BnXKgmim.js"
+    "/assets/js-type-about-type-and-Reference-DdfPeLQH.js"
   ],
   "pages/posts/lodash-webpack-plugin-problem.md": [
-    "/assets/lodash-webpack-plugin-problem-BmSi2XNU.js"
+    "/assets/lodash-webpack-plugin-problem-DstLnzsF.js"
   ],
   "pages/posts/map-set-array-object.md": [
-    "/assets/map-set-array-object-ybBzrmG5.js"
+    "/assets/map-set-array-object-BNnM2nNT.js"
   ],
   "pages/posts/match-chinese-characters.md": [
-    "/assets/match-chinese-characters-CI1zzQZU.js"
+    "/assets/match-chinese-characters-DAPFdheN.js"
   ],
   "pages/posts/object-oriented-class-and-inheritance.md": [
-    "/assets/object-oriented-class-and-inheritance-BM3eL1BS.js"
+    "/assets/object-oriented-class-and-inheritance-x7wVmoOx.js"
   ],
   "pages/posts/page-layout-three-column.md": [
-    "/assets/page-layout-three-column-DlPUaN_j.js"
+    "/assets/page-layout-three-column-Bid_BMXX.js"
   ],
   "pages/posts/professional-thinking.md": [
-    "/assets/professional-thinking-BcoO5nmR.js"
+    "/assets/professional-thinking-rCjeZ6qU.js"
   ],
   "pages/posts/proxy-reflect.md": [
-    "/assets/proxy-reflect-DeI1E0Vm.js"
+    "/assets/proxy-reflect-CJ4nEQYr.js"
   ],
   "pages/posts/publish-esm-and-cjs.md": [
-    "/assets/publish-esm-and-cjs-BvJSQK6r.js"
+    "/assets/publish-esm-and-cjs-ClxHK9Qu.js"
   ],
   "pages/posts/use-search.md": [
-    "/assets/use-search-DlvDzTOf.js"
+    "/assets/use-search-BWRvKkOB.js"
   ],
   "pages/posts/webpack-building-speed-up.md": [
-    "/assets/webpack-building-speed-up-DmMKG4GB.js"
+    "/assets/webpack-building-speed-up-B8R5-YdH.js"
   ],
   "pages/posts/window-print.md": [
-    "/assets/window-print-BzkEHTan.js"
+    "/assets/window-print-Bv3Wtv2a.js"
   ],
   "pages/projects.md": [
-    "/assets/projects-CH6mZHiD.js",
+    "/assets/projects-DpEJ2coB.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "photos/2024-03-23.md": [
-    "/assets/photos-CA8Emw1a.js"
+    "/assets/photos-DyEHVD3f.js"
   ],
   "photos/data.ts": [
-    "/assets/photos-CA8Emw1a.js"
+    "/assets/photos-DyEHVD3f.js"
   ],
   "public/qrcode_for_gh.jpg": [
-    "/assets/index-CIyrZQUK.js",
+    "/assets/index-M5NyPu6R.js",
     "/assets/qrcode_for_gh-Qj-0AFY8.jpg"
   ],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/ArtDots.vue": [
-    "/assets/ArtDots-HrqLqF0g.js"
+    "/assets/ArtDots-BzIGgStE.js"
   ],
   "src/components/ArtDots.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/ArtDots-HrqLqF0g.js"
+    "/assets/ArtDots-BzIGgStE.js"
   ],
   "src/components/ArtPlum.vue": [
-    "/assets/ArtPlum-DpsivUE5.js"
+    "/assets/ArtPlum-CC64Ssy4.js"
   ],
   "src/components/ArtPlum.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/ArtPlum-DpsivUE5.js"
+    "/assets/ArtPlum-CC64Ssy4.js"
   ],
   "src/components/Footer.vue": [],
   "src/components/ListPhotos.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/photos-CA8Emw1a.js"
+    "/assets/photos-DyEHVD3f.js"
   ],
   "src/components/ListPosts.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-B-CzTnSN.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BngUkxQ1.js"
   ],
   "src/components/ListProjects.vue": [
-    "/assets/projects-CH6mZHiD.js",
+    "/assets/projects-DpEJ2coB.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/projects-CH6mZHiD.js",
+    "/assets/projects-DpEJ2coB.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=style&index=0&scoped=6235e163&lang.css": [
-    "/assets/projects-CH6mZHiD.js",
+    "/assets/projects-DpEJ2coB.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/Logo.vue": [],
@@ -217,14 +250,14 @@
   "src/components/NavBar.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/NavBar.vue?vue&type=style&index=0&scoped=89b7cfe3&lang.css": [],
   "src/components/SubNav.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-B-CzTnSN.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BngUkxQ1.js"
   ],
   "src/components/ToggleTheme.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/WrapperPhoto.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/photos-CA8Emw1a.js"
+    "/assets/photos-DyEHVD3f.js"
   ],
   "src/components/WrapperPost.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-CszaXyBB.js"
+    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-B8hOmlFs.js"
   ],
   "src/logics/index.ts": [],
   "src/main.ts": [],
