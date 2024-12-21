@@ -1,102 +1,51 @@
 {
-<<<<<<< HEAD
   "\u0000/Users/wulongbiao/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.11/node_modules/dayjs/dayjs.min.js?commonjs-module": [],
   "\u0000/Users/wulongbiao/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.11/node_modules/dayjs/plugin/localizedFormat.js?commonjs-module": [],
   "\u0000/Users/wulongbiao/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js?commonjs-module": [],
   "\u0000/Users/wulongbiao/Documents/Code/github.com/ajiu9/ajiu9.cn/node_modules/.pnpm/p5@1.9.4/node_modules/p5/lib/p5.min.js?commonjs-module": [
-    "/assets/ArtDots-BS4L4gzF.js"
+    "/assets/ArtDots-Bwr4Qosa.js"
   ],
   "\u0000commonjs-dynamic-modules": [
-    "/assets/ArtDots-BS4L4gzF.js"
-=======
-  "\u0000/home/runner/work/ajiu9.cn/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.11/node_modules/dayjs/dayjs.min.js?commonjs-module": [],
-  "\u0000/home/runner/work/ajiu9.cn/ajiu9.cn/node_modules/.pnpm/dayjs@1.11.11/node_modules/dayjs/plugin/localizedFormat.js?commonjs-module": [],
-  "\u0000/home/runner/work/ajiu9.cn/ajiu9.cn/node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js?commonjs-module": [],
-  "\u0000/home/runner/work/ajiu9.cn/ajiu9.cn/node_modules/.pnpm/p5@1.9.4/node_modules/p5/lib/p5.min.js?commonjs-module": [
-    "/assets/ArtDots-BzIGgStE.js"
-  ],
-  "\u0000commonjs-dynamic-modules": [
-    "/assets/ArtDots-BzIGgStE.js"
->>>>>>> release
+    "/assets/ArtDots-Bwr4Qosa.js"
   ],
   "\u0000commonjsHelpers.js": [],
   "\u0000plugin-vue:export-helper": [],
   "\u0000vite/modulepreload-polyfill.js": [],
   "\u0000vite/preload-helper.js": [],
   "\u0000vite:asset:public/images/20230917112327.png": [
-<<<<<<< HEAD
-    "/assets/construction-and-use-of-picture-bed-CvkYc9hA.js"
+    "/assets/construction-and-use-of-picture-bed-ClOj_t1c.js"
   ],
   "\u0000vite:asset:public/images/20230917162239169493895916949389595970bFTu6.png": [
-    "/assets/construction-and-use-of-picture-bed-CvkYc9hA.js"
+    "/assets/construction-and-use-of-picture-bed-ClOj_t1c.js"
   ],
   "\u0000vite:asset:public/images/2023091716261416949391741694939174953lwT8Qv.png": [
-    "/assets/construction-and-use-of-picture-bed-CvkYc9hA.js"
+    "/assets/construction-and-use-of-picture-bed-ClOj_t1c.js"
   ],
   "\u0000vite:asset:public/images/2023101520370316973734231697373423408sJebk1.png": [
-    "/assets/how-to-determine-the-plan-BE-jiaVa.js"
+    "/assets/how-to-determine-the-plan-DSOcWFFK.js"
   ],
   "\u0000vite:asset:public/images/20240517095140.png": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-C6Bl9ncP.js"
+    "/assets/how-to-debug-local-code-in-WeChat-development-tools-CiYFoUcF.js"
   ],
   "\u0000vite:asset:public/images/20240517095452.png": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-C6Bl9ncP.js"
+    "/assets/how-to-debug-local-code-in-WeChat-development-tools-CiYFoUcF.js"
   ],
   "\u0000vite:asset:public/images/20240517095833.png": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-C6Bl9ncP.js"
+    "/assets/how-to-debug-local-code-in-WeChat-development-tools-CiYFoUcF.js"
   ],
   "\u0000vite:asset:public/images/20240517100019.png": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-C6Bl9ncP.js"
+    "/assets/how-to-debug-local-code-in-WeChat-development-tools-CiYFoUcF.js"
   ],
   "\u0000vite:asset:public/images/5eGHP4.png": [
-    "/assets/construction-and-use-of-picture-bed-CvkYc9hA.js"
+    "/assets/construction-and-use-of-picture-bed-ClOj_t1c.js"
   ],
   "\u0000vite:asset:public/images/IITkfA.png": [
-    "/assets/construction-and-use-of-picture-bed-CvkYc9hA.js"
+    "/assets/construction-and-use-of-picture-bed-ClOj_t1c.js"
   ],
   "\u0000vite:asset:public/images/nKvi0c.png": [
-    "/assets/construction-and-use-of-picture-bed-CvkYc9hA.js"
+    "/assets/construction-and-use-of-picture-bed-ClOj_t1c.js"
   ],
   "../../../../../../../__uno.css": [],
-=======
-    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
-  ],
-  "\u0000vite:asset:public/images/20230917162239169493895916949389595970bFTu6.png": [
-    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
-  ],
-  "\u0000vite:asset:public/images/2023091716261416949391741694939174953lwT8Qv.png": [
-    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
-  ],
-  "\u0000vite:asset:public/images/2023101520370316973734231697373423408sJebk1.png": [
-    "/assets/how-to-determine-the-plan-fi4lGo1Q.js"
-  ],
-  "\u0000vite:asset:public/images/20240517095140.png": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-Bmk_QsFV.js"
-  ],
-  "\u0000vite:asset:public/images/20240517095452.png": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-Bmk_QsFV.js"
-  ],
-  "\u0000vite:asset:public/images/20240517095833.png": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-Bmk_QsFV.js"
-  ],
-  "\u0000vite:asset:public/images/20240517100019.png": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-Bmk_QsFV.js"
-  ],
-  "\u0000vite:asset:public/images/5eGHP4.png": [
-    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
-  ],
-  "\u0000vite:asset:public/images/IITkfA.png": [
-    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
-  ],
-  "\u0000vite:asset:public/images/nKvi0c.png": [
-    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
-  ],
-<<<<<<< HEAD
-  "../../../../../../../__uno.css": [],
-=======
-  "../../../../../__uno.css": [],
->>>>>>> 6dd2f9fdf489fe2acace3de987bee00035508a66
->>>>>>> release
   "assets/app-!~{001}~.js-unocss-hash.css": [],
   "index.html": [],
   "node_modules/.pnpm/@floating-ui+core@1.6.0/node_modules/@floating-ui/core/dist/floating-ui.core.mjs": [],
@@ -107,11 +56,7 @@
   "node_modules/.pnpm/@unhead+shared@1.9.14/node_modules/@unhead/shared/dist/index.mjs": [],
   "node_modules/.pnpm/@unhead+vue@1.9.14_vue@3.4.30_typescript@5.5.2_/node_modules/@unhead/vue/dist/shared/vue.cf295fb1.mjs": [],
   "node_modules/.pnpm/@unhead+vue@1.9.14_vue@3.4.30_typescript@5.5.2_/node_modules/@unhead/vue/dist/shared/vue.f36acd1f.mjs": [
-<<<<<<< HEAD
-    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-C3jMeL4c.js"
-=======
-    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-B8hOmlFs.js"
->>>>>>> release
+    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-DpxLinDd.js"
   ],
   "node_modules/.pnpm/@unocss+reset@0.61.0/node_modules/@unocss/reset/tailwind.css": [],
   "node_modules/.pnpm/@vue+reactivity@3.4.30/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js": [],
@@ -130,17 +75,10 @@
   "node_modules/.pnpm/markdown-it-github-alerts@0.3.0_markdown-it@14.1.0/node_modules/markdown-it-github-alerts/styles/github-colors-light.css": [],
   "node_modules/.pnpm/nprogress@0.2.0/node_modules/nprogress/nprogress.js": [],
   "node_modules/.pnpm/p5@1.9.4/node_modules/p5/lib/p5.min.js": [
-<<<<<<< HEAD
-    "/assets/ArtDots-BS4L4gzF.js"
+    "/assets/ArtDots-Bwr4Qosa.js"
   ],
   "node_modules/.pnpm/p5i@0.5.0/node_modules/p5i/dist/p5i.mjs": [
-    "/assets/ArtDots-BS4L4gzF.js"
-=======
-    "/assets/ArtDots-BzIGgStE.js"
-  ],
-  "node_modules/.pnpm/p5i@0.5.0/node_modules/p5i/dist/p5i.mjs": [
-    "/assets/ArtDots-BzIGgStE.js"
->>>>>>> release
+    "/assets/ArtDots-Bwr4Qosa.js"
   ],
   "node_modules/.pnpm/pinia@2.1.7_typescript@5.5.2_vue@3.4.30_typescript@5.5.2_/node_modules/pinia/dist/pinia.mjs": [],
   "node_modules/.pnpm/shiki-magic-move@0.4.2_shiki@1.9.0_vue@3.4.30_typescript@5.5.2_/node_modules/shiki-magic-move/dist/style.css": [],
@@ -152,312 +90,158 @@
   "node_modules/.pnpm/vue-router-better-scroller@0.0.0_vue-router@4.2.5_vue@3.4.30_typescript@5.5.2___vue@3.4.30_typescript@5.5.2_/node_modules/vue-router-better-scroller/dist/index.mjs": [],
   "node_modules/.pnpm/vue-router@4.2.5_vue@3.4.30_typescript@5.5.2_/node_modules/vue-router/dist/vue-router.mjs": [],
   "pages/[...404].md": [
-<<<<<<< HEAD
-    "/assets/_...404_-mA-Xyxdh.js"
+    "/assets/_...404_-Dt9hgqpl.js"
   ],
   "pages/bookmarks.md": [
-    "/assets/bookmarks-CEpMsWcG.js"
+    "/assets/bookmarks-CO2AgaMP.js"
   ],
   "pages/index.md": [
-    "/assets/index-CGtXZK3J.js",
+    "/assets/index-DPonJm08.js",
     "/assets/qrcode_for_gh-Qj-0AFY8.jpg"
   ],
   "pages/notes.md": [
-    "/assets/notes-Ct5zgEDm.js"
+    "/assets/notes-u4zee7y2.js"
   ],
   "pages/photos.md": [
-    "/assets/photos-DSOUtz7X.js"
+    "/assets/photos-BduobgkU.js"
   ],
   "pages/posts/are-you-a-morning-bird-or-a-night-owl.md": [
-    "/assets/are-you-a-morning-bird-or-a-night-owl-B0Yljifi.js"
+    "/assets/are-you-a-morning-bird-or-a-night-owl-CRIFMMHa.js"
   ],
   "pages/posts/browser-rendering-mechanism.md": [
-    "/assets/browser-rendering-mechanism--GRnKuM7.js"
+    "/assets/browser-rendering-mechanism-Chc_1QKj.js"
   ],
   "pages/posts/common-shortcuts-for-vscode.md": [
-    "/assets/common-shortcuts-for-vscode-CJ-vCJZO.js"
+    "/assets/common-shortcuts-for-vscode-vk7DfA0U.js"
   ],
   "pages/posts/configure-my-Mac-from-0.md": [
-    "/assets/configure-my-Mac-from-0-D8jKpPZL.js"
+    "/assets/configure-my-Mac-from-0-B54LVtB3.js"
   ],
   "pages/posts/construction-and-use-of-picture-bed.md": [
-    "/assets/construction-and-use-of-picture-bed-CvkYc9hA.js"
+    "/assets/construction-and-use-of-picture-bed-ClOj_t1c.js"
   ],
   "pages/posts/constructor-instance-prototype-chain.md": [
-    "/assets/constructor-instance-prototype-chain-CrYQUgco.js"
+    "/assets/constructor-instance-prototype-chain-CkiusW0X.js"
   ],
   "pages/posts/cross-domain-methods.md": [
-    "/assets/cross-domain-methods-Bmz9kJBT.js"
+    "/assets/cross-domain-methods-B-2JOrWL.js"
   ],
   "pages/posts/csrf-xss.md": [
-    "/assets/csrf-xss-C4hIYTCo.js"
+    "/assets/csrf-xss-DbBRMetV.js"
   ],
   "pages/posts/css-box-model-and-margin-overlap-solution.md": [
-    "/assets/css-box-model-and-margin-overlap-solution-CeHWp-pc.js"
+    "/assets/css-box-model-and-margin-overlap-solution-DYKpU4-q.js"
   ],
   "pages/posts/daily-tips-1.md": [
-    "/assets/daily-tips-1-Clzzklgg.js"
+    "/assets/daily-tips-1-CcYi3XwZ.js"
   ],
   "pages/posts/directive-number.md": [
-    "/assets/directive-number-k7PKoMmU.js"
+    "/assets/directive-number-D-Ed77nu.js"
   ],
   "pages/posts/dom-event.md": [
-    "/assets/dom-event-DTen5e4M.js"
+    "/assets/dom-event-CMJ2elip.js"
   ],
   "pages/posts/front-end-error-monitoring.md": [
-    "/assets/front-end-error-monitoring-C3U0LhJM.js"
+    "/assets/front-end-error-monitoring-744-9Q3x.js"
   ],
   "pages/posts/how-to-achieve-a-deep-copy.md": [
-    "/assets/how-to-achieve-a-deep-copy-BgdA3hEm.js"
+    "/assets/how-to-achieve-a-deep-copy-n1A5Eqa0.js"
   ],
   "pages/posts/how-to-debug-local-code-in-WeChat-development-tools.md": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-C6Bl9ncP.js"
+    "/assets/how-to-debug-local-code-in-WeChat-development-tools-CiYFoUcF.js"
   ],
   "pages/posts/how-to-determine-the-plan.md": [
-    "/assets/how-to-determine-the-plan-BE-jiaVa.js"
+    "/assets/how-to-determine-the-plan-DSOcWFFK.js"
   ],
   "pages/posts/http-protocol-class.md": [
-    "/assets/http-protocol-class-BtTQAhpp.js"
+    "/assets/http-protocol-class-CIx59xwR.js"
   ],
   "pages/posts/index.md": [
-    "/assets/index-D_cmddh-.js"
+    "/assets/index-DjrjqV-y.js"
   ],
   "pages/posts/javascript-data-type.md": [
-    "/assets/javascript-data-type-DkQIh61B.js"
+    "/assets/javascript-data-type-DgfaUO2v.js"
   ],
   "pages/posts/js-type-about-type-and-Reference.md": [
-    "/assets/js-type-about-type-and-Reference-CAiUqSBK.js"
+    "/assets/js-type-about-type-and-Reference-B5Sc9J6k.js"
   ],
   "pages/posts/lodash-webpack-plugin-problem.md": [
-    "/assets/lodash-webpack-plugin-problem-Dl6aeqPH.js"
+    "/assets/lodash-webpack-plugin-problem-BdjdKm5J.js"
   ],
   "pages/posts/map-set-array-object.md": [
-    "/assets/map-set-array-object-BjTO39uz.js"
+    "/assets/map-set-array-object-DbK1f9DE.js"
   ],
   "pages/posts/match-chinese-characters.md": [
-    "/assets/match-chinese-characters-CUsGgIZC.js"
+    "/assets/match-chinese-characters-Bo2tqkWT.js"
   ],
   "pages/posts/object-oriented-class-and-inheritance.md": [
-    "/assets/object-oriented-class-and-inheritance-CJCp1iqd.js"
+    "/assets/object-oriented-class-and-inheritance-CX2PIAlc.js"
   ],
   "pages/posts/page-layout-three-column.md": [
-    "/assets/page-layout-three-column-Xi2SrVvv.js"
+    "/assets/page-layout-three-column-BgpeBMwk.js"
   ],
   "pages/posts/professional-thinking.md": [
-    "/assets/professional-thinking-CE4NUqbv.js"
+    "/assets/professional-thinking-DQUYLkyH.js"
   ],
   "pages/posts/proxy-reflect.md": [
-    "/assets/proxy-reflect-E4V_n0gH.js"
+    "/assets/proxy-reflect-B5IjU1_c.js"
   ],
   "pages/posts/publish-esm-and-cjs.md": [
-    "/assets/publish-esm-and-cjs-BMwfT8q4.js"
+    "/assets/publish-esm-and-cjs-DMH0GnQb.js"
   ],
   "pages/posts/use-search.md": [
-    "/assets/use-search-BwPZRuQW.js"
+    "/assets/use-search-DqbUaN1D.js"
   ],
   "pages/posts/webpack-building-speed-up.md": [
-    "/assets/webpack-building-speed-up-Dx7oWCpL.js"
+    "/assets/webpack-building-speed-up-BPaHZUYB.js"
   ],
   "pages/posts/window-print.md": [
-    "/assets/window-print-CpA_z0wm.js"
+    "/assets/window-print-B8GxUuWv.js"
   ],
   "pages/projects.md": [
-    "/assets/projects-Ba0EVwoK.js",
+    "/assets/projects-CCIg95bH.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "photos/2024-03-23.md": [
-    "/assets/photos-DSOUtz7X.js"
+    "/assets/photos-BduobgkU.js"
   ],
   "photos/data.ts": [
-    "/assets/photos-DSOUtz7X.js"
+    "/assets/photos-BduobgkU.js"
   ],
   "public/qrcode_for_gh.jpg": [
-    "/assets/index-CGtXZK3J.js",
-=======
-    "/assets/_...404_-DQuebLlM.js"
-  ],
-  "pages/bookmarks.md": [
-    "/assets/bookmarks-B_WARdWh.js"
-  ],
-  "pages/index.md": [
-    "/assets/index-M5NyPu6R.js",
-    "/assets/qrcode_for_gh-Qj-0AFY8.jpg"
-  ],
-  "pages/notes.md": [
-    "/assets/notes-BzW6Azz9.js"
-  ],
-  "pages/photos.md": [
-    "/assets/photos-DyEHVD3f.js"
-  ],
-  "pages/posts/are-you-a-morning-bird-or-a-night-owl.md": [
-    "/assets/are-you-a-morning-bird-or-a-night-owl-SwzWLNqr.js"
-  ],
-  "pages/posts/browser-rendering-mechanism.md": [
-    "/assets/browser-rendering-mechanism-CMKwhEau.js"
-  ],
-  "pages/posts/common-shortcuts-for-vscode.md": [
-    "/assets/common-shortcuts-for-vscode-zMLqv-FZ.js"
-  ],
-  "pages/posts/configure-my-Mac-from-0.md": [
-    "/assets/configure-my-Mac-from-0-CEjDkfnD.js"
-  ],
-  "pages/posts/construction-and-use-of-picture-bed.md": [
-    "/assets/construction-and-use-of-picture-bed-BtNjHO0B.js"
-  ],
-  "pages/posts/constructor-instance-prototype-chain.md": [
-    "/assets/constructor-instance-prototype-chain-CAgsC2hz.js"
-  ],
-  "pages/posts/cross-domain-methods.md": [
-    "/assets/cross-domain-methods-C7cgPfEQ.js"
-  ],
-  "pages/posts/csrf-xss.md": [
-    "/assets/csrf-xss-BNBwYDfP.js"
-  ],
-  "pages/posts/css-box-model-and-margin-overlap-solution.md": [
-    "/assets/css-box-model-and-margin-overlap-solution-BixGgXwX.js"
-  ],
-  "pages/posts/daily-tips-1.md": [
-    "/assets/daily-tips-1-JXglS6UU.js"
-  ],
-  "pages/posts/directive-number.md": [
-    "/assets/directive-number-crewxkR0.js"
-  ],
-  "pages/posts/dom-event.md": [
-    "/assets/dom-event-D3q0CT0p.js"
-  ],
-  "pages/posts/front-end-error-monitoring.md": [
-    "/assets/front-end-error-monitoring-C4rGIiWF.js"
-  ],
-  "pages/posts/how-to-achieve-a-deep-copy.md": [
-    "/assets/how-to-achieve-a-deep-copy-BemSMMq9.js"
-  ],
-  "pages/posts/how-to-debug-local-code-in-WeChat-development-tools.md": [
-    "/assets/how-to-debug-local-code-in-WeChat-development-tools-Bmk_QsFV.js"
-  ],
-  "pages/posts/how-to-determine-the-plan.md": [
-    "/assets/how-to-determine-the-plan-fi4lGo1Q.js"
-  ],
-  "pages/posts/http-protocol-class.md": [
-    "/assets/http-protocol-class-C7F1PKC5.js"
-  ],
-  "pages/posts/index.md": [
-    "/assets/index-BYVeXBHb.js"
-  ],
-  "pages/posts/javascript-data-type.md": [
-    "/assets/javascript-data-type-DCrCnBYY.js"
-  ],
-  "pages/posts/js-type-about-type-and-Reference.md": [
-    "/assets/js-type-about-type-and-Reference-DdfPeLQH.js"
-  ],
-  "pages/posts/lodash-webpack-plugin-problem.md": [
-    "/assets/lodash-webpack-plugin-problem-DstLnzsF.js"
-  ],
-  "pages/posts/map-set-array-object.md": [
-    "/assets/map-set-array-object-BNnM2nNT.js"
-  ],
-  "pages/posts/match-chinese-characters.md": [
-    "/assets/match-chinese-characters-DAPFdheN.js"
-  ],
-  "pages/posts/object-oriented-class-and-inheritance.md": [
-    "/assets/object-oriented-class-and-inheritance-x7wVmoOx.js"
-  ],
-  "pages/posts/page-layout-three-column.md": [
-    "/assets/page-layout-three-column-Bid_BMXX.js"
-  ],
-  "pages/posts/professional-thinking.md": [
-    "/assets/professional-thinking-rCjeZ6qU.js"
-  ],
-  "pages/posts/proxy-reflect.md": [
-    "/assets/proxy-reflect-CJ4nEQYr.js"
-  ],
-  "pages/posts/publish-esm-and-cjs.md": [
-    "/assets/publish-esm-and-cjs-ClxHK9Qu.js"
-  ],
-  "pages/posts/use-search.md": [
-    "/assets/use-search-BWRvKkOB.js"
-  ],
-  "pages/posts/webpack-building-speed-up.md": [
-    "/assets/webpack-building-speed-up-B8R5-YdH.js"
-  ],
-  "pages/posts/window-print.md": [
-    "/assets/window-print-Bv3Wtv2a.js"
-  ],
-  "pages/projects.md": [
-    "/assets/projects-DpEJ2coB.js",
-    "/assets/projects-BL_kb8Df.css"
-  ],
-  "photos/2024-03-23.md": [
-    "/assets/photos-DyEHVD3f.js"
-  ],
-  "photos/data.ts": [
-    "/assets/photos-DyEHVD3f.js"
-  ],
-  "public/qrcode_for_gh.jpg": [
-    "/assets/index-M5NyPu6R.js",
->>>>>>> release
+    "/assets/index-DPonJm08.js",
     "/assets/qrcode_for_gh-Qj-0AFY8.jpg"
   ],
   "src/App.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/ArtDots.vue": [
-<<<<<<< HEAD
-    "/assets/ArtDots-BS4L4gzF.js"
+    "/assets/ArtDots-Bwr4Qosa.js"
   ],
   "src/components/ArtDots.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/ArtDots-BS4L4gzF.js"
+    "/assets/ArtDots-Bwr4Qosa.js"
   ],
   "src/components/ArtPlum.vue": [
-    "/assets/ArtPlum-BX-RjG3w.js"
+    "/assets/ArtPlum-Dcl9TJeI.js"
   ],
   "src/components/ArtPlum.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/ArtPlum-BX-RjG3w.js"
+    "/assets/ArtPlum-Dcl9TJeI.js"
   ],
   "src/components/Footer.vue": [],
   "src/components/ListPhotos.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/photos-DSOUtz7X.js"
+    "/assets/photos-BduobgkU.js"
   ],
   "src/components/ListPosts.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BPH9Z8RH.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BQvhnMEi.js"
   ],
   "src/components/ListProjects.vue": [
-    "/assets/projects-Ba0EVwoK.js",
+    "/assets/projects-CCIg95bH.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/projects-Ba0EVwoK.js",
+    "/assets/projects-CCIg95bH.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/ListProjects.vue?vue&type=style&index=0&scoped=6235e163&lang.css": [
-    "/assets/projects-Ba0EVwoK.js",
-=======
-    "/assets/ArtDots-BzIGgStE.js"
-  ],
-  "src/components/ArtDots.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/ArtDots-BzIGgStE.js"
-  ],
-  "src/components/ArtPlum.vue": [
-    "/assets/ArtPlum-CC64Ssy4.js"
-  ],
-  "src/components/ArtPlum.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/ArtPlum-CC64Ssy4.js"
-  ],
-  "src/components/Footer.vue": [],
-  "src/components/ListPhotos.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/photos-DyEHVD3f.js"
-  ],
-  "src/components/ListPosts.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BngUkxQ1.js"
-  ],
-  "src/components/ListProjects.vue": [
-    "/assets/projects-DpEJ2coB.js",
-    "/assets/projects-BL_kb8Df.css"
-  ],
-  "src/components/ListProjects.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/projects-DpEJ2coB.js",
-    "/assets/projects-BL_kb8Df.css"
-  ],
-  "src/components/ListProjects.vue?vue&type=style&index=0&scoped=6235e163&lang.css": [
-    "/assets/projects-DpEJ2coB.js",
->>>>>>> release
+    "/assets/projects-CCIg95bH.js",
     "/assets/projects-BL_kb8Df.css"
   ],
   "src/components/Logo.vue": [],
@@ -466,25 +250,14 @@
   "src/components/NavBar.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/NavBar.vue?vue&type=style&index=0&scoped=89b7cfe3&lang.css": [],
   "src/components/SubNav.vue?vue&type=script&setup=true&lang.ts": [
-<<<<<<< HEAD
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BPH9Z8RH.js"
+    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BQvhnMEi.js"
   ],
   "src/components/ToggleTheme.vue?vue&type=script&setup=true&lang.ts": [],
   "src/components/WrapperPhoto.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/photos-DSOUtz7X.js"
+    "/assets/photos-BduobgkU.js"
   ],
   "src/components/WrapperPost.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-C3jMeL4c.js"
-=======
-    "/assets/SubNav.vue_vue_type_script_setup_true_lang-BngUkxQ1.js"
-  ],
-  "src/components/ToggleTheme.vue?vue&type=script&setup=true&lang.ts": [],
-  "src/components/WrapperPhoto.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/photos-DyEHVD3f.js"
-  ],
-  "src/components/WrapperPost.vue?vue&type=script&setup=true&lang.ts": [
-    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-B8hOmlFs.js"
->>>>>>> release
+    "/assets/WrapperPost.vue_vue_type_script_setup_true_lang-DpxLinDd.js"
   ],
   "src/logics/index.ts": [],
   "src/main.ts": [],
@@ -492,8 +265,4 @@
   "src/styles/markdown.css": [],
   "src/styles/prose.css": [],
   "virtual:vue-router/auto-routes": []
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> release
