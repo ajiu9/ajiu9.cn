@@ -17,20 +17,20 @@ w2 start
 ```
 
 启动成功后会在控制台输出以下信息：
-![image](https://static.ajiu9.cn/images/20240517095140.png)
+![image](/images/20240517095140.png)
 
 然后在浏览器中打开里面的地址
 
 2. 配置whistle代理
-   ![image](https://static.ajiu9.cn/images/20240517095452.png)
+   ![image](/images/20240517095452.png)
 
 `请使用http代理`
 
 3. 开启系统代理，或者在李立群插件中安装[Proxy SwitchyOmega](chrome://extensions/?id=padekgcemlokbadohgkifijomclgjgif)
 
-![image](https://static.ajiu9.cn/images/20240517095833.png)
+![image](/images/20240517095833.png)
 
 4. 微信开发者工具打开代理设置：设置 > 代理设置
-   ![image](https://static.ajiu9.cn/images/20240517100019.png)
+   ![image](/images/20240517100019.png)
 
 完成这些后，访问微信配置的域名会代理到本地ip，就可以在微信开发者工具中调试本地代码了。
