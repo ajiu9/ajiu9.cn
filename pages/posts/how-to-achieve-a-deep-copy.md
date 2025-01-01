@@ -67,7 +67,7 @@ console.log('obj2', obj2)
 
 我们来看一下控制台打印的结果，如下图所示。
 
-![图片](https://static.ajiu9.cn/images/20240316211739l57kt9.png)
+![图片](/images/20240316211739l57kt9.png)
 
 从上面的代码中可以看到，利用 object.assign 也可以拷贝 Symbol 类型的对象，但是如果到了对象的第二层属性 obj1.a.b 这里的时候，前者值的改变也会影响后者的第二层属性的值，说明其中依旧存在着访问共同堆内存的问题，也就是说这种方法还不能进一步复制，而只是完成了浅拷贝的功能。
 
@@ -198,7 +198,7 @@ console.log('obj2', obj2)
 
 通过上面这段代码可以看到执行结果如下图所示
 
-![图片](https://static.ajiu9.cn/images/20240316211813QB9z6C.png)
+![图片](/images/20240316211813QB9z6C.png)
 
 使用 JSON.stringify 方法实现深拷贝对象，虽然到目前为止还有很多无法实现的功能，
 对于其他的也要实现深拷贝的，JSON.stringify 暂时还是无法满足的，就需要下面的几种方法。
@@ -293,7 +293,7 @@ console.log('obj', obj)
 console.log('cloneObj', cloneObj)
 ```
 
-![图片](https://static.ajiu9.cn/images/202403162118438RZn3P.png)
+![图片](/images/202403162118438RZn3P.png)
 
 从这张截图的结果可以看出，改进版的 deepClone 函数已经对基础版的那几个问题进行了改进，也验证了上面提到的那四点理论。
 

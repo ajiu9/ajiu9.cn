@@ -51,7 +51,7 @@ const deep = cloneDeep(test1)
 console.log(deep[0] === test1[0]) // true
 ```
 
-![image](https://static.ajiu9.cn/images/20240411170613.png)
+![image](/images/20240411170613.png)
 
 发现原本`cloneDeep`依赖了`baseClone`函数，但是却变成了[identity](https://lodash.com/docs/4.17.15#identity)这个函数就是返回函数的第一个参数。
 

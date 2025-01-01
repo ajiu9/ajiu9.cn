@@ -33,7 +33,7 @@ DOM(文档对象模型)结构是一个树型结构，当一个HTML元素产生�
 - 捕获阶段（Capture Phase）：事件从window自上而下向目标节点传播的阶段；
 - 目标阶段（Target Phase）：正的目标节点正在处理事件的阶段；
 - 冒泡阶段（Bubbling Phase）：事件从目标节点自上而下向window传播的阶段。
-  ![图片](https://static.ajiu9.cn/images/20240310220404oy7dPw.png)
+  ![图片](/images/20240310220404oy7dPw.png)
 
 #### Event对象的常见应用
 

@@ -9,7 +9,7 @@ type: note
 
 假设高度固定，请写出三栏布局，其中左栏、右栏宽度搁置200px,中间自适应。
 
-![图片](https://static.ajiu9.cn/images/20240314230158hA5bJW.png)
+![图片](/images/20240314230158hA5bJW.png)
 
 解决方案
 

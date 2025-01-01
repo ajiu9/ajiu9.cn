@@ -82,7 +82,7 @@ function axios() {
 
 跨域的js运行错误捕获错误提示：
 
-![图片](https://static.ajiu9.cn/images/20240316133018d6be9j.png)
+![图片](/images/20240316133018d6be9j.png)
 
 处理方法：
 

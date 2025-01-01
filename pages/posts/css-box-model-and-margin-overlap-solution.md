@@ -15,9 +15,9 @@ type: note
 这俩种盒模型的区别是计算宽度和高度的不同。
 标准模型的宽高只计算内容（content）,IE模型宽高计算为内容（content）+填充（padding）+边框（border）的总宽高。
 
-![图片](https://static.ajiu9.cn/images/20240310214341Gxd31S.png)
+![图片](/images/20240310214341Gxd31S.png)
 
-![图片](https://static.ajiu9.cn/images/20240310214237UjGOJB.png)
+![图片](/images/20240310214237UjGOJB.png)
 
 ### 如何设置这俩种盒模型
 

@@ -25,11 +25,11 @@ date: 2018-09-25
 - 请求报文：请求行、请求头、空行、请求体
 - 响应报文：状态行、响应头、空行、响应体
 
-![图片](https://static.ajiu9.cn/images/20240310214516948RBW.png)
+![图片](/images/20240310214516948RBW.png)
 
 请求报文格式
 
-![图片](https://static.ajiu9.cn/images/20240310214534AyGWUp.png)
+![图片](/images/20240310214534AyGWUp.png)
 
 ##### 请求报文示例
 

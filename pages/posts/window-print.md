@@ -38,7 +38,7 @@ function print(content) {
 ```
 
 打印效果：
-![](https://static.ajiu9.cn/images/20240310203634jdJVNW.png)
+![](/images/20240310203634jdJVNW.png)
 
 该方法的优点是可以在不离开当前页面的情况下实现打印功能，且可以对打印的页面进行一些自定义设置，比如隐藏一些元素或者设置页面样式等。
 
