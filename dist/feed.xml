@@ -4,7 +4,7 @@
         <title>Ajiu9</title>
         <link>https://ajiu9.cn/</link>
         <description>Ajiu9' Blog</description>
-        <lastBuildDate>Sat, 21 Dec 2024 14:16:21 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 01 Jan 2025 13:32:18 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -182,7 +182,7 @@ export default defineBuildConfig({
             <guid>https://ajiu9.cn/posts/use-search</guid>
             <pubDate>Fri, 14 Jun 2024 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<p>先看效果：<br>
-<img src="https://static.ajiu9.cn/images/20240702165015.gif" alt="image"></p>
+<img src="https://ajiu9.cn/images/20240702165015.gif" alt="image"></p>
 <p>实现思路：1.加载完所有数据后，处理数据，得到源数据。2.在搜索框中输入关键字，触发搜索事件，根据关键字过滤源数据，得到搜索结果。</p>
 <h3>代码实现</h3>
 <p>search 文件</p>
@@ -578,107 +578,22 @@ export default {
 <p>启动whistle代理</p>
 <pre><code>w2 start
 </code></pre>
-<h1>启动成功后会在控制台输出以下信息：<br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-<img src="https://static.ajiu9.cn/images/20240517095140.png" alt="image"></h1>
-<p><img src="https://ajiu9.cn/images/20240517095140.png" alt="image"></p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>release<br>
-=======<br>
-<img src="/images/20240517095140.png" alt="image"><br>
-release</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>启动成功后会在控制台输出以下信息：<br>
+<img src="https://ajiu9.cn/images/20240517095140.png" alt="image"></p>
 <p>然后在浏览器中打开里面的地址</p>
 <ol start="2">
 <li>配置whistle代理<br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-<img src="https://static.ajiu9.cn/images/20240517095452.png" alt="image"><br>
-=======<br>
 <img src="/images/20240517095452.png" alt="image"></li>
 </ol>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>release<br>
-=======<br>
-<img src="/images/20240517095452.png" alt="image"><br>
-release</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <p><code>请使用http代理</code></p>
 <ol start="3">
 <li>开启系统代理，或者在李立群插件中安装<a href="chrome://extensions/?id=padekgcemlokbadohgkifijomclgjgif">Proxy SwitchyOmega</a></li>
 </ol>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-<img src="https://static.ajiu9.cn/images/20240517095833.png" alt="image"></p>
-<ol start="4">
+<p><img src="/images/20240517095833.png" alt="image"></p>
+<ol start="5">
 <li>微信开发者工具打开代理设置：设置 &gt; 代理设置<br>
-<img src="https://static.ajiu9.cn/images/20240517100019.png" alt="image"><br>
-=======<br>
-=======</li>
+<img src="/images/20240517100019.png" alt="image"></li>
 </ol>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>release<br>
-<img src="/images/20240517095833.png" alt="image"></p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-<ol start="4">
-<li>微信开发者工具打开代理设置：设置 &gt; 代理设置<br>
-<img src="/images/20240517100019.png" alt="image"><br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</li>
-</ol>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>release<br>
-=======<br>
-release</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <p>完成这些后，访问微信配置的域名会代理到本地ip，就可以在微信开发者工具中调试本地代码了。</p>
 ]]></content:encoded>
             <author>615944323@qq.com (Ajiu9)</author>
@@ -699,7 +614,7 @@ release</p>
 <p><strong>成为行业专家</strong>是个10x目标，要求创新和突破性思维，从专家这个最终结果反推新的职业路径。</p>
 <p>需要有自己的一套理论体系作为背书，通常这套理论体系的载体是纸质书，这也是为什么很多行业专家都会出书。</p>
 <p>这张广为流传的图：<br>
-<img src="https://static.ajiu9.cn/images/20240421153354.png" alt=""></p>
+<img src="https://ajiu9.cn/images/20240421153354.png" alt=""></p>
 <ul>
 <li>行业信息经过提炼，成为知识</li>
 <li>当有足够的行业知识，就会产生行业洞察</li>
@@ -762,7 +677,7 @@ const test1 = [{ id: 1, name: '测试1' }]
 const deep = cloneDeep(test1)
 console.log(deep[0] === test1[0]) // true
 </code></pre>
-<p><img src="https://static.ajiu9.cn/images/20240411170613.png" alt="image"></p>
+<p><img src="https://ajiu9.cn/images/20240411170613.png" alt="image"></p>
 <p>发现原本<code>cloneDeep</code>依赖了<code>baseClone</code>函数，但是却变成了<a href="https://lodash.com/docs/4.17.15#identity">identity</a>这个函数就是返回函数的第一个参数。</p>
 <pre><code class="language-js">/**
  * This method returns the first argument it receives.
@@ -1103,7 +1018,7 @@ EOF
 }
 </code></pre>
 <p>打印效果：<br>
-<img src="https://static.ajiu9.cn/images/20240310203634jdJVNW.png" alt=""></p>
+<img src="https://ajiu9.cn/images/20240310203634jdJVNW.png" alt=""></p>
 <p>该方法的优点是可以在不离开当前页面的情况下实现打印功能，且可以对打印的页面进行一些自定义设置，比如隐藏一些元素或者设置页面样式等。</p>
 <p>使用该方法需要注意的是，由于涉及到跨域访问的问题，可能存在一些安全性和兼容性的问题，需要进行适当的测试和处理。</p>
 ]]></content:encoded>
@@ -2091,7 +2006,7 @@ console.log('obj1', obj1)
 console.log('obj2', obj2)
 </code></pre>
 <p>我们来看一下控制台打印的结果，如下图所示。</p>
-<p><img src="https://static.ajiu9.cn/images/20240316211739l57kt9.png" alt="图片"></p>
+<p><img src="https://ajiu9.cn/images/20240316211739l57kt9.png" alt="图片"></p>
 <p>从上面的代码中可以看到，利用 object.assign 也可以拷贝 Symbol 类型的对象，但是如果到了对象的第二层属性 obj1.a.b 这里的时候，前者值的改变也会影响后者的第二层属性的值，说明其中依旧存在着访问共同堆内存的问题，也就是说这种方法还不能进一步复制，而只是完成了浅拷贝的功能。</p>
 <h4>方法二：扩展运算符方式</h4>
 <p>利用 JS 的扩展运算符，在构造对象的同时完成浅拷贝的功能。</p>
@@ -2193,7 +2108,7 @@ const obj2 = JSON.parse(str)
 console.log('obj2', obj2)
 </code></pre>
 <p>通过上面这段代码可以看到执行结果如下图所示</p>
-<p><img src="https://static.ajiu9.cn/images/20240316211813QB9z6C.png" alt="图片"></p>
+<p><img src="/images/20240316211813QB9z6C.png" alt="图片"></p>
 <p>使用 JSON.stringify 方法实现深拷贝对象，虽然到目前为止还有很多无法实现的功能，<br>
 对于其他的也要实现深拷贝的，JSON.stringify 暂时还是无法满足的，就需要下面的几种方法。</p>
 <h4>方法二：基础版（手写递归实现）</h4>
@@ -2277,7 +2192,7 @@ cloneObj.arr.push(4)
 console.log('obj', obj)
 console.log('cloneObj', cloneObj)
 </code></pre>
-<p><img src="https://static.ajiu9.cn/images/202403162118438RZn3P.png" alt="图片"></p>
+<p><img src="/images/202403162118438RZn3P.png" alt="图片"></p>
 <p>从这张截图的结果可以看出，改进版的 deepClone 函数已经对基础版的那几个问题进行了改进，也验证了上面提到的那四点理论。</p>
 <h3>总结</h3>
 <p>其实到最后我们可以看到，自己完整实现一个深拷贝，还是考察了不少的知识点和编程能力，总结下来大致分为这几点。</p>
@@ -2297,7 +2212,7 @@ console.log('cloneObj', cloneObj)
             <content:encoded><![CDATA[<p>我将从数据类型的概念、检测方法、转换方法三个方面梳理数据类型的知识点。能够熟练掌握数据类型的判断以及转换等知识点。（包括隐式转换等问题）。</p>
 <h2>数据类型的概念</h2>
 <p>JavaScript 的数据类型有下图所示的 8 种：</p>
-<p><img src="https://static.ajiu9.cn/images/20240316205349r3tol1.png" alt="图片"></p>
+<p><img src="https://ajiu9.cn/images/20240316205349r3tol1.png" alt="图片"></p>
 <p>其中，前 7 种类型为基础类型，最后 1 种（Object）为引用类型，也是你需要重点关注的，因为它在日常工作中是使用得最频繁，也是需要关注最多技术细节的数据类型。<br>
 而引用数据类型（Object）又分为图上这几种常见的类型：Array - 数组对象、RegExp - 正则对象、Date - 日期对象、Math - 数学函数、Function - 函数对象。<br>
 因为各种 JavaScript 的数据类型最后都会在初始化之后放在不同的内存中，因此上面的数据类型大致可以分成两类来进行存储：</p>
@@ -2931,7 +2846,7 @@ console.log('map-set-object', map, set, obj)
 }
 </code></pre>
 <p>跨域的js运行错误捕获错误提示：</p>
-<p><img src="https://static.ajiu9.cn/images/20240316133018d6be9j.png" alt="图片"></p>
+<p><img src="https://ajiu9.cn/images/20240316133018d6be9j.png" alt="图片"></p>
 <p>处理方法：</p>
 <ul>
 <li>在script标签中增加crossorigin属性。</li>
@@ -2968,7 +2883,7 @@ console.log('map-set-object', map, set, obj)
 </ul>
 <h4>浏览器渲染过程</h4>
 <p>webkit的主要流程：</p>
-<p><img src="https://static.ajiu9.cn/images/20240316130401LakYs1.png" alt="图片"></p>
+<p><img src="https://ajiu9.cn/images/20240316130401LakYs1.png" alt="图片"></p>
 <p>解析html以构建dom树 -&gt; 构建render树 -&gt; 布局render树 -&gt; 绘制render树</p>
 <ul>
 <li>
@@ -3195,29 +3110,29 @@ console.log(s7.list, s8.list)
             <pubDate>Fri, 28 Sep 2018 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<h4>创建对象的几种方法</h4>
 <pre><code class="language-js">// 1.使用new Object()
-var o1 = new Object({name: 'o1'});
+const o1 = new Object({ name: 'o1' })
 // 2.对象字面量 (这种方法其实就是第一种的简写)
-var o2 = {name: 'o2'};
+const o2 = { name: 'o2' }
 // 3.构造函数
-var A = function(name) {
-this.name = name;
+const A = function (name) {
+  this.name = name
 }
-var o3 = new A('o3');
+const o3 = new A('o3')
 // 4.Object.create()
-var B = {name: 'o4'};
-var o4 = Object.create(B);
+const B = { name: 'o4' }
+const o4 = Object.create(B)
 </code></pre>
 <h4>构造函数、原型、实例、原型链</h4>
 <p>JavaScript是一门面向对象基于原型继承的语言,那么原型到底是怎么实现继承的？</p>
-<p><img src="https://static.ajiu9.cn/images/20240311231356CGtgQw.png" alt="图片"></p>
+<p><img src="https://ajiu9.cn/images/20240311231356CGtgQw.png" alt="图片"></p>
 <p>prototype原型是一个对象，只有函数才有的属性，这是在创建函数是js引擎自动添加的属性，其他对象可以通过它实现属性继承。<br>
 <code>__proto__</code>是每个对象都有的属性，但不是一个规范属性，它指向的是构造函数的原型对象。(<code>__proto__</code>通过上面第四种方式<code>Object.create(O))</code>指向的是对象O)</p>
 <pre><code class="language-js">// 1.创建构造函数Animal
-var Animal = function(name) {    
+const Animal = function (name) {
   this.name = name
 }
 // 2.实例化一个对象dog
-var dog = new Animal('dog');
+const dog = new Animal('dog')
 // Animal 构造函数的原型的constructor属性指向构造函数本身
 Animal.prototype.constructor === Animal // true
 // dog实例的__proto__指向构造函数的原型
@@ -3227,13 +3142,13 @@ dog.__proto__ === Animal.prototype // true
 当js查找对象的属性时，先查找对象本身有没有这个属性，如果不存在，就会在原型链上查找，直到找到或者到达终点的<code>null</code>。</p>
 <h4>instanceof运算符</h4>
 <p><code>instanceof</code>运算符用于测试构造函数的prototype属性是否出现在对象的原型链中的任何位置</p>
-<p><img src="https://static.ajiu9.cn/images/20240311231424c991rT.png" alt="图片"></p>
+<p><img src="/images/20240311231424c991rT.png" alt="图片"></p>
 <p>用<code>instanceof</code>来判断实例对象是否为构造函数直接生成的对象并不严格，因为出现在对象原型链中任何位置都会返回true，这时可以使用对象的<code>__proto__.constructor</code>是否严格等于构造函数来判断。</p>
 <pre><code class="language-js">// 测试构造函数的prototype属性是否出现在对象的原型链中
-dog instanceof Animal; // true
-dog instanceof Object; // true
+dog instanceof Animal // true
+dog instanceof Object // true
 // 判断实例对象是否为构造函数直接生成
-dog.__proto__.constructor === Animal; // true
+dog.__proto__.constructor === Animal // true
 </code></pre>
 <h4>new 运算符</h4>
 <p>执行new后</p>
@@ -3243,32 +3158,31 @@ dog.__proto__.constructor === Animal; // true
 <li>如果构造函数返回了一个对象，那么这个对象会整个取代new出来的结果。如果构造函数没有返回对象，那么new出来的结果为第一步创建的对象。</li>
 </ul>
 <pre><code class="language-js">// new 的执行如下
-var new1 = function(func) {    
-// 第一步:一个新对象被创建，它继承自构造函数func.prototype  
-  var o = Object.create(func.prototype);    
- // 第二步：构造函数func被执行。执行的时候，相应的参数被传入，同时上下文`this`会被指定为这个新实例。    
- var k = func.call(o);    
- // 第三步   
-  if (typeof k === 'object') {
-     return k
-   } else {
-     return o
-   }
+const new1 = function (func) {
+// 第一步:一个新对象被创建，它继承自构造函数func.prototype
+  const o = Object.create(func.prototype)
+  // 第二步：构造函数func被执行。执行的时候，相应的参数被传入，同时上下文`this`会被指定为这个新实例。
+  const k = func.call(o)
+  // 第三步
+  if (typeof k === 'object')
+    return k
+  else
+    return o
 }
 // 验证new内部原理是否和new1函数的执行过程一样
-//构造函数
-var A = function(name) {   
-   this.name = name;
+// 构造函数
+const A = function (name) {
+  this.name = name
 }
 // new运算符
-var o3 = new A('o3');
+const o3 = new A('o3')
 // new1()
-var o6 = new1(A);
+const o6 = new1(A)
 // 接下来验证通过new1生成的o6对象是否和new生成的o3一样
-o6 instanceof A; // true
-o6 instanceof Object; // true
-o6.__proto__.constructor === A; // true
-A.prototype.walk= function(){
+o6 instanceof A // true
+o6 instanceof Object // true
+o6.__proto__.constructor === A // true
+A.prototype.walk = function () {
   console.log('walk')
 }
 o6.walk() // walk
@@ -3564,7 +3478,7 @@ CORS是一个W3C标准，全称是”跨域资源共享”（Cross-origin resour
 <li>捕获阶段（Capture Phase）：事件从window自上而下向目标节点传播的阶段；</li>
 <li>目标阶段（Target Phase）：正的目标节点正在处理事件的阶段；</li>
 <li>冒泡阶段（Bubbling Phase）：事件从目标节点自上而下向window传播的阶段。<br>
-<img src="https://static.ajiu9.cn/images/20240310220404oy7dPw.png" alt="图片"></li>
+<img src="https://ajiu9.cn/images/20240310220404oy7dPw.png" alt="图片"></li>
 </ul>
 <h4>Event对象的常见应用</h4>
 <ul>
@@ -3605,8 +3519,8 @@ obj.dispatchEvent(event)
 <h3>标准模型和IE模型的区别</h3>
 <p>这俩种盒模型的区别是计算宽度和高度的不同。<br>
 标准模型的宽高只计算内容（content）,IE模型宽高计算为内容（content）+填充（padding）+边框（border）的总宽高。</p>
-<p><img src="https://static.ajiu9.cn/images/20240310214341Gxd31S.png" alt="图片"></p>
-<p><img src="https://static.ajiu9.cn/images/20240310214237UjGOJB.png" alt="图片"></p>
+<p><img src="https://ajiu9.cn/images/20240310214341Gxd31S.png" alt="图片"></p>
+<p><img src="/images/20240310214237UjGOJB.png" alt="图片"></p>
 <h3>如何设置这俩种盒模型</h3>
 <pre><code>/*标准模型*/
 box-sizing: content-box;
@@ -3728,9 +3642,9 @@ Element.getBoundingClientRect()方法返回元素的大小及其相对于视口�
 <li>请求报文：请求行、请求头、空行、请求体</li>
 <li>响应报文：状态行、响应头、空行、响应体</li>
 </ul>
-<p><img src="https://static.ajiu9.cn/images/20240310214516948RBW.png" alt="图片"></p>
+<p><img src="https://ajiu9.cn/images/20240310214516948RBW.png" alt="图片"></p>
 <p>请求报文格式</p>
-<p><img src="https://static.ajiu9.cn/images/20240310214534AyGWUp.png" alt="图片"></p>
+<p><img src="/images/20240310214534AyGWUp.png" alt="图片"></p>
 <h5>请求报文示例</h5>
 <pre><code>GET /build/music/ HTTP/1.1
 Host: www.ajiu9.com
@@ -3925,7 +3839,7 @@ http 1.1中默认启用Keep-Alive，如果加入”Connection: close “，才�
             <pubDate>Fri, 21 Sep 2018 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<h3>问题</h3>
 <p>假设高度固定，请写出三栏布局，其中左栏、右栏宽度搁置200px,中间自适应。</p>
-<p><img src="https://static.ajiu9.cn/images/20240314230158hA5bJW.png" alt="图片"></p>
+<p><img src="https://ajiu9.cn/images/20240314230158hA5bJW.png" alt="图片"></p>
 <p>解决方案</p>
 <p>写在前面，共用样式</p>
 <pre><code class="language-html">&lt;style&gt;
@@ -4166,15 +4080,15 @@ http 1.1中默认启用Keep-Alive，如果加入”Connection: close “，才�
 <p>把一个值赋值给变量时，解析器首先确定这个值是基本类型的值还是引用类型的值。基本数据类型有5种：Undefined、Null、Boolean、Number、String。这5种基本数据类型是按值访问的，因为可以操作保存在变量中的实际值。引用类型的值是按照引用访问的，因为javaScript不允许访问内存中的位置，不能直接操作对象的内存空间。（为对象添加属性操作的是实际对象）</p>
 <p><strong>动态属性</strong></p>
 <p>首先我们来定义一个引用类型的值：</p>
-<p><img src="https://static.ajiu9.cn/images/202403102118517qwJD2.png" alt="图片"></p>
+<p><img src="https://ajiu9.cn/images/202403102118517qwJD2.png" alt="图片"></p>
 <p>以上代码创建了一个对象并将其保存在person变量中，然后为变量添加了一个名为name的属性，并将字符串“江月夜”赋给了这个属性。之后通过函数alert（）访问了这个新属性。如果对象不被销毁或者这个属性不被删除，则各属性将一直存在。</p>
 <p>但是，不能给基本类型的值添加属性（不会导致错误）</p>
-<p><img src="https://static.ajiu9.cn/images/20240310211733UOVZPP.png" alt="图片"></p>
+<p><img src="/images/20240310211733UOVZPP.png" alt="图片"></p>
 <p><strong>赋值变量值</strong></p>
 <p>除了保存方式不一样，变量复制也有区别。</p>
 <p>基本类型复制后的俩个变量彼此独立，此后，这俩个变量可以参与任何操作而不会互相影响。</p>
 <p>引用类型的变量复制其实是一个指针，而这个指针指向存储在堆中的一个对象。复制结束后，俩个对象实际上引用同一个对象。改变其中一个变量，就会影响另一个变量。</p>
-<p><img src="https://static.ajiu9.cn/images/20240310211540NpJlfl.png" alt="图片"></p>
+<p><img src="/images/20240310211540NpJlfl.png" alt="图片"></p>
 <p><strong>传递参数</strong></p>
 <p>函数的参数是按值传递的，基本类型的传递会把值复制给arguments对象中的一个元素（局部变量），引用类型的传递会把这个值在内存中的地址复制给一个局部变量，所以会反应在函数的外部。</p>
 ]]></content:encoded>
