@@ -10,6 +10,7 @@ function buildAndPush() {
     execSync('git add .', { stdio: 'inherit' })
     execSync('git commit -m "chore: build"', { stdio: 'inherit' })
     execSync('git push', { stdio: 'inherit' })
+    // eslint-disable-next-line no-console
     console.log('Successfully pushed to origin.')
   }
   catch (error) {
