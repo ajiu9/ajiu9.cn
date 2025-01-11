@@ -1,6 +1,6 @@
 ---
 title: Projects - Ajiu9
-display: Projects
+display: 项目
 description: List of projects that I am proud of
 art: dots
 wrapperClass: 'text-center'
