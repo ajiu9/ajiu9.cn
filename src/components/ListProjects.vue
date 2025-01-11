@@ -2,7 +2,7 @@
 defineProps<{ projects: Record<string, any[]> }>()
 
 function slug(name: string) {
-  return name.toLowerCase().replace(/[\s\\\/]+/g, '-')
+  return name.toLowerCase().replace(/[\s\\/]+/g, '-')
 }
 </script>
 
@@ -12,13 +12,19 @@ function slug(name: string) {
       v-for="key, cidx in Object.keys(projects)" :key="key" slide-enter
       :style="{ '--enter-stage': cidx + 1 }"
     >
-      <h4 :id="slug(key)" class="mt-15 mb-2 font-bold text-center op75">
-        {{ key }}
-      </h4>
+      <div
+        :id="slug(key)"
+        select-none relative h20 pointer-events-none slide-enter
+        :style="{
+          '--enter-stage': cidx - 2,
+          '--enter-step': '60ms',
+        }"
+      >
+        <span text-5em color-transparent absolute left--1rem top-0rem font-bold leading-1em text-stroke-1.5 text-stroke-hex-aaa op35 dark:op20>{{ key }}</span>
+      </div>
       <div
         class="project-grid py-2 max-w-500 w-max mx-auto"
-        grid="~ cols-1 md:cols-2 gap-4"
-        :class="projects[key].length === 1 ? 'flex' : projects[key].length > 2 ? 'lg:grid-cols-3' : ''"
+        grid="~ cols-1 md:cols-2 gap-4 lg:cols-3"
       >
         <a
           v-for="item, idx in projects[key]"
@@ -26,7 +32,6 @@ function slug(name: string) {
           class="item relative flex items-center"
           :href="item.link"
           target="_blank"
-          :class="!item.link ? 'opacity-0 pointer-events-none h-0 -mt-8 -mb-4' : ''"
           :title="item.name"
         >
           <div v-if="item.icon" class="pt-2 pr-5">
