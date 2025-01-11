@@ -10,11 +10,25 @@ projects:
       link: 'https://github.com/ajiu9/comuse'
       desc: 'the common use for js'
       icon: 'i-carbon:tools-alt h-1em'
+<<<<<<< HEAD
+=======
+    - name: 'Vistara'
+      link: 'https://github.com/ajiu9/vistara'
+      desc: 'Daily use components.'
+      icon: 'i-mingcute:components-fill h-1em'
+>>>>>>> release
     - name: 'ts-type'
       link: 'https://github.com/ajiu9/ts-type'
       desc: 'the type for ts'
       icon: 'i-file-icons:config-typescript h-1em'
   Components:
+<<<<<<< HEAD
+=======
+    - name: 'Vistara'
+      link: 'https://github.com/ajiu9/vistara'
+      desc: 'Daily use components.'
+      icon: 'i-mingcute:components-fill h-1em'
+>>>>>>> release
     - name: 'Carousel'
       link: 'https://github.com/ajiu9/carousel'
       desc: 'A carousel, a group of carousels.'
@@ -29,6 +43,13 @@ projects:
       link: 'https://github.com/ajiu9/ninesh'
       desc: 'My zsh config and obsidian script'
       icon: 'i-simple-icons:zsh h-1em'
+<<<<<<< HEAD
+=======
+    - name: 'op-pkg'
+      link: 'https://github.com/ajiu9/op-pkg'
+      desc: 'Operate package manager'
+      icon: 'i-material-symbols:folder-open-sharp h-1em'
+>>>>>>> release
   Configurations:
     - name: 'Eslint-Config'
       link: 'https://github.com/ajiu9/eslint-config'
@@ -38,6 +59,26 @@ projects:
       link: 'https://github.com/ajiu9/SoftwareConfiguration/tree/main/espanso'
       desc: 'my software configuration for espanso'
       icon: 'i-bx:text h-1em'
+<<<<<<< HEAD
+=======
+  Learn:
+    - name: 'javascript-algorithms'
+      link: 'https://github.com/ajiu9/javascript-algorithms'
+      desc: 'A collection of JavaScript algorithms.'
+      icon: 'i-devicon:thealgorithms h-1em'
+    - name: 'regex-doctor'
+      link: 'https://github.com/ajiu9/regex-doctor'
+      desc: 'Regex doctor'
+      icon: 'i-skill-icons:regex-light h-1em'
+    - name: 'toyjs'
+      link: 'https://github.com/ajiu9/toyjs'
+      desc: 'JavaScript lexer and parser learn code.'
+      icon: 'i-material-symbols:toys-fan h-1em'
+    - name: 'music-app'
+      link: 'https://github.com/ajiu9/music-app'
+      desc: 'A music app'
+      icon: 'i-carbon:music h-1em'
+>>>>>>> release
 ---
 
 <!-- @layout-full-width -->
