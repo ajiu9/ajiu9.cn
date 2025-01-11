@@ -10,37 +10,19 @@ projects:
       link: 'https://github.com/ajiu9/comuse'
       desc: 'the common use for js'
       icon: 'i-carbon:tools-alt h-1em'
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> release
     - name: 'Vistara'
       link: 'https://github.com/ajiu9/vistara'
       desc: 'Daily use components.'
       icon: 'i-mingcute:components-fill h-1em'
-<<<<<<< HEAD
->>>>>>> release
-=======
->>>>>>> release
     - name: 'ts-type'
       link: 'https://github.com/ajiu9/ts-type'
       desc: 'the type for ts'
       icon: 'i-file-icons:config-typescript h-1em'
   Components:
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> release
     - name: 'Vistara'
       link: 'https://github.com/ajiu9/vistara'
       desc: 'Daily use components.'
       icon: 'i-mingcute:components-fill h-1em'
-<<<<<<< HEAD
->>>>>>> release
-=======
->>>>>>> release
     - name: 'Carousel'
       link: 'https://github.com/ajiu9/carousel'
       desc: 'A carousel, a group of carousels.'
@@ -55,19 +37,10 @@ projects:
       link: 'https://github.com/ajiu9/ninesh'
       desc: 'My zsh config and obsidian script'
       icon: 'i-simple-icons:zsh h-1em'
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> release
     - name: 'op-pkg'
       link: 'https://github.com/ajiu9/op-pkg'
       desc: 'Operate package manager'
       icon: 'i-material-symbols:folder-open-sharp h-1em'
-<<<<<<< HEAD
->>>>>>> release
-=======
->>>>>>> release
   Configurations:
     - name: 'Eslint-Config'
       link: 'https://github.com/ajiu9/eslint-config'
@@ -77,11 +50,6 @@ projects:
       link: 'https://github.com/ajiu9/SoftwareConfiguration/tree/main/espanso'
       desc: 'my software configuration for espanso'
       icon: 'i-bx:text h-1em'
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> release
   Learn:
     - name: 'javascript-algorithms'
       link: 'https://github.com/ajiu9/javascript-algorithms'
@@ -99,10 +67,6 @@ projects:
       link: 'https://github.com/ajiu9/music-app'
       desc: 'A music app'
       icon: 'i-carbon:music h-1em'
-<<<<<<< HEAD
->>>>>>> release
-=======
->>>>>>> release
 ---
 
 <!-- @layout-full-width -->
