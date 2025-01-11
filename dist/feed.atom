@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajiu9.cn/</id>
     <title>Ajiu9</title>
-    <updated>2025-01-01T13:32:18.562Z</updated>
+    <updated>2025-01-11T11:42:56.456Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Ajiu9</name>
@@ -1616,28 +1616,7 @@ matches:
 <li>21:00 - 23:00 Shallow Work</li>
 </ul>
 <p>工作时间不回复不重要的消息，早上优先做昨天设定的3Frog任务，周日周末时间表不同，我可能在家带娃，或者户外活动。同时保证4小时的长文阅读，4小时的Deep Work。</p>
-<h1>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-<img src="https://static.ajiu9.cn/Notes/2023101520370316973734231697373423408sJebk1.png" alt="daily plan"></h1>
 <p><img src="https://ajiu9.cn/images/2023101520370316973734231697373423408sJebk1.png" alt="daily plan"></p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>release<br>
-=======<br>
-<img src="/images/2023101520370316973734231697373423408sJebk1.png" alt="daily plan"><br>
-release</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 ]]></content>
         <author>
             <name>Ajiu9</name>
@@ -1660,69 +1639,9 @@ release</p>
 <blockquote>
 <p>OSS使阿里云的对象存储服务，需要付费使用，但是对于平常的博客文章而言，很便宜，我现在是申请的3个月免费使用，实际付费也不贵，一个月就2.16元，（资源包关联的按量付费实例不停机，按使用量收费），就平常的访问量而言，估计是很难超过使用量的。</p>
 </blockquote>
-<h1>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-<img src="https://static.ajiu9.cn/Notes/IITkfA.png" alt="每月价格"></h1>
 <p><img src="https://ajiu9.cn/images/IITkfA.png" alt="每月价格"></p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>release<br>
-=======<br>
-<img src="/images/IITkfA.png" alt="每月价格"><br>
-release</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <h3>配置OSS</h3>
 <p>有了OSS后，需要简单配置下，阿里云有官方教程，一步一步几分钟搞定。</p>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<ul>
-<li>
-<ol>
-<li>创建bucket <img src="https://static.ajiu9.cn/Notes/5eGHP4.png" alt="bucket"></li>
-</ol>
-</li>
-<li>
-<ol start="2">
-<li>击立即创建，勾选配置<img src="https://static.ajiu9.cn/Notes/nKvi0c.png" alt="配置"></li>
-</ol>
-</li>
-<li>
-<ol start="3">
-<li>配置完成，如果有自己的域名的话可以配置好自己的域名，<s>我现在用的是阿里云的默认域名，还没买，下次再申请</s></li>
-</ol>
-</li>
-</ul>
-<ol>
-<li>在 AccessKey管理中找到对应的key填写到uPic中<img src="https://static.ajiu9.cn/Notes/20230917112327.png" alt="AccessKey"><br>
-=======<br>
-=======</li>
-</ol>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>release</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <ul>
 <li>
 <ol>
@@ -1741,70 +1660,13 @@ release</p>
 </li>
 </ul>
 <ol>
-<li>在 AccessKey管理中找到对应的key填写到uPic中<img src="/images/20230917112327.png" alt="AccessKey"><br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</li>
+<li>在 AccessKey管理中找到对应的key填写到uPic中<img src="/images/20230917112327.png" alt="AccessKey"></li>
 </ol>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>release<br>
-=======<br>
-release</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <h3>uPic图床配置</h3>
 <p>在uPic偏好设置中，设置好图床！<br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD<br>
-<img src="https://static.ajiu9.cn/Notes/20230917162239169493895916949389595970bFTu6.png" alt="图床配置"></p>
-<h3>完成</h3>
-<h1>配置完成后就可以愉快的引用图片到文章中了，最后可以设置下图床的快捷键<img src="https://static.ajiu9.cn/Notes/2023091716261416949391741694939174953lwT8Qv.png" alt="快捷键"></h1>
-<p>=======</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>release<br>
 <img src="/images/20230917162239169493895916949389595970bFTu6.png" alt="图床配置"></p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <h3>完成</h3>
-<p>配置完成后就可以愉快的引用图片到文章中了，最后可以设置下图床的快捷键<img src="/images/2023091716261416949391741694939174953lwT8Qv.png" alt="快捷键"><br>
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>release<br>
-=======<br>
-release</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
+<p>配置完成后就可以愉快的引用图片到文章中了，最后可以设置下图床的快捷键<img src="/images/2023091716261416949391741694939174953lwT8Qv.png" alt="快捷键"></p>
 ]]></content>
         <author>
             <name>Ajiu9</name>
