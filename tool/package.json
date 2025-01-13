@@ -1,0 +1,44 @@
+{
+  "name": "tool",
+  "type": "module",
+  "version": "0.0.1",
+  "packageManager": "pnpm@9.0.2",
+  "description": "Tool collection for personal use",
+  "author": "Ajiu9 <615944323@qq.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/ajiu9/tool#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajiu9/tool.git"
+  },
+  "bugs": "https://github.com/ajiu9/tool/issues",
+  "keywords": [],
+  "sideEffects": false,
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "prepare": "simple-git-hooks"
+  },
+  "devDependencies": {
+    "@ajiu9/eslint-config": "^2.5.0",
+    "eslint": "^9.9.1",
+    "lint-staged": "^15.2.10",
+    "simple-git-hooks": "^2.11.1"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*": "eslint --fix"
+  }
+}

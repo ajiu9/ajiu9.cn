@@ -41,6 +41,10 @@ projects:
       link: 'https://github.com/ajiu9/op-pkg'
       desc: 'Operate package manager'
       icon: 'i-material-symbols:folder-open-sharp h-1em'
+    - name: 'tool'
+      link: 'https://github.com/ajiu9/tool'
+      desc: 'Tool collection for personal use'
+      icon: 'i-et:tools h-1em'
   Configurations:
     - name: 'Eslint-Config'
       link: 'https://github.com/ajiu9/eslint-config'
