@@ -14,8 +14,8 @@ projects:
       link: 'https://github.com/ajiu9/vistara'
       desc: 'Daily use components.'
       icon: 'i-mingcute:components-fill h-1em'
-    - name: 'ts-type'
-      link: 'https://github.com/ajiu9/ts-type'
+    - name: 'typing-ts'
+      link: 'https://github.com/ajiu9/typing-ts'
       desc: 'the type for ts'
       icon: 'i-file-icons:config-typescript h-1em'
   Components:
