@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.11.0",
-    "comuse-core": "^3.2.0",
+    "comuse-core": "^3.2.3",
     "dayjs": "^1.11.11",
     "floating-vue": "^5.2.2",
     "matter-attractors": "^0.1.6",
