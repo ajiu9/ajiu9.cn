@@ -12,12 +12,14 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.11.0",
+    "comuse-core": "^3.2.0",
     "dayjs": "^1.11.11",
     "floating-vue": "^5.2.2",
     "matter-attractors": "^0.1.6",
     "matter-js": "^0.19.0",
     "nprogress": "^0.2.0",
     "shiki-magic-move": "^0.4.2",
+    "typing-ts": "^0.0.2",
     "vue": "^3.4.27",
     "vue-router": "4.2.5",
     "vue-router-better-scroller": "^0.0.0"
