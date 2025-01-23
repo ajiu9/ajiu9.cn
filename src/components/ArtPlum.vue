@@ -1,5 +1,5 @@
 <script setup lang='ts'>
-import type { Fn } from '@vueuse/core'
+import type { Fn } from 'typing-ts'
 
 const r180 = Math.PI
 const r90 = Math.PI / 2
