@@ -26,6 +26,7 @@ declare module 'vue-router/auto-routes' {
     '/posts/': RouteRecordInfo<'/posts/', '/posts', Record<never, never>, Record<never, never>>,
     '/posts/are-you-a-morning-bird-or-a-night-owl': RouteRecordInfo<'/posts/are-you-a-morning-bird-or-a-night-owl', '/posts/are-you-a-morning-bird-or-a-night-owl', Record<never, never>, Record<never, never>>,
     '/posts/browser-rendering-mechanism': RouteRecordInfo<'/posts/browser-rendering-mechanism', '/posts/browser-rendering-mechanism', Record<never, never>, Record<never, never>>,
+    '/posts/change-vscode-env-var': RouteRecordInfo<'/posts/change-vscode-env-var', '/posts/change-vscode-env-var', Record<never, never>, Record<never, never>>,
     '/posts/common-shortcuts-for-vscode': RouteRecordInfo<'/posts/common-shortcuts-for-vscode', '/posts/common-shortcuts-for-vscode', Record<never, never>, Record<never, never>>,
     '/posts/configure-my-Mac-from-0': RouteRecordInfo<'/posts/configure-my-Mac-from-0', '/posts/configure-my-Mac-from-0', Record<never, never>, Record<never, never>>,
     '/posts/construction-and-use-of-picture-bed': RouteRecordInfo<'/posts/construction-and-use-of-picture-bed', '/posts/construction-and-use-of-picture-bed', Record<never, never>, Record<never, never>>,

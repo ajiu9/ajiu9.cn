@@ -1,0 +1,172 @@
+{
+  "main": {
+    "id": "99fbf506aa46efb5",
+    "type": "split",
+    "children": [
+      {
+        "id": "beaddce9c488bc13",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2163192239ef91af",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "aeaf19028e101028",
+    "type": "split",
+    "children": [
+      {
+        "id": "8af988b9e01ad38a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2b9550420a353996",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "4e1a5be9e1cc9939",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "三栏",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "218fef3f89984e7d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "2c795ff8decad4f3",
+    "type": "split",
+    "children": [
+      {
+        "id": "a678b32c3282b5bf",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "92ad8640b86e9556",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "pages/posts/page-layout-three-column.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for page-layout-three-column"
+            }
+          },
+          {
+            "id": "e7542f0b89bcdfe7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "pages/posts/page-layout-three-column.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from page-layout-three-column"
+            }
+          },
+          {
+            "id": "f3e935c4dcbe4862",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "3b52557c307eafae",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "pages/posts/page-layout-three-column.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of page-layout-three-column"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "2163192239ef91af",
+  "lastOpenFiles": [
+    "2025-02-13.md",
+    "pages/posts/page-layout-three-column.md"
+  ]
+}
