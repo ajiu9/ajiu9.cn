@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajiu9.cn/</id>
     <title>Ajiu9</title>
-    <updated>2025-01-23T07:53:59.367Z</updated>
+    <updated>2025-02-17T09:27:01.077Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Ajiu9</name>
@@ -15,6 +15,89 @@
     <logo>https://ajiu9.cn/avatar.png</logo>
     <icon>https://ajiu9.cn/logo.png</icon>
     <rights>@2024-2025 湘ICP备2024048835号</rights>
+    <entry>
+        <title type="html"><![CDATA[更改VSCode环境变量]]></title>
+        <id>https://ajiu9.cn/posts/change-vscode-env-var</id>
+        <link href="https://ajiu9.cn/posts/change-vscode-env-var"/>
+        <updated>2025-02-17T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>在 vscode中, debugger 使用的默认node版本和terminal中的不一定相同，更改的方法有两种：</p>
+<ol>
+<li>在 vscode中, 修改设置：</li>
+</ol>
+<p><a href="https://code.visualstudio.com/remote/advancedcontainers/environment-variables">environment-variables</a></p>
+<pre><code class="language-json">{
+  &quot;terminal.integrated.env.osx&quot;: {
+    &quot;remoteEnv&quot;: &quot;${containerEnv:PATH}:/some/other/path&quot;
+  }
+}
+</code></pre>
+<ol start="2">
+<li>在项目中配置：<br>
+在.vscode/launch.json 中配置preLaunchTask</li>
+</ol>
+<pre><code class="language-json">{
+  &quot;version&quot;: &quot;0.2.0&quot;,
+  &quot;configurations&quot;: [
+    {
+      &quot;name&quot;: &quot;Extension&quot;,
+      &quot;type&quot;: &quot;extensionHost&quot;,
+      &quot;request&quot;: &quot;launch&quot;,
+      &quot;runtimeExecutable&quot;: &quot;${execPath}&quot;,
+      &quot;args&quot;: [
+        &quot;--extensionDevelopmentPath=${workspaceFolder}&quot;
+      ],
+      &quot;outFiles&quot;: [
+        &quot;${workspaceFolder}/dist/**/*.js&quot;
+      ],
+      &quot;preLaunchTask&quot;: &quot;use nvm &amp;&amp; pnpm run dev&quot;
+    }
+  ]
+}
+</code></pre>
+<p>然后新建一个tasks.json来切换node版本</p>
+<pre><code class="language-json">// .vscode/tasks.json
+{
+  &quot;version&quot;: &quot;2.0.0&quot;,
+  &quot;tasks&quot;: [
+    {
+      &quot;label&quot;: &quot;use nvm &amp;&amp; pnpm run dev&quot;,
+      &quot;type&quot;: &quot;shell&quot;,
+      &quot;command&quot;: &quot;zsh -i -c 'nvm use 20.11.0 &amp;&amp; pnpm run dev'&quot;,
+      &quot;isBackground&quot;: true,
+      &quot;presentation&quot;: {
+        &quot;reveal&quot;: &quot;never&quot;
+      },
+      &quot;problemMatcher&quot;: [
+        {
+          &quot;owner&quot;: &quot;typescript&quot;,
+          &quot;fileLocation&quot;: &quot;absolute&quot;,
+          &quot;pattern&quot;: {
+            &quot;regexp&quot;: &quot;^(.*):(\\d+):(\\d+) - (error|warning): (.*)$&quot;,
+            &quot;file&quot;: 1,
+            &quot;line&quot;: 2,
+            &quot;column&quot;: 3,
+            &quot;severity&quot;: 4,
+            &quot;message&quot;: 5
+          },
+          &quot;background&quot;: {
+            &quot;activeOnStart&quot;: true,
+            &quot;beginsPattern&quot;: &quot;Build start&quot;,
+            &quot;endsPattern&quot;: &quot;Build success&quot;
+          }
+        }
+      ],
+      &quot;group&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+]]></content>
+        <author>
+            <name>Ajiu9</name>
+            <email>615944323@qq.com</email>
+            <uri>https://ajiu9.cn</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[在一个项目中同时使用ESM和CJS]]></title>
         <id>https://ajiu9.cn/posts/publish-esm-and-cjs</id>

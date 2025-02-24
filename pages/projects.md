@@ -27,11 +27,15 @@ projects:
       link: 'https://github.com/ajiu9/carousel'
       desc: 'A carousel, a group of carousels.'
       icon: 'i-material-symbols-light:view-carousel h-1em'
-  Starter Template:
+  Starter Templates:
     - name: 'Starter-Ts'
       link: 'https://github.com/ajiu9/starter-ts'
       desc: 'A starter template for TypeScript projects.'
       icon: 'i-fluent:code-ts-16-filled h-1em'
+    - name: 'Starter VS Code'
+      link: 'https://github.com/antfu/starter-vscode'
+      desc: 'My VS Code Extension Starter'
+      icon: 'i-carbon-code'
   CLI:
     - name: 'ninesh'
       link: 'https://github.com/ajiu9/ninesh'
@@ -45,6 +49,11 @@ projects:
       link: 'https://github.com/ajiu9/tool'
       desc: 'Tool collection for personal use'
       icon: 'i-et:tools h-1em'
+  VS Code:
+    - name: 'Vistara Theme'
+      link: 'https://github.com/ajiu9/vscode-theme-vistara'
+      desc: 'Vistara Theme for VS Code'
+      icon: 'i-carbon-code'
   Configurations:
     - name: 'Eslint-Config'
       link: 'https://github.com/ajiu9/eslint-config'
