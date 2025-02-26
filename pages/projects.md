@@ -5,7 +5,7 @@ description: List of projects that I am proud of
 art: dots
 wrapperClass: 'text-center'
 projects:
-  Current Focus:
+  当前:
     - name: 'Comuse'
       link: 'https://github.com/ajiu9/comuse'
       desc: 'the common use for js'
@@ -18,7 +18,7 @@ projects:
       link: 'https://github.com/ajiu9/typing-ts'
       desc: 'the type for ts'
       icon: 'i-file-icons:config-typescript h-1em'
-  Components:
+  组件:
     - name: 'Vistara'
       link: 'https://github.com/ajiu9/vistara'
       desc: 'Daily use components.'
@@ -27,7 +27,7 @@ projects:
       link: 'https://github.com/ajiu9/carousel'
       desc: 'A carousel, a group of carousels.'
       icon: 'i-material-symbols-light:view-carousel h-1em'
-  Starter Templates:
+  开始模版:
     - name: 'Starter-Ts'
       link: 'https://github.com/ajiu9/starter-ts'
       desc: 'A starter template for TypeScript projects.'
@@ -36,7 +36,7 @@ projects:
       link: 'https://github.com/antfu/starter-vscode'
       desc: 'My VS Code Extension Starter'
       icon: 'i-carbon-code'
-  CLI:
+  工具:
     - name: 'ninesh'
       link: 'https://github.com/ajiu9/ninesh'
       desc: 'My zsh config and obsidian script'
@@ -58,7 +58,7 @@ projects:
       link: 'https://github.com/ajiu9/vscode-theme-vistara'
       desc: 'Vistara Theme for VS Code'
       icon: 'i-carbon-code'
-  Configurations:
+  配置:
     - name: 'Eslint-Config'
       link: 'https://github.com/ajiu9/eslint-config'
       desc: 'My ESLint config presets'
@@ -67,7 +67,7 @@ projects:
       link: 'https://github.com/ajiu9/SoftwareConfiguration/tree/main/espanso'
       desc: 'my software configuration for espanso'
       icon: 'i-bx:text h-1em'
-  Learn:
+  学习:
     - name: 'javascript-algorithms'
       link: 'https://github.com/ajiu9/javascript-algorithms'
       desc: 'A collection of JavaScript algorithms.'
