@@ -49,6 +49,10 @@ projects:
       link: 'https://github.com/ajiu9/tool'
       desc: 'Tool collection for personal use'
       icon: 'i-et:tools h-1em'
+    - name: ' clipboard-n'
+      link: 'https://github.com/ajiu9/clipboard-n'
+      desc: 'Cross-platform. Supports: macOS, Windows, Linux for clipboard'
+      icon: 'i-solar:copy-bold-duotone'
   VS Code:
     - name: 'Vistara Theme'
       link: 'https://github.com/ajiu9/vscode-theme-vistara'
