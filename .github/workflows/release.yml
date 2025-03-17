@@ -44,7 +44,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
 
           # 提交构建结果到 release 分支
-          git add packages/.vitepress/dist pnpm-lock.yaml
+          git add dist pnpm-lock.yaml
           git commit -m "flow: docs:build" || echo "No changes to commit"
           git push origin release
 
