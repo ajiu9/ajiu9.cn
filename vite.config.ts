@@ -52,9 +52,8 @@ export default defineConfig({
       logs: true,
       extendRoute(route) {
         const path = route.components.get('default')
-        if (!path) {
+        if (!path)
           return
-        }
 
         if (!path.includes('projects.md') && path.endsWith('.md')) {
           const { data } = matter(fs.readFileSync(path, 'utf-8'))
@@ -128,13 +127,13 @@ export default defineConfig({
       },
       frontmatterPreprocess(frontmatter, options, id, defaults) {
         (() => {
-          if (!id.endsWith('.md')) {
+          if (!id.endsWith('.md'))
             return
-          }
+
           const route = basename(id, '.md')
-          if (route === 'index' || frontmatter.image || !frontmatter.title) {
+          if (route === 'index' || frontmatter.image || !frontmatter.title)
             return
-          }
+
           const path = `og/${route}.png`
           promises.push(
             fs.existsSync(`${id.slice(0, -3)}.png`)
@@ -190,9 +189,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       onwarn(warning, next) {
-        if (warning.code !== 'UNUSED_EXTERNAL_IMPORT') {
+        if (warning.code !== 'UNUSED_EXTERNAL_IMPORT')
           next(warning)
-        }
       },
     },
   },
@@ -206,9 +204,8 @@ export default defineConfig({
 const ogSVg = fs.readFileSync('./scripts/og-template.svg', 'utf-8')
 
 async function generateOg(title: string, output: string) {
-  if (fs.existsSync(output)) {
+  if (fs.existsSync(output))
     return
-  }
 
   await fs.mkdir(dirname(output), { recursive: true })
   // breakline every 30 chars

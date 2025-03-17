@@ -31,15 +31,15 @@ const { y: scroll } = useWindowScroll()
       <div class="spacer" />
       <div class="right" print:op0>
         <RouterLink to="/posts" title="Blog">
-          <span class="lt-md:hidden">博客</span>
+          <span class="lt-md:hidden">Blog</span>
           <div i-ri-article-line md:hidden />
         </RouterLink>
         <RouterLink to="/projects" title="Projects">
-          <span class="lt-md:hidden">项目</span>
+          <span class="lt-md:hidden">Projects</span>
           <div i-ri-lightbulb-line class="md:hidden" />
         </RouterLink>
-        <RouterLink to="/photos" title="photos">
-          <span class="lt-md:hidden">摄影</span>
+        <RouterLink to="/photos" title="Photos">
+          <span class="lt-md:hidden">Photos</span>
           <div i-arcticons:photoncamera class="md:hidden" />
         </RouterLink>
         <a href="https://github.com/ajiu9" target="_blank" title="GitHub" class="lt-md:hidden">
