@@ -36,6 +36,10 @@ projects:
       link: 'https://github.com/antfu/starter-vscode'
       desc: 'My VS Code Extension Starter'
       icon: 'i-carbon-code'
+    - name: 'Starter-Taro'
+      link: 'https://github.com/ajiu9/starter-taro'
+      desc: 'A starter template for Taro projects.'
+      icon: 'i-carbon:taro h-1em'
   Utilities:
     - name: 'ninesh'
       link: 'https://github.com/ajiu9/ninesh'
