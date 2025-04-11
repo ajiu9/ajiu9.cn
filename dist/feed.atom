@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajiu9.cn/</id>
     <title>Ajiu9</title>
-    <updated>2025-03-20T13:57:18.082Z</updated>
+    <updated>2025-04-11T04:34:19.614Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Ajiu9</name>
@@ -15,6 +15,162 @@
     <logo>https://ajiu9.cn/avatar.png</logo>
     <icon>https://ajiu9.cn/logo.png</icon>
     <rights>@2024-2025 湘ICP备2024048835号</rights>
+    <entry>
+        <title type="html"><![CDATA[日常工作小技巧和问题集（2）]]></title>
+        <id>https://ajiu9.cn/posts/daily-tips-2</id>
+        <link href="https://ajiu9.cn/posts/daily-tips-2"/>
+        <updated>2025-03-31T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li><code>vscode 搜索文件目录名称</code></li>
+</ol>
+<p>鼠标点一下文件夹目录之后直接输入想要搜索的文件就可以高亮显示</p>
+<ol start="2">
+<li><code>在rollup构建中： createRequire(import.meta.url)</code></li>
+</ol>
+<p>使用esbuild插件构建默认配置:</p>
+<pre><code class="language-json">{
+  &quot;target&quot;: &quot;esnext&quot;
+}
+</code></pre>
+<p>会生成<br>
+var node_module = require('node:module');<br>
+const require$1 = node_module.createRequire((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript &amp;&amp; _documentCurrentScript.src || new URL('obsiflow.cjs.prod.js', document.baseURI).href)));</p>
+<p>使用：</p>
+<pre><code class="language-json">{
+  &quot;target&quot;: &quot;es2019&quot;
+}
+</code></pre>
+<p>const require$1 = node_module.createRequire(import_meta.url);</p>
+<ol start="3">
+<li><code>代码中使用vuex时，使用computed时，不会触发更新，会造成bug原因</code></li>
+</ol>
+<pre><code class="language-js">// 使用  const serviceBill = computed(() =&gt; store.state.serviceBill)
+
+this.$store.commit('setData', {
+  key: 'serviceBill',
+  value: this.serviceBill
+})
+
+Vue.prototype.$store = new Vuex.Store({
+  state: {
+    saveReceive: {
+      roomID: '',
+      roomName: ''
+    }
+  },
+  mutations: {
+    setData(state, obj) {
+      //  原 state[obj.key] = obj.value
+      //  当值是对象时，更新监听不到值
+      // 使用computed时，不会触发更新，会造成bug
+      Vue.set(state, obj.key, obj.value)
+    }
+  }
+})
+</code></pre>
+<ol start="4">
+<li>
+<p><code>vscode 中，typeScript 类型使用代码重构功能移动到新文件typeScript 5.4.5版本才支持移动到新文件</code></p>
+</li>
+<li>
+<p><code>el-form 表单校验问题： 当使用rules时，form表单字段中有使用v-if，当开始条件为false，又使用了vue.$set重新动态绑定，会造成rules失效。 初步判断应该是动态绑定和el-form的校验改变了引用，造成失效。</code></p>
+</li>
+<li>
+<p><code>loadSource方法在dev模式下是浅拷贝，生产环境才是</code></p>
+</li>
+</ol>
+<p>7.<code> 在 vscode中, debugger 使用的默认node版本和terminal中的不一定相同，更改的方法有两种：</code></p>
+<p>在 vscode中, 修改设置：</p>
+<p>environment-variables</p>
+<pre><code class="language-json">{
+  &quot;terminal.integrated.env.osx&quot;: {
+    &quot;remoteEnv&quot;: &quot;${containerEnv:PATH}:/some/other/path&quot;
+  }
+}
+</code></pre>
+<p>在项目中配置：<br>
+在.vscode/launch.json 中配置preLaunchTask</p>
+<pre><code class="language-json">{
+  &quot;version&quot;: &quot;0.2.0&quot;,
+  &quot;configurations&quot;: [
+    {
+      &quot;name&quot;: &quot;Extension&quot;,
+      &quot;type&quot;: &quot;extensionHost&quot;,
+      &quot;request&quot;: &quot;launch&quot;,
+      &quot;runtimeExecutable&quot;: &quot;${execPath}&quot;,
+      &quot;args&quot;: [
+        &quot;--extensionDevelopmentPath=${workspaceFolder}&quot;
+      ],
+      &quot;outFiles&quot;: [
+        &quot;${workspaceFolder}/dist/**/*.js&quot;
+      ],
+      &quot;preLaunchTask&quot;: &quot;use nvm &amp;&amp; pnpm run dev&quot;
+    }
+  ]
+}
+</code></pre>
+<p>然后新建一个tasks.json来切换node版本</p>
+<pre><code class="language-json">// .vscode/tasks.json
+{
+  &quot;version&quot;: &quot;2.0.0&quot;,
+  &quot;tasks&quot;: [
+    {
+      &quot;label&quot;: &quot;use nvm &amp;&amp; pnpm run dev&quot;,
+      &quot;type&quot;: &quot;shell&quot;,
+      &quot;command&quot;: &quot;zsh -i -c 'nvm use 20.11.0 &amp;&amp; pnpm run dev'&quot;,
+      &quot;isBackground&quot;: true,
+      &quot;presentation&quot;: {
+        &quot;reveal&quot;: &quot;never&quot;
+      },
+      &quot;problemMatcher&quot;: [
+        {
+          &quot;owner&quot;: &quot;typescript&quot;,
+          &quot;fileLocation&quot;: &quot;absolute&quot;,
+          &quot;pattern&quot;: {
+            &quot;regexp&quot;: &quot;^(.*):(\\d+):(\\d+) - (error|warning): (.*)$&quot;,
+            &quot;file&quot;: 1,
+            &quot;line&quot;: 2,
+            &quot;column&quot;: 3,
+            &quot;severity&quot;: 4,
+            &quot;message&quot;: 5
+          },
+          &quot;background&quot;: {
+            &quot;activeOnStart&quot;: true,
+            &quot;beginsPattern&quot;: &quot;Build start&quot;,
+            &quot;endsPattern&quot;: &quot;Build success&quot;
+          }
+        }
+      ],
+      &quot;group&quot;: &quot;build&quot;
+    }
+  ]
+}
+</code></pre>
+<ol start="8">
+<li><code>在 js项目中，禁用ts-plugins</code></li>
+</ol>
+<p>vue插件使用官方的Vue-official,这个插件使用的是vscode内置的ts-plugin,如果在js项目中不需要ts类型提示，可以禁用掉。</p>
+<p>在左侧的Extensions选项卡(Ctrl+Shift+X)中，搜索@builtin typescript-language-features，然后单击Extension旁边的小齿轮图标，然后单击Disable。</p>
+<ol start="9">
+<li><code>Node.js 20 全局设置旧版 OpenSSL 提供程序以避免加密错误</code></li>
+</ol>
+<p><code>问题背景</code><br>
+在使用 Node.js 20 时，可能会遇到 digital envelope routines::unsupported 错误，这是由于 Node.js 20 默认采用了更严格的加密策略，部分旧项目依赖的加密算法在新版本中可能不被支持。而 Node.js 16 通常不会出现此问题。为解决该问题，可全局设置让 Node.js 20 使用旧版 OpenSSL 提供程序。</p>
+<p><code>解决方案</code></p>
+<p>Windows 系统</p>
+<p>batch</p>
+<pre><code class="language-bash">set NODE_OPTIONS=--openssl-legacy-provider
+</code></pre>
+<p>macOS 系统</p>
+<pre><code class="language-bash">export NODE_OPTIONS=--openssl-legacy-provider
+</code></pre>
+]]></content>
+        <author>
+            <name>Ajiu9</name>
+            <email>615944323@qq.com</email>
+            <uri>https://ajiu9.cn</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[更改VSCode环境变量]]></title>
         <id>https://ajiu9.cn/posts/change-vscode-env-var</id>

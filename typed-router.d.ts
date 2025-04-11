@@ -35,6 +35,7 @@ declare module 'vue-router/auto-routes' {
     '/posts/csrf-xss': RouteRecordInfo<'/posts/csrf-xss', '/posts/csrf-xss', Record<never, never>, Record<never, never>>,
     '/posts/css-box-model-and-margin-overlap-solution': RouteRecordInfo<'/posts/css-box-model-and-margin-overlap-solution', '/posts/css-box-model-and-margin-overlap-solution', Record<never, never>, Record<never, never>>,
     '/posts/daily-tips-1': RouteRecordInfo<'/posts/daily-tips-1', '/posts/daily-tips-1', Record<never, never>, Record<never, never>>,
+    '/posts/daily-tips-2': RouteRecordInfo<'/posts/daily-tips-2', '/posts/daily-tips-2', Record<never, never>, Record<never, never>>,
     '/posts/directive-number': RouteRecordInfo<'/posts/directive-number', '/posts/directive-number', Record<never, never>, Record<never, never>>,
     '/posts/dom-event': RouteRecordInfo<'/posts/dom-event', '/posts/dom-event', Record<never, never>, Record<never, never>>,
     '/posts/front-end-error-monitoring': RouteRecordInfo<'/posts/front-end-error-monitoring', '/posts/front-end-error-monitoring', Record<never, never>, Record<never, never>>,

@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@ajiu9/eslint-config": "^2.5.2",
-    "@iconify/json": "^2.2.218",
+    "@iconify/json": "^2.2.325",
     "@octokit/rest": "^20.1.1",
     "@shikijs/markdown-it": "^1.6.4",
     "@shikijs/twoslash": "^1.6.4",

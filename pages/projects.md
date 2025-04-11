@@ -40,6 +40,10 @@ projects:
       link: 'https://github.com/ajiu9/starter-taro'
       desc: 'A starter template for Taro projects.'
       icon: 'i-ic:baseline-wechat h-1em'
+    - name: 'Starter-vue'
+      link: 'https://github.com/ajiu9/starter-vue'
+      desc: 'A starter template for Vue projects.'
+      icon: 'i-material-icon-theme:vue h-1em'
   Utilities:
     - name: 'ninesh'
       link: 'https://github.com/ajiu9/ninesh'
