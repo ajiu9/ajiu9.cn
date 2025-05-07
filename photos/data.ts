@@ -47,6 +47,4 @@ const photos = Object.entries(
   })
   .sort((a, b) => b.name.localeCompare(a.name))
 
-console.log(photos, metaInfo)
-
 export default photos
