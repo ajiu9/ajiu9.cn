@@ -5,4 +5,6 @@ display: ''
 ---
 
 <!-- @layout-full-width -->
-<ListPhotos />
+<PhotoGalleryAll mt--10 />
+
+<!-- <ListPhotos /> -->
