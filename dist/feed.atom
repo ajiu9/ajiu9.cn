@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajiu9.cn/</id>
     <title>Ajiu9</title>
-    <updated>2025-05-07T15:13:14.309Z</updated>
+    <updated>2025-08-21T08:24:01.586Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Ajiu9</name>
@@ -15,6 +15,134 @@
     <logo>https://ajiu9.cn/avatar.png</logo>
     <icon>https://ajiu9.cn/logo.png</icon>
     <rights>@2024-2025 湘ICP备2024048835号</rights>
+    <entry>
+        <title type="html"><![CDATA[JavaScript循环四侠传：for...of、for...in、map、forEach谁是你的菜？]]></title>
+        <id>https://ajiu9.cn/posts/JavaScript-Loop-Quartet:-for...of,-for...in,-map,-forEach-Which-One-is-Your-Choice</id>
+        <link href="https://ajiu9.cn/posts/JavaScript-Loop-Quartet:-for...of,-for...in,-map,-forEach-Which-One-is-Your-Choice"/>
+        <updated>2025-08-21T00:00:00.000Z</updated>
+        <content type="html"><![CDATA[<h2>🤔 先问大家一个问题：</h2>
+<p>当你看到数组<code>[1,2,3]</code>时，脑子里第一个蹦出来的遍历方式是啥？ （评论区告诉我，看看有没有同道中人👀）</p>
+<h2>🎭 循环四大家族登场</h2>
+<p>今天咱们要唠唠JavaScript界的&quot;F4&quot;——<strong>for…of、for…in、map、forEach</strong>，它们看似都能遍历数据，实则各怀绝技，性格迥异！</p>
+<h3>👨‍👩‍👧‍👦 共同点：都是遍历小能手</h3>
+<ol>
+<li>都能用来<strong>循环迭代</strong>（说人话：一个一个数过去）</li>
+<li>都支持<strong>break/continue</strong>（除了forEach这个犟脾气）</li>
+<li>都能访问到<strong>当前元素</strong>（具体怎么访问各有千秋）</li>
+</ol>
+<h2>💡 差异大起底（建议收藏）</h2>
+<h3>1. for…in：对象属性的&quot;八卦记者&quot;</h3>
+<pre><code class="language-js">const obj = { name: '小明', age: 18 }
+for (const key in obj)
+  console.log(key) // 输出：name, age
+</code></pre>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>专门遍历<strong>对象的键名</strong>（像查户口一样把属性全抖出来）</li>
+<li>会遍历<strong>原型链上的属性</strong>（容易挖到别人家祖坟）</li>
+<li>数组慎用！可能会把数组的length也算进去</li>
+</ul>
+<p>💡 江湖称号：&quot;对象遍历专业户&quot;，但遍历数组就是跨界抢饭碗</p>
+<h3>2. for…of：数组元素的&quot;专属导游&quot;</h3>
+<pre><code class="language-js">const arr = ['🍎', '🍐', '🍊']
+for (const fruit of arr)
+  console.log(fruit) // 输出：🍎, 🍐, 🍊
+</code></pre>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>专门遍历<strong>数组/字符串/Map等可迭代对象</strong>（持证上岗，专业对口）</li>
+<li>直接拿到<strong>元素值</strong>（不用arr[i]这么麻烦）</li>
+<li>支持break和continue（灵活变通）</li>
+</ul>
+<p>💡 现代前端新宠，数组遍历就找它，比for循环优雅10倍！</p>
+<h3>3. forEach：数组的&quot;老干部&quot;</h3>
+<pre><code class="language-js">[1, 2, 3].forEach((num, index) =&gt; {
+  console.log(num * 2) // 输出：2,4,6
+})
+</code></pre>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>数组专属，<strong>无法中途退出</strong>（像老黄牛一样埋头干到完）</li>
+<li>没有返回值（默默奉献型人格）</li>
+<li>第三个参数是<strong>原数组</strong>（时刻不忘本）</li>
+</ul>
+<p>💡 经典名言：&quot;我可以遍历，但别想改变我！&quot;（不会修改原数组）</p>
+<h3>4. map：数组的&quot;魔术师&quot;</h3>
+<pre><code class="language-js">const newArr = [1, 2, 3].map(num =&gt; num * 2)
+console.log(newArr) // 输出：[2,4,6]
+</code></pre>
+<p><strong>特点</strong>：</p>
+<ul>
+<li><strong>返回新数组</strong>（原数组毫发无损）</li>
+<li>必须return（不return就出不了魔法效果）</li>
+<li>适合<strong>数据转换</strong>（把1变成2，把🐱变成🐶）</li>
+</ul>
+<p>💡 职场定位：&quot;数据加工厂厂长&quot;，输入原料输出新产品</p>
+<h2>📊 四侠能力对比表</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>遍历对象</th>
+<th>返回值</th>
+<th>能否break</th>
+<th>改变原数组</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>for…in</td>
+<td>对象</td>
+<td>无</td>
+<td>✅</td>
+<td>手动改</td>
+</tr>
+<tr>
+<td>for…of</td>
+<td>可迭代对象</td>
+<td>无</td>
+<td>✅</td>
+<td>手动改</td>
+</tr>
+<tr>
+<td>forEach</td>
+<td>数组</td>
+<td>无</td>
+<td>❌</td>
+<td>手动改</td>
+</tr>
+<tr>
+<td>map</td>
+<td>数组</td>
+<td>新数组</td>
+<td>❌</td>
+<td>不改动</td>
+</tr>
+</tbody>
+</table>
+<h2>🚦 实战场景选择题</h2>
+<ol>
+<li>遍历对象属性 →<strong>for…in</strong></li>
+<li>遍历数组且可能中途退出 →<strong>for…of</strong></li>
+<li>单纯遍历数组做操作 →<strong>forEach</strong></li>
+<li>数组转新数组 →<strong>map</strong></li>
+</ol>
+<h2>🧩 趣味记忆法</h2>
+<ul>
+<li>for…in：像查字典，先看到页码（键名）再找内容</li>
+<li>for…of：像读小说，一页一页按顺序看（值）</li>
+<li>forEach：像做广播体操，每个动作都做到位但不创新</li>
+<li>map：像拍照修图，原图不变，输出美颜版</li>
+</ul>
+<h2>💬 互动话题</h2>
+<p>你曾经因为用错循环踩过哪些坑？评论区分享你的&quot;血泪史&quot;</p>
+]]></content>
+        <author>
+            <name>Ajiu9</name>
+            <email>615944323@qq.com</email>
+            <uri>https://ajiu9.cn</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[日常工作小技巧和问题集（2）]]></title>
         <id>https://ajiu9.cn/posts/daily-tips-2</id>
