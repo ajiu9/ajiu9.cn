@@ -4,7 +4,7 @@
         <title>Ajiu9</title>
         <link>https://ajiu9.cn/</link>
         <description>Ajiu9' Blog</description>
-        <lastBuildDate>Thu, 21 Aug 2025 08:24:01 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 21 Aug 2025 08:31:44 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <image>
@@ -16,8 +16,8 @@
         <atom:link href="https://ajiu9.cn/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title><![CDATA[JavaScript循环四侠传：for...of、for...in、map、forEach谁是你的菜？]]></title>
-            <link>https://ajiu9.cn/posts/JavaScript-Loop-Quartet:-for...of,-for...in,-map,-forEach-Which-One-is-Your-Choice</link>
-            <guid>https://ajiu9.cn/posts/JavaScript-Loop-Quartet:-for...of,-for...in,-map,-forEach-Which-One-is-Your-Choice</guid>
+            <link>https://ajiu9.cn/posts/loop-quartet</link>
+            <guid>https://ajiu9.cn/posts/loop-quartet</guid>
             <pubDate>Thu, 21 Aug 2025 00:00:00 GMT</pubDate>
             <content:encoded><![CDATA[<h2>🤔 先问大家一个问题：</h2>
 <p>当你看到数组<code>[1,2,3]</code>时，脑子里第一个蹦出来的遍历方式是啥？ （评论区告诉我，看看有没有同道中人👀）</p>
